@@ -31,13 +31,13 @@ appropriate design or architecture documentation. Use this when:
 **Path**: Directory or file to analyze
 - `src/gameplay/combat/` → All combat-related code
 - `src/core/event-system.cpp` → Specific file
-- `prototypes/stealth-mech/` → Prototype directory
+- `docs/prototypes/stealth-mech/` → Prototype directory
 
 **Examples**:
 ```bash
 /reverse-document design src/gameplay/magic-system
 /reverse-document architecture src/core/entity-component
-/reverse-document concept prototypes/vehicle-combat
+/reverse-document concept docs/prototypes/vehicle-combat
 ```
 
 ### 2. Analyze Implementation
@@ -122,9 +122,9 @@ Based on type, use appropriate template:
 
 | Type | Template | Output Path |
 |------|----------|-------------|
-| `design` | `templates/design-doc-from-implementation.md` | `docs/design/gdd/[system-name].md` |
-| `architecture` | `templates/architecture-doc-from-code.md` | `docs/architecture/[decision-name].md` |
-| `concept` | `templates/concept-doc-from-prototype.md` | `prototypes/[name]/CONCEPT.md` or `design/concepts/[name].md` |
+| `design` | `docs/templates/design-doc-from-implementation.md` | `docs/design/gdd/[system-name].md` |
+| `architecture` | `docs/templates/architecture-doc-from-code.md` | `docs/architecture/[decision-name].md` |
+| `concept` | `docs/templates/concept-doc-from-prototype.md` | `docs/prototypes/[name]/CONCEPT.md` or `docs/design/concepts/[name].md` |
 
 **Draft structure**:
 - Capture **what exists** (mechanics, patterns, implementation)
@@ -201,7 +201,7 @@ Would you like me to tackle any of these now?
 |----------------|-----------------|------------|
 | `src/gameplay/*` | design-doc-from-implementation.md | Gameplay mechanics → GDD |
 | `src/core/*`, `src/ai/*` | architecture-doc-from-code.md | Core systems → ADR |
-| `prototypes/*` | concept-doc-from-prototype.md | Experiments → concept doc |
+| `docs/prototypes/*` | concept-doc-from-prototype.md | Experiments → concept doc |
 | `src/networking/*` | architecture-doc-from-code.md | Technical systems → ADR |
 | `src/ui/*` | design-doc-from-implementation.md | UI/UX → design spec |
 

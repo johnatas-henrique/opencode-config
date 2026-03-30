@@ -19,8 +19,8 @@ The user must approve before moving to the next step.
 2. **Gather context**:
    - Read the game concept at `docs/design/gdd/game-concept.md`
    - Read game pillars at `docs/design/gdd/game-pillars.md`
-   - Read existing level docs in `design/levels/`
-   - Read relevant narrative docs in `design/narrative/`
+   - Read existing level docs in `docs/design/levels/`
+   - Read relevant narrative docs in `docs/design/narrative/`
    - Read world-building docs for the area's region/faction
 
 ## How to Delegate
@@ -83,7 +83,7 @@ Spawn the `qa-tester` agent to:
 4. **Compile the level design document** combining all team outputs into the
    level design template format.
 
-5. **Save to** `design/levels/[level-name].md`.
+5. **Save to** `docs/design/levels/[level-name].md`.
 
 6. **Output a summary** with: area overview, encounter count, estimated asset
    list, narrative beats, and any cross-team dependencies or open questions.

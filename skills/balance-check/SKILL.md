@@ -10,7 +10,7 @@ When this skill is invoked:
 
 1. **Identify the balance domain** from the argument.
 
-2. **Read relevant data files** from `assets/data/` and `design/balance/`.
+2. **Read relevant data files** from `assets/data/` and `docs/design/balance/`.
 
 3. **Read the design document** for the system being checked from `docs/design/gdd/`.
 

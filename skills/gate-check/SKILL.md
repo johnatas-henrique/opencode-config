@@ -26,7 +26,7 @@ The project progresses through these stages:
 6. **Polish** — Performance, playtesting, bug fixing
 7. **Release** — Launch prep, certification
 
-**When a gate passes**, write the new stage name to `production/stage.txt`
+**When a gate passes**, write the new stage name to `docs/production/stage.txt`
 (single line, e.g. `Production`). This updates the status line immediately.
 
 ---
@@ -70,8 +70,8 @@ The project progresses through these stages:
 ### Gate: Technical Setup → Pre-Production
 
 **Required Artifacts:**
-- [ ] Engine chosen (CLAUDE.md Technology Stack is not `[CHOOSE]`)
-- [ ] Technical preferences configured (`.claude/docs/technical-preferences.md` populated)
+- [ ] Engine chosen (AGENTS.md Technology Stack is not `[CHOOSE]`)
+- [ ] Technical preferences configured (`docs/technical-preferences.md` populated)
 - [ ] At least 1 Architecture Decision Record in `docs/architecture/`
 - [ ] Engine reference docs exist in `docs/engine-reference/`
 
@@ -84,8 +84,8 @@ The project progresses through these stages:
 ### Gate: Pre-Production → Production
 
 **Required Artifacts:**
-- [ ] At least 1 prototype in `prototypes/` with a README
-- [ ] First sprint plan exists in `production/sprints/`
+- [ ] At least 1 prototype in `docs/prototypes/` with a README
+- [ ] First sprint plan exists in `docs/production/sprints/`
 - [ ] All MVP-tier GDDs from systems index are complete
 
 **Quality Checks:**
@@ -182,7 +182,7 @@ For items that can't be automatically verified, **ask the user**:
 ### Required Artifacts: [X/Y present]
 - [x] docs/design/gdd/game-concept.md — exists, 2.4KB
 - [ ] docs/architecture/ — MISSING (no ADRs found)
-- [x] production/sprints/ — exists, 1 sprint plan
+- [x] docs/production/sprints/ — exists, 1 sprint plan
 
 ### Quality Checks: [X/Y passing]
 - [x] GDD has 8/8 required sections
@@ -210,15 +210,15 @@ For items that can't be automatically verified, **ask the user**:
 
 When the verdict is **PASS** and the user confirms they want to advance:
 
-1. Write the new stage name to `production/stage.txt` (single line, no trailing newline)
+1. Write the new stage name to `docs/production/stage.txt` (single line, no trailing newline)
 2. This immediately updates the status line for all future sessions
 
 Example: if passing the "Pre-Production → Production" gate:
 ```bash
-echo -n "Production" > production/stage.txt
+echo -n "Production" > docs/production/stage.txt
 ```
 
-**Always ask before writing**: "Gate passed. May I update `production/stage.txt` to 'Production'?"
+**Always ask before writing**: "Gate passed. May I update `docs/production/stage.txt` to 'Production'?"
 
 ---
 
@@ -246,7 +246,7 @@ This skill follows the collaborative design principle:
 2. **Ask about unknowns**: Don't assume PASS for things you can't verify
 3. **Present findings**: Show the full checklist with status
 4. **User decides**: The verdict is a recommendation — the user makes the final call
-5. **Get approval**: "May I write this gate check report to production/gate-checks/?"
+5. **Get approval**: "May I write this gate check report to docs/production/gate-checks/?"
 
 **Never** block a user from advancing — the verdict is advisory. Document the risks
 and let the user decide whether to proceed despite concerns.

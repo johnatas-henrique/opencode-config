@@ -26,7 +26,7 @@ When this skill is invoked:
    If no tags exist, read the full log or a reasonable recent range (last 100
    commits).
 
-3. **Read sprint reports** from `production/sprints/` for the relevant period
+3. **Read sprint reports** from `docs/production/sprints/` for the relevant period
    to understand planned work and context behind changes.
 
 4. **Read completed design documents** from `docs/design/gdd/` for any new features

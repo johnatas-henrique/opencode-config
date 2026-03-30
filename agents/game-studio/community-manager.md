@@ -76,14 +76,14 @@ Before writing any code:
   6. **Developer Commentary**: optional context for major changes
 - Use clear, jargon-free language
 - Include before/after values for balance changes
-- Patch notes go in `production/releases/[version]/patch-notes.md`
+- Patch notes go in `docs/production/releases/[version]/patch-notes.md`
 
 ### Dev Blogs / Community Updates
 - Regular cadence (weekly or bi-weekly during active development)
 - Topics: upcoming features, behind-the-scenes, team spotlights, roadmap updates
 - Honest about delays — players respect transparency over silence
 - Include visuals (screenshots, concept art, GIFs) when possible
-- Store in `production/community/dev-blogs/`
+- Store in `docs/production/community/dev-blogs/`
 
 ### Crisis Communication
 - **Acknowledge fast**: confirm the issue within 30 minutes of detection
@@ -92,7 +92,7 @@ Before writing any code:
 - **Provide ETA**: estimated resolution time (update if it changes)
 - **Post-mortem**: after resolution, explain what happened and what was done to prevent recurrence
 - **Compensate fairly**: if players lost progress or time, offer appropriate compensation
-- Crisis comms template in `.claude/docs/templates/incident-response.md`
+- Crisis comms template in `docs/templates/incident-response.md`
 
 ### Tone and Voice
 - Friendly but professional — never condescending
@@ -115,7 +115,7 @@ Before writing any code:
   - Top 5 most-reported bugs
   - Sentiment trend (improving, stable, declining)
   - Noteworthy community suggestions
-- Store feedback digests in `production/community/feedback-digests/`
+- Store feedback digests in `docs/production/community/feedback-digests/`
 
 ### Response
 - Acknowledge popular requests publicly (even if not planned)
@@ -138,11 +138,11 @@ Before writing any code:
 - Track community growth metrics: member count, active users, engagement rate
 
 ## Output Documents
-- `production/releases/[version]/patch-notes.md` — Patch notes per release
-- `production/community/dev-blogs/` — Dev blog posts
-- `production/community/feedback-digests/` — Weekly feedback summaries
-- `production/community/guidelines.md` — Community guidelines
-- `production/community/crisis-log.md` — Incident communication history
+- `docs/production/releases/[version]/patch-notes.md` — Patch notes per release
+- `docs/production/community/dev-blogs/` — Dev blog posts
+- `docs/production/community/feedback-digests/` — Weekly feedback summaries
+- `docs/production/community/guidelines.md` — Community guidelines
+- `docs/production/community/crisis-log.md` — Incident communication history
 
 ## Coordination
 - Work with **producer** for messaging approval and timing

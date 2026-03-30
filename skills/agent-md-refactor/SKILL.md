@@ -1,6 +1,6 @@
 ---
 name: agent-md-refactor
-description: "Refactor bloated agent instruction files using progressive disclosure. Use when: (1) refactor AGENTS.md, CLAUDE.md, or COPILOT.md, (2) split monolithic agent instructions, (3) organize documentation into linked files, (4) instructions file exceeds 100 lines, (5) clean up agent config. Keywords: progressive disclosure, agent instructions, CLAUDE.md, AGENTS.md, refactor, split, organize, documentation structure."
+description: "Refactor bloated agent instruction files using progressive disclosure. Use when: (1) refactor AGENTS.md, (2) split monolithic agent instructions, (3) organize documentation into linked files, (4) instructions file exceeds 100 lines, (5) clean up agent config. Keywords: progressive disclosure, agent instructions, AGENTS.md, refactor, split, organize, documentation structure."
 license: MIT
 ---
 
@@ -100,8 +100,8 @@ Organize remaining instructions into logical categories.
 **Output structure:**
 ```
 project-root/
-├── CLAUDE.md (or AGENTS.md)     # Minimal root with links
-└── .claude/                      # Or docs/agent-instructions/
+├── AGENTS.md (or CLAUDE.md)     # Minimal root with links
+└── docs/agent-instructions/                      # Or .claude/
     ├── typescript.md
     ├── testing.md
     ├── code-style.md
@@ -221,7 +221,7 @@ Identify instructions that should be removed entirely.
 
 ### Before (Bloated Root)
 ```markdown
-# CLAUDE.md
+# AGENTS.md
 
 This is a React project.
 
@@ -244,7 +244,7 @@ This is a React project.
 
 ### After (Progressive Disclosure)
 ```markdown
-# CLAUDE.md
+# AGENTS.md
 
 React dashboard for real-time analytics visualization.
 

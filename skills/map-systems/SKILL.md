@@ -180,7 +180,7 @@ This is the order the team should write GDDs in.
 
 ### Step 5a: Draft the Document
 
-Using the template at `.claude/docs/templates/systems-index.md`, populate the
+Using the template at `docs/templates/systems-index.md`, populate the
 systems index with all data from Phases 2-4:
 - Fill the enumeration table
 - Fill the dependency map
@@ -202,7 +202,7 @@ Wait for approval. Write the file only after "yes."
 
 ### Step 5c: Update Session State
 
-After writing, update `production/session-state/active.md` with:
+After writing, update `docs/production/session-state/active.md` with:
 - Task: Systems decomposition
 - Status: Systems index created
 - File: docs/design/gdd/systems-index.md
@@ -284,7 +284,7 @@ This skill follows the collaborative design principle at every phase:
 4. **Incremental writing**: Update the systems index after each system is designed
 5. **Handoff**: Individual GDD authoring is owned by `/design-system`, which handles
    incremental section writing, cross-referencing, design review, and index updates
-6. **Session state updates**: Write to `production/session-state/active.md` after
+6. **Session state updates**: Write to `docs/production/session-state/active.md` after
    each milestone (index created, system designed, priorities changed)
 
 **Never** auto-generate the full systems list and write it without review.

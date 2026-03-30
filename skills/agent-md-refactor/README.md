@@ -1,12 +1,12 @@
 # Agent MD Refactor
 
-A Claude Code skill that transforms bloated agent instruction files into clean, organized documentation using progressive disclosure principles.
+A Opencode skill that transforms bloated agent instruction files into clean, organized documentation using progressive disclosure principles.
 
 Based on https://x.com/mattpocockuk/status/2012906065856270504 (Matt Pocock's Prompt Idea)
 
 ## Purpose
 
-Over time, agent instruction files like `CLAUDE.md`, `AGENTS.md`, or `COPILOT.md` tend to grow into unwieldy documents containing hundreds of lines of mixed instructions. This creates several problems:
+Over time, agent instruction files like `AGENTS.md`, `CLAUDE.md`, or `COPILOT.md` tend to grow into unwieldy documents containing hundreds of lines of mixed instructions. This creates several problems:
 
 - **Context waste**: Every task loads the entire file, even when most instructions are irrelevant
 - **Maintenance burden**: Finding and updating specific instructions becomes difficult
@@ -21,7 +21,7 @@ Use this skill when you need to clean up agent instruction files. Common trigger
 
 - "refactor my AGENTS.md" / "refactor my CLAUDE.md"
 - "split my agent instructions"
-- "organize my CLAUDE.md file"
+- "organize my AGENTS.md file"
 - "my AGENTS.md is too long"
 - "progressive disclosure for my instructions"
 - "clean up my agent config"
@@ -69,8 +69,8 @@ Generates the new file hierarchy with properly linked documentation:
 
 ```
 project-root/
-├── CLAUDE.md              # Minimal root with links
-└── .claude/               # Categorized instructions
+├── AGENTS.md              # Minimal root with links
+└── docs/agent-instructions/               # Categorized instructions
     ├── typescript.md
     ├── testing.md
     ├── code-style.md
@@ -101,9 +101,9 @@ Identifies instructions that should be removed entirely:
 ### Basic Refactoring
 
 ```
-User: refactor my CLAUDE.md
+User: refactor my AGENTS.md
 
-Claude: I'll analyze your CLAUDE.md file and refactor it using progressive
+Opencode: I'll analyze your AGENTS.md file and refactor it using progressive
 disclosure principles...
 ```
 
@@ -112,7 +112,7 @@ disclosure principles...
 ```
 User: my AGENTS.md is too long, can you split it up?
 
-Claude: I'll review your AGENTS.md and organize it into focused, linked files...
+Opencode: I'll review your AGENTS.md and organize it into focused, linked files...
 ```
 
 ### After a Project Grows
@@ -120,7 +120,7 @@ Claude: I'll review your AGENTS.md and organize it into focused, linked files...
 ```
 User: organize my agent config - it's gotten out of control
 
-Claude: I'll apply the 5-phase refactoring process to clean up your
+Opencode: I'll apply the 5-phase refactoring process to clean up your
 agent instructions...
 ```
 

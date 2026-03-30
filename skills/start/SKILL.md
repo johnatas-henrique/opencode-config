@@ -23,15 +23,15 @@ Do NOT show these results unprompted — they inform your recommendations, not
 the conversation opener.
 
 Check:
-- **Engine configured?** Read `.claude/docs/technical-preferences.md`. If the
+- **Engine configured?** Read `docs/technical-preferences.md`. If the
   Engine field contains `[TO BE CONFIGURED]`, the engine is not set.
 - **Game concept exists?** Check for `docs/design/gdd/game-concept.md`.
 - **Source code exists?** Glob for source files in `src/` (`*.gd`, `*.cs`,
   `*.cpp`, `*.h`, `*.rs`, `*.py`, `*.js`, `*.ts`).
-- **Prototypes exist?** Check for subdirectories in `prototypes/`.
+- **Prototypes exist?** Check for subdirectories in `docs/prototypes/`.
 - **Design docs exist?** Count markdown files in `docs/design/gdd/`.
-- **Production artifacts?** Check for files in `production/sprints/` or
-  `production/milestones/`.
+- **Production artifacts?** Check for files in `docs/production/sprints/` or
+  `docs/production/milestones/`.
 
 Store these findings internally. You will use them to validate the user's
 self-assessment and to tailor follow-up recommendations.
@@ -42,7 +42,7 @@ self-assessment and to tailor follow-up recommendations.
 
 This is the first thing the user sees. Present these 4 options clearly:
 
-> **Welcome to Claude Code Game Studios!**
+> **Welcome to Opencode Game Studios!**
 >
 > Before I suggest anything, I'd like to understand where you're starting from.
 > Where are you at with your game idea right now?

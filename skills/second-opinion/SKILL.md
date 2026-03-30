@@ -15,7 +15,7 @@ description: "Seek external AI perspective on complex decisions. Use when: (1) s
 - Gut says "something is wrong" but can't identify
 
 **NEVER seek for:**
-- Simple tasks Claude can solve directly
+- Simple tasks Opencode can solve directly
 - Before attempting self-resolution
 - As authority to bypass own judgment
 

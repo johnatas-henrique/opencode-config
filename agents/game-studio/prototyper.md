@@ -115,7 +115,7 @@ Use just enough structure to test the concept:
 
 Prototype code must NEVER leak into the production codebase:
 
-- All prototype code lives in `prototypes/[prototype-name]/`
+- All prototype code lives in `docs/prototypes/[prototype-name]/`
 - Every prototype file starts with a header comment:
   ```
   // PROTOTYPE - NOT FOR PRODUCTION
@@ -163,7 +163,7 @@ scope adjustments]
 surprising findings]
 ```
 
-Save the report to `prototypes/[prototype-name]/REPORT.md`
+Save the report to `docs/prototypes/[prototype-name]/REPORT.md`
 
 ### Prototype Lifecycle
 

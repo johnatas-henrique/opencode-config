@@ -8,17 +8,16 @@ allowed-tools: Read, Glob, Grep, Write
 
 When this skill is invoked:
 
-1. **Read the CLAUDE.md** for project overview and standards.
+1. **Read the AGENTS.md** for project overview and standards.
 
-2. **Read the relevant agent definition** from `.claude/agents/` if a specific
-   role is specified.
+2. **Read the relevant agent definition** from `$HOME/.config/opencode/agents/`, `.claude/agents/` or `.opencode/agents` if a specific role is specified.
 
 3. **Scan the codebase** for the relevant area:
    - For programmers: scan `src/` for architecture, patterns, key files
-   - For designers: scan `design/` for existing design documents
-   - For narrative: scan `design/narrative/` for world-building and story docs
+   - For designers: scan `docs/design/` for existing design documents
+   - For narrative: scan `docs/design/narrative/` for world-building and story docs
    - For QA: scan `tests/` for existing test coverage
-   - For production: scan `production/` for current sprint and milestone
+   - For production: scan `docs/production/` for current sprint and milestone
 
 4. **Read recent changes** (git log if available) to understand current momentum.
 
@@ -45,7 +44,7 @@ When this skill is invoked:
 |------|---------|--------------|
 
 ## Current Standards and Conventions
-[Summary of conventions relevant to this role from CLAUDE.md and agent definition]
+[Summary of conventions relevant to this role from AGENTS.md and agent definition]
 
 ## Current State of Your Area
 [What has been built, what is in progress, what is planned next]

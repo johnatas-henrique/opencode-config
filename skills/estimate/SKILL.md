@@ -11,7 +11,7 @@ When this skill is invoked:
 1. **Read the task description** from the argument. If the description is too
    vague to estimate meaningfully, ask for clarification before proceeding.
 
-2. **Read CLAUDE.md** for project context: tech stack, coding standards,
+2. **Read AGENTS.md** for project context: tech stack, coding standards,
    architectural patterns, and any estimation guidelines.
 
 3. **Read relevant design documents** from `docs/design/gdd/` if the task relates
@@ -24,7 +24,7 @@ When this skill is invoked:
    - Identify integration points with other systems
    - Check for existing test coverage in the affected areas
 
-5. **Read past sprint data** from `production/sprints/` if available:
+5. **Read past sprint data** from `docs/production/sprints/` if available:
    - Look for similar completed tasks and their actual effort
    - Calculate historical velocity (planned vs actual)
    - Identify any estimation bias patterns (consistently over or under)

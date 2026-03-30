@@ -4,16 +4,16 @@ A comprehensive evaluation framework for assessing Agent Skill quality against o
 
 ## Purpose
 
-Skill Judge exists to solve a critical problem: **most Skills waste tokens on knowledge Claude already has**.
+Skill Judge exists to solve a critical problem: **most Skills waste tokens on knowledge Opencode already has**.
 
-The skill helps you evaluate whether a Skill actually adds value by measuring its "knowledge delta" - the gap between what the Skill provides and what Claude already knows. A good Skill should be a compressed expert brain, not a tutorial.
+The skill helps you evaluate whether a Skill actually adds value by measuring its "knowledge delta" - the gap between what the Skill provides and what Opencode already knows. A good Skill should be a compressed expert brain, not a tutorial.
 
 ### The Core Formula
 
-> **Good Skill = Expert-only Knowledge - What Claude Already Knows**
+> **Good Skill = Expert-only Knowledge - What Opencode Already Knows**
 
 This skill helps you identify:
-- Token-wasting redundant content (things Claude already knows)
+- Token-wasting redundant content (things Opencode already knows)
 - Genuine expert knowledge that adds value
 - Structural issues that prevent Skills from being activated or used effectively
 
@@ -40,9 +40,9 @@ Use Skill Judge when you need to:
 ### Evaluation Protocol
 
 1. **First Pass - Knowledge Delta Scan**: Read the SKILL.md and categorize each section as:
-   - **[E] Expert**: Claude genuinely doesn't know this (value-add)
-   - **[A] Activation**: Claude knows but brief reminder is useful (acceptable)
-   - **[R] Redundant**: Claude definitely knows this (should delete)
+   - **[E] Expert**: Opencode genuinely doesn't know this (value-add)
+   - **[A] Activation**: Opencode knows but brief reminder is useful (acceptable)
+   - **[R] Redundant**: Opencode definitely knows this (should delete)
 
 2. **Structure Analysis**: Check frontmatter validity, line count, reference files, design pattern, and loading triggers
 
@@ -83,9 +83,9 @@ The skill teaches you to recognize three types of content:
 
 | Type | Definition | Treatment |
 |------|------------|-----------|
-| **Expert** | Claude genuinely doesn't know this | Must keep - this is the Skill's value |
-| **Activation** | Claude knows but may not think of | Keep if brief - serves as reminder |
-| **Redundant** | Claude definitely knows this | Should delete - wastes tokens |
+| **Expert** | Opencode genuinely doesn't know this | Must keep - this is the Skill's value |
+| **Activation** | Opencode knows but may not think of | Keep if brief - serves as reminder |
+| **Redundant** | Opencode definitely knows this | Should delete - wastes tokens |
 
 ### Five Official Design Patterns
 
@@ -103,7 +103,7 @@ Skill Judge identifies and evaluates against five established patterns:
 
 The skill identifies 9 common failure patterns:
 
-1. **The Tutorial**: Explains basics Claude already knows
+1. **The Tutorial**: Explains basics Opencode already knows
 2. **The Dump**: Everything in one 800+ line file
 3. **The Orphan References**: Reference files that never get loaded
 4. **The Checkbox Procedure**: Mechanical steps without thinking frameworks
@@ -172,7 +172,7 @@ Skill Judge produces a structured evaluation report:
 
 **Do:**
 - Always check the description field first (it's the most critical)
-- Ask "Does Claude already know this?" for every section
+- Ask "Does Opencode already know this?" for every section
 - Look for specific anti-patterns with non-obvious reasons
 - Verify decision trees actually lead to correct choices
 - Check that loading triggers are embedded in workflows
@@ -190,7 +190,7 @@ When evaluating any Skill, always ask:
 
 > "Would an expert in this domain, looking at this Skill, say: 'Yes, this captures knowledge that took me years to learn'?"
 
-If yes, the Skill has genuine value. If no, it's compressing what Claude already knows.
+If yes, the Skill has genuine value. If no, it's compressing what Opencode already knows.
 
 ## Quick Reference Checklist
 
@@ -207,7 +207,7 @@ KNOWLEDGE DELTA (most important):
 MINDSET + PROCEDURES:
   [ ] Transfers thinking patterns (how to think about problems)
   [ ] Has "Before doing X, ask yourself..." frameworks
-  [ ] Includes domain-specific procedures Claude wouldn't know
+  [ ] Includes domain-specific procedures Opencode wouldn't know
 
 ANTI-PATTERNS:
   [ ] Has explicit NEVER list
@@ -240,6 +240,6 @@ None. Skill Judge is self-contained and requires no external tools or dependenci
 
 ## Related Concepts
 
-- **Tool vs Skill**: Tools define capability boundaries (what Claude CAN do). Skills inject knowledge (what Claude KNOWS how to do).
+- **Tool vs Skill**: Tools define capability boundaries (what Opencode CAN do). Skills inject knowledge (what Opencode KNOWS how to do).
 - **Progressive Disclosure**: Three-layer loading system (metadata -> SKILL.md body -> resources)
 - **Freedom Calibration**: Matching constraint level to task fragility

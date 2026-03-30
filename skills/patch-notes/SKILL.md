@@ -14,10 +14,10 @@ When this skill is invoked:
      `full` (with developer commentary). Default: `detailed`.
 
 2. **Gather change data from multiple sources**:
-   - Read the internal changelog at `production/releases/[version]/changelog.md` if it exists
+   - Read the internal changelog at `docs/production/releases/[version]/changelog.md` if it exists
    - Run `git log` between the previous release tag and current tag/HEAD
-   - Read sprint retrospectives in `production/sprints/` for context
-   - Read any balance change documents in `design/balance/`
+   - Read sprint retrospectives in `docs/production/sprints/` for context
+   - Read any balance change documents in `docs/design/balance/`
    - Read bug fix records from QA if available
 
 3. **Categorize all changes** into player-facing categories:
@@ -113,7 +113,7 @@ Includes everything from Detailed, plus:
    - Bug fixes describe the player experience, not the technical cause
    - Tone matches the game's voice (adjust formality based on game style)
 
-7. **Save the patch notes** to `production/releases/[version]/patch-notes.md`,
+7. **Save the patch notes** to `docs/production/releases/[version]/patch-notes.md`,
    creating the directory if needed.
 
 8. **Output to the user**: the complete patch notes, the file path, a count of

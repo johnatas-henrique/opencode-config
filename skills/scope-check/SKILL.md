@@ -11,8 +11,8 @@ When this skill is invoked:
 
 1. **Read the original plan** — Find the relevant document:
    - If a feature name: read the design doc from `docs/design/gdd/`
-   - If a sprint number: read the sprint plan from `production/sprints/`
-   - If a milestone: read the milestone definition from `production/milestones/`
+   - If a sprint number: read the sprint plan from `docs/production/sprints/`
+   - If a milestone: read the milestone definition from `docs/production/milestones/`
 
 2. **Read the current state** — Check what has actually been implemented or is in progress:
    - Scan the codebase for files related to the feature/sprint

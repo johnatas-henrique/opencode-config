@@ -14,10 +14,10 @@ When this skill is invoked:
    generates the checklist without creating sign-off entries.
 
 2. **Gather project context**:
-   - Read `CLAUDE.md` for tech stack, target platforms, and team structure
-   - Read the latest milestone in `production/milestones/`
-   - Read any existing release checklist in `production/releases/`
-   - Read the content calendar in `design/live-ops/content-calendar.md` if it exists
+   - Read `AGENTS.md` for tech stack, target platforms, and team structure
+   - Read the latest milestone in `docs/production/milestones/`
+   - Read any existing release checklist in `docs/production/releases/`
+   - Read the content calendar in `docs/design/live-ops/content-calendar.md` if it exists
 
 3. **Scan codebase health**:
    - Count `TODO`, `FIXME`, `HACK` comments and their locations
@@ -215,7 +215,7 @@ Generated: [Date]
 ```
 
 5. **Save the checklist** to
-   `production/releases/launch-checklist-[date].md`, creating directories as needed.
+   `docs/production/releases/launch-checklist-[date].md`, creating directories as needed.
 
 6. **Output a summary** to the user: total items, blocking items count,
    conditional items count, departments with incomplete sections, and the file path.
