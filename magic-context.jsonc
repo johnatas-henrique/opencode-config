@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cortexkit/opencode-magic-context/master/assets/magic-context.schema.json",
+  "enabled": true,
+  "ctx_reduce_enabled": true,
+  "execute_threshold_percentage": 60,
+  "auto_drop_tool_age": 50,
+  "nudge_interval_tokens": 5000,
+  "historian": {
+    "model": "nvidia/stepfun-ai/step-3.5-flash",
+    "fallback_models": [
+      "nvidia/meta/llama-4-scout-17b-16e-instruct",
+      "nvidia/openai/gpt-oss-120b",
+      "grouter-mistral/mistral-small-latest"
+    ]
+  },
+  "dreamer": {
+    "enabled": true,
+    "model": "grouter-mistral/mistral-small-latest",
+    "fallback_models": [
+      "grouter-mistral/devstral-latest",
+      "grouter-mistral/codestral-latest",
+      "grouter-mistral/mistral-tiny-latest",
+      "nvidia/openai/gpt-oss-120b"
+    ],
+    "schedule": "02:00-06:00"
+  },
+  "sidekick": {
+    "enabled": true,
+    "model": "nvidia/stepfun-ai/step-3.5-flash"
+  }
+}

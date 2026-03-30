@@ -1,0 +1,1199 @@
+{
+  "models": {
+    "manifest/auto": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/claude-haiku-4.5": {
+      "swe_lite": null,
+      "swe_verified": 73.3,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/claude-sonnet-4.5": {
+      "swe_lite": null,
+      "swe_verified": 77.2,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/cloudflare-llama-3.3-70b": {
+      "swe_lite": null,
+      "swe_verified": 48.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/cloudflare-qwen-coder": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/gemini-2.5-flash": {
+      "swe_lite": 46.7,
+      "swe_verified": 55.1,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/kimi-k2-thinking": {
+      "swe_lite": null,
+      "swe_verified": 71.3,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/longcat-flash-lite": {
+      "swe_lite": null,
+      "swe_verified": 70.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/nvidia-llama-3.3-70b": {
+      "swe_lite": null,
+      "swe_verified": 48.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/openrouter-claude-sonnet": {
+      "swe_lite": null,
+      "swe_verified": 51.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/openrouter-deepseek-r1": {
+      "swe_lite": 41.4,
+      "swe_verified": 71.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/openrouter-gpt-4o": {
+      "swe_lite": 21.62,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": 21.6
+    },
+    "omniroute/openrouter-llama-3.3-70b": {
+      "swe_lite": null,
+      "swe_verified": 48.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/qwen3-coder-flash": {
+      "swe_lite": 40.0,
+      "swe_verified": 69.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/qwen3-coder-next": {
+      "swe_lite": 40.0,
+      "swe_verified": 70.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "omniroute/qwen3-coder-plus-direct": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "regolo/gpt-oss-120b": {
+      "swe_lite": null,
+      "swe_verified": 62.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "regolo/minimax-m2.5": {
+      "swe_lite": 75.8,
+      "swe_verified": 80.2,
+      "livecodebench": 78.8,
+      "aider": null
+    },
+    "regolo/mistral-small-4-119b": {
+      "swe_lite": null,
+      "swe_verified": 46.8,
+      "livecodebench": null,
+      "aider": null
+    },
+    "regolo/qwen3-coder-next": {
+      "swe_lite": 40.0,
+      "swe_verified": 70.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "regolo/qwen3.5-122b": {
+      "swe_lite": null,
+      "swe_verified": 72.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/deepseek-ai/deepseek-v3.2": {
+      "swe_lite": 70.0,
+      "swe_verified": 73.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/moonshotai/kimi-k2.5": {
+      "swe_lite": 70.8,
+      "swe_verified": 76.8,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/z-ai/glm5": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/z-ai/glm4.7": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/moonshotai/kimi-k2-thinking": {
+      "swe_lite": null,
+      "swe_verified": 71.3,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/minimaxai/minimax-m2.1": {
+      "swe_lite": null,
+      "swe_verified": 69.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/minimaxai/minimax-m2.5": {
+      "swe_lite": 75.8,
+      "swe_verified": 80.2,
+      "livecodebench": 78.8,
+      "aider": null
+    },
+    "nvidia/stepfun-ai/step-3.5-flash": {
+      "swe_lite": null,
+      "swe_verified": 74.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/qwen/qwen3-coder-480b-a35b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 69.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/qwen/qwen3-235b-a22b": {
+      "swe_lite": null,
+      "swe_verified": 73.1,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/mistralai/devstral-2-123b-instruct-2512": {
+      "swe_lite": 37.5,
+      "swe_verified": 72.2,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/deepseek-ai/deepseek-v3.1-terminus": {
+      "swe_lite": 38.8,
+      "swe_verified": 73.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/moonshotai/kimi-k2-instruct-0905": {
+      "swe_lite": null,
+      "swe_verified": 59.1,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/moonshotai/kimi-k2-instruct": {
+      "swe_lite": null,
+      "swe_verified": 59.1,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/minimaxai/minimax-m2": {
+      "swe_lite": null,
+      "swe_verified": 69.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/qwen/qwen3-next-80b-a3b-thinking": {
+      "swe_lite": null,
+      "swe_verified": 69.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/qwen/qwen3-next-80b-a3b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 69.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/qwen/qwen3.5-397b-a17b": {
+      "swe_lite": null,
+      "swe_verified": 76.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/openai/gpt-oss-120b": {
+      "swe_lite": null,
+      "swe_verified": 62.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/meta/llama-4-maverick-17b-128e-instruct": {
+      "swe_lite": 21.04,
+      "swe_verified": 70.7,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/deepseek-ai/deepseek-v3.1": {
+      "swe_lite": 38.8,
+      "swe_verified": 73.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/nvidia/llama-3.1-nemotron-ultra-253b-v1": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/mistralai/mistral-large-3-675b-instruct-2512": {
+      "swe_lite": null,
+      "swe_verified": 33.3,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/qwen/qwq-32b": {
+      "swe_lite": null,
+      "swe_verified": 42.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/igenius/colosseum_355b_instruct_16k": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/mistralai/mistral-medium-3-instruct": {
+      "swe_lite": null,
+      "swe_verified": 40.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/mistralai/magistral-small-2506": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/nvidia/llama-3.3-nemotron-super-49b-v1.5": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/meta/llama-4-scout-17b-16e-instruct": {
+      "swe_lite": 9.06,
+      "swe_verified": 44.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/nvidia/nemotron-3-nano-30b-a3b": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/deepseek-ai/deepseek-r1-distill-qwen-32b": {
+      "swe_lite": 41.4,
+      "swe_verified": 71.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/openai/gpt-oss-20b": {
+      "swe_lite": null,
+      "swe_verified": 22.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/qwen/qwen2.5-coder-32b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 9.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/meta/llama-3.1-405b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 47.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/meta/llama-3.3-70b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 48.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/deepseek-ai/deepseek-r1-distill-qwen-14b": {
+      "swe_lite": 41.4,
+      "swe_verified": 71.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/bytedance/seed-oss-36b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 26.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/stockmark/stockmark-2-100b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/mistralai/mixtral-8x22b-instruct-v0.1": {
+      "swe_lite": null,
+      "swe_verified": 36.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/mistralai/ministral-14b-instruct-2512": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/ibm/granite-34b-code-instruct": {
+      "swe_lite": null,
+      "swe_verified": 32.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/deepseek-ai/deepseek-r1-distill-llama-8b": {
+      "swe_lite": 41.4,
+      "swe_verified": 71.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/deepseek-ai/deepseek-r1-distill-qwen-7b": {
+      "swe_lite": 41.4,
+      "swe_verified": 71.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/google/gemma-2-9b-it": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/microsoft/phi-3.5-mini-instruct": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "nvidia/microsoft/phi-4-mini-instruct": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/MiniMax-M2.5": {
+      "swe_lite": 75.8,
+      "swe_verified": 80.2,
+      "livecodebench": 78.8,
+      "aider": null
+    },
+    "sambanova/DeepSeek-R1-0528": {
+      "swe_lite": 41.4,
+      "swe_verified": 71.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/DeepSeek-V3.1": {
+      "swe_lite": 38.8,
+      "swe_verified": 73.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/DeepSeek-V3-0324": {
+      "swe_lite": 70.0,
+      "swe_verified": 38.8,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/DeepSeek-V3.2": {
+      "swe_lite": 70.0,
+      "swe_verified": 73.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/Llama-4-Maverick-17B-128E-Instruct": {
+      "swe_lite": 21.04,
+      "swe_verified": 70.7,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/gpt-oss-120b": {
+      "swe_lite": null,
+      "swe_verified": 62.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/DeepSeek-V3.1-Terminus": {
+      "swe_lite": 38.8,
+      "swe_verified": 73.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/Qwen3-32B": {
+      "swe_lite": null,
+      "swe_verified": 40.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/Qwen3-235B-A22B-Instruct-2507": {
+      "swe_lite": null,
+      "swe_verified": 73.1,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/DeepSeek-R1-Distill-Llama-70B": {
+      "swe_lite": 41.4,
+      "swe_verified": 47.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/Meta-Llama-3.3-70B-Instruct": {
+      "swe_lite": null,
+      "swe_verified": 48.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "sambanova/Meta-Llama-3.1-8B-Instruct": {
+      "swe_lite": null,
+      "swe_verified": 23.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-kiro/claude-sonnet-4.5": {
+      "swe_lite": null,
+      "swe_verified": 77.2,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-kiro/claude-haiku-4.5": {
+      "swe_lite": null,
+      "swe_verified": 73.3,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-kiro/deepseek-3.2": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-kiro/deepseek-3.1": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-kiro/qwen3-coder-next": {
+      "swe_lite": 40.0,
+      "swe_verified": 70.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-openrouter/anthropic/claude-opus-4-5": {
+      "swe_lite": null,
+      "swe_verified": 80.9,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-openrouter/anthropic/claude-sonnet-4-5": {
+      "swe_lite": null,
+      "swe_verified": 77.2,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-openrouter/openai/gpt-4o": {
+      "swe_lite": 21.62,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": 21.6
+    },
+    "grouter-openrouter/google/gemini-2.5-pro": {
+      "swe_lite": null,
+      "swe_verified": 63.8,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-openrouter/deepseek/deepseek-r1": {
+      "swe_lite": 41.4,
+      "swe_verified": 71.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-openrouter/meta-llama/llama-3.3-70b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 48.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-kilocode/google/gemini-2.5-flash": {
+      "swe_lite": null,
+      "swe_verified": 55.1,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-kilocode/google/gemini-2.5-pro": {
+      "swe_lite": null,
+      "swe_verified": 63.8,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-kilocode/openai/gpt-4.1": {
+      "swe_lite": 23.94,
+      "swe_verified": 54.6,
+      "livecodebench": null,
+      "aider": 52.4
+    },
+    "grouter-kilocode/openai/o3": {
+      "swe_lite": null,
+      "swe_verified": 49.8,
+      "livecodebench": null,
+      "aider": 49.8
+    },
+    "grouter-opencode/nemotron-3-super-free": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-gemini-cli/gemini-3.1-flash-lite-preview": {
+      "swe_lite": null,
+      "swe_verified": 78.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-gemini-cli/gemini-2.5-flash": {
+      "swe_lite": 46.7,
+      "swe_verified": 55.1,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/cogito-2.1:671b": {
+      "swe_lite": null,
+      "swe_verified": 35.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/deepseek-v3.1:671b": {
+      "swe_lite": 38.8,
+      "swe_verified": 73.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/deepseek-v3.2": {
+      "swe_lite": 70.0,
+      "swe_verified": 73.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/devstral-2:123b": {
+      "swe_lite": 37.5,
+      "swe_verified": 72.2,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/devstral-small-2:24b": {
+      "swe_lite": null,
+      "swe_verified": 68.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/gemini-3-flash-preview": {
+      "swe_lite": 75.8,
+      "swe_verified": 78.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/gemma3:12b": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/gemma3:27b": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/gemma3:4b": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/gemma4:31b": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/glm-4.6": {
+      "swe_lite": null,
+      "swe_verified": 68.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/glm-5": {
+      "swe_lite": 72.8,
+      "swe_verified": 77.8,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/gpt-oss:120b": {
+      "swe_lite": null,
+      "swe_verified": 62.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/gpt-oss:20b": {
+      "swe_lite": null,
+      "swe_verified": 22.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/kimi-k2-thinking": {
+      "swe_lite": null,
+      "swe_verified": 71.3,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/kimi-k2.5": {
+      "swe_lite": 70.8,
+      "swe_verified": 76.8,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/kimi-k2.6": {
+      "swe_lite": null,
+      "swe_verified": 80.2,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/minimax-m2": {
+      "swe_lite": 75.8,
+      "swe_verified": 69.4,
+      "livecodebench": 78.8,
+      "aider": null
+    },
+    "grouter-ollama/minimax-m2.1": {
+      "swe_lite": null,
+      "swe_verified": 69.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/minimax-m2.5": {
+      "swe_lite": 75.8,
+      "swe_verified": 80.2,
+      "livecodebench": 78.8,
+      "aider": null
+    },
+    "grouter-ollama/minimax-m2.7": {
+      "swe_lite": null,
+      "swe_verified": 80.2,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/ministral-3:14b": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/ministral-3:3b": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/ministral-3:8b": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/mistral-large-3:675b": {
+      "swe_lite": null,
+      "swe_verified": 33.3,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/nemotron-3-nano:30b": {
+      "swe_lite": null,
+      "swe_verified": 49.8,
+      "livecodebench": null,
+      "aider": 49.8
+    },
+    "grouter-ollama/nemotron-3-super": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/qwen3-coder-next": {
+      "swe_lite": 40.0,
+      "swe_verified": 70.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/qwen3-coder:480b": {
+      "swe_lite": null,
+      "swe_verified": 69.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/qwen3-next:80b": {
+      "swe_lite": null,
+      "swe_verified": 69.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/qwen3-vl:235b": {
+      "swe_lite": null,
+      "swe_verified": 73.1,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/qwen3-vl:235b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 73.1,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/qwen3.5:397b": {
+      "swe_lite": null,
+      "swe_verified": 76.4,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-ollama/rnj-1:8b": {
+      "swe_lite": null,
+      "swe_verified": 18.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/codestral-2508": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/codestral-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/devstral-2512": {
+      "swe_lite": null,
+      "swe_verified": 72.2,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/devstral-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/devstral-medium-latest": {
+      "swe_lite": null,
+      "swe_verified": 61.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/devstral-medium-2507": {
+      "swe_lite": null,
+      "swe_verified": 61.6,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/devstral-small-2507": {
+      "swe_lite": null,
+      "swe_verified": 68.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/labs-mistral-small-creative": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/magistral-medium-2509": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/magistral-medium-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/magistral-small-2509": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/magistral-small-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/ministral-14b-2512": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/ministral-14b-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/ministral-3b-2512": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/ministral-3b-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/ministral-8b-2512": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/ministral-8b-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-large-2411": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-large-2512": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-large-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-medium-2505": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-medium": {
+      "swe_lite": null,
+      "swe_verified": 40.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-medium-2508": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-medium-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-vibe-cli-with-tools": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-medium-2604": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-medium-3": {
+      "swe_lite": null,
+      "swe_verified": 40.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-medium-3-5": {
+      "swe_lite": null,
+      "swe_verified": 40.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-medium-3.5": {
+      "swe_lite": null,
+      "swe_verified": 40.0,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-medium-c21211-r0-75": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-small-2506": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-small-2603": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-small-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-vibe-cli-fast": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-vibe-cli-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-tiny-2407": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-tiny-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/open-mistral-nemo": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/open-mistral-nemo-2407": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-large-pixtral-2411": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/pixtral-large-2411": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/pixtral-large-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-mini-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-mini-2507": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-small-2507": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-small-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/codestral-embed": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/codestral-embed-2505": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/labs-leanstral-2603": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-embed": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-embed-2312": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-embed-dim128-2510": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-embed-dim256-2510": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-moderation-2411": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-moderation-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-moderation-2603": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-ocr-2505": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-ocr-2512": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/mistral-ocr-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-mini-2602": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-mini-transcribe-2507": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-mini-realtime-2602": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-mini-realtime-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-mini-transcribe-realtime-2602": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-mini-tts-2603": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    },
+    "grouter-mistral/voxtral-mini-tts-latest": {
+      "swe_lite": null,
+      "swe_verified": null,
+      "livecodebench": null,
+      "aider": null
+    }
+  },
+  "last_updated": "2026-04-21T21:37:35.056552"
+}

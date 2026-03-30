@@ -1,0 +1,6 @@
+{
+  "plugin": [
+    "@guard22/opencode-status-signals@latest",
+    "@cortexkit/opencode-magic-context@latest"
+  ]
+}
