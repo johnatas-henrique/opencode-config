@@ -1,5 +1,5 @@
 ---
-name: second-opnion
+name: second-opinion
 description: "Seek external AI perspective on complex decisions. Use when: (1) stuck after 3+ failed attempts, (2) architectural trade-offs unclear, (3) need validation on high-stakes choices, (4) domain mismatch detected, (5) approaching problem wrong way. Keywords: decision, complex, stuck, architecture, trade-off, opinion, perspective, verify."
 ---
 

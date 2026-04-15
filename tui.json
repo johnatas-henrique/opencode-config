@@ -1,0 +1,5 @@
+{
+  "plugin": [
+    "@guard22/opencode-status-signals@latest"
+  ]
+}

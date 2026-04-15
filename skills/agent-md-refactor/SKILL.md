@@ -1,7 +1,6 @@
 ---
 name: agent-md-refactor
 description: "Refactor bloated agent instruction files using progressive disclosure. Use when: (1) refactor AGENTS.md, (2) split monolithic agent instructions, (3) organize documentation into linked files, (4) instructions file exceeds 100 lines, (5) clean up agent config. Keywords: progressive disclosure, agent instructions, AGENTS.md, refactor, split, organize, documentation structure."
-license: MIT
 ---
 
 # Agent MD Refactor
