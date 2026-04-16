@@ -22,31 +22,18 @@ Use these questions to verify if the global AGENTS.md is loading correctly in an
 
 ```
 1. What is loaded at session start?
-
 2. List my global memories
-
 3. What are the memory types and scopes available?
-
 4. What are the quality gates mandatory before commit?
-
 5. What is the decision hierarchy we should use?
-
 6. What are the core principles I should follow?
-
 7. What is the Simplicity First principle?
-
 8. What is the "Think Before Coding" approach?
-
 9. What tools should I use for data analysis in context-mode?
-
 10. How do I use playwright, exa, and context7?
-
 11. What enterprise patterns should I use for banking code?
-
 12. How do I handle errors in production systems?
-
 13. What is the goal-first rule?
-
 14. How do I do surgical changes?
 ```
 

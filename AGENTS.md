@@ -1,8 +1,45 @@
 # OpenCode Agent Instructions — MANDATORY RULES
 
-## ⚠️ CRITICAL — READ FIRST
+## ⚠️ CRITICAL — READ FIRST — MANDATORY AT SESSION START
 
 These rules are **NOT optional**. Follow them or you will be wrong.
+
+### FIRST THING: Memory Recall (MANDATORY)
+
+Call this NOW at session start:
+```
+memory_recall()
+```
+
+If you didn't call `memory_recall()` at the start of this session, you have already made a mistake. Fix it now.
+
+### Context Mode (MANDATORY) — ALWAYS USE FROM SESSION START
+
+When processing data: use **ctx_execute**. Reading raw data into context is **WRONG**.
+**IMPORTANT**: Use ctx tools for EVERY user question that requires reading, searching, or analyzing files. Do NOT wait for the user to specifically ask for it.
+
+| User question... | You must use... |
+|-----------------|-----------------|
+| "What's in file X?" | ctx_execute_file |
+| "List files in Y" | ctx_execute with glob |
+| "What does function Z do?" | ctx_execute_file + search |
+| "Show me the status" | ctx_execute with processing |
+| "Count lines in X" | ctx_execute_file + processing |
+| "Find pattern in X" | ctx_execute with grep |
+
+| Instead of... | Use... |
+|--------------|---------|
+| read entire file | ctx_execute_file |
+| cat file | ctx_execute_file |
+| grep pattern | ctx_execute with grep |
+| ls -la | ctx_execute |
+| find files | ctx_execute with glob |
+| wc -l | ctx_execute_file + processing |
+| jq query | ctx_execute with processing |
+
+**This is NOT optional** — apply this rule from the very first user question, not just when explicitly requested.
+
+---
 
 ## Core Principles
 
@@ -55,10 +92,14 @@ Never delete or revert modifications made by tools other than yourself (e.g., pa
 - When user asks to commit, **present structured list first** with files grouped and commit message.
 - **Never run `git push` directly.**
 
-## Project Rules
+### Commits Atômicos (OBRIGATÓRIO)
 
-- **Always read** the project's AGENTS.md file first.
-- When in Plan mode, **always save** implementation plan to `docs/plans/YYYY-MM-DD-name.md`.
+**SEMPRE separe por tipo. Nunca misture em um commit:**
+- `feat:` + `test:` → commits separados
+- `feat:` + `docs:` → commits separados
+- Code + Config → commits separados
+
+**Faça automaticamente. Não pergunte. Separe e commite.****
 
 ## Plan Format
 
@@ -68,27 +109,10 @@ Never delete or revert modifications made by tools other than yourself (e.g., pa
 - Mark superseded plans as "DISCONTINUED" in archive
 - **All plans in English**
 
-## ⚠️ MANDATORY AT SESSION START
-
-### Memory Usage
-```
-memory_recall()
-```
-This is mandatory. Call it at the start of EVERY session.
-
-### Context Mode
-- When processing data: **USE ctx_execute**
-- When analyzing files: **USE ctx_execute_file**
-- Never dump raw data into context with cat/read
-
-## ⚠️ MANDATORY FILES — LAZY LOAD
-
-These files contain rules you **MUST** follow when relevant:
+## ⚠️ LAZY LOAD — WHEN RELEVANT
 
 | When... | Load this file... |
-| -------- | ----------------- |
+|---------|-------------------|
 | User says "commit" | @docs/agent-instructions/quality-gates.md |
 | Working with MCP tools | @docs/agent-instructions/mcp-tools.md |
-| Banking/enterprise code | @docs/agent-instructions/enterprise-patterns.md |
-
-These are NOT optional. When the trigger condition applies, you **MUST** load and follow these rules.
+| Banking/enterprise | @docs/agent-instructions/enterprise-patterns.md |

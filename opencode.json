@@ -98,11 +98,12 @@
   },
   "plugin": [
     "opencode-handoff",
+    "context-mode",
+    "opencode-session-recall",
     "@gotgenes/opencode-agent-identity",
     "@knikolov/opencode-plugin-simple-memory",
     "@franlol/opencode-md-table-formatter@latest",
-    "opencode-models-usage-plugin",
-    "context-mode"
+    "@tarquinen/opencode-dcp@latest"
   ],
   "provider": {
     "omniroute": {

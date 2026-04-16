@@ -1,55 +1,94 @@
-# Context Mode — STRICT RULES
+# Context Mode — MANDATORY RULES
 
-## MANDATORY FOR DATA OPERATIONS
+## ⚠️ CRITICAL — READ THIS FIRST
 
-When you need to analyze, count, filter, compare, search, parse, or process data: **USE ctx_execute**. Reading raw data into context is **WRONG**.
+When processing data: **use ctx tools**. Reading raw data into context is **WRONG**.
 
-## Rules — FOLLOW OR YOU WILL BE WRONG
+This is NOT optional. If you use read/cat/grep to analyze data, you are **wrong**.
 
-### Think in Code — MANDATORY
+---
 
-```javascript
-// WRONG - uses too much context
-cat large-file.log
+## Tool Substitution — AUTOMATIC
 
-// CORRECT - processes in sandbox, returns only the answer
-const lines = FILE_CONTENT.split('\n');
-const errors = lines.filter(l => l.includes('ERROR'));
-console.log(errors.length);
+| Instead of... | Use... | Example |
+|--------------|--------|---------|
+| read entire file | ctx_execute_file | Analyze file content in sandbox |
+| cat file | ctx_execute_file | Get summary, not full content |
+| grep pattern | ctx_execute with grep | Find matches in sandbox |
+| ls -la | ctx_execute | List with processing |
+| find files | ctx_execute with glob | Find files in sandbox |
+| wc -l | ctx_execute_file + processing | Count lines in sandbox |
+| jq query | ctx_execute with jq | Process JSON in sandbox |
+
+---
+
+## Tool Selection
+
+| Tool | Use For |
+|------|---------|
+| **ctx_batch_execute** | Multiple commands + search in ONE call |
+| **ctx_execute_file** | Analyze file content in sandbox |
+| **ctx_execute** | Run commands, process data in sandbox |
+| **ctx_search** | Query indexed content |
+
+---
+
+## BEFORE any data operation: CHECK THIS
+
+1. Does this question require reading/searching files? → Use ctx_execute
+2. Does this question require analyzing data? → Use ctx_execute_file + processing
+3. Does this question require searching content? → Use ctx_execute with grep
+
+If YES to any: **USE ctx tools**, not read/cat/grep.
+
+---
+
+## Examples
+
+### ❌ WRONG — floods context
 ```
+read filePath: /path/to/large-file.txt
+```
+**Problem**: Reads entire file into context. Wasteful.
 
-### Tool Substitution — DO THIS AUTOMATICALLY
+### ✅ CORRECT — processes in sandbox
+```javascript
+const lines = FILE_CONTENT.split('\n');
+console.log('Total lines:', lines.length);
+```
+**Use**: ctx_execute_file + write code that processes and returns only the answer.
 
-Replace these tools when processing data:
+### ❌ WRONG — floods context
+```
+bash command: cat package.json
+```
+**Problem**: Raw JSON in context.
 
-| Instead of...           | Use THIS...                      |
-| ---------------------- | -------------------------------|
-| Shell >20 lines       | `ctx_execute`                    |
-| File reading (analysis)| `ctx_execute_file`               |
-| grep (large results)   | `ctx_execute` with grep         |
-| cat > analysis       | `ctx_execute_file` + processing |
+### ✅ CORRECT — sandbox processing
+```javascript
+const pkg = JSON.parse(FILE_CONTENT);
+console.log(Object.keys(pkg.dependencies).join('\n'));
+```
+**Use**: ctx_execute_file + process JSON, return only keys.
 
-### Tool Selection Hierarchy
+---
 
-1. **ctx_batch_execute** — run multiple commands + search in ONE call
-2. **ctx_execute** / **ctx_execute_file** — sandbox execution
-3. **ctx_search** — query indexed content
-4. **ctx_fetch_and_index** → **ctx_search** — web pages
+## Verification Checklist
 
-### Context Mode Commands
+BEFORE using any tool, ask:
 
-| Command | Action |
-|---------|--------|
-| `ctx stats` | Display context savings |
-| `ctx doctor` | Run diagnostics |
+- [ ] Am I reading/analyzing data? → Use ctx_execute_file
+- [ ] Am I searching for patterns? → Use ctx_execute with grep
+- [ ] Am I processing output? → Use ctx_execute with code
 
-## Verification
+If you used read/cat/grep for analysis, **STOP** and rewrite using ctx tools.
 
-If you used `cat`, `read`, or `bash` without processing in sandbox, **STOP NOW** and rewrite using ctx_execute.
+---
 
-## Summary
+## Rule Summary
 
-- Want to process data? Use **ctx_execute**
-- Want to analyze file? Use **ctx_execute_file**
-- Only use **console.log()** for the answer
-- Never dump raw data into context
+```
+Analysis → ctx_execute_file + code → console.log(answer only)
+Search → ctx_execute with grep → console.log(matches only)
+Processing → ctx_execute with code → console.log(result only)
+```
