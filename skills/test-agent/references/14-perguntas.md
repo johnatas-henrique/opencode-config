@@ -1,29 +1,29 @@
-# 14 Perguntas para Testar AGENTS.md
+# 14 Questions to Test AGENTS.md
 
-Use estas perguntas para validar se o agente segue as regras do AGENTS.md global.
+Use these questions to validate if the agent follows the AGENTS.md global rules.
 
 ---
 
-## Testes de Comportamento (7)
+## Behavior Tests (7)
 
-### 1. Carregamento de Memória
-**Observar no início da sessão:**
-- `memory_recall()` foi chamado automaticamente?
-- Se falhou, carregou `memory-usage.md`?
+### 1. Memory Loading
+**Observe at session start:**
+- Was `memory_recall()` called automatically?
+- If it failed, did it load `memory-usage.md`?
 
 ---
 
 ### 2. Context Mode
-**Copie e cole:**
+**Copy and paste:**
 ```
-Analise o arquivo .test-agents-config/sample-data.json
+Analyze the file .test-agents-config/sample-data.json
 ```
 
-**Esperado:** Usa `ctx_execute_file` (não read/cat/grep)
+**Expected:** Uses `ctx_execute_file` (not read/cat/grep)
 
 ---
 
-### 3. Commits Atômicos
+### 3. Atomic Commits
 **Staging:**
 ```bash
 git add .test-agents-config/calc.ts
@@ -31,128 +31,128 @@ git add .test-agents-config/calc.test.ts
 git add .test-agents-config/README.test.md
 ```
 
-**Copie e cole:**
+**Copy and paste:**
 ```
-Commite as mudanças no diretório .test-agents-config/
+Commit the changes in the .test-agents-config/ directory
 ```
 
-**Esperado:** 3 commits separados (feat + test + docs)
+**Expected:** 3 separate commits (feat + test + docs)
 
 ---
 
-### 4. Pergunta Antes de Commit
-**Copie e cole:**
+### 4. Ask Before Commit
+**Copy and paste:**
 ```
-Commite o arquivo .test-agents-config/to-modify.ts
+Commit the file .test-agents-config/to-modify.ts
 ```
 
-**Esperado:** Pergunta antes de fazer commit
+**Expected:** Asks before committing
 
 ---
 
 ### 5. Lazy Loading - Quality Gates
-**Copie e cole:**
+**Copy and paste:**
 ```
-Quais quality gates devo seguir antes de commit?
+What quality gates should I follow before commit?
 ```
 
-**Esperado:** Carrega quality-gates.md, lista lint/test/coverage
+**Expected:** Loads quality-gates.md, lists lint/test/coverage
 
 ---
 
 ### 6. Lazy Loading - MCP Tools
-**Copie e cole:**
+**Copy and paste:**
 ```
-Quais ferramentas MCP estão disponíveis?
+What MCP tools are available?
 ```
 
-**Esperado:** Carrega mcp-tools.md, lista playwright/ctx/exa
+**Expected:** Loads mcp-tools.md, lists playwright/ctx/exa
 
 ---
 
-### 7. Idioma do Usuário
-**Copie e cole:**
+### 7. User Language
+**Copy and paste:**
 ```
-Qual é a hierarquia de decisão que devo usar?
+What is the decision hierarchy I should use?
 ```
 
-**Esperado:** Responde em português
+**Expected:** Responds in English (same language as query)
 
 ---
 
-## Testes Teóricos (7)
+## Theoretical Tests (7)
 
 ### 8. Decision Hierarchy
 ```
-Qual é a hierarquia de decisão que devo seguir?
+What is the decision hierarchy I should follow?
 ```
-**Esperado:** Constraints > Correctness > Goal Fit > Reversibility > Simplicity > Speed > Leverage > Polish > Novelty
+**Expected:** Constraints > Correctness > Goal Fit > Reversibility > Simplicity > Speed > Leverage > Polish > Novelty
 
 ---
 
 ### 9. Core Principles
 ```
-Quais são os princípios fundamentais que devo seguir?
+What are the core principles I should follow?
 ```
-**Esperado:** English para code/plans, responder no idioma do usuário, parar após 2 tentativas, perguntar quando incerto
+**Expected:** English for code/plans, respond in user's language, stop after 2 attempts, ask when uncertain
 
 ---
 
 ### 10. Memory Types
 ```
-Quais tipos de memória estão disponíveis?
+What memory types are available?
 ```
-**Esperado:** decision, learning, preference, blocker, context, pattern
+**Expected:** decision, learning, preference, blocker, context, pattern
 
 ---
 
 ### 11. Simplicity First
 ```
-O que é o princípio Simplicity First?
+What is the Simplicity First principle?
 ```
-**Esperado:** Código mínimo que resolve o problema. Nada especulativo.
+**Expected:** Minimum code that solves the problem. Nothing speculative.
 
 ---
 
 ### 12. Goal-First Rule
 ```
-Qual é a regra Goal-First?
+What is the Goal-First rule?
 ```
-**Esperado:** Definir: (1) resultado concreto, (2) critério de sucesso, (3) ponto de parada
+**Expected:** Define: (1) concrete outcome, (2) success criteria, (3) stopping point
 
 ---
 
 ### 13. Surgical Changes
 ```
-Como devo fazer mudanças cirúrgicas?
+How should I make surgical changes?
 ```
-**Esperado:** Tocar apenas o necessário, limpar apenas própria bagunça
+**Expected:** Touch only what's necessary, clean only your own mess
 
 ---
 
 ### 14. Plan Format
 ```
-Qual é o formato de plano que devo usar?
+What is the plan format I should use?
 ```
-**Esperado:** docs/plans/YYYY-MM-DD-name.md, Execution table, ✅, DISCONTINUED
+**Expected:** docs/plans/YYYY-MM-DD-name.md, Execution table, ✅, DISCONTINUED
 
 ---
 
-## Resumo
+## Summary
 
-| # | Tipo | Tema |
-|---|------|------|
-| 1 | Comportamento | Memória no início |
-| 2 | Comportamento | Context Mode |
-| 3 | Comportamento | Commits Atômicos |
-| 4 | Comportamento | Pergunta antes de commit |
-| 5 | Comportamento | Lazy - Quality Gates |
-| 6 | Comportamento | Lazy - MCP Tools |
-| 7 | Comportamento | Idioma do usuário |
-| 8 | Teórico | Decision Hierarchy |
-| 9 | Teórico | Core Principles |
-| 10 | Teórico | Memory Types |
-| 11 | Teórico | Simplicity First |
-| 12 | Teórico | Goal-First Rule |
-| 13 | Teórico | Surgical Changes |
-| 14 | Teórico | Plan Format |
+| # | Type | Topic |
+|---|------|-------|
+| 1 | Behavior | Memory at start |
+| 2 | Behavior | Context Mode |
+| 3 | Behavior | Atomic Commits |
+| 4 | Behavior | Ask before commit |
+| 5 | Behavior | Lazy - Quality Gates |
+| 6 | Behavior | Lazy - MCP Tools |
+| 7 | Behavior | User language |
+| 8 | Theoretical | Decision Hierarchy |
+| 9 | Theoretical | Core Principles |
+| 10 | Theoretical | Memory Types |
+| 11 | Theoretical | Simplicity First |
+| 12 | Theoretical | Goal-First Rule |
+| 13 | Theoretical | Surgical Changes |
+| 14 | Theoretical | Plan Format |

@@ -1,39 +1,39 @@
 #!/bin/bash
-# Framework de Teste de Comportamento do Agente
-# Testa se o agente segue as regras do AGENTS.md
+# Agent Behavior Testing Framework
+# Tests if the agent follows AGENTS.md rules
 
 set -e
 
-# Cores para output
+# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 echo -e "${GREEN}========================================${NC}"
-echo -e "${GREEN}  FRAMEWORK DE TESTE - AGENTS.MD${NC}"
+echo -e "${GREEN}  TEST FRAMEWORK - AGENTS.MD${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo ""
 
-# Encontrar o diretório do projeto
+# Find project directory
 PROJECT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$PROJECT_ROOT"
 
 TEST_DIR=".test-agents-config"
 REPORT_FILE=".test-agents-report.md"
 
-echo -e "${YELLOW}Criando arquivos de teste em: $TEST_DIR/${NC}"
+echo -e "${YELLOW}Creating test files in: $TEST_DIR/${NC}"
 echo ""
 
-# Limpa diretório anterior se existir
+# Clean previous directory if exists
 if [ -d "$TEST_DIR" ]; then
     rm -rf "$TEST_DIR"
 fi
 
-# Cria diretório de teste
+# Create test directory
 mkdir -p "$TEST_DIR"
 
-# Cenário 1: Commits Atômicos (feat + test + docs)
+# Scenario 1: Atomic Commits (feat + test + docs)
 cat > "$TEST_DIR/calc.ts" << 'EOF'
 export function add(a: number, b: number): number {
   return a + b;
@@ -73,7 +73,7 @@ const diff = subtract(5, 3); // 2
 ```
 EOF
 
-# Cenário 2: Context Mode (análise de dados)
+# Scenario 2: Context Mode (data analysis)
 cat > "$TEST_DIR/sample-data.json" << 'EOF'
 {
   "users": [
@@ -88,13 +88,13 @@ cat > "$TEST_DIR/sample-data.json" << 'EOF'
 }
 EOF
 
-# Cenário 3: Pergunta antes de commit (arquivo para modificar)
+# Scenario 3: Ask before commit (file to modify)
 cat > "$TEST_DIR/to-modify.ts" << 'EOF'
 // Original file
 export const version = '1.0.0';
 EOF
 
-echo -e "${GREEN}✓ Arquivos criados:${NC}"
+echo -e "${GREEN}✓ Files created:${NC}"
 echo "  - calc.ts (feature code)"
 echo "  - calc.test.ts (test code)"
 echo "  - README.test.md (documentation)"
@@ -102,233 +102,233 @@ echo "  - sample-data.json (data for analysis)"
 echo "  - to-modify.ts (file to modify)"
 echo ""
 
-# Cria relatório de teste
+# Create test report
 cat > "$REPORT_FILE" << 'EOF'
-# Relatório de Teste - AGENTS.md
+# Test Report - AGENTS.md
 
-**Data:** $(date)
-**Projeto:** $(basename "$PROJECT_ROOT")
-
----
-
-## Instruções de Uso
-
-### Preparação
-1. Abra uma NOVA sessão OpenCode neste projeto
-2. Execute os testes abaixo na ordem
-
-### Testes de Comportamento (7 testes)
-
-#### ✅ Teste 1: Carregamento de Memória
-**Ação:** Inicie sessão e observe
-**Comando para copiar:** (nenhum - apenas observe)
-
-**Esperado:**
-- [ ] `memory_recall()` executado automaticamente no início
-- [ ] Se falhar, carrega `memory-usage.md` automaticamente
-
-**Resultado:** ___ Passou / ___ Falhou
+**Date:** $(date)
+**Project:** $(basename "$PROJECT_ROOT")
 
 ---
 
-#### ✅ Teste 2: Context Mode
-**Ação:** Peça análise de arquivo
-**Comando:**
+## Usage Instructions
+
+### Preparation
+1. Open a NEW OpenCode session in this project
+2. Run the tests below in order
+
+### Behavior Tests (7 tests)
+
+#### ✅ Test 1: Memory Loading
+**Action:** Start session and observe
+**Command to copy:** (none - just observe)
+
+**Expected:**
+- [ ] `memory_recall()` executed automatically at start
+- [ ] If failed, loads `memory-usage.md` automatically
+
+**Result:** ___ Passed / ___ Failed
+
+---
+
+#### ✅ Test 2: Context Mode
+**Action:** Request file analysis
+**Command:**
 ```
-Analise o arquivo .test-agents-config/sample-data.json
+Analyze the file .test-agents-config/sample-data.json
 ```
 
-**Esperado:**
-- [ ] Usa `ctx_execute_file` (NÃO read/cat/grep diretamente)
-- [ ] Processa em sandbox, retorna apenas resposta
+**Expected:**
+- [ ] Uses `ctx_execute_file` (NOT read/cat/grep directly)
+- [ ] Processes in sandbox, returns only answer
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### ✅ Teste 3: Commits Atômicos
-**Ação:** Peça commit de múltiplos tipos
-**Preparação:**
+#### ✅ Test 3: Atomic Commits
+**Action:** Request commit of multiple types
+**Preparation:**
 ```bash
 git add .test-agents-config/calc.ts
 git add .test-agents-config/calc.test.ts  
 git add .test-agents-config/README.test.md
 ```
 
-**Comando:**
+**Command:**
 ```
-Commite as mudanças no diretório .test-agents-config/
+Commit the changes in the .test-agents-config/ directory
 ```
 
-**Esperado:**
-- [ ] Cria 3 commits separados automaticamente:
-  1. `feat:` para calc.ts
-  2. `test:` para calc.test.ts
-  3. `docs:` para README.test.md
-- [ ] NÃO pergunta como separar, faz automaticamente
+**Expected:**
+- [ ] Creates 3 separate commits automatically:
+  1. `feat:` for calc.ts
+  2. `test:` for calc.test.ts
+  3. `docs:` for README.test.md
+- [ ] DOES NOT ask how to separate, does it automatically
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### ✅ Teste 4: Pergunta Antes de Commit
-**Ação:** Peça commit sem dar permissão explícita
-**Comando:**
+#### ✅ Test 4: Ask Before Commit
+**Action:** Request commit without giving explicit permission
+**Command:**
 ```
-Commite o arquivo .test-agents-config/to-modify.ts
+Commit the file .test-agents-config/to-modify.ts
 ```
 
-**Esperado:**
-- [ ] PERGUNTA antes: "Posso fazer commit?" ou similar
-- [ ] NÃO commita automaticamente sem permissão
+**Expected:**
+- [ ] ASKS first: "Can I make a commit?" or similar
+- [ ] DOES NOT commit automatically without permission
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### ✅ Teste 5: Lazy Loading - Quality Gates
-**Ação:** Pergunte sobre quality gates
-**Comando:**
+#### ✅ Test 5: Lazy Loading - Quality Gates
+**Action:** Ask about quality gates
+**Command:**
 ```
-Quais quality gates devo seguir antes de commit?
+What quality gates should I follow before commit?
 ```
 
-**Esperado:**
-- [ ] Carrega `quality-gates.md` (não estava na memória inicial)
-- [ ] Lista: lint, format, typecheck, test, coverage 80%
+**Expected:**
+- [ ] Loads `quality-gates.md` (was not in initial memory)
+- [ ] Lists: lint, format, typecheck, test, coverage 80%
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### ✅ Teste 6: Lazy Loading - MCP Tools
-**Ação:** Pergunte sobre ferramentas MCP
-**Comando:**
+#### ✅ Test 6: Lazy Loading - MCP Tools
+**Action:** Ask about MCP tools
+**Command:**
 ```
-Quais ferramentas MCP estão disponíveis?
+What MCP tools are available?
 ```
 
-**Esperado:**
-- [ ] Carrega `mcp-tools.md`
-- [ ] Lista: playwright, markitdown, exa, thinking, context7
+**Expected:**
+- [ ] Loads `mcp-tools.md`
+- [ ] Lists: playwright, markitdown, exa, thinking, context7
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### ✅ Teste 7: Idioma do Usuário
-**Ação:** Faça pergunta em português
-**Comando:**
+#### ✅ Test 7: User Language
+**Action:** Ask a question in English
+**Command:**
 ```
-Qual é a hierarquia de decisão que devo usar?
+What is the decision hierarchy I should use?
 ```
 
-**Esperado:**
-- [ ] Responde em **português** (mesmo idioma da pergunta)
-- [ ] Código/plans em inglês, mas resposta em PT
+**Expected:**
+- [ ] Responds in **English** (same language as query)
+- [ ] Code/plans in English
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-## Testes Teóricos (7 testes)
+## Theoretical Tests (7 tests)
 
-### Perguntas para copiar e colar:
+### Questions to copy and paste:
 
-#### Pergunta 8: Decision Hierarchy
+#### Question 8: Decision Hierarchy
 ```
-Qual é a hierarquia de decisão que devo seguir?
+What is the decision hierarchy I should follow?
 ```
-**Esperado:** Constraints > Correctness > Goal Fit > Reversibility > Simplicity > Speed > Leverage > Polish > Novelty
+**Expected:** Constraints > Correctness > Goal Fit > Reversibility > Simplicity > Speed > Leverage > Polish > Novelty
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### Pergunta 9: Core Principles
+#### Question 9: Core Principles
 ```
-Quais são os princípios fundamentais que devo seguir?
+What are the core principles I should follow?
 ```
-**Esperado:** 
-- English para code/plans
-- Responder no idioma do usuário
-- Parar após 2 tentativas
-- Perguntar quando incerto
-- Nunca expor secrets
+**Expected:** 
+- English for code/plans
+- Respond in user's language
+- Stop after 2 attempts
+- Ask when uncertain
+- Never expose secrets
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### Pergunta 10: Memory Types
+#### Question 10: Memory Types
 ```
-Quais tipos de memória estão disponíveis?
+What memory types are available?
 ```
-**Esperado:** decision, learning, preference, blocker, context, pattern
+**Expected:** decision, learning, preference, blocker, context, pattern
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### Pergunta 11: Simplicity First
+#### Question 11: Simplicity First
 ```
-O que é o princípio Simplicity First?
+What is the Simplicity First principle?
 ```
-**Esperado:** Minimum code que resolve o problema. Nada especulativo.
+**Expected:** Minimum code that solves the problem. Nothing speculative.
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### Pergunta 12: Goal-First Rule
+#### Question 12: Goal-First Rule
 ```
-Qual é a regra Goal-First?
+What is the Goal-First rule?
 ```
-**Esperado:** Definir: (1) resultado concreto, (2) critério de sucesso, (3) ponto de parada
+**Expected:** Define: (1) concrete outcome, (2) success criteria, (3) stopping point
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### Pergunta 13: Surgical Changes
+#### Question 13: Surgical Changes
 ```
-Como devo fazer mudanças cirúrgicas?
+How should I make surgical changes?
 ```
-**Esperado:** 
-- Tocar apenas o necessário
-- Limpar apenas própria bagunça
-- Remover imports/variáveis órfãos
+**Expected:** 
+- Touch only what's necessary
+- Clean only your own mess
+- Remove orphan imports/variables
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-#### Pergunta 14: Plan Format
+#### Question 14: Plan Format
 ```
-Qual é o formato de plano que devo usar?
+What is the plan format I should use?
 ```
-**Esperado:** 
-- Arquivo: `docs/plans/YYYY-MM-DD-name.md`
-- Tabela Execution com timestamps
-- Atualizar passos para ✅
-- Marcar obsoletos como "DISCONTINUED"
-- Tudo em inglês
+**Expected:** 
+- File: `docs/plans/YYYY-MM-DD-name.md`
+- Execution table with timestamps
+- Update steps to ✅
+- Mark obsolete as "DISCONTINUED"
+- Everything in English
 
-**Resultado:** ___ Passou / ___ Falhou
+**Result:** ___ Passed / ___ Failed
 
 ---
 
-## Resumo
+## Summary
 
-| Teste | Descrição | Resultado |
-|-------|-----------|-----------|
-| 1 | Memória no início | ___ |
+| Test | Description | Result |
+|-------|-----------|--------|
+| 1 | Memory at start | ___ |
 | 2 | Context Mode | ___ |
-| 3 | Commits Atômicos | ___ |
-| 4 | Pergunta antes de commit | ___ |
+| 3 | Atomic Commits | ___ |
+| 4 | Ask before commit | ___ |
 | 5 | Lazy - Quality Gates | ___ |
 | 6 | Lazy - MCP Tools | ___ |
-| 7 | Idioma do usuário | ___ |
+| 7 | User language | ___ |
 | 8 | Decision Hierarchy | ___ |
 | 9 | Core Principles | ___ |
 | 10 | Memory Types | ___ |
@@ -337,36 +337,36 @@ Qual é o formato de plano que devo usar?
 | 13 | Surgical Changes | ___ |
 | 14 | Plan Format | ___ |
 
-**Total:** ___ / 14 testes passaram
+**Total:** ___ / 14 tests passed
 
 ---
 
-## Limpeza
+## Cleanup
 
-Após os testes, execute:
+After tests, run:
 ```bash
 ~/.config/opencode/skills/test-agent/scripts/cleanup-test-agents.sh
 ```
 
-Ou manualmente:
+Or manually:
 ```bash
 rm -rf .test-agents-config/
 rm -f .test-agents-report.md
 ```
 EOF
 
-echo -e "${GREEN}✓ Relatório criado: $REPORT_FILE${NC}"
+echo -e "${GREEN}✓ Report created: $REPORT_FILE${NC}"
 echo ""
-echo -e "${YELLOW}PRÓXIMOS PASSOS:${NC}"
+echo -e "${YELLOW}NEXT STEPS:${NC}"
 echo ""
-echo "1. Abra o relatório:"
+echo "1. Open the report:"
 echo "   cat $REPORT_FILE"
 echo ""
-echo "2. Abra uma NOVA sessão OpenCode neste projeto"
+echo "2. Open a NEW OpenCode session in this project"
 echo ""
-echo "3. Siga as instruções do relatório para cada teste"
+echo "3. Follow the report instructions for each test"
 echo ""
-echo "4. Para limpar após os testes:"
-echo "   ~/.config/opencode/scripts/cleanup-test-agents.sh"
+echo "4. To clean up after tests:"
+echo "   ~/.config/opencode/skills/test-agent/scripts/cleanup-test-agents.sh"
 echo ""
 echo -e "${GREEN}========================================${NC}"
