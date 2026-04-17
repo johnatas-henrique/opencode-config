@@ -14,7 +14,10 @@
   "permission": {
     "skill": "allow",
     "tool": {
-      "*": "allow"
+      "*": "allow",
+      "read": "deny",
+      "grep": "deny",
+      "glob": "deny"
     },
     "task": {
       "*": "allow"
@@ -26,14 +29,9 @@
       "~/.config/opencode/": "allow",
       "~/.config/opencode/*": "allow"
     },
-    "read": "allow",
-    "grep": "allow",
-    "glob": "allow",
-    "edit": "allow",
-    "write": "allow",
-    "list": "allow",
-    "webfetch": "allow",
-    "question": "allow"
+    "read": "deny",
+    "grep": "deny",
+    "glob": "deny"
   },
   "mcp": {
     "thinking": {

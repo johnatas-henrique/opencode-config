@@ -3,6 +3,11 @@
 <!-- [MEMORY] MANDATORY -->
 memory_recall()
 MANDATORY: Call at session start. Before any tool.
+Each memory MUST have a type (decision, learning, preference, blocker, context, pattern) and a scope (global, project, session).
+Read `ctx_execute_file("~/.config/opencode/docs/agent-instructions/memory-usage.md")` and compare with your own memory list.
+If global memories are missing, load them using `memory_remember(MEMORY_HERE, <TYPE>, "global")`.
+Call `memory_recall()` again.
+
 NEVER: Use any tool before memory_recall().
 <!-- [/MEMORY] -->
 

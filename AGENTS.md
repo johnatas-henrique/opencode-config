@@ -1,7 +1,12 @@
 # OpenCode Agent Instructions — MANDATORY RULES
 
 <!-- [MEMORY] MANDATORY -->
-memory_recall()
+Every session MUST start with `memory_recall()`.
+After that, ALL operations MUST be done in context-mode using context-mode (ctx) tools.
+Each memory MUST have a type (decision, learning, preference, blocker, context, pattern) and a scope (global, project, session).
+Read `ctx_execute_file("~/.config/opencode/docs/agent-instructions/memory-usage.md")` and compare with your own memory list.
+If global memories are missing, load them using `memory_remember(MEMORY_HERE, <TYPE>, "global")`.
+Call `memory_recall()` again.
 <!-- [/MEMORY] -->
 
 <!-- [CTX-MODE] MANDATORY -->
@@ -11,7 +16,7 @@ NEVER: Use read/cat/grep for analysis. This floods context.
 
 <!-- [GIT] MANDATORY -->
 NEVER: Mix feat+test, feat+docs, code+config in same commit.
-ACTION: Separate automatically. No ask.
+ACTION: Always ask. Always separate.
 AUTHOR: Johnatas Henrique <johnatas.henrique@gmail.com>
 <!-- [/GIT] -->
 

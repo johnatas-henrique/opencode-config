@@ -1,6 +1,6 @@
 ---
 name: write-a-prd
-description: Create a PRD through user interview, codebase exploration, and module design, then submit as a GitHub issue. Use when user wants to write a PRD, create a product requirements document, or plan a new feature.
+description: Create a PRD through user interview, codebase exploration, and module design, then save as local Markdown file. Use when user wants to write a PRD, create a product requirements document, or plan a new feature.
 ---
 
 This skill will be invoked when the user wants to create a PRD. You may skip steps if you don't consider them necessary.
@@ -17,9 +17,9 @@ A deep module (as opposed to a shallow module) is one which encapsulates a lot o
 
 Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
 
-5. Once you have a complete understanding of the problem and solution, use the template below to write the PRD. The PRD should be submitted as a GitHub issue.
+5. Once you have a complete understanding of the problem and solution, use the template below to write the PRD. Create `./plans/` directory if it doesn't exist. Save the PRD as `./plans/prd-[short-name].md`.
 
-<prd-template>
+## PRD Template
 
 ## Problem Statement
 
@@ -35,9 +35,7 @@ A LONG, numbered list of user stories. Each user story should be in the format o
 
 1. As an <actor>, I want a <feature>, so that <benefit>
 
-<user-story-example>
-1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
-</user-story-example>
+Example: "As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending"
 
 This list of user stories should be extremely extensive and cover all aspects of the feature.
 
@@ -70,5 +68,3 @@ A description of the things that are out of scope for this PRD.
 ## Further Notes
 
 Any further notes about the feature.
-
-</prd-template>
