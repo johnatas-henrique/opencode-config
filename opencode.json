@@ -2,171 +2,124 @@
   "$schema": "https://opencode.ai/config.json",
   "instructions": [
     "~/.config/opencode/AGENTS.md",
-    "~/.config/opencode/docs/agent-instructions/memory-usage.md",
-    "~/.config/opencode/docs/agent-instructions/context-mode.md"
+    "~/.config/opencode/docs/agent-instructions/memory-usage.md"
   ],
-  "server": {
-    "port": 4096,
-    "hostname": "0.0.0.0",
-    "mdns": true,
-    "cors": ["http://localhost"]
-  },
-  "permission": {
-    "skill": "allow",
-    "tool": {
-      "*": "allow",
-      "read": "deny",
-      "grep": "deny",
-      "glob": "deny"
-    },
-    "task": {
-      "*": "allow"
-    },
-    "external_directory": {
-      "*": "ask",
-      "/tmp": "allow",
-      "/tmp/*": "allow",
-      "~/.config/opencode/": "allow",
-      "~/.config/opencode/*": "allow"
-    },
-    "read": "deny",
-    "grep": "deny",
-    "glob": "deny"
-  },
   "mcp": {
-    "thinking": {
-      "type": "local",
-      "enabled": true,
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking@latest"
-      ]
-    },
-    "playwright": {
-      "type": "local",
-      "enabled": true,
-      "command": ["npx", "-y", "@playwright/mcp@latest"]
+    "context-mode": {
+      "command": ["context-mode"],
+      "enabled": false,
+      "type": "local"
     },
     "context7": {
-      "type": "remote",
       "enabled": true,
-      "url": "https://mcp.context7.com/mcp",
       "headers": {
         "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      }
+      },
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
     },
-    "markitdown": {
-      "type": "local",
+    "exa": {
       "enabled": true,
-      "command": ["uvx", "markitdown-mcp@latest"]
-    },
-    "tavily": {
-      "type": "local",
-      "enabled": false,
-      "command": ["npx", "-y", "tavily-mcp"],
-      "environment": {
-        "TAVILY_API_KEY": "${env:TAVILY_API_KEY}"
-      }
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp"
     },
     "filesystem": {
-      "type": "local",
-      "enabled": true,
       "command": [
         "npx",
         "-y",
         "@modelcontextprotocol/server-filesystem@latest",
         "/home/johnatas"
-      ]
-    },
-    "exa": {
-      "type": "remote",
+      ],
       "enabled": true,
-      "url": "https://mcp.exa.ai/mcp"
-    },
-    "context-mode": {
-      "type": "local",
-      "command": ["context-mode"]
+      "type": "local"
     },
     "gh_grep": {
-      "type": "remote",
       "enabled": true,
+      "type": "remote",
       "url": "https://mcp.grep.app"
+    },
+    "lean-ctx": {
+      "command": ["lean-ctx"],
+      "enabled": true,
+      "environment": { "LEAN_CTX_DATA_DIR": "/home/johnatas/.lean-ctx" },
+      "type": "local"
+    },
+    "markitdown": {
+      "command": ["uvx", "markitdown-mcp@latest"],
+      "enabled": true,
+      "type": "local"
+    },
+    "playwright": {
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true,
+      "type": "local"
+    },
+    "tavily": {
+      "command": ["npx", "-y", "tavily-mcp"],
+      "enabled": false,
+      "environment": { "TAVILY_API_KEY": "${env:TAVILY_API_KEY}" },
+      "type": "local"
+    },
+    "thinking": {
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking@latest"
+      ],
+      "enabled": true,
+      "type": "local"
     }
+  },
+  "permission": {
+    "external_directory": { "*": "ask", "/tmp": "allow", "/tmp/*": "allow" },
+    "skill": "allow",
+    "task": { "*": "allow" },
+    "tool": { "*": "allow" }
   },
   "plugin": [
     "opencode-handoff",
-    "context-mode",
     "opencode-session-recall",
     "@gotgenes/opencode-agent-identity",
     "@knikolov/opencode-plugin-simple-memory",
-    "@franlol/opencode-md-table-formatter@latest",
-    "@tarquinen/opencode-dcp@latest"
+    "@franlol/opencode-md-table-formatter@latest"
   ],
   "provider": {
-    "omniroute": {
-      "npm": "@ai-sdk/openai",
-      "options": {
-        "baseURL": "http://localhost:20128/v1",
-        "apiKey": "{env:OMNIROUTE_API_KEY}",
-        "compatibility": "strict"
-      },
+    "manifest": {
       "models": {
-        "kimi-k2-thinking": {
-          "id": "if/kimi-k2-thinking",
-          "name": "Kimi K2 Thinking (OmniRoute)",
+        "auto": {
+          "id": "auto",
           "limit": {
-            "context": 32768,
+            "context": 1000000,
+            "output": 120000
+          },
+          "name": "Manifest Auto (Routed 1M context)"
+        }
+      },
+      "name": "Manifest Build",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "apiKey": "{env:MANIFEST_API_KEY}",
+        "baseURL": "https://app.manifest.build/v1"
+      }
+    },
+    "omniroute": {
+      "models": {
+        "claude-haiku-4.5": {
+          "attachment": true,
+          "id": "kr/claude-haiku-4.5",
+          "limit": {
+            "context": 200000,
             "output": 8192
           },
           "modalities": {
             "input": ["text"],
             "output": ["text"]
           },
-          "attachment": true
-        },
-        "qwen3-coder-plus-direct": {
-          "id": "qw/qwen3-coder-plus",
-          "name": "Qwen3 Coder Plus (Qwen Code - Gratis)",
-          "limit": {
-            "context": 32768,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "attachment": true
-        },
-        "qwen3-coder-flash": {
-          "id": "qw/qwen3-coder-flash",
-          "name": "Qwen3 Coder Flash (Qwen Code - Gratis)",
-          "limit": {
-            "context": 32768,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "attachment": true
-        },
-        "qwen3-coder-next": {
-          "id": "qw/qwen3-coder-next",
-          "name": "Qwen3 Coder Next (Qwen Code - Gratis)",
-          "limit": {
-            "context": 32768,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "attachment": true
+          "name": "Claude Haiku 4.5 (Kiro AI - Gratis)"
         },
         "claude-sonnet-4.5": {
+          "attachment": true,
           "id": "kr/claude-sonnet-4.5",
-          "name": "Claude Sonnet 4.5 (Kiro AI - Gratis)",
           "limit": {
             "context": 200000,
             "output": 8192
@@ -175,37 +128,11 @@
             "input": ["text"],
             "output": ["text"]
           },
-          "attachment": true
+          "name": "Claude Sonnet 4.5 (Kiro AI - Gratis)"
         },
-        "claude-haiku-4.5": {
-          "id": "kr/claude-haiku-4.5",
-          "name": "Claude Haiku 4.5 (Kiro AI - Gratis)",
-          "limit": {
-            "context": 200000,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "attachment": true
-        },
-        "nvidia-llama-3.3-70b": {
-          "id": "nvidia/llama-3.3-70b-instruct",
-          "name": "Llama 3.3 70B (NVIDIA NIM - Gratis)",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "attachment": true
-        },
-        "longcat-flash-lite": {
-          "id": "lc/LongCat-Flash-Lite",
-          "name": "LongCat Flash Lite (50M tokens/dia - Gratis)",
+        "cloudflare-llama-3.3-70b": {
+          "attachment": true,
+          "id": "cf/@cf/meta/llama-3.3-70b-instruct",
           "limit": {
             "context": 32768,
             "output": 8192
@@ -214,11 +141,24 @@
             "input": ["text"],
             "output": ["text"]
           },
-          "attachment": true
+          "name": "Llama 3.3 70B (Cloudflare AI - Gratis)"
+        },
+        "cloudflare-qwen-coder": {
+          "attachment": true,
+          "id": "cf/@cf/qwen/qwen2.5-coder-15b-instruct",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "name": "Qwen2.5 Coder 15B (Cloudflare AI - Gratis)"
         },
         "gemini-2.5-flash": {
+          "attachment": true,
           "id": "gc/gemini-2.5-flash",
-          "name": "Gemini 2.5 Flash (180K/mes - Gratis)",
           "limit": {
             "context": 1000000,
             "output": 8192
@@ -227,11 +167,11 @@
             "input": ["text", "image"],
             "output": ["text"]
           },
-          "attachment": true
+          "name": "Gemini 2.5 Flash (180K/mes - Gratis)"
         },
-        "cloudflare-llama-3.3-70b": {
-          "id": "cf/@cf/meta/llama-3.3-70b-instruct",
-          "name": "Llama 3.3 70B (Cloudflare AI - Gratis)",
+        "kimi-k2-thinking": {
+          "attachment": true,
+          "id": "if/kimi-k2-thinking",
           "limit": {
             "context": 32768,
             "output": 8192
@@ -240,11 +180,11 @@
             "input": ["text"],
             "output": ["text"]
           },
-          "attachment": true
+          "name": "Kimi K2 Thinking (OmniRoute)"
         },
-        "cloudflare-qwen-coder": {
-          "id": "cf/@cf/qwen/qwen2.5-coder-15b-instruct",
-          "name": "Qwen2.5 Coder 15B (Cloudflare AI - Gratis)",
+        "longcat-flash-lite": {
+          "attachment": true,
+          "id": "lc/LongCat-Flash-Lite",
           "limit": {
             "context": 32768,
             "output": 8192
@@ -253,11 +193,24 @@
             "input": ["text"],
             "output": ["text"]
           },
-          "attachment": true
+          "name": "LongCat Flash Lite (50M tokens/dia - Gratis)"
+        },
+        "nvidia-llama-3.3-70b": {
+          "attachment": true,
+          "id": "nvidia/llama-3.3-70b-instruct",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "name": "Llama 3.3 70B (NVIDIA NIM - Gratis)"
         },
         "openrouter-claude-sonnet": {
+          "attachment": true,
           "id": "openrouter/anthropic/claude-3.5-sonnet",
-          "name": "Claude 3.5 Sonnet (OpenRouter)",
           "limit": {
             "context": 200000,
             "output": 8192
@@ -266,11 +219,24 @@
             "input": ["text", "image"],
             "output": ["text"]
           },
-          "attachment": true
+          "name": "Claude 3.5 Sonnet (OpenRouter)"
+        },
+        "openrouter-deepseek-r1": {
+          "attachment": true,
+          "id": "openrouter/deepseek/deepseek-r1",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "name": "DeepSeek R1 (OpenRouter)"
         },
         "openrouter-gpt-4o": {
+          "attachment": true,
           "id": "openrouter/openai/gpt-4o",
-          "name": "GPT-4o (OpenRouter)",
           "limit": {
             "context": 128000,
             "output": 16384
@@ -279,24 +245,11 @@
             "input": ["text", "image"],
             "output": ["text"]
           },
-          "attachment": true
-        },
-        "openrouter-deepseek-r1": {
-          "id": "openrouter/deepseek/deepseek-r1",
-          "name": "DeepSeek R1 (OpenRouter)",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "attachment": true
+          "name": "GPT-4o (OpenRouter)"
         },
         "openrouter-llama-3.3-70b": {
+          "attachment": true,
           "id": "openrouter/meta-llama/llama-3.3-70b-instruct",
-          "name": "Llama 3.3 70B (OpenRouter)",
           "limit": {
             "context": 128000,
             "output": 8192
@@ -305,148 +258,195 @@
             "input": ["text"],
             "output": ["text"]
           },
-          "attachment": true
+          "name": "Llama 3.3 70B (OpenRouter)"
+        },
+        "qwen3-coder-flash": {
+          "attachment": true,
+          "id": "qw/qwen3-coder-flash",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "name": "Qwen3 Coder Flash (Qwen Code - Gratis)"
+        },
+        "qwen3-coder-next": {
+          "attachment": true,
+          "id": "qw/qwen3-coder-next",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "name": "Qwen3 Coder Next (Qwen Code - Gratis)"
+        },
+        "qwen3-coder-plus-direct": {
+          "attachment": true,
+          "id": "qw/qwen3-coder-plus",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "name": "Qwen3 Coder Plus (Qwen Code - Gratis)"
         }
+      },
+      "npm": "@ai-sdk/openai",
+      "options": {
+        "apiKey": "{env:OMNIROUTE_API_KEY}",
+        "baseURL": "http://localhost:20128/v1",
+        "compatibility": "strict"
       }
     },
     "regolo": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Regolo",
-      "options": {
-        "name": "Regolo",
-        "baseURL": "https://api.regolo.ai/v1",
-        "timeout": 1200000,
-        "chunkTimeout": 600000,
-        "headers": {
-          "Accept": "application/json",
-          "Authorization": "Bearer {env:REGOLO_AI_API_KEY}"
-        }
-      },
       "models": {
         "gpt-oss-120b": {
-          "id": "gpt-oss-120b",
-          "name": "gpt-oss-120b",
           "cost": {
             "input": 1,
             "output": 4.2
           },
+          "id": "gpt-oss-120b",
           "limit": {
             "context": 120000,
             "output": 90000
           },
+          "name": "gpt-oss-120b",
           "options": {
-            "reasoningEffort": "high",
-            "textVerbosity": "low",
-            "reasoningSummary": "auto",
             "include": ["reasoning.encrypted_content"],
             "parallel_tool_calls": true,
-            "tool_choice": "auto",
-            "thinking": true,
-            "temperature": 0.7
-          }
-        },
-        "mistral-small-4-119b": {
-          "id": "mistral-small-4-119b",
-          "name": "mistral-small-4-119b",
-          "cost": {
-            "input": 0.5,
-            "output": 2.1
-          },
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          },
-          "limit": {
-            "context": 120000,
-            "output": 120000
-          },
-          "options": {
             "reasoningEffort": "high",
-            "textVerbosity": "low",
             "reasoningSummary": "auto",
-            "include": ["reasoning.encrypted_content"],
-            "parallel_tool_calls": true,
-            "tool_choice": "auto",
+            "temperature": 0.7,
+            "textVerbosity": "low",
             "thinking": true,
-            "temperature": 0.7
+            "tool_choice": "auto"
           }
         },
         "minimax-m2.5": {
-          "id": "minimax-m2.5",
-          "name": "minimax-m2.5",
           "cost": {
             "input": 0.6,
             "output": 3.8
           },
+          "id": "minimax-m2.5",
           "limit": {
             "context": 130000,
             "output": 130000
           },
+          "name": "minimax-m2.5",
           "options": {
-            "reasoningEffort": "high",
-            "textVerbosity": "low",
-            "reasoningSummary": "auto",
             "include": ["reasoning.encrypted_content"],
             "parallel_tool_calls": true,
-            "tool_choice": "auto",
+            "reasoningEffort": "high",
+            "reasoningSummary": "auto",
+            "temperature": 0.7,
+            "textVerbosity": "low",
             "thinking": true,
-            "temperature": 0.7
+            "tool_choice": "auto"
           }
         },
-        "qwen3.5-122b": {
-          "id": "qwen3.5-122b",
-          "name": "qwen3.5-122b",
+        "mistral-small-4-119b": {
           "cost": {
-            "input": 1,
-            "output": 4.2
+            "input": 0.5,
+            "output": 2.1
+          },
+          "id": "mistral-small-4-119b",
+          "limit": {
+            "context": 120000,
+            "output": 120000
           },
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
           },
-          "limit": {
-            "context": 120000,
-            "output": 120000
-          },
+          "name": "mistral-small-4-119b",
           "options": {
-            "reasoningEffort": "high",
-            "textVerbosity": "low",
-            "reasoningSummary": "auto",
             "include": ["reasoning.encrypted_content"],
             "parallel_tool_calls": true,
-            "tool_choice": "auto",
+            "reasoningEffort": "high",
+            "reasoningSummary": "auto",
+            "temperature": 0.7,
+            "textVerbosity": "low",
             "thinking": true,
-            "temperature": 0.7
+            "tool_choice": "auto"
           }
         },
         "qwen3-coder-next": {
-          "id": "qwen3-coder-next",
-          "name": "qwen3-coder-next",
-          "reasoning": true,
-          "tool_call": true,
-          "limit": {
-            "context": 240000,
-            "output": 120000
-          },
           "cost": {
             "input": 0.5,
             "output": 2
           },
+          "id": "qwen3-coder-next",
+          "limit": {
+            "context": 240000,
+            "output": 120000
+          },
+          "name": "qwen3-coder-next",
           "options": {
             "parallel_tool_calls": true,
-            "tool_choice": "auto",
+            "repetition_penalty": 1.05,
             "temperature": 0.5,
-            "top_p": 0.95,
+            "tool_choice": "auto",
             "top_k": 40,
-            "repetition_penalty": 1.05
+            "top_p": 0.95
+          },
+          "reasoning": true,
+          "tool_call": true
+        },
+        "qwen3.5-122b": {
+          "cost": {
+            "input": 1,
+            "output": 4.2
+          },
+          "id": "qwen3.5-122b",
+          "limit": {
+            "context": 120000,
+            "output": 120000
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "name": "qwen3.5-122b",
+          "options": {
+            "include": ["reasoning.encrypted_content"],
+            "parallel_tool_calls": true,
+            "reasoningEffort": "high",
+            "reasoningSummary": "auto",
+            "temperature": 0.7,
+            "textVerbosity": "low",
+            "thinking": true,
+            "tool_choice": "auto"
           }
         }
+      },
+      "name": "Regolo",
+      "npm": "@ai-sdk/openai",
+      "options": {
+        "baseURL": "https://api.regolo.ai/v1",
+        "chunkTimeout": 600000,
+        "headers": {
+          "Accept": "application/json",
+          "Authorization": "Bearer {env:REGOLO_AI_API_KEY}"
+        },
+        "name": "Regolo",
+        "timeout": 1200000
       }
     }
   },
-  "compaction": {
-    "auto": true,
-    "prune": true
+  "server": {
+    "cors": ["http://localhost"],
+    "hostname": "0.0.0.0",
+    "mdns": true,
+    "port": 4096
   },
   "watcher": {
     "ignore": [

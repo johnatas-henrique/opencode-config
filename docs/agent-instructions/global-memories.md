@@ -1,6 +1,4 @@
 Use memory_recall() at session start - THIS IS MANDATORY.
-Use context-mode for all data operations - THIS IS MANDATORY.
-Use ctx tools for ALL read/search/analyze operations. NEVER use read/cat/grep directly. Process in sandbox, return only the answer.
 Always use Ask Tool for questions.
 Never commit without permission - always ask first.
 Never do git push directly.

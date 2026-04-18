@@ -2,17 +2,11 @@
 
 <!-- [MEMORY] MANDATORY -->
 Every session MUST start with `memory_recall()`.
-After that, ALL operations MUST be done in context-mode using context-mode (ctx) tools.
 Each memory MUST have a type (decision, learning, preference, blocker, context, pattern) and a scope (global, project, session).
-Read `ctx_execute_file("~/.config/opencode/docs/agent-instructions/memory-usage.md")` and compare with your own memory list.
+Read `~/.config/opencode/docs/agent-instructions/memory-usage.md` and compare with your own memory list.
 If global memories are missing, load them using `memory_remember(MEMORY_HERE, <TYPE>, "global")`.
 Call `memory_recall()` again.
 <!-- [/MEMORY] -->
-
-<!-- [CTX-MODE] MANDATORY -->
-MANDATORY: Use ctx_execute_file for file analysis. Use ctx_execute for commands. Use ctx_batch_execute for multiple operations.
-NEVER: Use read/cat/grep for analysis. This floods context.
-<!-- [/CTX-MODE] -->
 
 <!-- [GIT] MANDATORY -->
 NEVER: Mix feat+test, feat+docs, code+config in same commit.
@@ -62,14 +56,17 @@ Constraints > Correctness > Goal Fit > Reversibility > Simplicity > Speed > Leve
 
 ---
 
-<!-- [MEMORY-RECALL] MANDATORY -->
-If no memories found after memory_recall(), load memory-usage.md and follow it.
-<!-- [/MEMORY-RECALL] -->
-
 <!-- [LAZY-LOAD] WHEN-RELEVANT -->
 | Trigger | Load |
 |---------|------|
-| "commit" | quality-gates.md |
-| MCP tools | mcp-tools.md |
-| Banking | enterprise-patterns.md |
+| "commit" | @docs/agent-instructions/quality-gates.md |
+| MCP tools | @docs/agent-instructions/mcp-tools.md |
+| Banking | @docs/agent-instructions/enterprise-patterns.md |
 <!-- [/LAZY-LOAD] -->
+
+<!-- lean-ctx MANDATORY-->
+## lean-ctx
+
+Prefer lean-ctx MCP tools over native equivalents for token savings.
+Full rules: @docs/agent-instructions/lean-ctx.md
+<!-- /lean-ctx -->
