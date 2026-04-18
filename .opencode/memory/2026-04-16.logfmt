@@ -1,6 +1,4 @@
 ts=2026-04-16T00:00:40.119Z type=preference scope=global content="Use memory_recall() at session start - THIS IS MANDATORY."
-ts=2026-04-16T00:00:43.155Z type=preference scope=global content="Use context-mode for all data operations - THIS IS MANDATORY."
-ts=2026-04-16T00:00:45.745Z type=preference scope=global content="Use ctx tools for ALL read/search/analyze operations. NEVER use read/cat/grep directly. Process in sandbox, return only the answer."
 ts=2026-04-16T00:00:47.865Z type=preference scope=global content="Always use Ask Tool for questions."
 ts=2026-04-16T00:00:50.631Z type=preference scope=global content="Never commit without permission - always ask first."
 ts=2026-04-16T00:00:52.618Z type=preference scope=global content="Never do git push directly."
