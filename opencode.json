@@ -4,12 +4,9 @@
     "~/.config/opencode/AGENTS.md",
     "~/.config/opencode/docs/agent-instructions/memory-usage.md"
   ],
+  "model": "manifest/auto",
+  "small_model": "openrouter/elephant-alpha",
   "mcp": {
-    "context-mode": {
-      "command": ["context-mode"],
-      "enabled": false,
-      "type": "local"
-    },
     "context7": {
       "enabled": true,
       "headers": {
@@ -22,16 +19,6 @@
       "enabled": true,
       "type": "remote",
       "url": "https://mcp.exa.ai/mcp"
-    },
-    "filesystem": {
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-filesystem@latest",
-        "/home/johnatas"
-      ],
-      "enabled": true,
-      "type": "local"
     },
     "gh_grep": {
       "enabled": true,
@@ -52,12 +39,6 @@
     "playwright": {
       "command": ["npx", "-y", "@playwright/mcp@latest"],
       "enabled": true,
-      "type": "local"
-    },
-    "tavily": {
-      "command": ["npx", "-y", "tavily-mcp"],
-      "enabled": false,
-      "environment": { "TAVILY_API_KEY": "${env:TAVILY_API_KEY}" },
       "type": "local"
     },
     "thinking": {
@@ -81,7 +62,8 @@
     "opencode-session-recall",
     "@gotgenes/opencode-agent-identity",
     "@knikolov/opencode-plugin-simple-memory",
-    "@franlol/opencode-md-table-formatter@latest"
+    "@franlol/opencode-md-table-formatter@latest",
+    "@cortexkit/opencode-magic-context"
   ],
   "provider": {
     "manifest": {
@@ -441,6 +423,10 @@
         "timeout": 1200000
       }
     }
+  },
+  "compaction": {
+    "auto": false,
+    "prune": false
   },
   "server": {
     "cors": ["http://localhost"],

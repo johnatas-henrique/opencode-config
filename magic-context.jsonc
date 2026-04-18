@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cortexkit/opencode-magic-context/master/assets/magic-context.schema.json",
+  "enabled": true,
+
+  "historian": {
+    "model": "openrouter/elephant-alpha",
+    "fallback_models": [
+      "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
+      "openrouter/google/gemma-4-31b-it:free"
+    ]
+  },
+
+  "dreamer": {
+    "enabled": true,
+    "model": "openrouter/google/gemma-4-31b-it:free",
+    "schedule": "0 5 * * *"
+  },
+
+  "sidekick": {
+    "enabled": false
+  }
+}
