@@ -1,9 +1,17 @@
 # Plan: AGENTS.md Integration + skillmaxxing + Enterprise Enhancement
 
-**Created:** 2026-04-15 15:30 BRT  
-**Context:** Improve OpenCode setup for enterprise use at user's bank
+| | Created | Updated |
+| -- | -- | -- |
+| **Status** | completed | 2026-04-15 |
+| **Agent** | plan | - |
+| **Priority** | high | - |
 
----
+## Execution
+
+| Timestamp | Step |
+| -- | -- |
+| 2026-04-15 15:30 | Plan created |
+| 2026-04-15 18:45 | Integrated skillmaxxing, updated AGENTS.md |
 
 ## Context
 
@@ -12,43 +20,19 @@ The user works at a bank and wants to raise the quality level of AI-assisted pro
 - Avoid "vibe-coding" — quality-less code
 - Trust that AI won't create bad code or do stupid things
 - Enterprise standards (compliance, audit trail, security)
-- Doesn't want mandatory coverage gate (Step 2 — user answered "yes, mandatory")
+- Coverage gate mandatory (80%)
 
----
+## User Requirements
 
-## Pre-Analysis
+| # | Requirement | Decision |
+| -- | -- | -- |
+| 1 | Ticket ID mandatory in commits | NO |
+| 2 | Coverage gate mandatory (minimum 80%) | YES |
+| 3 | Conventional commits | HAS IT ✅ |
+| 4 | Code/plans in EN, agent responds in PT | HAS IT ✅ |
+| 5 | Use Ask Tool for questions to user | ADD |
 
-### Coverage Comparison
-
-| Principle                    | AGENTS.md Current | skillmaxxing | Enterprise | Result     |
-| ---------------------------- | :----------------: | :----------: | :--------: | ---------- |
-| Atomic commits               |       ✅         |      ❌      |     ❌     | **KEEP**  |
-| Mode routing                 |       ❌         |      ✅      |     ❌     | **ADD**   |
-| Decision hierarchy           |       ⚠️         |      ✅      |     ❌     | **MERGE** |
-| Goal-first                   |       ❌         |      ✅      |     ❌     | **MERGE** |
-| Success criteria             |       ⚠️         |      ✅      |     ❌     | **MERGE** |
-| Enforcement (lint/type/test) |       ✅         |      ❌      |     ✅     | **ENFORCE** |
-| Security compliance          |       ⚠️         |      ❌      |     ✅     | **ADD**   |
-| Memory usage                 |       ✅         |      ❌      |     ❌     | **KEEP** |
-| Plan format                  |       ✅         |      ❌      |     ❌     | **KEEP** |
-| Portuguese response          |       ✅         |      ❌      |     ❌     | **KEEP** |
-| Coverage gate (80%)          |       ❌         |      ❌      |     ✅     | **ADD**   |
-
----
-
-## User Requirements (Captured)
-
-| #   | Requirement                                              | Decision        |
-| --- | -------------------------------------------------------- | ---------------|
-| 1   | Ticket ID mandatory in commits                             | **NO**         |
-| 2   | Coverage gate mandatory (minimum 80%)                     | **YES**        |
-| 3   | Conventional commits                                      | **HAS IT** ✅   |
-| 4   | Code/plans in EN, agent responds in user's language         | **HAS IT** ✅   |
-| 5   | Use Ask Tool for questions to user                     | **ADD**        |
-
----
-
-## Proposed Structure
+## Final AGENTS.md Structure
 
 ```markdown
 # OpenCode Agent Instructions
@@ -56,136 +40,68 @@ The user works at a bank and wants to raise the quality level of AI-assisted pro
 ## Skill System (PRIMARY)
 @.agents/skills/agent-skills-system/SKILL.md
 
-## Core Principles (Merge - Yours + skillmaxxing)
-[Keeps your principles + adds Goal-First + Decision Hierarchy]
+## Core Principles
+- English for code/plans, respond in user's language
+- FAIL after 2 attempts → stop and report
+- ASK when uncertain
+- NEVER expose .env, secrets, tokens
+- GET web info if unsure
 
-## Source Control (Yours - keep)
-- Atomic commits
-- Conventional commits (current standard)
-- Ask before commit
-- NEVER push
+### Decision Hierarchy
+Constraints > Correctness > Goal Fit > Reversibility > Simplicity > Speed > Leverage > Polish > Novelty
 
-## Plan Format (Yours - keep)
-- Execution table with timestamps
-- Explicit success criteria
-- File in English
+### Goal-First Rule
+Define: (1) concrete outcome, (2) success criteria, (3) stopping point
+
+### Think Before Coding
+State assumptions, present multiple interpretations, propose simpler approach if exists.
+
+### Simplicity First
+Minimum code that solves the problem. Nothing speculative.
+
+### Surgical Changes
+Touch only necessary files. Clean own mess only. Never revert changes from other tools.
+
+## Source Control
+- Atomic commits: one commit per independent logical change
+- NEVER commit without explicit user permission — always ask
+- NEVER do git push directly
+
+## Plan Format
+- File: docs/plans/YYYY-MM-DD-name.md
+- Include Execution table with timestamps
+- Update steps to ✅ when done
+- All plans in English
 
 ## Quality Gates (MANDATORY)
-- lint + typecheck + test BEFORE commit
-- Coverage minimum 80%
-- Quality chain (hardening → consolidation → slop → commit)
+Before commit:
+1. lint/format (npm run lint, npm run format)
+2. typecheck (npx tsc --noEmit)
+3. test (npm test)
+4. coverage ≥80%
 
-## Security (Enhancement)
+## Security
 - NEVER commit .env, secrets, tokens
 - Secret scanning via pre-commit hook
 
 ## Communication
 - Always use Ask Tool for questions to user
 - Respond in user's language
-- Code, plans, and documentation in English unless user specifies otherwise
+- Code, plans, documentation in English
 
 ## Context & Memory
-[...keep from current...]
+- Use memory_recall() at session start
+- Use lean-ctx MCP tools over native equivalents
+- Load global memories if none found
 
-## Enterprise Patterns (NEW)
-- Error handling structured
-- Production logging
-- Observability
+## Enterprise Patterns
+- Error handling: structured Result types
+- Production logging: contextual, JSON
+- Observability: metrics + tracing
 ```
 
----
+## Notes
 
-## Execution
-
-| Step | Description                                                                        | Timestamp |
-| ---- | -------------------------------------------------------------------------------- | --------- |
-| 1    | Clone skillmaxxing to `/tmp/skillmaxxing`                                           | -         |
-| 2    | Copy `agent-skills-system` to `~/.config/opencode/.agents/skills/agent-skills-system` | -         |
-| 3    | Backup current AGENTS.md (`AGENTS.md.backup-YYYYMMDD`)                           | -         |
-| 4    | Rewrite AGENTS.md with integrated structure                                        | -         |
-| 5    | Add enterprise layer (security, coverage gate)                                     | -         |
-| 6    | Validate new setup                                                               | -         |
-
----
-
-### Step 1: Clone skillmaxxing
-
-```bash
-git clone https://github.com/johnvouros/skillmaxxing.git /tmp/skillmaxxing
-```
-
-**Verification:**
-- directory `/tmp/skillmaxxing` exists
-- contains `agent-skills-system/SKILL.md`
-
----
-
-### Step 2: Copy skill to global config
-
-```bash
-cp -R /tmp/skillmaxxing/agent-skills-system ~/.config/opencode/.agents/skills/agent-skills-system
-```
-
-**Verification:**
-- file `~/.config/opencode/.agents/skills/agent-skills-system/SKILL.md` exists
-
----
-
-### Step 3: Backup current AGENTS.md
-
-```bash
-cp ~/.config/opencode/AGENTS.md ~/.config/opencode/AGENTS.md.backup-$(date +%Y%m%d)
-```
-
-**Verification:**
-- backup file created with current date
-
----
-
-### Step 4-5: Rewrite AGENTS.md + Enterprise Patterns
-
-See detailed structure in plan sections above.
-
----
-
-### Step 6: Validate Setup
-
-```bash
-# Verify skillmaxxing installed
-ls -la ~/.config/opencode/.agents/skills/agent-skills-system/
-
-# Verify AGENTS.md exists
-cat ~/.config/opencode/AGENTS.md | head -20
-```
-
----
-
-## Risks and Mitigations
-
-| Risk                                   | Mitigation                         |
-| --------------------------------------- | ---------------------------------- |
-| skillmaxxing conflicts with existing rules | Decision hierarchy resolves conflicts |
-| Coverage 80% too high for some projects | Allow override via project AGENTS.md |
-| Adding too much complexity               | Keep simplicity where possible     |
-
----
-
-## Final Validation
-
-After implementation, the agent should:
-
-1. ✅ Choose mode (karpathy/rauch/levels/swyx/theo/amjad) at start of each task
-2. ✅ Declare "success criteria" before implementing
-3. ✅ Use decision hierarchy when conflict arises
-4. ✅ Run lint + typecheck + test + coverage BEFORE asking to commit
-5. ✅ Ask using Ask Tool
-6. ✅ NEVER commit secrets
-7. ✅ Keep minimum and typed code
-
----
-
-## History
-
-| Date       | Description                         |
-| ---------- | -----------------------------------|
-| 2026-04-15 | Plan created                        |
+- skillmaxxing agent-skills-system cloned to `~/.config/opencode/.agents/skills/agent-skills-system`
+- Global memories integrated
+- Enterprise layer added (security, coverage gate)

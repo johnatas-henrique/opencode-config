@@ -1,17 +1,20 @@
-# Add simple-memory rules to global AGENTS.md
+# Plan: Add simple-memory rules to global AGENTS.md
 
-**Date:** 2026-04-14 13:07  
-**Status:** completed
+| | Created | Updated |
+| -- | -- | -- |
+| **Status** | completed | 2026-04-14 |
+| **Agent** | plan | - |
+| **Priority** | high | - |
+
+## Execution
+
+| Timestamp | Step |
+| -- | -- |
+| 2026-04-14 13:07 | Add Memory Usage section to global AGENTS.md |
 
 ## Reason
 
 The user wants to add the 4 memory rules from simple-memory plugin (EXAMPLE_AGENTS.md) to the global AGENTS.md to ensure proper memory usage discipline.
-
-## Execution
-
-| Step                                            | Status | Timestamp        |
-| ----------------------------------------------- | ------ | ---------------- |
-| 1. Add Memory Usage section to global AGENTS.md | ✅     | 2026-04-14 13:07 |
 
 ## Rules Added
 
