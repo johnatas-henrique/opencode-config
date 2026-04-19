@@ -4,8 +4,8 @@
     "~/.config/opencode/AGENTS.md",
     "~/.config/opencode/docs/agent-instructions/memory-usage.md"
   ],
-  "model": "manifest/auto",
-  "small_model": "openrouter/elephant-alpha",
+  "model": "openrouter/openrouter/elephant-alpha",
+  "small_model": "openrouter/openrouter/elephant-alpha",
   "mcp": {
     "context7": {
       "enabled": true,
@@ -55,7 +55,14 @@
     "external_directory": { "*": "ask", "/tmp": "allow", "/tmp/*": "allow" },
     "skill": "allow",
     "task": { "*": "allow" },
-    "tool": { "*": "allow" }
+    "tool": { "*": "allow" },
+    "bash": {
+      "*": "allow",
+      "git checkout *": "ask",
+      "git reset *": "ask",
+      "git restore *": "ask",
+      "git clean *": "ask"
+    }
   },
   "plugin": [
     "opencode-handoff",

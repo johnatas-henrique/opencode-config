@@ -1,9 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/cortexkit/opencode-magic-context/master/assets/magic-context.schema.json",
   "enabled": true,
+  "ctx_reduce_enabled": true,
+  "execute_threshold_percentage": 60,
+  "auto_drop_tool_age": 50,
+  "nudge_interval_tokens": 5000,
 
   "historian": {
-    "model": "openrouter/elephant-alpha",
+    "model": "openrouter/openrouter/elephant-alpha",
     "fallback_models": [
       "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
       "openrouter/google/gemma-4-31b-it:free"
@@ -13,7 +17,10 @@
   "dreamer": {
     "enabled": true,
     "model": "openrouter/google/gemma-4-31b-it:free",
-    "schedule": "0 5 * * *"
+    "fallback_models": [
+      "openrouter/nvidia/nemotron-3-super-120b-a12b:free"
+    ],
+    "schedule": "02:00-06:00"
   },
 
   "sidekick": {
