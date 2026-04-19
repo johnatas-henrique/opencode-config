@@ -48,7 +48,7 @@ These are knowledge questions:
 
 ## Reference
 
-See: `references/14-perguntas.md`
+See: `references/14-questions.md`
 
 ## Cleanup
 
