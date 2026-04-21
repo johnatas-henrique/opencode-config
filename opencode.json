@@ -26,19 +26,12 @@
       "url": "https://mcp.grep.app"
     },
     "markitdown": {
-      "command": [
-        "uvx",
-        "markitdown-mcp@latest"
-      ],
+      "command": ["uvx", "markitdown-mcp@latest"],
       "enabled": true,
       "type": "local"
     },
     "playwright": {
-      "command": [
-        "npx",
-        "-y",
-        "@playwright/mcp@latest"
-      ],
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
       "enabled": true,
       "type": "local"
     },
@@ -54,9 +47,7 @@
     "codebase-memory-mcp": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "/home/johnatas/.local/bin/codebase-memory-mcp"
-      ]
+      "command": ["/home/johnatas/.local/bin/codebase-memory-mcp"]
     }
   },
   "permission": {
@@ -121,12 +112,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Claude Haiku 4.5 (Kiro AI - Gratis)"
         },
@@ -138,12 +125,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Claude Sonnet 4.5 (Kiro AI - Gratis)"
         },
@@ -155,12 +138,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Llama 3.3 70B (Cloudflare AI - Gratis)"
         },
@@ -172,12 +151,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Qwen2.5 Coder 15B (Cloudflare AI - Gratis)"
         },
@@ -189,13 +164,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "name": "Gemini 2.5 Flash (180K/mes - Gratis)"
         },
@@ -207,12 +177,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Kimi K2 Thinking (OmniRoute)"
         },
@@ -224,12 +190,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "LongCat Flash Lite (50M tokens/dia - Gratis)"
         },
@@ -241,12 +203,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Llama 3.3 70B (NVIDIA NIM - Gratis)"
         },
@@ -258,13 +216,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "name": "Claude 3.5 Sonnet (OpenRouter)"
         },
@@ -276,12 +229,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "DeepSeek R1 (OpenRouter)"
         },
@@ -293,13 +242,8 @@
             "output": 16384
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "name": "GPT-4o (OpenRouter)"
         },
@@ -311,12 +255,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Llama 3.3 70B (OpenRouter)"
         },
@@ -328,12 +268,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Qwen3 Coder Flash (Qwen Code - Gratis)"
         },
@@ -345,12 +281,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Qwen3 Coder Next (Qwen Code - Gratis)"
         },
@@ -362,12 +294,8 @@
             "output": 8192
           },
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "name": "Qwen3 Coder Plus (Qwen Code - Gratis)"
         }
@@ -393,9 +321,7 @@
           },
           "name": "gpt-oss-120b",
           "options": {
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "parallel_tool_calls": true,
             "reasoningEffort": "high",
             "reasoningSummary": "auto",
@@ -417,9 +343,7 @@
           },
           "name": "minimax-m2.5",
           "options": {
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "parallel_tool_calls": true,
             "reasoningEffort": "high",
             "reasoningSummary": "auto",
@@ -440,19 +364,12 @@
             "output": 120000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "name": "mistral-small-4-119b",
           "options": {
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "parallel_tool_calls": true,
             "reasoningEffort": "high",
             "reasoningSummary": "auto",
@@ -495,19 +412,12 @@
             "output": 120000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "name": "qwen3.5-122b",
           "options": {
-            "include": [
-              "reasoning.encrypted_content"
-            ],
+            "include": ["reasoning.encrypted_content"],
             "parallel_tool_calls": true,
             "reasoningEffort": "high",
             "reasoningSummary": "auto",
@@ -663,6 +573,10 @@
           "limit": {
             "context": 262144,
             "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
           }
         },
         "openai/gpt-oss-120b": {
@@ -677,6 +591,10 @@
           "limit": {
             "context": 1000000,
             "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
           }
         },
         "deepseek-ai/deepseek-v3.1": {
@@ -698,6 +616,10 @@
           "limit": {
             "context": 256000,
             "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
           }
         },
         "qwen/qwq-32b": {
@@ -740,6 +662,10 @@
           "limit": {
             "context": 10000000,
             "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
           }
         },
         "nvidia/nemotron-3-nano-30b-a3b": {
@@ -887,7 +813,11 @@
           "name": "DeepSeek V3.2"
         },
         "Llama-4-Maverick-17B-128E-Instruct": {
-          "name": "Llama 4 Maverick"
+          "name": "Llama 4 Maverick",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
         },
         "gpt-oss-120b": {
           "name": "GPT OSS 120B"
@@ -911,6 +841,506 @@
           "name": "Llama 3.1 8B"
         }
       }
+    },
+    "grouter-kiro": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kiro via GRouter",
+      "options": {
+        "baseURL": "http://localhost:3102/v1",
+        "apiKey": "grouter"
+      },
+      "models": {
+        "claude-sonnet-4.5": {
+          "name": "Claude Sonnet 4.5",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "claude-haiku-4.5": {
+          "name": "Claude Haiku 4.5",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "deepseek-3.2": {
+          "name": "DeepSeek 3.2",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "deepseek-3.1": {
+          "name": "DeepSeek 3.1",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "qwen3-coder-next": {
+          "name": "Qwen3 Coder Next",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        }
+      }
+    },
+    "grouter-openrouter": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenRouter via GRouter",
+      "options": {
+        "baseURL": "http://localhost:3101/v1",
+        "apiKey": "grouter"
+      },
+      "models": {
+        "anthropic/claude-opus-4-5": {
+          "name": "Claude Opus 4.5",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "anthropic/claude-sonnet-4-5": {
+          "name": "Claude Sonnet 4.5",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "openai/gpt-4o": {
+          "name": "GPT-4o",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "google/gemini-2.5-pro": {
+          "name": "Gemini 2.5 Pro",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "deepseek/deepseek-r1": {
+          "name": "DeepSeek R1",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "meta-llama/llama-3.3-70b-instruct": {
+          "name": "Llama 3.3 70B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        }
+      }
+    },
+    "grouter-kilocode": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "KiloCode via GRouter",
+      "options": {
+        "baseURL": "http://localhost:3103/v1",
+        "apiKey": "grouter"
+      },
+      "models": {
+        "google/gemini-2.5-flash": {
+          "name": "Gemini 2.5 Flash",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "google/gemini-2.5-pro": {
+          "name": "Gemini 2.5 Pro",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "openai/gpt-4.1": {
+          "name": "GPT-4.1",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "openai/o3": {
+          "name": "o3",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        }
+      }
+    },
+    "grouter-opencode": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenCode via GRouter",
+      "options": {
+        "baseURL": "http://localhost:3105/v1",
+        "apiKey": "grouter"
+      },
+      "models": {
+        "nemotron-3-super-free": {
+          "name": "Nemotron 3 Super",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        }
+      }
+    },
+    "grouter-gemini-cli": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Gemini CLI via GRouter",
+      "options": {
+        "baseURL": "http://localhost:3107/v1",
+        "apiKey": "grouter"
+      },
+      "models": {
+        "gemini-3.1-flash-lite-preview": {
+          "name": "Gemini 3.1 Flash Lite Preview",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          }
+        },
+        "gemini-2.5-flash": {
+          "name": "Gemini 2.5 Flash",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          }
+        }
+      }
+    },
+    "grouter-ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama via GRouter",
+      "options": {
+        "baseURL": "http://localhost:3108/v1",
+        "apiKey": "grouter"
+      },
+      "models": {
+        "cogito-2.1:671b": {
+          "name": "Cogito 2.1 671B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "deepseek-v3.1:671b": {
+          "name": "DeepSeek V3.1 671B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "deepseek-v3.2": {
+          "name": "DeepSeek V3.2",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "devstral-2:123b": {
+          "name": "Devstral 2 123B",
+          "limit": {
+            "context": 256000,
+            "output": 8192
+          }
+        },
+        "devstral-small-2:24b": {
+          "name": "Devstral Small 2 24B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "gemini-3-flash-preview": {
+          "name": "Gemini 3 Flash Preview",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          }
+        },
+        "gemma3:12b": {
+          "name": "Gemma 3 12B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "gemma3:27b": {
+          "name": "Gemma 3 27B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "gemma3:4b": {
+          "name": "Gemma 3 4B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "gemma4:31b": {
+          "name": "Gemma 4 31B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "glm-4.6": {
+          "name": "GLM 4.6",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "glm-5": {
+          "name": "GLM 5",
+          "limit": {
+            "context": 204800,
+            "output": 8192
+          }
+        },
+        "gpt-oss:120b": {
+          "name": "GPT OSS 120B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "gpt-oss:20b": {
+          "name": "GPT OSS 20B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "kimi-k2-thinking": {
+          "name": "Kimi K2 Thinking",
+          "limit": {
+            "context": 256000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "kimi-k2.5": {
+          "name": "Kimi K2.5",
+          "limit": {
+            "context": 256000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "kimi-k2.6": {
+          "name": "Kimi K2.6",
+          "limit": {
+            "context": 256000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "minimax-m2": {
+          "name": "MiniMax M2",
+          "limit": {
+            "context": 196000,
+            "output": 8192
+          }
+        },
+        "minimax-m2.1": {
+          "name": "MiniMax M2.1",
+          "limit": {
+            "context": 196000,
+            "output": 8192
+          }
+        },
+        "minimax-m2.5": {
+          "name": "MiniMax M2.5",
+          "limit": {
+            "context": 204800,
+            "output": 8192
+          }
+        },
+        "minimax-m2.7": {
+          "name": "MiniMax M2.7",
+          "limit": {
+            "context": 204800,
+            "output": 8192
+          }
+        },
+        "ministral-3:14b": {
+          "name": "Ministral 14B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "ministral-3:3b": {
+          "name": "Ministral 3 3B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "ministral-3:8b": {
+          "name": "Ministral 3 8B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "mistral-large-3:675b": {
+          "name": "Mistral Large 3 675B",
+          "limit": {
+            "context": 256000,
+            "output": 8192
+          }
+        },
+        "nemotron-3-nano:30b": {
+          "name": "Nemotron Nano 30B",
+          "limit": {
+            "context": 1000000,
+            "output": 8192
+          }
+        },
+        "nemotron-3-super": {
+          "name": "Nemotron 3 Super",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        },
+        "qwen3-coder-next": {
+          "name": "Qwen3 Coder Next",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        },
+        "qwen3-coder:480b": {
+          "name": "Qwen3 Coder 480B",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "qwen3-next:80b": {
+          "name": "Qwen3 80B",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "qwen3-vl:235b": {
+          "name": "Qwen3 VL 235B",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "qwen3-vl:235b-instruct": {
+          "name": "Qwen3 VL 235B Instruct",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "qwen3.5:397b": {
+          "name": "Qwen3.5 397B",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "rnj-1:8b": {
+          "name": "RNJ 1 8B",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          }
+        }
+      }
     }
   },
   "compaction": {
@@ -918,9 +1348,7 @@
     "prune": false
   },
   "server": {
-    "cors": [
-      "http://localhost"
-    ],
+    "cors": ["http://localhost"],
     "hostname": "0.0.0.0",
     "mdns": true,
     "port": 4096
