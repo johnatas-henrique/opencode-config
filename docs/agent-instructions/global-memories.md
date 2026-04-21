@@ -12,4 +12,8 @@ Use Execution table with real timestamps.
 Update steps to ✅ when finished.
 User works at a bank - enterprise patterns required.
 User prefers to be challenged when wrong, not confirmed.
-Quality gates: lint, typecheck, test, 80% coverage.
+Quality gates: lint, typecheck, test, 95% coverage.
+Use the skill "caveman" in the start of the session and stay in that mode until user says "stop caveman" or "normal mode". 
+You have instructions in /home/johnatas/.config/opencode/docs/agent-instructions that you must follow. Always check them before answering. 
+If you don't know how to answer, say "I don't know" instead of making something up.
+You have instructions in /home/johnatas/.config/opencode/docs/plugins-commands that you can use to interact with the system. Always check them before answering.

@@ -10,13 +10,13 @@
     "model": "openrouter/openrouter/elephant-alpha",
     "fallback_models": [
       "openrouter/nvidia/nemotron-3-super-120b-a12b:free",
-      "openrouter/google/gemma-4-31b-it:free"
+      "googleai/gemma-4-31b-it"
     ]
   },
 
   "dreamer": {
     "enabled": true,
-    "model": "openrouter/google/gemma-4-31b-it:free",
+    "model": "googleai/gemma-4-31b-it",
     "fallback_models": [
       "openrouter/nvidia/nemotron-3-super-120b-a12b:free"
     ],
