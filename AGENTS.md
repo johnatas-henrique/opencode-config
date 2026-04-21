@@ -1,5 +1,19 @@
 # OpenCode Agent Instructions — MANDATORY RULES
 
+## Repository Context
+
+This is a **personal OpenCode configuration repository** (`~/.config/opencode`). It contains:
+- `opencode.json` — Provider configs, MCP servers, plugins, permissions
+- `AGENTS.md` — This file (global agent instructions)
+- `docs/agent-instructions/` — Lazy-loaded instruction modules
+- `docs/plugins-commands/` — Plugin documentation with Quick Command Reference tables
+- `docs/plans/` — Execution plans (YYYY-MM-DD-name.md format)
+- `skills/` — Custom agent skills (SKILL.md format)
+- `scripts/` — Helper scripts (e.g., test-grouter-models.sh)
+- `agents/`, `commands/`, `rules/` — Specialized agents, custom commands, lint rules
+
+**Sync workflow:** Changes here must be synced to `~/.config/opencode/` via `./sync.sh` or manual copy. Git repo IS the source of truth.
+
 <!-- [MEMORY] MANDATORY -->
 Every session MUST start with `memory_recall()`.
 Each memory MUST have a type (decision, learning, preference, blocker, context, pattern) and a scope (global, project, session).
@@ -12,6 +26,7 @@ Call `memory_recall()` again.
 NEVER: Mix feat+test, feat+docs, code+config in same commit.
 ACTION: Always ask. Always separate.
 AUTHOR: Johnatas Henrique <johnatas.henrique@gmail.com>
+COMMIT TYPES: Use Conventional Commits (feat:, fix:, chore:, docs:, refactor:). NO "config:" type — use chore: for config changes.
 <!-- [/GIT] -->
 
 ---
