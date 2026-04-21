@@ -4,6 +4,7 @@
     "~/.config/opencode/AGENTS.md",
     "~/.config/opencode/docs/agent-instructions/memory-usage.md"
   ],
+  "model": "opencode/big-pickle",
   "small_model": "openrouter/openrouter/elephant-alpha",
   "mcp": {
     "context7": {
@@ -530,22 +531,9 @@
         "timeout": 1200000
       }
     },
-    "openrouter": {
+    "nvidia": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "OpenRouter",
-      "options": {
-        "baseURL": "https://openrouter.ai/api/v1",
-        "apiKey": "{env:OPENROUTER_API_KEY}"
-      },
-      "models": {
-        "qwen/qwen3-coder:free": {
-          "name": "Qwen3 Coder"
-        }
-      }
-    },
-    "fcm-nvidia": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "FCM NVIDIA NIM",
+      "name": "NVIDIA NIM",
       "options": {
         "baseURL": "https://integrate.api.nvidia.com/v1",
         "apiKey": "{env:NVIDIA_API_KEY}"
@@ -875,119 +863,9 @@
         }
       }
     },
-    "fcm-googleai": {
+    "sambanova": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "FCM Google AI Studio",
-      "options": {
-        "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai",
-        "apiKey": "{env:GOOGLE_API_KEY}"
-      },
-      "models": {
-        "gemma-4-31b-it": {
-          "name": "Gemma 4 31B"
-        },
-        "gemma-4-26b-a4b-it": {
-          "name": "Gemma 4 26B MoE"
-        },
-        "gemma-3-27b-it": {
-          "name": "Gemma 3 27B"
-        },
-        "gemma-3-12b-it": {
-          "name": "Gemma 3 12B"
-        },
-        "gemma-4-e4b-it": {
-          "name": "Gemma 4 E4B"
-        },
-        "gemma-3-4b-it": {
-          "name": "Gemma 3 4B"
-        }
-      }
-    },
-    "fcm-openrouter": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "FCM OpenRouter",
-      "options": {
-        "baseURL": "https://openrouter.ai/api/v1",
-        "apiKey": "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"
-      },
-      "models": {
-        "google/gemma-4-26b-a4b-it:free": {
-          "name": "Gemma 4 26b A4b It"
-        },
-        "google/gemma-4-31b-it:free": {
-          "name": "Gemma 4 31b It"
-        },
-        "nvidia/nemotron-3-super-120b-a12b:free": {
-          "name": "Nemotron 3 Super 120b A12b"
-        },
-        "minimax/minimax-m2.5:free": {
-          "name": "Minimax M2.5"
-        },
-        "arcee-ai/trinity-large-preview:free": {
-          "name": "Trinity Large Preview"
-        },
-        "liquid/lfm-2.5-1.2b-thinking:free": {
-          "name": "Lfm 2.5 1.2b Thinking"
-        },
-        "liquid/lfm-2.5-1.2b-instruct:free": {
-          "name": "Lfm 2.5 1.2b Instruct"
-        },
-        "nvidia/nemotron-3-nano-30b-a3b:free": {
-          "name": "Nemotron 3 Nano 30b A3b"
-        },
-        "nvidia/nemotron-nano-12b-v2-vl:free": {
-          "name": "Nemotron Nano 12b V2 Vl"
-        },
-        "qwen/qwen3-next-80b-a3b-instruct:free": {
-          "name": "Qwen3 Next 80b A3b Instruct"
-        },
-        "nvidia/nemotron-nano-9b-v2:free": {
-          "name": "Nemotron Nano 9b V2"
-        },
-        "openai/gpt-oss-120b:free": {
-          "name": "Gpt Oss 120b"
-        },
-        "openai/gpt-oss-20b:free": {
-          "name": "Gpt Oss 20b"
-        },
-        "z-ai/glm-4.5-air:free": {
-          "name": "Glm 4.5 Air"
-        },
-        "qwen/qwen3-coder:free": {
-          "name": "Qwen3 Coder"
-        },
-        "cognitivecomputations/dolphin-mistral-24b-venice-edition:free": {
-          "name": "Dolphin Mistral 24b Venice Edition"
-        },
-        "google/gemma-3n-e2b-it:free": {
-          "name": "Gemma 3n E2b It"
-        },
-        "google/gemma-3n-e4b-it:free": {
-          "name": "Gemma 3n E4b It"
-        },
-        "google/gemma-3-4b-it:free": {
-          "name": "Gemma 3 4b It"
-        },
-        "google/gemma-3-12b-it:free": {
-          "name": "Gemma 3 12b It"
-        },
-        "google/gemma-3-27b-it:free": {
-          "name": "Gemma 3 27b It"
-        },
-        "meta-llama/llama-3.3-70b-instruct:free": {
-          "name": "Llama 3.3 70b Instruct"
-        },
-        "meta-llama/llama-3.2-3b-instruct:free": {
-          "name": "Llama 3.2 3b Instruct"
-        },
-        "nousresearch/hermes-3-llama-3.1-405b:free": {
-          "name": "Hermes 3 Llama 3.1 405b"
-        }
-      }
-    },
-    "fcm-sambanova": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "FCM SambaNova",
+      "name": "SambaNova",
       "options": {
         "baseURL": "https://api.sambanova.ai/v1",
         "apiKey": "1f49a2c6-fa2e-40a8-a328-b22bd002b3ff"
@@ -1033,73 +911,6 @@
           "name": "Llama 3.1 8B"
         }
       }
-    },
-    "fcm-together": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "FCM Together AI",
-      "options": {
-        "baseURL": "https://api.together.xyz/v1",
-        "apiKey": "tgp_v1__45yFy4l8po43DXvdxkdtTLwdQ2xKT9-rgGkOcfoNBw"
-      },
-      "models": {
-        "moonshotai/Kimi-K2.5": {
-          "name": "Kimi K2.5"
-        },
-        "MiniMaxAI/MiniMax-M2.5": {
-          "name": "MiniMax M2.5"
-        },
-        "zai-org/GLM-5": {
-          "name": "GLM-5"
-        },
-        "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8": {
-          "name": "Qwen3 Coder 480B"
-        },
-        "deepseek-ai/DeepSeek-V3.2": {
-          "name": "DeepSeek V3.2"
-        },
-        "MiniMaxAI/MiniMax-M2.1": {
-          "name": "MiniMax M2.1"
-        },
-        "Qwen/Qwen3.5-397B-A17B": {
-          "name": "Qwen3.5 400B VLM"
-        },
-        "deepseek-ai/DeepSeek-V3.1": {
-          "name": "DeepSeek V3.1"
-        },
-        "deepseek-ai/DeepSeek-V3.1-Terminus": {
-          "name": "DeepSeek V3.1 Term"
-        },
-        "deepseek-ai/DeepSeek-R1": {
-          "name": "DeepSeek R1"
-        },
-        "openai/gpt-oss-120b": {
-          "name": "GPT OSS 120B"
-        },
-        "Qwen/Qwen3-235B-A22B-Instruct-2507": {
-          "name": "Qwen3 235B 2507"
-        },
-        "MiniMaxAI/MiniMax-M2": {
-          "name": "MiniMax M2"
-        },
-        "nvidia/Nemotron-3-Super-120B-A12B": {
-          "name": "Nemotron 3 Super"
-        },
-        "nvidia/Nemotron-3-Nano-30B-A3B": {
-          "name": "Nemotron Nano 30B"
-        },
-        "Qwen/Qwen3-Coder-30B-A3B-Instruct": {
-          "name": "Qwen3 Coder 30B"
-        },
-        "meta-llama/Llama-4-Scout-17B-16E-Instruct": {
-          "name": "Llama 4 Scout"
-        },
-        "openai/gpt-oss-20b": {
-          "name": "GPT OSS 20B"
-        },
-        "meta-llama/Llama-3.3-70B-Instruct-Turbo": {
-          "name": "Llama 3.3 70B"
-        }
-      }
     }
   },
   "compaction": {
@@ -1127,6 +938,5 @@
       "venv",
       "target"
     ]
-  },
-  "model": "opencode/big-pickle"
+  }
 }
