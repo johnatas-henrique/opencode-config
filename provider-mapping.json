@@ -1,0 +1,131 @@
+{
+  "generated_at": "2025-12-19T00:00:00Z",
+  "strategies": {
+    "direct": "Provider name maps directly to models.dev provider key",
+    "dynamic": "Provider is a router; extract prefix from model ID",
+    "manual_override": "Explicit mapping for specific model IDs"
+  },
+  "providers": {
+    "manifest": {
+      "ignore": true,
+      "reason": "Manifest provider uses internal model definitions"
+    },
+    "omniroute": {
+      "source_type": "dynamic",
+      "strategy": "extract_prefix",
+      "note": "Models use prefixed IDs (kr/, cf/, gc/, etc.)"
+    },
+    "regolo": {
+      "source_type": "dynamic",
+      "strategy": "extract_prefix",
+      "note": "Models use prefixed IDs (openrouter/, mistralai/, etc.)"
+    },
+    "nvidia": {
+      "source_provider": "nvidia",
+      "source_type": "direct",
+      "inferred": true
+    },
+    "grouter-ollama": {
+      "source_provider": "ollama-cloud",
+      "source_type": "direct",
+      "available": true
+    },
+    "grouter-openrouter": {
+      "source_provider": "openrouter",
+      "source_type": "direct",
+      "available": true
+    },
+    "grouter-mistral": {
+      "source_provider": "mistral",
+      "source_type": "direct",
+      "available": true
+    },
+    "grouter-kilocode": {
+      "source_provider": "kilo",
+      "source_type": "direct",
+      "available": true
+    },
+    "grouter-gemini-cli": {
+      "source_provider": "google",
+      "source_type": "direct",
+      "available": true
+    },
+    "grouter-kiro": {
+      "source_type": "dynamic",
+      "strategy": "extract_prefix",
+      "note": "Models lack prefixes; uses manual_overrides for known models"
+    },
+    "grouter-opencode": {
+      "source_type": "dynamic",
+      "strategy": "extract_prefix",
+      "note": "Uses manual_overrides for specific models"
+    },
+    "sambanova": {
+      "source_type": "dynamic",
+      "strategy": "extract_prefix",
+      "note": "Mixed sources; heavy manual_overrides required"
+    }
+  },
+  "dynamic_prefix_mapping": {
+    "anthropic/": "anthropic",
+    "google/": "google",
+    "moonshotai/": "moonshotai",
+    "openrouter/": "openrouter",
+    "mistralai/": "mistral",
+    "deepseek-ai/": "deepseek",
+    "minimaxai/": "minimax",
+    "qwen/": "alibaba",
+    "meta/": "meta",
+    "nvidia/": "nvidia",
+    "microsoft/": "microsoft",
+    "bytedance/": "bytedance",
+    "ibm/": "ibm",
+    "stepfun-ai/": "stepfun",
+    "alibaba/": "alibaba",
+    "302ai/": "302ai",
+    "groq/": "groq",
+    "cohere/": "cohere",
+    "fireworks-ai/": "fireworks-ai",
+    "cerebras/": "cerebras",
+    "together/": "togetherai",
+    "perplexity/": "perplexity",
+    "ai21/": "ai21",
+    "databricks/": "databricks",
+    "langchain/": "langchain",
+    "hf-inference/": "huggingface"
+  },
+  "manual_overrides": {
+    "grouter-kiro": {
+      "claude-sonnet-4.5": "github-copilot",
+      "claude-haiku-4.5": "github-copilot",
+      "deepseek-3.2": "deepseek-ai",
+      "deepseek-3.1": "deepseek-ai"
+    },
+    "grouter-opencode": {
+      "nemotron-3-super-free": "opencode"
+    },
+    "sambanova": {
+      "MiniMax-M2.5": "minimax-coding-plan",
+      "MiniMax-M2": "minimax-coding-plan",
+      "DeepSeek-V3.2": "vultr",
+      "gpt-oss-120b": "scaleway",
+      "Llama-4-Maverick-17B-128E-Instruct": "meta",
+      "Qwen3-32B": "alibaba",
+      "Qwen3-235B-A22B-Instruct-2507": "alibaba",
+      "DeepSeek-R1-Distill-Llama-70B": "deepseek-ai",
+      "Meta-Llama-3.3-70B-Instruct": "meta",
+      "Meta-Llama-3.1-8B-Instruct": "meta",
+      "DeepSeek-R1-0528": "deepseek-ai",
+      "DeepSeek-V3.1": "nvidia",
+      "DeepSeek-V3-0324": "deepseek-ai",
+      "DeepSeek-V3.1-Terminus": "deepseek-ai"
+    }
+  },
+  "notes": [
+    "grouter-kiro: Models claude-* sourced from github-copilot provider; DeepSeek models from deepseek-ai.",
+    "grouter-opencode: nemotron from opencode provider (OpenCode internal models).",
+    "sambanova: Ciumented mapping; many models not directly available. Some may need approximate matches.",
+    "When a model ID differs in naming (e.g., DeepSeek-R1-0528 vs deepseek-r1-0528), the script will try fuzzy match by normalizing IDs.",
+    "Models without any match will remain unchanged, flagged as not_found."
+  ]
+}
