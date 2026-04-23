@@ -109,32 +109,10 @@ def extract_context_limits(model_info: Dict) -> Tuple[Optional[int], Optional[in
     return ctx, output
 
 
-def load_overrides(overrides_file: Path) -> Dict[str, Dict]:
-    """Load model overrides from JSON file. Structure:
-    {
-      "provider-key": {
-        "model-id": {
-          "modalities": {...},
-          "limit": {...}
-        }
-      }
-    }
-    """
-    if not overrides_file.exists():
-        return {}
-    try:
-        with open(overrides_file) as f:
-            data = json.load(f)
-        return data
-    except Exception as e:
-        print(f"⚠️  Warning: Could not load overrides: {e}")
-        return {}
-
-
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python3 generate-provider-config.py <results_json> [--output-dir DIR] [--overrides FILE]")
-        print("Example: python3 generate-provider-config.py GRouter-OpenRouter-ok.json --overrides model-overrides.json")
+        print("Usage: python3 generate-provider-config.py <results_json> [--output-dir DIR]")
+        print("Example: python3 generate-provider-config.py GRouter-OpenRouter-ok.json --output-dir ./configs")
         sys.exit(1)
     
     results_file = Path(sys.argv[1])
@@ -143,7 +121,6 @@ def main():
         sys.exit(1)
     
     output_dir = Path.cwd()
-    overrides_file = Path("model-overrides.json")
     
     args = sys.argv[2:]
     i = 0
@@ -151,9 +128,6 @@ def main():
         if args[i] == "--output-dir" and i + 1 < len(args):
             output_dir = Path(args[i + 1])
             output_dir.mkdir(parents=True, exist_ok=True)
-            i += 2
-        elif args[i] == "--overrides" and i + 1 < len(args):
-            overrides_file = Path(args[i + 1])
             i += 2
         else:
             i += 1
@@ -169,7 +143,6 @@ def main():
     ok_models = summary.get("ok_models", [])
     fail_models = summary.get("fail_models", [])
     
-    # Combine all models (we'll include failures too, marked as not working)
     all_model_ids = [m["model"] for m in ok_models] + [m["model"] for m in fail_models]
     working_set = set(m["model"] for m in ok_models)
     
@@ -178,11 +151,6 @@ def main():
         sys.exit(1)
     
     print(f"\n🔍 Fetching model details for {len(all_model_ids)} models...\n")
-    
-    # Load overrides
-    overrides = load_overrides(overrides_file)
-    if overrides:
-        print(f"📦 Loaded overrides for {len(overrides)} provider(s)")
     
     api_key = "grouter"
     models_data = []
@@ -214,7 +182,6 @@ def main():
             "working": is_working
         })
     
-    # Group by owned_by
     by_owned_by: Dict[str, List[Dict]] = {}
     for m in models_data:
         owner = m["owned_by"]
@@ -225,7 +192,6 @@ def main():
         working_count = sum(1 for m in models if m["working"])
         print(f"   - {owner}: {working_count}/{len(models)} working")
     
-    # Generate provider configs
     providers_output = {}
     for owner, models in by_owned_by.items():
         provider_key = f"grouter-{owner}"
@@ -248,11 +214,9 @@ def main():
                 "id": model_id,
             }
             
-            # Modalities
             if "modalities" in model_info:
                 model_obj["modalities"] = model_info["modalities"]
             
-            # Limits
             ctx, output = extract_context_limits(model_info)
             if ctx or output:
                 model_obj["limit"] = {}
@@ -261,19 +225,10 @@ def main():
                 if output:
                     model_obj["limit"]["output"] = output
             
-            # Apply overrides for this provider AND model
-            if provider_key in overrides and model_id in overrides[provider_key]:
-                override = overrides[provider_key][model_id]
-                if "modalities" in override:
-                    model_obj["modalities"] = override["modalities"]
-                if "limit" in override:
-                    model_obj["limit"] = {**model_obj.get("limit", {}), **override["limit"]}
-            
             provider_obj["models"][model_id] = model_obj
         
         providers_output[provider_key] = provider_obj
     
-    # Save
     output_file = output_dir / f"provider-{provider_name.replace(' ', '-').lower()}-config.json"
     
     with open(output_file, 'w') as f:
@@ -290,11 +245,6 @@ def main():
         working_count = sum(1 for m in models_data if m["owned_by"] == pkey.replace("grouter-", "") and m["working"])
         print(f"   Working: {working_count}")
         
-        # Show models with overrides
-        if pkey in overrides:
-            override_count = len(overrides[pkey])
-            print(f"   ✓ Models with overrides: {override_count}")
-        
         for mid, minfo in pobj['models'].items():
             extras = []
             if "modalities" in minfo:
@@ -307,8 +257,9 @@ def main():
     print(f"\n📝 Next steps:")
     print(f"   1. Review the generated JSON")
     print(f"   2. Copy the entire content (the providers object) into opencode.json under 'provider'")
-    print(f"   3. To add modalities/limit for specific models, edit {overrides_file} and re-run")
-    print(f"   4. Run: python3 scripts/fetch-benchmark-scores.py")
+    print(f"   3. Run: python3 scripts/generate-model-metadata.py to add modalities/limit")
+    print(f"   4. Run: python3 scripts/normalize-model-names.py --apply")
+    print(f"   5. Run: python3 scripts/fetch-benchmark-scores.py")
 
 
 if __name__ == "__main__":
