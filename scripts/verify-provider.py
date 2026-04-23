@@ -33,7 +33,6 @@ def test_models_endpoint(base_url: str, api_key: str = "grouter") -> Tuple[bool,
         
         data = resp.json()
         
-        # Debug: show what we got
         print(f"ℹ️  Response type: {type(data)}")
         if isinstance(data, dict):
             print(f"   Keys: {list(data.keys())}")
@@ -42,7 +41,6 @@ def test_models_endpoint(base_url: str, api_key: str = "grouter") -> Tuple[bool,
             elif "data" in data and isinstance(data["data"], list):
                 models = [m.get("id") for m in data["data"] if m.get("id")]
             else:
-                # Try to find any list field that might contain models
                 for key, value in data.items():
                     if isinstance(value, list) and len(value) > 0 and isinstance(value[0], dict) and "id" in value[0]:
                         models = [m.get("id") for m in value if m.get("id")]
@@ -145,7 +143,6 @@ def main():
         print("Example: python3 verify-provider.py 3109 --api-key grouter")
         sys.exit(1)
     
-    # First arg is the port number
     port = sys.argv[1]
     if not port.isdigit():
         print(f"❌ Invalid port: {port}")
@@ -157,7 +154,6 @@ def main():
     output_dir = Path.cwd()
     provider_name = None  # Will be detected from models
     
-    # Parse optional args
     args = sys.argv[2:]
     i = 0
     while i < len(args):
@@ -179,13 +175,11 @@ def main():
     print(f"💬 Test prompt: '{prompt}'")
     print()
     
-    # Step 1: Get models list
     success, model_ids = test_models_endpoint(base_url, api_key)
     if not success or not model_ids:
         print("❌ Failed to retrieve models. Aborting.")
         sys.exit(1)
     
-    # Try to detect provider name from owned_by of first model
     if provider_name is None:
         success, models_list = fetch_models_list(base_url, api_key)
         if success and models_list:
@@ -197,9 +191,7 @@ def main():
     
     print(f"🔍 Detected provider: {provider_name}")
     
-    # Try to detect provider name from owned_by of first model
     if provider_name is None:
-        # Fetch models list again to get owned_by
         success, models_list = fetch_models_list(base_url, api_key)
         if success and models_list:
             first_model = models_list[0]
@@ -212,7 +204,6 @@ def main():
     
     print(f"\n🧪 Testing {len(model_ids)} models with chat completion...\n")
     
-    # Step 2: Test each model
     ok_models = []
     fail_models = []
     
@@ -227,7 +218,6 @@ def main():
             fail_models.append({"model": model_id, "error": error, "latency": round(latency, 3)})
             print(f"❌ FAILED: {error}")
     
-    # Step 3: Write outputs
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     summary = {
         "provider": provider_name,
@@ -240,7 +230,6 @@ def main():
         "fail_models": fail_models
     }
     
-    # Use provider name for file naming
     safe_name = provider_name.replace(':', '-').replace('/', '-')
     ok_path = output_dir / f"{safe_name}-ok.json"
     fail_path = output_dir / f"{safe_name}-fail.json"
@@ -251,7 +240,6 @@ def main():
     with open(fail_path, 'w') as f:
         json.dump({"summary": summary, "models": fail_models}, f, indent=2)
     
-    # Also create simple txt versions for quick reading
     ok_txt = output_dir / f"{safe_name}-ok.txt"
     fail_txt = output_dir / f"{safe_name}-fail.txt"
     
