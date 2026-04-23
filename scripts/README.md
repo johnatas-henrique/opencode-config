@@ -1,228 +1,356 @@
-# Scripts de Benchmark e Gerenciamento de Modelos
+# Model Benchmark and Management Scripts
 
-Scripts para gerenciar scores de benchmarks e configurar providers no OpenCode.
+Scripts for managing benchmark scores, configuring providers, and updating models in OpenCode.
 
-## 📜 Scripts Disponíveis
-
-### `fetch-benchmark-scores.py`
-
-Busca scores de benchmarks (SWE-bench Lite, SWE-bench Verified, LiveCodeBench, Aider) para todos os modelos configurados no `opencode.json`.
-
-#### Como usar:
-
-```bash
-# Primeira vez (ou após adicionar novos modelos no opencode.json)
-python3 scripts/fetch-benchmark-scores.py
-
-# Depois, rode novamente a qualquer momento para atualizar
-# O script só buscará modelos novos (cache incremental)
-```
-
-#### O que gera:
-
-- `docs/model-benchmarks/scores.md` - Tabela combinada com todos os modelos e scores
-- `docs/model-benchmarks/scores-lite.md` - Apenas SWE-bench Lite (mini-swe-agent v2) - **comparável entre modelos**
-- `docs/model-benchmarks/scores-verified.md` - Apenas SWE-bench Verified
-- `docs/model-benchmarks/.scores-cache.json` - Cache incremental
-
-#### Como adicionar scores manualmente:
-
-Edite `scripts/fetch-benchmark-scores.py` e adicione entradas nos dicionários `SWE_LITE_SCORES` e `SWE_VERIFIED_SCORES`. Use IDs normalizados (sem espaços, lowercase).
-
----
+## Available Scripts
 
 ### `verify-provider.py`
 
-Testa um provider grouter em uma porta específica, verificando quais modelos estão funcionando.
+Tests a grouter provider on a specific port to identify which models are working.
 
-#### Como usar:
+#### Usage:
 
 ```bash
-# Teste o provider na porta 3109
+# Test provider on port 3109
 python3 scripts/verify-provider.py 3109 --api-key grouter
 
-# Com prompt customizado
+# Custom prompt
 python3 scripts/verify-provider.py 3102 --api-key grouter --prompt "Write Python hello world"
 
-# Especificando diretório de saída
+# Specify output directory
 python3 scripts/verify-provider.py 3109 --output-dir ./test-results
 ```
 
-#### Detecção automática de nome:
+#### Auto-detection of name:
 
-O script lê o endpoint `/v1/models` e extrai o campo `owned_by` do primeiro modelo para nomear os arquivos de saída. Por exemplo, se `owned_by = "modal"`, os arquivos serão `modal-ok.json`, `modal-fail.json`.
+The script reads `/v1/models` endpoint and extracts `owned_by` field from the first model to name output files. For example, if `owned_by = "modal"`, files will be `modal-ok.json`, `modal-fail.json`.
 
-Se não conseguir detectar, usa `localhost{port}` como fallback.
+If detection fails, uses `localhost{port}` as fallback.
 
-#### O que gera:
+#### Output Files:
 
-- `{provider-name}-ok.json` - modelos que responderam com sucesso
-- `{provider-name}-fail.json` - modelos que falharam
-- `{provider-name}-ok.txt` - versão legível
-- `{provider-name}-fail.txt` - versão legível
+- `{provider-name}-ok.json` - successfully tested models
+- `{provider-name}-fail.json` - failed models
+- `{provider-name}-ok.txt` - human-readable version
+- `{provider-name}-fail.txt` - human-readable version
 
-#### Funcionalidades:
+#### Features:
 
-- Testa `/v1/models` para listar modelos disponíveis
-- Testa cada modelo com POST `/v1/chat/completions` usando prompt simples
-- **Retry até 3x** para modelos que falham na primeira tentativa
-- Usa `max_tokens=10` para respostas curtas e rápidas
-- **Detecta automaticamente** o nome do provider via `owned_by`
+- Tests `/v1/models` to list available models
+- Tests each model with POST `/v1/chat/completions` using simple prompt
+- **Retry up to 3x** for models that fail on first attempt
+- Uses `max_tokens=10` for short, fast responses
+- **Auto-detects** provider name via `owned_by`
 
 ---
 
 ### `generate-provider-config.py`
 
-Gera a configuração do provider para o `opencode.json` a partir dos resultados do `verify-provider.py`.
+Generates provider configuration for `opencode.json` from `verify-provider.py` results. Creates a provider object with basic model entries. Metadata (modalities, limit, tool_call, reasoning) will be added later by `generate-model-metadata.py`.
 
-#### Como usar:
+#### Usage:
 
 ```bash
-# Gere a config a partir dos resultados de verificação
+# Generate config from verification results
 python3 scripts/generate-provider-config.py "GRouter OpenRouter-ok.json"
 
-# Com arquivo de overrides para preencher modalities/limit
-python3 scripts/generate-provider-config.py "GRouter OpenRouter-ok.json" --overrides model-overrides.json
-
-# Especificando diretório de saída
+# Specify output directory
 python3 scripts/generate-provider-config.py "GRouter-OpenRouter-ok.json" --output-dir ./configs
 ```
 
-#### O que gera:
+#### Output:
 
-- `provider-{provider}-config.json` - objeto JSON pronto para colar em `opencode.json` under `"provider"`
+- `provider-{provider}-config.json` - JSON object ready to paste into `opencode.json` under `"provider"` section
 
-#### Arquivo de Overrides (`model-overrides.json`):
+#### Features:
 
-Como o endpoint `/v1/models` do grouter não retorna `modalities` nem `limit`, você pode fornecer esses dados manualmente:
+- Groups models by `owned_by` (each owner becomes separate provider: `grouter-{owner}`)
+- Includes **all models** (working and failing) — you decide which to keep
+- Extracts basic info (model ID, name, context limits) from the provider's `/v1/models` endpoint
 
-```json
-{
-  "zai-org/glm-5-fp8-2": {
-    "modalities": {
-      "input": ["text"],
-      "output": ["text"]
-    },
-    "limit": {
-      "context": 131072,
-      "output": 8192
-    }
-  }
-}
-```
+#### Next Steps:
 
-- As chaves são model IDs (case-insensitive)
-- Os valores são mesclados com a config gerada
-- Execute o script e depois adicione novos overrides conforme necessário
+After generating the provider config:
+1. Copy the provider object into `opencode.json` under `"provider"`
+2. Run `python3 scripts/generate-model-metadata.py` to populate `modalities`, `limit`, `tool_call`, `reasoning` for all models using `models.dev.api.json`
+3. Run `python3 scripts/normalize-model-names.py --apply` to format model names consistently
+4. Run `python3 scripts/fetch-benchmark-scores.py` to update benchmark scores
 
-#### Funcionalidades:
-
-- Agrupa modelos por `owned_by` (cada owner vira uma provider separada: `grouter-{owner}`)
-- Aplica overrides de `modalities` e `limit` automaticamente
-- Inclui **todos os modelos** (trabalhando e falhando) — você decide depois quais manter
 
 ---
 
-## 📊 Interpretação dos Scores de Benchmark
+### `generate-provider-mapping.py`
 
-### SWE-bench Lite (Recomendado para comparação)
+Generates `provider-mapping.json` that maps OpenCode providers to sources in `models.dev.api.json`.
 
-- **Protocolo**: mini-swe-agent v2 (mesmo código para todos)
-- **Dataset**: 300 issues reais do GitHub
-- **Comparabilidade**: ✅ **Excelente** - scores diretamente comparáveis entre modelos
-- **Exemplo**: Claude Opus 4.5 tem 76.8%, GPT-5.2 Codex tem 72.8%
+#### Usage:
+
+```bash
+python3 scripts/generate-provider-mapping.py
+```
+
+#### Output:
+
+- `provider-mapping.json` - mapping between OpenCode providers and models.dev sources
+
+#### Features:
+
+- Direct mapping for providers like `grouter-openrouter` → `openrouter`
+- Dynamic strategies by model ID prefix (e.g., `anthropic/` → `anthropic`)
+- Skips special providers like `manifest` (internal models)
+- Saves mapping for use by `update-opencode-models.py`
+
+---
+
+### `update-opencode-models.py`
+
+Updates models in `opencode.json` with fresh data from `models.dev.api.json` using `provider-mapping.json` for routing.
+
+#### Usage:
+
+```bash
+python3 scripts/update-opencode-models.py
+```
+
+#### Behavior:
+
+- For each provider in `opencode.json`
+- Queries `provider-mapping.json` to find source in `models.dev.api.json`
+- Updates `name`, `modalities`, `limit` of models
+- Adds new missing models
+- **Creates backup** of `opencode.json` before modifying
+- **Preserves** existing fields like `blacklist`, `options`, `npm`
+
+#### Features:
+
+- Mapping by direct provider or by model ID prefix
+- Supports multiple sources per provider via dynamic mapping
+- Incremental: only adds/updates, never removes
+- Automatic backup to `opencode.json.bak`
+
+---
+
+### `generate-model-metadata.py`
+
+Generates metadata (`modalities`, `limit`, `tool_call`, `reasoning`) for provider models by querying local grouter endpoints, external APIs, and using inference.
+
+#### Usage:
+
+```bash
+# Dry run to preview changes
+python3 scripts/generate-model-metadata.py --dry-run
+
+# Apply changes to opencode.json
+python3 scripts/generate-model-metadata.py
+```
+
+#### What it does:
+
+- Iterates over all providers defined in `opencode.json`
+- Queries `models.dev.api.json` as primary source
+- For models not found, queries local grouter endpoints if available
+- Infers modalities when not available (based on keywords: "vision", "audio", "image")
+- Extracts `context` and `max_tokens` from responses
+- Updates `opencode.json` directly
+
+#### Fields Added:
+
+- `modalities` (input/output arrays)
+- `limit` (context/output)
+- `options.tool_call` (boolean)
+- `options.reasoning` (boolean)
+
+#### Features:
+
+- Processes all providers automatically (not hardcoded list)
+- Primary source: `models.dev.api.json` (flattened across all providers)
+- Secondary: local grouter endpoints for `grouter-*` providers
+- Inference fallback for modalities only
+- Does not overwrite existing fields
+
+---
+
+### `normalize-model-names.py`
+
+Normalizes model names in `opencode.json`, enriching them with scores and standardized metadata.
+
+#### Usage:
+
+```bash
+# Preview changes without saving
+python3 scripts/normalize-model-names.py --dry-run
+
+# Apply to opencode.json
+python3 scripts/normalize-model-names.py --apply
+```
+
+#### What it does:
+
+- Loads official names from `models.dev.api.json`
+- Uses scores cache (`.scores-cache.json`)
+- Decides whether to use official name (better formatted) or keep current
+- Reformats name to standard pattern:
+  ```
+  {Official Name} | SWE-L/X% | {ctx}K/{out}K | [MODALITIES...]
+  ```
+- Example: `DeepSeek V3.2 | SWE-L: 70.0% | 163K/65K`
+
+#### Decision Logic:
+
+- Replaces if current name is simple kebab-case and official name has spaces
+- Does not replace if name contains parentheses (provider info)
+- Does not replace generic IDs (auto, latest, etc.)
+
+#### Modality Order:
+
+Modalities are sorted in fixed priority: `IMAGE`, `AUDIO`, `PDF`, `VIDEO`, then any others alphabetically.
+
+---
+
+### `fetch-benchmark-scores.py`
+
+Fetches benchmark scores (SWE-bench Lite, SWE-bench Verified, LiveCodeBench, Aider) for all configured models in `opencode.json`.
+
+#### Usage:
+
+```bash
+# First time (or after adding new models)
+python3 scripts/fetch-benchmark-scores.py
+
+# Run again anytime to update (incremental cache)
+python3 scripts/fetch-benchmark-scores.py
+
+# Force refresh all scores
+python3 scripts/fetch-benchmark-scores.py --force
+```
+
+#### Output:
+
+- `docs/model-benchmarks/scores.md` - combined table with all models and scores
+- `docs/model-benchmarks/scores-lite.md` - SWE-bench Lite only (comparable)
+- `docs/model-benchmarks/scores-verified.md` - SWE-bench Verified only
+- `docs/model-benchmarks/.scores-cache.json` - incremental cache
+
+#### Adding scores manually:
+
+Edit `scripts/fetch-benchmark-scores.py` and add entries to `STATIC_FALLBACK["swe_lite"]` and `STATIC_FALLBACK["swe_verified"]`. Use normalized IDs (lowercase, no suffixes).
+
+#### Sources:
+
+- Online: `https://swe-bench.github.io/leaderboards.json`
+- Internal static fallback when online fails
+
+---
+
+## 📊 Benchmark Scores Interpretation
+
+### SWE-bench Lite (Recommended for comparison)
+
+- **Protocol**: mini-swe-agent v2 (same code for all)
+- **Dataset**: 300 real GitHub issues
+- **Comparability**: ✅ **Excellent** - scores directly comparable across models
+- **Example**: Claude Opus 4.5 has 76.8%, GPT-5.2 Codex has 72.8%
 
 ### SWE-bench Verified
 
-- **Protocolo**: Cada vendor pode otimizar scaffold próprio
-- **Dataset**: 500 issues reais
-- **Comparabilidade**: ❌ **Ruim** - scores otimizados não são justos para comparação
-- **Uso**: Ver máximo potencial que um modelo ALCANÇA (mas não comparar)
+- **Protocol**: Each vendor can optimize their own scaffold
+- **Dataset**: 500 real issues
+- **Comparability**: ❌ **Poor** - optimized scores are not fair to compare
+- **Use**: See maximum potential a model CAN ACHIEVE (but do not compare)
 
 ### LiveCodeBench
 
-- Problemas de competição (LeetCode/Codeforces)
-- Mede raciocínio lógico, não coding agentic real
-- Correlaciona-se mal com SWE-bench
+- Competition problems (LeetCode/Codeforces)
+- Measures logical reasoning, not real coding agent capability
+- Poor correlation with SWE-bench
 
 ### Aider
 
-- Edição de arquivos únicos em múltiplas linguagens
-- Mede capacidade de seguir instruções de refatoração
-- Não testa debugging multi-file
+- Single-file editing across multiple languages
+- Measures ability to follow refactoring instructions
+- Does not test multi-file debugging
 
 ---
 
-## 🔄 Workflow Completo
+## 🔄 Complete Workflow
 
-### 1. Adicione um novo provider grouter
+### 1. Add a new grouter provider
 
 ```bash
-# Teste a porta do provider
+# Test the provider port
 python3 scripts/verify-provider.py 3109 --api-key grouter --name "OpenRouter"
 
-# Gere a configuração (com overrides se necessário)
-python3 scripts/generate-provider-config.py "GRouter OpenRouter-ok.json" --overrides model-overrides.json
+# Generate provider config
+python3 scripts/generate-provider-config.py "GRouter OpenRouter-ok.json"
 
-# Copie o conteúdo de provider-*.json para opencode.json na seção "provider"
+# Copy the provider object from provider-*.json into opencode.json under "provider"
+
+# Add metadata (modalities, limits, tool_call, reasoning)
+python3 scripts/generate-model-metadata.py
+
+# Normalize model names
+python3 scripts/normalize-model-names.py --apply
+
+# Update benchmark scores
+python3 scripts/fetch-benchmark-scores.py
 ```
 
-### 2. Atualize scores de benchmarks
+### 2. Update benchmark scores (optional incremental)
 
 ```bash
-# Após adicionar modelos no opencode.json
+# After adding models to opencode.json
 python3 scripts/fetch-benchmark-scores.py
 
-# Os arquivos markdown são atualizados automaticamente
+# Markdown files are updated automatically
 ```
 
 ---
 
 ## 🐛 Troubleshooting
 
-### `generate-provider-config` não preenche modalities/limit
+### Model appears twice in generated config
 
-O endpoint `/v1/models` do provider pode não retornar essas informações. Use `--overrides model-overrides.json` para adicionar manualmente. Veja exemplo acima.
+This can happen if there are multiple entries in results JSON. The script groups by `owned_by`, but if same `owned_by` appears with different names (e.g., "Modal" vs "modal"), separate providers are created. Normalize `--name` when running `verify-provider.py`.
 
-### Modelo aparece duas vezes na config gerada
+### Scores do not appear in table after adding models
 
-Isso pode acontecer se houver múltiplas entradas no results JSON. O script agrupa por `owned_by`, mas se o mesmo `owned_by` aparecer com nomes diferentes (ex: "Modal" vs "modal"), serão providers separados. Normalize o `--name` ao rodar `verify-provider.py`.
-
-### Scores não aparecem na tabela after adicionar modelos
-
-Verifique se o `model_id` no `opencode.json` corresponde a uma chave nos dicionários de scores. O script usa normalização (lowercase, remove sufixos). Adicione entradas manuais em `SWE_LITE_SCORES`/`SWE_VERIFIED_SCORES` se necessário.
+Check that `model_id` in `opencode.json` matches a key in scores dictionaries. The script uses normalization (lowercase, remove suffixes). Add manual entries to `SWE_LITE_SCORES`/`SWE_VERIFIED_SCORES` if needed.
 
 ---
 
-## 📁 Estrutura de Arquivos
+## 📁 File Structure
 
 ```
 ~/.config/opencode/
-├── opencode.json                    # Config principal
+├── opencode.json                    # Main config
 ├── scripts/
 │   ├── fetch-benchmark-scores.py
 │   ├── verify-provider.py
 │   ├── generate-provider-config.py
-│   ├── README.md                    # Este arquivo
-│   └── model-overrides.json         # Overrides manuais (crie se precisar)
+│   ├── generate-model-metadata.py
+│   ├── normalize-model-names.py
+│   ├── generate-provider-mapping.py
+│   ├── update-opencode-models.py
+│   ├── README.md                    # This file
+│   └── models.dev.api.json          # Model metadata source (place here)
 ├── docs/
 │   └── model-benchmarks/
 │       ├── scores.md
 │       ├── scores-lite.md
 │       ├── scores-verified.md
 │       └── .scores-cache.json
-└── provider-*-config.json           # Gerado pelo generate-provider-config.py
+└── provider-*-config.json           # Generated by generate-provider-config.py
 ```
 
 ---
 
-## 🎯 Notas Importantes
+## 🎯 Important Notes
 
-- Os scripts **não acessam APIs externas** (exceto durante verificação de provider). Scores são dados locais.
-- `fetch-benchmark-scores.py` usa cache incremental para não perder dados ao adicionar modelos
-- `verify-provider.py` testa cada modelo até 3x antes de marcar como falha
-- Para questions sobre benchmarks, consulte as fontes oficiais (SWE-bench, LiveCodeBench, Aider)
+- Scripts **do not access external APIs** (except during provider verification). Scores are local data.
+- `fetch-benchmark-scores.py` uses incremental cache to avoid data loss when adding models
+- `verify-provider.py` tests each model up to 3x before marking as failure
+- For questions about benchmarks, consult official sources (SWE-bench, LiveCodeBench, Aider)
 
 ---
 
-**Última atualização:** 2026-04-21
+**Last updated:** 2026-04-21
