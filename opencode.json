@@ -77,878 +77,10 @@
     "@knikolov/opencode-plugin-simple-memory",
     "@franlol/opencode-md-table-formatter@latest",
     "@cortexkit/aft-opencode@latest",
-    // "rtk",
     "@cortexkit/opencode-magic-context@latest"
   ],
   "provider": {
-    "manifest": {
-      "models": {
-        "auto": {
-          "id": "auto",
-          "limit": {
-            "context": 1000000,
-            "output": 120000
-          },
-          "name": "Manifest Auto (Routed 1M context) | SWE: - | 1M/120K"
-        }
-      },
-      "name": "Manifest Build",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "apiKey": "{env:MANIFEST_API_KEY}",
-        "baseURL": "https://app.manifest.build/v1"
-      }
-    },
-    "regolo": {
-      "models": {
-        "gpt-oss-120b": {
-          "cost": {
-            "input": 1,
-            "output": 4.2
-          },
-          "id": "gpt-oss-120b",
-          "limit": {
-            "context": 120000,
-            "output": 90000
-          },
-          "name": "GPT-OSS 120B | SWE-V: 62.4% | 120K/90K",
-          "options": {
-            "include": ["reasoning.encrypted_content"],
-            "parallel_tool_calls": true,
-            "reasoningEffort": "high",
-            "reasoningSummary": "auto",
-            "temperature": 0.7,
-            "textVerbosity": "low",
-            "thinking": true,
-            "tool_choice": "auto"
-          }
-        },
-        "minimax-m2.5": {
-          "cost": {
-            "input": 0.6,
-            "output": 3.8
-          },
-          "id": "minimax-m2.5",
-          "limit": {
-            "context": 130000,
-            "output": 130000
-          },
-          "name": "MiniMax M2.5 | SWE-L: 75.8% | 130K/130K",
-          "options": {
-            "include": ["reasoning.encrypted_content"],
-            "parallel_tool_calls": true,
-            "reasoningEffort": "high",
-            "reasoningSummary": "auto",
-            "temperature": 0.7,
-            "textVerbosity": "low",
-            "thinking": true,
-            "tool_choice": "auto"
-          }
-        },
-        "mistral-small-4-119b": {
-          "cost": {
-            "input": 0.5,
-            "output": 2.1
-          },
-          "id": "mistral-small-4-119b",
-          "limit": {
-            "context": 120000,
-            "output": 120000
-          },
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          },
-          "name": "Mistral Small 4 119B | SWE-V: 46.8% | 120K/120K | [IMAGE]",
-          "options": {
-            "include": ["reasoning.encrypted_content"],
-            "parallel_tool_calls": true,
-            "reasoningEffort": "high",
-            "reasoningSummary": "auto",
-            "temperature": 0.7,
-            "textVerbosity": "low",
-            "thinking": true,
-            "tool_choice": "auto"
-          }
-        },
-        "qwen3-coder-next": {
-          "cost": {
-            "input": 0.5,
-            "output": 2
-          },
-          "id": "qwen3-coder-next",
-          "limit": {
-            "context": 240000,
-            "output": 120000
-          },
-          "name": "Qwen3 Coder Next | SWE-L: 40.0% | 240K/120K",
-          "options": {
-            "parallel_tool_calls": true,
-            "repetition_penalty": 1.05,
-            "temperature": 0.5,
-            "tool_choice": "auto",
-            "top_k": 40,
-            "top_p": 0.95
-          },
-          "reasoning": true,
-          "tool_call": true
-        },
-        "qwen3.5-122b": {
-          "cost": {
-            "input": 1,
-            "output": 4.2
-          },
-          "id": "qwen3.5-122b",
-          "limit": {
-            "context": 120000,
-            "output": 120000
-          },
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          },
-          "name": "qwen3.5-122b | SWE-V: 72.0% | 120K/120K | [IMAGE]",
-          "options": {
-            "include": ["reasoning.encrypted_content"],
-            "parallel_tool_calls": true,
-            "reasoningEffort": "high",
-            "reasoningSummary": "auto",
-            "temperature": 0.7,
-            "textVerbosity": "low",
-            "thinking": true,
-            "tool_choice": "auto"
-          }
-        }
-      },
-      "name": "Regolo",
-      "npm": "@ai-sdk/openai",
-      "options": {
-        "baseURL": "https://api.regolo.ai/v1",
-        "chunkTimeout": 600000,
-        "headers": {
-          "Accept": "application/json",
-          "Authorization": "Bearer {env:REGOLO_AI_API_KEY}"
-        },
-        "name": "Regolo",
-        "timeout": 1200000
-      }
-    },
-    "nvidia": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "NVIDIA NIM",
-      "options": {
-        "baseURL": "https://integrate.api.nvidia.com/v1",
-        "apiKey": "{env:NIM_API_KEY}"
-      },
-      "blacklist": ["qwen/qwen3-coder-480b-a35b-instruct"],
-      "models": {
-        "deepseek-ai/deepseek-v3.2": {
-          "id": "deepseek-ai/deepseek-v3.2",
-          "name": "DeepSeek V3.2 | SWE-L: 70.0% | 163K/65K",
-          "limit": {
-            "context": 163840,
-            "output": 65536
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "moonshotai/kimi-k2.5": {
-          "id": "moonshotai/kimi-k2.5",
-          "name": "Kimi K2.5 | SWE-L: 70.8% | 262K/262K | [VIDEO/IMAGE]",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          },
-          "modalities": {
-            "input": ["text", "image", "video"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "z-ai/glm5": {
-          "id": "z-ai/glm5",
-          "name": "GLM5 | SWE: - | 202K/131K",
-          "limit": {
-            "context": 202752,
-            "output": 131000
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "z-ai/glm4.7": {
-          "id": "z-ai/glm4.7",
-          "name": "GLM-4.7 | SWE-V: 73.8% | 204K/131K",
-          "limit": {
-            "context": 204800,
-            "output": 131072
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "moonshotai/kimi-k2-thinking": {
-          "id": "moonshotai/kimi-k2-thinking",
-          "name": "Kimi K2 Thinking | SWE-V: 71.3% | 262K/262K",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "minimaxai/minimax-m2.1": {
-          "id": "minimaxai/minimax-m2.1",
-          "name": "MiniMax M2.1 | SWE-V: 69.4% | 204K/131K",
-          "limit": {
-            "context": 204800,
-            "output": 131072
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "minimaxai/minimax-m2.5": {
-          "id": "minimaxai/minimax-m2.5",
-          "name": "MiniMax M2.5 | SWE-L: 75.8% | 204K/131K",
-          "limit": {
-            "context": 204800,
-            "output": 131072
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "stepfun-ai/step-3.5-flash": {
-          "id": "stepfun-ai/step-3.5-flash",
-          "name": "Step 3.5 Flash | SWE-V: 74.4% | 256K/16K",
-          "limit": {
-            "context": 256000,
-            "output": 16384
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "qwen/qwen3-coder-480b-a35b-instruct": {
-          "id": "qwen/qwen3-coder-480b-a35b-instruct",
-          "name": "Qwen3-Coder 480B-A35B Instruct | SWE-V: 69.6% | 262K/66K",
-          "limit": {
-            "context": 262144,
-            "output": 66536
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "qwen/qwen3-235b-a22b": {
-          "id": "qwen/qwen3-235b-a22b",
-          "name": "Qwen3 235B-A22B | SWE-V: 73.1% | 131K/8K",
-          "limit": {
-            "context": 131072,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "mistralai/devstral-2-123b-instruct-2512": {
-          "id": "mistralai/devstral-2-123b-instruct-2512",
-          "name": "Devstral 2 123B Instruct (2512) | SWE-L: 37.5% | 262K/262K",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "deepseek-ai/deepseek-v3.1-terminus": {
-          "id": "deepseek-ai/deepseek-v3.1-terminus",
-          "name": "DeepSeek V3.1 Terminus | SWE-L: 38.8% | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "moonshotai/kimi-k2-instruct-0905": {
-          "id": "moonshotai/kimi-k2-instruct-0905",
-          "name": "Kimi K2 0905 | SWE-V: 59.1% | 262K/262K",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "moonshotai/kimi-k2-instruct": {
-          "id": "moonshotai/kimi-k2-instruct",
-          "name": "Kimi K2 Instruct | SWE-V: 59.1% | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "minimaxai/minimax-m2": {
-          "name": "MiniMax M2 196K | SWE-V: 69.4% | 196K/8K",
-          "limit": {
-            "context": 196000,
-            "output": 8192
-          }
-        },
-        "qwen/qwen3-next-80b-a3b-thinking": {
-          "id": "qwen/qwen3-next-80b-a3b-thinking",
-          "name": "Qwen3-Next 80B-A3B (Thinking) | SWE-V: 69.6% | 262K/16K",
-          "limit": {
-            "context": 262144,
-            "output": 16384
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "qwen/qwen3-next-80b-a3b-instruct": {
-          "id": "qwen/qwen3-next-80b-a3b-instruct",
-          "name": "Qwen3-Next 80B-A3B Instruct | SWE-V: 69.6% | 262K/16K",
-          "limit": {
-            "context": 262144,
-            "output": 16384
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "qwen/qwen3.5-397b-a17b": {
-          "id": "qwen/qwen3.5-397b-a17b",
-          "name": "Qwen3.5 397B-A17B | SWE-V: 76.4% | 262K/8K | [IMAGE]",
-          "limit": {
-            "context": 262144,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "openai/gpt-oss-120b": {
-          "id": "openai/gpt-oss-120b",
-          "name": "GPT-OSS 120B | SWE-V: 62.4% | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": false,
-            "reasoning": true
-          }
-        },
-        "meta/llama-4-maverick-17b-128e-instruct": {
-          "id": "meta/llama-4-maverick-17b-128e-instruct",
-          "name": "Llama 4 Maverick 17b 128e Instruct | SWE-L: 21.0% | 128K/4K | [IMAGE]",
-          "limit": {
-            "context": 128000,
-            "output": 4096
-          },
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "deepseek-ai/deepseek-v3.1": {
-          "id": "deepseek-ai/deepseek-v3.1",
-          "name": "DeepSeek V3.1 | SWE-L: 38.8% | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "nvidia/llama-3.1-nemotron-ultra-253b-v1": {
-          "id": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
-          "name": "Llama-3.1-Nemotron-Ultra-253B-v1 | SWE: - | 131K/8K",
-          "limit": {
-            "context": 131072,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "mistralai/mistral-large-3-675b-instruct-2512": {
-          "id": "mistralai/mistral-large-3-675b-instruct-2512",
-          "name": "Mistral Large 3 675B Instruct 2512 | SWE-V: 33.3% | 262K/262K | [IMAGE]",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          },
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "qwen/qwq-32b": {
-          "id": "qwen/qwq-32b",
-          "name": "Qwen: QwQ 32B | SWE-V: 42.0% | 128K/4K",
-          "limit": {
-            "context": 128000,
-            "output": 4096
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": false,
-            "reasoning": true
-          }
-        },
-        "igenius/colosseum_355b_instruct_16k": {
-          "name": "Colosseum 355B 16K | SWE: - | 16K/8K",
-          "limit": {
-            "context": 16000,
-            "output": 8192
-          }
-        },
-        "mistralai/mistral-medium-3-instruct": {
-          "name": "Mistral Medium 3 32K | SWE-V: 40.0% | 32K/8K",
-          "limit": {
-            "context": 32000,
-            "output": 8192
-          }
-        },
-        "mistralai/magistral-small-2506": {
-          "name": "Mistral Magistral Small 128K | SWE: - | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        },
-        "nvidia/llama-3.3-nemotron-super-49b-v1.5": {
-          "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
-          "name": "Llama 3.3 Nemotron Super 49b V1.5 | SWE: - | 128K/4K",
-          "limit": {
-            "context": 128000,
-            "output": 4096
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": false,
-            "reasoning": false
-          }
-        },
-        "meta/llama-4-scout-17b-16e-instruct": {
-          "id": "meta/llama-4-scout-17b-16e-instruct",
-          "name": "Llama 4 Scout 17B 16E Instruct | SWE-L: 9.1% | 128K/4K | [IMAGE]",
-          "limit": {
-            "context": 128000,
-            "output": 4096
-          },
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "nvidia/nemotron-3-nano-30b-a3b": {
-          "id": "nvidia/nemotron-3-nano-30b-a3b",
-          "name": "nemotron-3-nano-30b-a3b | SWE: - | 131K/131K",
-          "limit": {
-            "context": 131072,
-            "output": 131072
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "deepseek-ai/deepseek-r1-distill-qwen-32b": {
-          "name": "DeepSeek R1 Distill 32B 128K | SWE-L: 41.4% | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        },
-        "openai/gpt-oss-20b": {
-          "name": "GPT OSS 20B 128K | SWE-V: 22.0% | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        },
-        "qwen/qwen2.5-coder-32b-instruct": {
-          "id": "qwen/qwen2.5-coder-32b-instruct",
-          "name": "Qwen2.5 Coder 32b Instruct | SWE-V: 9.0% | 128K/4K",
-          "limit": {
-            "context": 128000,
-            "output": 4096
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "meta/llama-3.1-405b-instruct": {
-          "id": "meta/llama-3.1-405b-instruct",
-          "name": "Llama 3.1 405B Instruct | SWE-V: 47.0% | 128K/4K",
-          "limit": {
-            "context": 128000,
-            "output": 4096
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "meta/llama-3.3-70b-instruct": {
-          "id": "meta/llama-3.3-70b-instruct",
-          "name": "Meta Llama 3.3 70B Instruct | SWE-V: 48.0% | 128K/4K",
-          "limit": {
-            "context": 128000,
-            "output": 4096
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "deepseek-ai/deepseek-r1-distill-qwen-14b": {
-          "name": "DeepSeek R1 Distill 14B 128K | SWE-L: 41.4% | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        },
-        "bytedance/seed-oss-36b-instruct": {
-          "name": "Seed OSS 36B 512K | SWE-V: 26.0% | 512K/8K",
-          "limit": {
-            "context": 512000,
-            "output": 8192
-          }
-        },
-        "stockmark/stockmark-2-100b-instruct": {
-          "name": "Stockmark 100B 128K | SWE: - | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        },
-        "mistralai/mixtral-8x22b-instruct-v0.1": {
-          "name": "Mixtral 8x22B 64K | SWE-V: 36.0% | 64K/8K",
-          "limit": {
-            "context": 64000,
-            "output": 8192
-          }
-        },
-        "mistralai/ministral-14b-instruct-2512": {
-          "id": "mistralai/ministral-14b-instruct-2512",
-          "name": "Ministral 3 14B Instruct 2512 | SWE: - | 262K/262K | [IMAGE]",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          },
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "ibm/granite-34b-code-instruct": {
-          "name": "Granite 34B Code 8K | SWE-V: 32.0% | 8K/8K",
-          "limit": {
-            "context": 8000,
-            "output": 8192
-          }
-        },
-        "deepseek-ai/deepseek-r1-distill-llama-8b": {
-          "name": "DeepSeek R1 Distill 8B 128K | SWE-L: 41.4% | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        },
-        "deepseek-ai/deepseek-r1-distill-qwen-7b": {
-          "name": "DeepSeek R1 Distill 7B 128K | SWE-L: 41.4% | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        },
-        "google/gemma-2-9b-it": {
-          "name": "Gemma 2 9B 4K | SWE: - | 4K/8K",
-          "limit": {
-            "context": 4000,
-            "output": 8192
-          }
-        },
-        "microsoft/phi-3.5-mini-instruct": {
-          "name": "Phi 3.5 Mini 128K | SWE: - | 128K/8K",
-          "limit": {
-            "context": 128000,
-            "output": 8192
-          }
-        },
-        "microsoft/phi-4-mini-instruct": {
-          "id": "microsoft/phi-4-mini-instruct",
-          "name": "Phi-4-Mini | SWE: - | 131K/8K | [IMAGE/AUDIO]",
-          "limit": {
-            "context": 131072,
-            "output": 8192
-          },
-          "modalities": {
-            "input": ["text", "image", "audio"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        }
-      }
-    },
-    "sambanova": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "SambaNova",
-      "options": {
-        "baseURL": "https://api.sambanova.ai/v1",
-        "apiKey": "1f49a2c6-fa2e-40a8-a328-b22bd002b3ff"
-      },
-      "blacklist": [
-        "DeepSeek-V3.1",
-        "Meta-Llama-3.1-8B-Instruct",
-        "MiniMax-M2.5",
-        "Qwen3-235B-A22B-Instruct-2507",
-        "Qwen3-32B",
-        "DeepSeek-R1-Distill-Llama-70B",
-        "DeepSeek-V3.1",
-        "DeepSeek-R1-0528",
-        "DeepSeek-V3-0324"
-      ],
-      "models": {
-        "MiniMax-M2.5": {
-          "id": "MiniMax-M2.5",
-          "name": "MiniMax M2.5 | SWE-L: 75.8% | 204K/131K",
-          "limit": {
-            "context": 204800,
-            "output": 131072
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
-          }
-        },
-        "DeepSeek-R1-0528": {
-          "name": "DeepSeek R1 0528 | SWE-L: 41.4% | 0K/0K"
-        },
-        "DeepSeek-V3.1": {
-          "name": "DeepSeek V3.1 | SWE-L: 38.8% | 0K/0K"
-        },
-        "DeepSeek-V3-0324": {
-          "name": "DeepSeek Chat 0324 | SWE-L: 70.0% | 0K/0K"
-        },
-        "DeepSeek-V3.2": {
-          "id": "DeepSeek-V3.2",
-          "name": "DeepSeek V3.2 | SWE-L: 70.0% | 32K/4K",
-          "limit": {
-            "context": 32000,
-            "output": 4096
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "Llama-4-Maverick-17B-128E-Instruct": {
-          "name": "Llama 4 Maverick | SWE-L: 21.0% | 0K/0K | [IMAGE]",
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          }
-        },
-        "gpt-oss-120b": {
-          "id": "gpt-oss-120b",
-          "name": "GPT-OSS 120B | SWE-V: 62.4% | 128K/32K",
-          "limit": {
-            "context": 128000,
-            "output": 32768
-          },
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
-          }
-        },
-        "DeepSeek-V3.1-Terminus": {
-          "name": "DeepSeek V3.1 Term | SWE-L: 38.8% | 0K/0K"
-        },
-        "Qwen3-32B": {
-          "name": "Qwen3 32B | SWE-V: 40.0% | 0K/0K"
-        },
-        "Qwen3-235B-A22B-Instruct-2507": {
-          "name": "Qwen3 235B Instruct 2507 | SWE-V: 73.1% | 0K/0K"
-        },
-        "DeepSeek-R1-Distill-Llama-70B": {
-          "name": "R1 Distill 70B | SWE-L: 41.4% | 0K/0K"
-        },
-        "Meta-Llama-3.3-70B-Instruct": {
-          "name": "Llama 3.3 70B | SWE-V: 48.0% | 0K/0K"
-        },
-        "Meta-Llama-3.1-8B-Instruct": {
-          "name": "Llama 3.1 8B | SWE-V: 23.0% | 0K/0K"
-        }
-      }
-    },
-    "grouter-kilocode": {
+    "kilo": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "KiloCode via GRouter",
       "options": {
@@ -958,7 +90,7 @@
       "models": {
         "google/gemini-2.5-flash": {
           "id": "google/gemini-2.5-flash",
-          "name": "Google: Gemini 2.5 Flash | SWE-V: 55.1% | 1M/65K | [IMAGE/AUDIO/VIDEO/PDF]",
+          "name": "Google: Gemini 2.5 Flash | SWE-V: 55.1% | 1M/65K | [IMAGE/AUDIO/PDF/VIDEO]",
           "limit": {
             "context": 1048576,
             "output": 65535
@@ -974,7 +106,7 @@
         },
         "google/gemini-2.5-pro": {
           "id": "google/gemini-2.5-pro",
-          "name": "Google: Gemini 2.5 Pro | SWE-V: 63.8% | 1M/65K | [IMAGE/AUDIO/VIDEO/PDF]",
+          "name": "Google: Gemini 2.5 Pro | SWE-V: 63.8% | 1M/65K | [IMAGE/AUDIO/PDF/VIDEO]",
           "limit": {
             "context": 1048576,
             "output": 65536
@@ -1022,7 +154,7 @@
         }
       }
     },
-    "grouter-gemini-cli": {
+    "gemini-cli": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Gemini CLI via GRouter",
       "options": {
@@ -1032,7 +164,7 @@
       "models": {
         "gemini-3.1-flash-lite-preview": {
           "id": "gemini-3.1-flash-lite-preview",
-          "name": "Gemini 3.1 Flash Lite Preview | SWE-V: 78.0% | 1M/65K | [IMAGE/AUDIO/VIDEO/PDF]",
+          "name": "Gemini 3.1 Flash Lite Preview | SWE-V: 78.0% | 1M/65K | [IMAGE/AUDIO/PDF/VIDEO]",
           "limit": {
             "context": 1048576,
             "output": 65536
@@ -1048,7 +180,7 @@
         },
         "gemini-2.5-flash": {
           "id": "gemini-2.5-flash",
-          "name": "Gemini 2.5 Flash | SWE-L: 46.7% | 1M/65K | [IMAGE/AUDIO/VIDEO/PDF]",
+          "name": "Gemini 2.5 Flash | SWE-L: 46.7% | 1M/65K | [IMAGE/AUDIO/PDF/VIDEO]",
           "limit": {
             "context": 1048576,
             "output": 65536
@@ -1064,7 +196,7 @@
         }
       }
     },
-    "grouter-ollama": {
+    "ollama": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Ollama via GRouter",
       "options": {
@@ -1337,6 +469,10 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
           }
         },
         "minimax-m2": {
@@ -1613,537 +749,1630 @@
         }
       }
     },
-    "grouter-nvidia": {
-    "npm": "@ai-sdk/openai-compatible",
-    "name": "Nvidia via GRouter",
-    "options": {
-      "baseURL": "http://localhost:3111/v1",
-      "apiKey": "grouter"
-    },
-    "models": {
-      "deepseek-ai/deepseek-v3.1-terminus": {
-        "name": "deepseek-v3.1-terminus",
-        "id": "deepseek-ai/deepseek-v3.1-terminus"
-      },
-      "mistralai/devstral-2-123b-instruct-2512": {
-        "name": "devstral-2-123b-instruct-2512",
-        "id": "mistralai/devstral-2-123b-instruct-2512"
-      },
-      "abacusai/dracarys-llama-3.1-70b-instruct": {
-        "name": "dracarys-llama-3.1-70b-instruct",
-        "id": "abacusai/dracarys-llama-3.1-70b-instruct"
-      },
-      "google/gemma-2-2b-it": {
-        "name": "gemma-2-2b-it",
-        "id": "google/gemma-2-2b-it"
-      },
-      "google/gemma-3-27b-it": {
-        "name": "gemma-3-27b-it",
-        "id": "google/gemma-3-27b-it"
-      },
-      "google/gemma-3-4b-it": {
-        "name": "gemma-3-4b-it",
-        "id": "google/gemma-3-4b-it"
-      },
-      "google/gemma-3n-e2b-it": {
-        "name": "gemma-3n-e2b-it",
-        "id": "google/gemma-3n-e2b-it"
-      },
-      "google/gemma-3n-e4b-it": {
-        "name": "gemma-3n-e4b-it",
-        "id": "google/gemma-3n-e4b-it"
-      },
-      "z-ai/glm-5.1": {
-        "name": "glm-5.1",
-        "id": "z-ai/glm-5.1"
-      },
-      "z-ai/glm4.7": {
-        "name": "glm4.7",
-        "id": "z-ai/glm4.7"
-      },
-      "openai/gpt-oss-120b": {
-        "name": "gpt-oss-120b",
-        "id": "openai/gpt-oss-120b"
-      },
-      "openai/gpt-oss-20b": {
-        "name": "gpt-oss-20b",
-        "id": "openai/gpt-oss-20b"
-      },
-      "moonshotai/kimi-k2-instruct": {
-        "name": "kimi-k2-instruct",
-        "id": "moonshotai/kimi-k2-instruct"
-      },
-      "moonshotai/kimi-k2-instruct-0905": {
-        "name": "kimi-k2-instruct-0905",
-        "id": "moonshotai/kimi-k2-instruct-0905"
-      },
-      "moonshotai/kimi-k2-thinking": {
-        "name": "kimi-k2-thinking",
-        "id": "moonshotai/kimi-k2-thinking"
-      },
-      "meta/llama-3.1-405b-instruct": {
-        "name": "llama-3.1-405b-instruct",
-        "id": "meta/llama-3.1-405b-instruct"
-      },
-      "meta/llama-3.2-11b-vision-instruct": {
-        "name": "llama-3.2-11b-vision-instruct",
-        "id": "meta/llama-3.2-11b-vision-instruct"
-      },
-      "meta/llama-3.2-1b-instruct": {
-        "name": "llama-3.2-1b-instruct",
-        "id": "meta/llama-3.2-1b-instruct"
-      },
-      "meta/llama-3.2-3b-instruct": {
-        "name": "llama-3.2-3b-instruct",
-        "id": "meta/llama-3.2-3b-instruct"
-      },
-      "meta/llama-3.2-90b-vision-instruct": {
-        "name": "llama-3.2-90b-vision-instruct",
-        "id": "meta/llama-3.2-90b-vision-instruct"
-      },
-      "meta/llama-4-maverick-17b-128e-instruct": {
-        "name": "llama-4-maverick-17b-128e-instruct",
-        "id": "meta/llama-4-maverick-17b-128e-instruct"
-      },
-      "meta/llama-guard-4-12b": {
-        "name": "llama-guard-4-12b",
-        "id": "meta/llama-guard-4-12b"
-      },
-      "mistralai/magistral-small-2506": {
-        "name": "magistral-small-2506",
-        "id": "mistralai/magistral-small-2506"
-      },
-      "minimaxai/minimax-m2.5": {
-        "name": "minimax-m2.5",
-        "id": "minimaxai/minimax-m2.5"
-      },
-      "minimaxai/minimax-m2.7": {
-        "name": "minimax-m2.7",
-        "id": "minimaxai/minimax-m2.7"
-      },
-      "mistralai/ministral-14b-instruct-2512": {
-        "name": "ministral-14b-instruct-2512",
-        "id": "mistralai/ministral-14b-instruct-2512"
-      },
-      "mistralai/mistral-large-3-675b-instruct-2512": {
-        "name": "mistral-large-3-675b-instruct-2512",
-        "id": "mistralai/mistral-large-3-675b-instruct-2512"
-      },
-      "mistralai/mistral-nemotron": {
-        "name": "mistral-nemotron",
-        "id": "mistralai/mistral-nemotron"
-      },
-      "mistralai/mistral-small-4-119b-2603": {
-        "name": "mistral-small-4-119b-2603",
-        "id": "mistralai/mistral-small-4-119b-2603"
-      },
-      "mistralai/mixtral-8x22b-instruct-v0.1": {
-        "name": "mixtral-8x22b-instruct-v0.1",
-        "id": "mistralai/mixtral-8x22b-instruct-v0.1"
-      },
-      "mistralai/mixtral-8x7b-instruct-v0.1": {
-        "name": "mixtral-8x7b-instruct-v0.1",
-        "id": "mistralai/mixtral-8x7b-instruct-v0.1"
-      },
-      "microsoft/phi-4-mini-instruct": {
-        "name": "phi-4-mini-instruct",
-        "id": "microsoft/phi-4-mini-instruct"
-      },
-      "microsoft/phi-4-multimodal-instruct": {
-        "name": "phi-4-multimodal-instruct",
-        "id": "microsoft/phi-4-multimodal-instruct"
-      },
-      "qwen/qwen2.5-coder-32b-instruct": {
-        "name": "qwen2.5-coder-32b-instruct",
-        "id": "qwen/qwen2.5-coder-32b-instruct"
-      },
-      "qwen/qwen3-coder-480b-a35b-instruct": {
-        "name": "qwen3-coder-480b-a35b-instruct",
-        "id": "qwen/qwen3-coder-480b-a35b-instruct"
-      },
-      "qwen/qwen3-next-80b-a3b-instruct": {
-        "name": "qwen3-next-80b-a3b-instruct",
-        "id": "qwen/qwen3-next-80b-a3b-instruct"
-      },
-      "qwen/qwen3-next-80b-a3b-thinking": {
-        "name": "qwen3-next-80b-a3b-thinking",
-        "id": "qwen/qwen3-next-80b-a3b-thinking"
-      },
-      "qwen/qwen3.5-122b-a10b": {
-        "name": "qwen3.5-122b-a10b",
-        "id": "qwen/qwen3.5-122b-a10b"
-      },
-      "qwen/qwen3.5-397b-a17b": {
-        "name": "qwen3.5-397b-a17b",
-        "id": "qwen/qwen3.5-397b-a17b"
-      },
-      "sarvamai/sarvam-m": {
-        "name": "sarvam-m",
-        "id": "sarvamai/sarvam-m"
-      },
-      "bytedance/seed-oss-36b-instruct": {
-        "name": "seed-oss-36b-instruct",
-        "id": "bytedance/seed-oss-36b-instruct"
-      },
-      "upstage/solar-10.7b-instruct": {
-        "name": "solar-10.7b-instruct",
-        "id": "upstage/solar-10.7b-instruct"
-      },
-      "stepfun-ai/step-3.5-flash": {
-        "name": "step-3.5-flash",
-        "id": "stepfun-ai/step-3.5-flash"
-      },
-      "stockmark/stockmark-2-100b-instruct": {
-        "name": "stockmark-2-100b-instruct",
-        "id": "stockmark/stockmark-2-100b-instruct"
-      },
-      "snowflake/arctic-embed-l": {
-        "name": "arctic-embed-l",
-        "id": "snowflake/arctic-embed-l"
-      },
-      "baai/bge-m3": {
-        "name": "bge-m3",
-        "id": "baai/bge-m3"
-      },
-      "google/codegemma-1.1-7b": {
-        "name": "codegemma-1.1-7b",
-        "id": "google/codegemma-1.1-7b"
-      },
-      "google/codegemma-7b": {
-        "name": "codegemma-7b",
-        "id": "google/codegemma-7b"
-      },
-      "meta/codellama-70b": {
-        "name": "codellama-70b",
-        "id": "meta/codellama-70b"
-      },
-      "mistralai/codestral-22b-instruct-v0.1": {
-        "name": "codestral-22b-instruct-v0.1",
-        "id": "mistralai/codestral-22b-instruct-v0.1"
-      },
-      "nvidia/cosmos-reason2-8b": {
-        "name": "cosmos-reason2-8b",
-        "id": "nvidia/cosmos-reason2-8b"
-      },
-      "databricks/dbrx-instruct": {
-        "name": "dbrx-instruct",
-        "id": "databricks/dbrx-instruct"
-      },
-      "deepseek-ai/deepseek-coder-6.7b-instruct": {
-        "name": "deepseek-coder-6.7b-instruct",
-        "id": "deepseek-ai/deepseek-coder-6.7b-instruct"
-      },
-      "deepseek-ai/deepseek-v3.2": {
-        "name": "deepseek-v3.2",
-        "id": "deepseek-ai/deepseek-v3.2"
-      },
-      "google/deplot": {
-        "name": "deplot",
-        "id": "google/deplot"
-      },
-      "nvidia/embed-qa-4": {
-        "name": "embed-qa-4",
-        "id": "nvidia/embed-qa-4"
-      },
-      "adept/fuyu-8b": {
-        "name": "fuyu-8b",
-        "id": "adept/fuyu-8b"
-      },
-      "google/gemma-2b": {
-        "name": "gemma-2b",
-        "id": "google/gemma-2b"
-      },
-      "google/gemma-3-12b-it": {
-        "name": "gemma-3-12b-it",
-        "id": "google/gemma-3-12b-it"
-      },
-      "google/gemma-4-31b-it": {
-        "name": "gemma-4-31b-it",
-        "id": "google/gemma-4-31b-it"
-      },
-      "nvidia/gliner-pii": {
-        "name": "gliner-pii",
-        "id": "nvidia/gliner-pii"
-      },
-      "z-ai/glm5": {
-        "name": "glm5",
-        "id": "z-ai/glm5"
-      },
-      "ibm/granite-3.0-3b-a800m-instruct": {
-        "name": "granite-3.0-3b-a800m-instruct",
-        "id": "ibm/granite-3.0-3b-a800m-instruct"
-      },
-      "ibm/granite-3.0-8b-instruct": {
-        "name": "granite-3.0-8b-instruct",
-        "id": "ibm/granite-3.0-8b-instruct"
-      },
-      "ibm/granite-34b-code-instruct": {
-        "name": "granite-34b-code-instruct",
-        "id": "ibm/granite-34b-code-instruct"
-      },
-      "ibm/granite-8b-code-instruct": {
-        "name": "granite-8b-code-instruct",
-        "id": "ibm/granite-8b-code-instruct"
-      },
-      "nvidia/ising-calibration-1-35b-a3b": {
-        "name": "ising-calibration-1-35b-a3b",
-        "id": "nvidia/ising-calibration-1-35b-a3b"
-      },
-      "ai21labs/jamba-1.5-large-instruct": {
-        "name": "jamba-1.5-large-instruct",
-        "id": "ai21labs/jamba-1.5-large-instruct"
-      },
-      "moonshotai/kimi-k2.5": {
-        "name": "kimi-k2.5",
-        "id": "moonshotai/kimi-k2.5"
-      },
-      "microsoft/kosmos-2": {
-        "name": "kosmos-2",
-        "id": "microsoft/kosmos-2"
-      },
-      "meta/llama-3.1-70b-instruct": {
-        "name": "llama-3.1-70b-instruct",
-        "id": "meta/llama-3.1-70b-instruct"
-      },
-      "meta/llama-3.1-8b-instruct": {
-        "name": "llama-3.1-8b-instruct",
-        "id": "meta/llama-3.1-8b-instruct"
-      },
-      "nvidia/llama-3.1-nemoguard-8b-content-safety": {
-        "name": "llama-3.1-nemoguard-8b-content-safety",
-        "id": "nvidia/llama-3.1-nemoguard-8b-content-safety"
-      },
-      "nvidia/llama-3.1-nemoguard-8b-topic-control": {
-        "name": "llama-3.1-nemoguard-8b-topic-control",
-        "id": "nvidia/llama-3.1-nemoguard-8b-topic-control"
-      },
-      "nvidia/llama-3.1-nemotron-51b-instruct": {
-        "name": "llama-3.1-nemotron-51b-instruct",
-        "id": "nvidia/llama-3.1-nemotron-51b-instruct"
-      },
-      "nvidia/llama-3.1-nemotron-70b-instruct": {
-        "name": "llama-3.1-nemotron-70b-instruct",
-        "id": "nvidia/llama-3.1-nemotron-70b-instruct"
-      },
-      "nvidia/llama-3.1-nemotron-nano-8b-v1": {
-        "name": "llama-3.1-nemotron-nano-8b-v1",
-        "id": "nvidia/llama-3.1-nemotron-nano-8b-v1"
-      },
-      "nvidia/llama-3.1-nemotron-nano-vl-8b-v1": {
-        "name": "llama-3.1-nemotron-nano-vl-8b-v1",
-        "id": "nvidia/llama-3.1-nemotron-nano-vl-8b-v1"
-      },
-      "nvidia/llama-3.1-nemotron-safety-guard-8b-v3": {
-        "name": "llama-3.1-nemotron-safety-guard-8b-v3",
-        "id": "nvidia/llama-3.1-nemotron-safety-guard-8b-v3"
-      },
-      "nvidia/llama-3.1-nemotron-ultra-253b-v1": {
-        "name": "llama-3.1-nemotron-ultra-253b-v1",
-        "id": "nvidia/llama-3.1-nemotron-ultra-253b-v1"
-      },
-      "nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1": {
-        "name": "llama-3.2-nemoretriever-1b-vlm-embed-v1",
-        "id": "nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1"
-      },
-      "nvidia/llama-3.2-nemoretriever-300m-embed-v1": {
-        "name": "llama-3.2-nemoretriever-300m-embed-v1",
-        "id": "nvidia/llama-3.2-nemoretriever-300m-embed-v1"
-      },
-      "nvidia/llama-3.2-nv-embedqa-1b-v1": {
-        "name": "llama-3.2-nv-embedqa-1b-v1",
-        "id": "nvidia/llama-3.2-nv-embedqa-1b-v1"
-      },
-      "nvidia/llama-3.2-nv-embedqa-1b-v2": {
-        "name": "llama-3.2-nv-embedqa-1b-v2",
-        "id": "nvidia/llama-3.2-nv-embedqa-1b-v2"
-      },
-      "meta/llama-3.3-70b-instruct": {
-        "name": "llama-3.3-70b-instruct",
-        "id": "meta/llama-3.3-70b-instruct"
-      },
-      "nvidia/llama-3.3-nemotron-super-49b-v1": {
-        "name": "llama-3.3-nemotron-super-49b-v1",
-        "id": "nvidia/llama-3.3-nemotron-super-49b-v1"
-      },
-      "nvidia/llama-3.3-nemotron-super-49b-v1.5": {
-        "name": "llama-3.3-nemotron-super-49b-v1.5",
-        "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5"
-      },
-      "nvidia/llama-nemotron-embed-1b-v2": {
-        "name": "llama-nemotron-embed-1b-v2",
-        "id": "nvidia/llama-nemotron-embed-1b-v2"
-      },
-      "nvidia/llama-nemotron-embed-vl-1b-v2": {
-        "name": "llama-nemotron-embed-vl-1b-v2",
-        "id": "nvidia/llama-nemotron-embed-vl-1b-v2"
-      },
-      "meta/llama2-70b": {
-        "name": "llama2-70b",
-        "id": "meta/llama2-70b"
-      },
-      "nvidia/llama3-chatqa-1.5-70b": {
-        "name": "llama3-chatqa-1.5-70b",
-        "id": "nvidia/llama3-chatqa-1.5-70b"
-      },
-      "mistralai/mistral-7b-instruct-v0.3": {
-        "name": "mistral-7b-instruct-v0.3",
-        "id": "mistralai/mistral-7b-instruct-v0.3"
-      },
-      "mistralai/mistral-large": {
-        "name": "mistral-large",
-        "id": "mistralai/mistral-large"
-      },
-      "mistralai/mistral-large-2-instruct": {
-        "name": "mistral-large-2-instruct",
-        "id": "mistralai/mistral-large-2-instruct"
-      },
-      "mistralai/mistral-medium-3-instruct": {
-        "name": "mistral-medium-3-instruct",
-        "id": "mistralai/mistral-medium-3-instruct"
-      },
-      "nv-mistralai/mistral-nemo-12b-instruct": {
-        "name": "mistral-nemo-12b-instruct",
-        "id": "nv-mistralai/mistral-nemo-12b-instruct"
-      },
-      "nvidia/mistral-nemo-minitron-8b-8k-instruct": {
-        "name": "mistral-nemo-minitron-8b-8k-instruct",
-        "id": "nvidia/mistral-nemo-minitron-8b-8k-instruct"
-      },
-      "mistralai/mixtral-8x22b-v0.1": {
-        "name": "mixtral-8x22b-v0.1",
-        "id": "mistralai/mixtral-8x22b-v0.1"
-      },
-      "nvidia/nemoretriever-parse": {
-        "name": "nemoretriever-parse",
-        "id": "nvidia/nemoretriever-parse"
-      },
-      "nvidia/nemotron-3-content-safety": {
-        "name": "nemotron-3-content-safety",
-        "id": "nvidia/nemotron-3-content-safety"
-      },
-      "nvidia/nemotron-3-nano-30b-a3b": {
-        "name": "nemotron-3-nano-30b-a3b",
-        "id": "nvidia/nemotron-3-nano-30b-a3b"
-      },
-      "nvidia/nemotron-3-super-120b-a12b": {
-        "name": "nemotron-3-super-120b-a12b",
-        "id": "nvidia/nemotron-3-super-120b-a12b"
-      },
-      "nvidia/nemotron-4-340b-instruct": {
-        "name": "nemotron-4-340b-instruct",
-        "id": "nvidia/nemotron-4-340b-instruct"
-      },
-      "nvidia/nemotron-4-340b-reward": {
-        "name": "nemotron-4-340b-reward",
-        "id": "nvidia/nemotron-4-340b-reward"
-      },
-      "nvidia/nemotron-content-safety-reasoning-4b": {
-        "name": "nemotron-content-safety-reasoning-4b",
-        "id": "nvidia/nemotron-content-safety-reasoning-4b"
-      },
-      "nvidia/nemotron-mini-4b-instruct": {
-        "name": "nemotron-mini-4b-instruct",
-        "id": "nvidia/nemotron-mini-4b-instruct"
-      },
-      "nvidia/nemotron-nano-12b-v2-vl": {
-        "name": "nemotron-nano-12b-v2-vl",
-        "id": "nvidia/nemotron-nano-12b-v2-vl"
-      },
-      "nvidia/nemotron-nano-3-30b-a3b": {
-        "name": "nemotron-nano-3-30b-a3b",
-        "id": "nvidia/nemotron-nano-3-30b-a3b"
-      },
-      "nvidia/nemotron-parse": {
-        "name": "nemotron-parse",
-        "id": "nvidia/nemotron-parse"
-      },
-      "nvidia/neva-22b": {
-        "name": "neva-22b",
-        "id": "nvidia/neva-22b"
-      },
-      "nvidia/nv-embed-v1": {
-        "name": "nv-embed-v1",
-        "id": "nvidia/nv-embed-v1"
-      },
-      "nvidia/nv-embedcode-7b-v1": {
-        "name": "nv-embedcode-7b-v1",
-        "id": "nvidia/nv-embedcode-7b-v1"
-      },
-      "nvidia/nv-embedqa-e5-v5": {
-        "name": "nv-embedqa-e5-v5",
-        "id": "nvidia/nv-embedqa-e5-v5"
-      },
-      "nvidia/nv-embedqa-mistral-7b-v2": {
-        "name": "nv-embedqa-mistral-7b-v2",
-        "id": "nvidia/nv-embedqa-mistral-7b-v2"
-      },
-      "nvidia/nvclip": {
-        "name": "nvclip",
-        "id": "nvidia/nvclip"
-      },
-      "nvidia/nvidia-nemotron-nano-9b-v2": {
-        "name": "nvidia-nemotron-nano-9b-v2",
-        "id": "nvidia/nvidia-nemotron-nano-9b-v2"
-      },
-      "writer/palmyra-creative-122b": {
-        "name": "palmyra-creative-122b",
-        "id": "writer/palmyra-creative-122b"
-      },
-      "writer/palmyra-fin-70b-32k": {
-        "name": "palmyra-fin-70b-32k",
-        "id": "writer/palmyra-fin-70b-32k"
-      },
-      "writer/palmyra-med-70b": {
-        "name": "palmyra-med-70b",
-        "id": "writer/palmyra-med-70b"
-      },
-      "writer/palmyra-med-70b-32k": {
-        "name": "palmyra-med-70b-32k",
-        "id": "writer/palmyra-med-70b-32k"
-      },
-      "microsoft/phi-3-vision-128k-instruct": {
-        "name": "phi-3-vision-128k-instruct",
-        "id": "microsoft/phi-3-vision-128k-instruct"
-      },
-      "microsoft/phi-3.5-moe-instruct": {
-        "name": "phi-3.5-moe-instruct",
-        "id": "microsoft/phi-3.5-moe-instruct"
-      },
-      "google/recurrentgemma-2b": {
-        "name": "recurrentgemma-2b",
-        "id": "google/recurrentgemma-2b"
-      },
-      "nvidia/riva-translate-4b-instruct": {
-        "name": "riva-translate-4b-instruct",
-        "id": "nvidia/riva-translate-4b-instruct"
-      },
-      "nvidia/riva-translate-4b-instruct-v1.1": {
-        "name": "riva-translate-4b-instruct-v1.1",
-        "id": "nvidia/riva-translate-4b-instruct-v1.1"
-      },
-      "aisingapore/sea-lion-7b-instruct": {
-        "name": "sea-lion-7b-instruct",
-        "id": "aisingapore/sea-lion-7b-instruct"
-      },
-      "bigcode/starcoder2-15b": {
-        "name": "starcoder2-15b",
-        "id": "bigcode/starcoder2-15b"
-      },
-      "nvidia/vila": {
-        "name": "vila",
-        "id": "nvidia/vila"
-      },
-      "01-ai/yi-large": {
-        "name": "yi-large",
-        "id": "01-ai/yi-large"
-      },
-      "zyphra/zamba2-7b-instruct": {
-        "name": "zamba2-7b-instruct",
-        "id": "zyphra/zamba2-7b-instruct"
+    "nvidia": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Nvidia via GRouter",
+      "options": {
+        "baseURL": "http://localhost:3111/v1",
+        "apiKey": "grouter"
+      },
+      "models": {
+        "deepseek-ai/deepseek-v3.1-terminus": {
+          "name": "DeepSeek V3.1 Terminus | SWE-L: 38.8% | 128K/8K",
+          "id": "deepseek-ai/deepseek-v3.1-terminus",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "mistralai/devstral-2-123b-instruct-2512": {
+          "name": "Devstral 2 123B Instruct (2512) | SWE-L: 37.5% | 262K/262K",
+          "id": "mistralai/devstral-2-123b-instruct-2512",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "abacusai/dracarys-llama-3.1-70b-instruct": {
+          "name": "dracarys-llama-3.1-70b-instruct | SWE: - | 0K/0K",
+          "id": "abacusai/dracarys-llama-3.1-70b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "google/gemma-2-2b-it": {
+          "name": "gemma-2-2b-it | SWE: - | 128K/4K",
+          "id": "google/gemma-2-2b-it",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "google/gemma-3-27b-it": {
+          "name": "Gemma 3 27B IT | SWE: - | 37K/8K",
+          "id": "google/gemma-3-27b-it",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 37000,
+            "output": 8192
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "google/gemma-3-4b-it": {
+          "name": "Gemma 3 4B | SWE: - | 131K/19K",
+          "id": "google/gemma-3-4b-it",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 19200
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "google/gemma-3n-e2b-it": {
+          "name": "Gemma 3n 2B | SWE: - | 128K/4K",
+          "id": "google/gemma-3n-e2b-it",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "google/gemma-3n-e4b-it": {
+          "name": "Gemma 3n 4B | SWE: - | 128K/4K",
+          "id": "google/gemma-3n-e4b-it",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "z-ai/glm-5.1": {
+          "name": "glm-5.1 | SWE-L: 72.8% | 131K/131K",
+          "id": "z-ai/glm-5.1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 131072
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "z-ai/glm4.7": {
+          "name": "glm4.7 | SWE: - | 204K/131K",
+          "id": "z-ai/glm4.7",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 204800,
+            "output": 131072
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "openai/gpt-oss-120b": {
+          "name": "GPT-OSS 120B | SWE-V: 62.4% | 131K/131K",
+          "id": "openai/gpt-oss-120b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 131072
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "openai/gpt-oss-20b": {
+          "name": "OpenAI GPT-OSS 20b | SWE-V: 22.0% | 131K/65K",
+          "id": "openai/gpt-oss-20b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 65536
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "moonshotai/kimi-k2-instruct": {
+          "name": "Kimi K2 Instruct | SWE-V: 59.1% | 131K/16K",
+          "id": "moonshotai/kimi-k2-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 16384
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "moonshotai/kimi-k2-instruct-0905": {
+          "name": "kimi-k2-instruct-0905 | SWE-V: 59.1% | 262K/16K",
+          "id": "moonshotai/kimi-k2-instruct-0905",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "moonshotai/kimi-k2-thinking": {
+          "name": "Kimi K2 Thinking | SWE-V: 71.3% | 216K/216K",
+          "id": "moonshotai/kimi-k2-thinking",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 216144,
+            "output": 216144
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "meta/llama-3.1-405b-instruct": {
+          "name": "Llama 3.1 405B Instruct | SWE-V: 47.0% | 128K/4K",
+          "id": "meta/llama-3.1-405b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "meta/llama-3.2-11b-vision-instruct": {
+          "name": "llama-3.2-11b-vision-instruct | SWE: - | 128K/8K | [IMAGE]",
+          "id": "meta/llama-3.2-11b-vision-instruct",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "meta/llama-3.2-1b-instruct": {
+          "name": "llama-3.2-1b-instruct | SWE: - | 16K/4K",
+          "id": "meta/llama-3.2-1b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 16000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "meta/llama-3.2-3b-instruct": {
+          "name": "Llama 3.2 3B Instruct | SWE: - | 16K/4K",
+          "id": "meta/llama-3.2-3b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 16000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "meta/llama-3.2-90b-vision-instruct": {
+          "name": "llama-3.2-90b-vision-instruct | SWE: - | 128K/8K | [IMAGE]",
+          "id": "meta/llama-3.2-90b-vision-instruct",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "meta/llama-4-maverick-17b-128e-instruct": {
+          "name": "llama-4-maverick-17b-128e-instruct | SWE-L: 21.0% | 128K/4K | [IMAGE]",
+          "id": "meta/llama-4-maverick-17b-128e-instruct",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "meta/llama-guard-4-12b": {
+          "name": "llama-guard-4-12b | SWE: - | 0K/0K",
+          "id": "meta/llama-guard-4-12b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "mistralai/magistral-small-2506": {
+          "name": "Magistral Small 2506 | SWE: - | 0K/0K",
+          "id": "mistralai/magistral-small-2506",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "minimaxai/minimax-m2.5": {
+          "name": "MiniMax M2.5 | SWE-L: 75.8% | 204K/131K",
+          "id": "minimaxai/minimax-m2.5",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 204800,
+            "output": 131072
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "minimaxai/minimax-m2.7": {
+          "name": "MiniMax M2.7 | SWE-V: 80.2% | 204K/131K",
+          "id": "minimaxai/minimax-m2.7",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 204800,
+            "output": 131072
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "mistralai/ministral-14b-instruct-2512": {
+          "name": "ministral-14b-instruct-2512 | SWE: - | 262K/262K",
+          "id": "mistralai/ministral-14b-instruct-2512",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "mistralai/mistral-large-3-675b-instruct-2512": {
+          "name": "mistral-large-3-675b-instruct-2512 | SWE-V: 33.3% | 262K/262K",
+          "id": "mistralai/mistral-large-3-675b-instruct-2512",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "mistralai/mistral-nemotron": {
+          "name": "mistral-nemotron | SWE: - | 0K/0K",
+          "id": "mistralai/mistral-nemotron",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "mistralai/mistral-small-4-119b-2603": {
+          "name": "mistral-small-4-119b-2603 | SWE-V: 46.8% | 0K/0K",
+          "id": "mistralai/mistral-small-4-119b-2603",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "mistralai/mixtral-8x22b-instruct-v0.1": {
+          "name": "mixtral-8x22b-instruct-v0.1 | SWE-V: 36.0% | 65K/32K",
+          "id": "mistralai/mixtral-8x22b-instruct-v0.1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 65536,
+            "input": 65536,
+            "output": 32768
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "mistralai/mixtral-8x7b-instruct-v0.1": {
+          "name": "mixtral-8x7b-instruct-v0.1 | SWE: - | 32K/32K",
+          "id": "mistralai/mixtral-8x7b-instruct-v0.1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 32768,
+            "input": 32768,
+            "output": 32768
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "microsoft/phi-4-mini-instruct": {
+          "name": "Phi 4 Mini | SWE: - | 128K/4K",
+          "id": "microsoft/phi-4-mini-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "microsoft/phi-4-multimodal-instruct": {
+          "name": "Phi 4 Multimodal | SWE: - | 128K/4K",
+          "id": "microsoft/phi-4-multimodal-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "qwen/qwen2.5-coder-32b-instruct": {
+          "name": "qwen2.5-coder-32b-instruct | SWE-V: 9.0% | 128K/4K",
+          "id": "qwen/qwen2.5-coder-32b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "qwen/qwen3-coder-480b-a35b-instruct": {
+          "name": "Qwen3-Coder 480B-A35B Instruct | SWE-V: 69.6% | 262K/66K",
+          "id": "qwen/qwen3-coder-480b-a35b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 66536
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "qwen/qwen3-next-80b-a3b-instruct": {
+          "name": "Qwen3-Next 80B-A3B Instruct | SWE-V: 69.6% | 262K/16K",
+          "id": "qwen/qwen3-next-80b-a3b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "qwen/qwen3-next-80b-a3b-thinking": {
+          "name": "Qwen3-Next 80B-A3B (Thinking) | SWE-V: 69.6% | 262K/16K",
+          "id": "qwen/qwen3-next-80b-a3b-thinking",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "qwen/qwen3.5-122b-a10b": {
+          "name": "qwen3.5-122b-a10b | SWE-V: 72.0% | 262K/262K",
+          "id": "qwen/qwen3.5-122b-a10b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "qwen/qwen3.5-397b-a17b": {
+          "name": "Qwen3.5 397B-A17B | SWE-V: 76.4% | 262K/8K",
+          "id": "qwen/qwen3.5-397b-a17b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "sarvamai/sarvam-m": {
+          "name": "sarvam-m | SWE: - | 0K/0K",
+          "id": "sarvamai/sarvam-m",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "bytedance/seed-oss-36b-instruct": {
+          "name": "seed-oss-36b-instruct | SWE-V: 26.0% | 0K/0K",
+          "id": "bytedance/seed-oss-36b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "upstage/solar-10.7b-instruct": {
+          "name": "solar-10.7b-instruct | SWE: - | 0K/0K",
+          "id": "upstage/solar-10.7b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "stepfun-ai/step-3.5-flash": {
+          "name": "Step 3.5 Flash | SWE-V: 74.4% | 256K/16K",
+          "id": "stepfun-ai/step-3.5-flash",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 256000,
+            "output": 16384
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "stockmark/stockmark-2-100b-instruct": {
+          "name": "stockmark-2-100b-instruct | SWE: - | 0K/0K",
+          "id": "stockmark/stockmark-2-100b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "snowflake/arctic-embed-l": {
+          "name": "arctic-embed-l | SWE: - | 0K/0K",
+          "id": "snowflake/arctic-embed-l",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "baai/bge-m3": {
+          "name": "bge-m3 | SWE: - | 0K/0K",
+          "id": "baai/bge-m3",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "google/codegemma-1.1-7b": {
+          "name": "codegemma-1.1-7b | SWE: - | 128K/4K",
+          "id": "google/codegemma-1.1-7b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "google/codegemma-7b": {
+          "name": "codegemma-7b | SWE: - | 128K/4K",
+          "id": "google/codegemma-7b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "meta/codellama-70b": {
+          "name": "codellama-70b | SWE: - | 128K/4K",
+          "id": "meta/codellama-70b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "mistralai/codestral-22b-instruct-v0.1": {
+          "name": "codestral-22b-instruct-v0.1 | SWE: - | 128K/4K",
+          "id": "mistralai/codestral-22b-instruct-v0.1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "nvidia/cosmos-reason2-8b": {
+          "name": "cosmos-reason2-8b | SWE: - | 0K/0K",
+          "id": "nvidia/cosmos-reason2-8b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "databricks/dbrx-instruct": {
+          "name": "dbrx-instruct | SWE: - | 0K/0K",
+          "id": "databricks/dbrx-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "deepseek-ai/deepseek-coder-6.7b-instruct": {
+          "name": "deepseek-coder-6.7b-instruct | SWE: - | 128K/4K",
+          "id": "deepseek-ai/deepseek-coder-6.7b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "deepseek-ai/deepseek-v3.2": {
+          "name": "DeepSeek V3.2 | SWE-L: 70.0% | 163K/65K",
+          "id": "deepseek-ai/deepseek-v3.2",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 163840,
+            "output": 65536
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "google/deplot": {
+          "name": "deplot | SWE: - | 0K/0K",
+          "id": "google/deplot",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/embed-qa-4": {
+          "name": "embed-qa-4 | SWE: - | 0K/0K",
+          "id": "nvidia/embed-qa-4",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "adept/fuyu-8b": {
+          "name": "fuyu-8b | SWE: - | 0K/0K",
+          "id": "adept/fuyu-8b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "google/gemma-2b": {
+          "name": "gemma-2b | SWE: - | 0K/0K",
+          "id": "google/gemma-2b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "google/gemma-3-12b-it": {
+          "name": "Google Gemma 3 12B | SWE: - | 128K/4K",
+          "id": "google/gemma-3-12b-it",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "google/gemma-4-31b-it": {
+          "name": "Gemma 4 31B | SWE: - | 262K/131K",
+          "id": "google/gemma-4-31b-it",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 131072
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "nvidia/gliner-pii": {
+          "name": "gliner-pii | SWE: - | 0K/0K",
+          "id": "nvidia/gliner-pii",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "z-ai/glm5": {
+          "name": "glm5 | SWE: - | 202K/131K",
+          "id": "z-ai/glm5",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 202752,
+            "output": 131000
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "ibm/granite-3.0-3b-a800m-instruct": {
+          "name": "granite-3.0-3b-a800m-instruct | SWE: - | 0K/0K",
+          "id": "ibm/granite-3.0-3b-a800m-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "ibm/granite-3.0-8b-instruct": {
+          "name": "granite-3.0-8b-instruct | SWE: - | 0K/0K",
+          "id": "ibm/granite-3.0-8b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "ibm/granite-34b-code-instruct": {
+          "name": "granite-34b-code-instruct | SWE-V: 32.0% | 0K/0K",
+          "id": "ibm/granite-34b-code-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "ibm/granite-8b-code-instruct": {
+          "name": "granite-8b-code-instruct | SWE: - | 0K/0K",
+          "id": "ibm/granite-8b-code-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/ising-calibration-1-35b-a3b": {
+          "name": "ising-calibration-1-35b-a3b | SWE: - | 0K/0K",
+          "id": "nvidia/ising-calibration-1-35b-a3b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "ai21labs/jamba-1.5-large-instruct": {
+          "name": "jamba-1.5-large-instruct | SWE: - | 0K/0K",
+          "id": "ai21labs/jamba-1.5-large-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "moonshotai/kimi-k2.5": {
+          "name": "Kimi K2.5 | SWE-L: 70.8% | 262K/262K",
+          "id": "moonshotai/kimi-k2.5",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "microsoft/kosmos-2": {
+          "name": "kosmos-2 | SWE: - | 0K/0K",
+          "id": "microsoft/kosmos-2",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "meta/llama-3.1-70b-instruct": {
+          "name": "Llama 3.1 70B Instruct | SWE: - | 128K/4K",
+          "id": "meta/llama-3.1-70b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "meta/llama-3.1-8b-instruct": {
+          "name": "Llama 3.1 8B Instruct | SWE-V: 23.0% | 16K/4K",
+          "id": "meta/llama-3.1-8b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 16000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "nvidia/llama-3.1-nemoguard-8b-content-safety": {
+          "name": "llama-3.1-nemoguard-8b-content-safety | SWE: - | 0K/0K",
+          "id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama-3.1-nemoguard-8b-topic-control": {
+          "name": "llama-3.1-nemoguard-8b-topic-control | SWE: - | 0K/0K",
+          "id": "nvidia/llama-3.1-nemoguard-8b-topic-control",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama-3.1-nemotron-51b-instruct": {
+          "name": "llama-3.1-nemotron-51b-instruct | SWE: - | 128K/4K",
+          "id": "nvidia/llama-3.1-nemotron-51b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "nvidia/llama-3.1-nemotron-70b-instruct": {
+          "name": "llama-3.1-nemotron-70b-instruct | SWE: - | 128K/4K",
+          "id": "nvidia/llama-3.1-nemotron-70b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "nvidia/llama-3.1-nemotron-nano-8b-v1": {
+          "name": "llama-3.1-nemotron-nano-8b-v1 | SWE: - | 0K/0K",
+          "id": "nvidia/llama-3.1-nemotron-nano-8b-v1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama-3.1-nemotron-nano-vl-8b-v1": {
+          "name": "llama-3.1-nemotron-nano-vl-8b-v1 | SWE: - | 0K/0K | [IMAGE]",
+          "id": "nvidia/llama-3.1-nemotron-nano-vl-8b-v1",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama-3.1-nemotron-safety-guard-8b-v3": {
+          "name": "llama-3.1-nemotron-safety-guard-8b-v3 | SWE: - | 0K/0K",
+          "id": "nvidia/llama-3.1-nemotron-safety-guard-8b-v3",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama-3.1-nemotron-ultra-253b-v1": {
+          "name": "llama-3.1-nemotron-ultra-253b-v1 | SWE: - | 131K/8K",
+          "id": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1": {
+          "name": "llama-3.2-nemoretriever-1b-vlm-embed-v1 | SWE: - | 0K/0K | [IMAGE]",
+          "id": "nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama-3.2-nemoretriever-300m-embed-v1": {
+          "name": "llama-3.2-nemoretriever-300m-embed-v1 | SWE: - | 0K/0K",
+          "id": "nvidia/llama-3.2-nemoretriever-300m-embed-v1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama-3.2-nv-embedqa-1b-v1": {
+          "name": "llama-3.2-nv-embedqa-1b-v1 | SWE: - | 0K/0K",
+          "id": "nvidia/llama-3.2-nv-embedqa-1b-v1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama-3.2-nv-embedqa-1b-v2": {
+          "name": "llama-3.2-nv-embedqa-1b-v2 | SWE: - | 0K/0K",
+          "id": "nvidia/llama-3.2-nv-embedqa-1b-v2",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "meta/llama-3.3-70b-instruct": {
+          "name": "Meta Llama 3.3 70B Instruct | SWE-V: 48.0% | 128K/32K",
+          "id": "meta/llama-3.3-70b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 32768
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "nvidia/llama-3.3-nemotron-super-49b-v1": {
+          "name": "llama-3.3-nemotron-super-49b-v1 | SWE: - | 128K/4K",
+          "id": "nvidia/llama-3.3-nemotron-super-49b-v1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "nvidia/llama-3.3-nemotron-super-49b-v1.5": {
+          "name": "llama-3.3-nemotron-super-49b-v1.5 | SWE: - | 128K/4K",
+          "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "nvidia/llama-nemotron-embed-1b-v2": {
+          "name": "llama-nemotron-embed-1b-v2 | SWE: - | 0K/0K",
+          "id": "nvidia/llama-nemotron-embed-1b-v2",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama-nemotron-embed-vl-1b-v2": {
+          "name": "llama-nemotron-embed-vl-1b-v2 | SWE: - | 0K/0K | [IMAGE]",
+          "id": "nvidia/llama-nemotron-embed-vl-1b-v2",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "meta/llama2-70b": {
+          "name": "llama2-70b | SWE: - | 0K/0K",
+          "id": "meta/llama2-70b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/llama3-chatqa-1.5-70b": {
+          "name": "llama3-chatqa-1.5-70b | SWE: - | 128K/4K",
+          "id": "nvidia/llama3-chatqa-1.5-70b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "mistralai/mistral-7b-instruct-v0.3": {
+          "name": "mistral-7b-instruct-v0.3 | SWE: - | 0K/0K",
+          "id": "mistralai/mistral-7b-instruct-v0.3",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "mistralai/mistral-large": {
+          "name": "mistral-large | SWE: - | 128K/25K",
+          "id": "mistralai/mistral-large",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 25600
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "mistralai/mistral-large-2-instruct": {
+          "name": "mistral-large-2-instruct | SWE: - | 128K/4K",
+          "id": "mistralai/mistral-large-2-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "mistralai/mistral-medium-3-instruct": {
+          "name": "mistral-medium-3-instruct | SWE-V: 40.0% | 0K/0K",
+          "id": "mistralai/mistral-medium-3-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nv-mistralai/mistral-nemo-12b-instruct": {
+          "name": "mistral-nemo-12b-instruct | SWE: - | 0K/0K",
+          "id": "nv-mistralai/mistral-nemo-12b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/mistral-nemo-minitron-8b-8k-instruct": {
+          "name": "mistral-nemo-minitron-8b-8k-instruct | SWE: - | 0K/0K",
+          "id": "nvidia/mistral-nemo-minitron-8b-8k-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "mistralai/mixtral-8x22b-v0.1": {
+          "name": "mixtral-8x22b-v0.1 | SWE-V: 36.0% | 0K/0K",
+          "id": "mistralai/mixtral-8x22b-v0.1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nemoretriever-parse": {
+          "name": "nemoretriever-parse | SWE: - | 0K/0K",
+          "id": "nvidia/nemoretriever-parse",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nemotron-3-content-safety": {
+          "name": "nemotron-3-content-safety | SWE: - | 0K/0K",
+          "id": "nvidia/nemotron-3-content-safety",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nemotron-3-nano-30b-a3b": {
+          "name": "nemotron-3-nano-30b-a3b | SWE: - | 262K/262K",
+          "id": "nvidia/nemotron-3-nano-30b-a3b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": true
+          }
+        },
+        "nvidia/nemotron-3-super-120b-a12b": {
+          "name": "nemotron-3-super-120b-a12b | SWE: - | 256K/32K",
+          "id": "nvidia/nemotron-3-super-120b-a12b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 256000,
+            "output": 32000
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
+          }
+        },
+        "nvidia/nemotron-4-340b-instruct": {
+          "name": "nemotron-4-340b-instruct | SWE: - | 128K/4K",
+          "id": "nvidia/nemotron-4-340b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "nvidia/nemotron-4-340b-reward": {
+          "name": "nemotron-4-340b-reward | SWE: - | 0K/0K",
+          "id": "nvidia/nemotron-4-340b-reward",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nemotron-content-safety-reasoning-4b": {
+          "name": "nemotron-content-safety-reasoning-4b | SWE: - | 0K/0K",
+          "id": "nvidia/nemotron-content-safety-reasoning-4b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nemotron-mini-4b-instruct": {
+          "name": "nemotron-mini-4b-instruct | SWE: - | 0K/0K",
+          "id": "nvidia/nemotron-mini-4b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nemotron-nano-12b-v2-vl": {
+          "name": "nemotron-nano-12b-v2-vl | SWE: - | 131K/131K | [IMAGE]",
+          "id": "nvidia/nemotron-nano-12b-v2-vl",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 131072
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "nvidia/nemotron-nano-3-30b-a3b": {
+          "name": "nemotron-nano-3-30b-a3b | SWE: - | 0K/0K",
+          "id": "nvidia/nemotron-nano-3-30b-a3b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nemotron-parse": {
+          "name": "nemotron-parse | SWE: - | 0K/0K",
+          "id": "nvidia/nemotron-parse",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/neva-22b": {
+          "name": "neva-22b | SWE: - | 0K/0K",
+          "id": "nvidia/neva-22b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nv-embed-v1": {
+          "name": "nv-embed-v1 | SWE: - | 0K/0K",
+          "id": "nvidia/nv-embed-v1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nv-embedcode-7b-v1": {
+          "name": "nv-embedcode-7b-v1 | SWE: - | 0K/0K",
+          "id": "nvidia/nv-embedcode-7b-v1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nv-embedqa-e5-v5": {
+          "name": "nv-embedqa-e5-v5 | SWE: - | 0K/0K",
+          "id": "nvidia/nv-embedqa-e5-v5",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nv-embedqa-mistral-7b-v2": {
+          "name": "nv-embedqa-mistral-7b-v2 | SWE: - | 0K/0K",
+          "id": "nvidia/nv-embedqa-mistral-7b-v2",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nvclip": {
+          "name": "nvclip | SWE: - | 0K/0K",
+          "id": "nvidia/nvclip",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/nvidia-nemotron-nano-9b-v2": {
+          "name": "nvidia-nemotron-nano-9b-v2 | SWE: - | 131K/131K",
+          "id": "nvidia/nvidia-nemotron-nano-9b-v2",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 131072
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "writer/palmyra-creative-122b": {
+          "name": "palmyra-creative-122b | SWE: - | 0K/0K",
+          "id": "writer/palmyra-creative-122b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "writer/palmyra-fin-70b-32k": {
+          "name": "palmyra-fin-70b-32k | SWE: - | 0K/0K",
+          "id": "writer/palmyra-fin-70b-32k",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "writer/palmyra-med-70b": {
+          "name": "palmyra-med-70b | SWE: - | 0K/0K",
+          "id": "writer/palmyra-med-70b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "writer/palmyra-med-70b-32k": {
+          "name": "palmyra-med-70b-32k | SWE: - | 0K/0K",
+          "id": "writer/palmyra-med-70b-32k",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "microsoft/phi-3-vision-128k-instruct": {
+          "name": "phi-3-vision-128k-instruct | SWE: - | 128K/4K | [IMAGE]",
+          "id": "microsoft/phi-3-vision-128k-instruct",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "microsoft/phi-3.5-moe-instruct": {
+          "name": "phi-3.5-moe-instruct | SWE: - | 128K/4K",
+          "id": "microsoft/phi-3.5-moe-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": true
+          }
+        },
+        "google/recurrentgemma-2b": {
+          "name": "recurrentgemma-2b | SWE: - | 0K/0K",
+          "id": "google/recurrentgemma-2b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/riva-translate-4b-instruct": {
+          "name": "riva-translate-4b-instruct | SWE: - | 0K/0K",
+          "id": "nvidia/riva-translate-4b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/riva-translate-4b-instruct-v1.1": {
+          "name": "riva-translate-4b-instruct-v1.1 | SWE: - | 0K/0K",
+          "id": "nvidia/riva-translate-4b-instruct-v1.1",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "aisingapore/sea-lion-7b-instruct": {
+          "name": "sea-lion-7b-instruct | SWE: - | 0K/0K",
+          "id": "aisingapore/sea-lion-7b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "bigcode/starcoder2-15b": {
+          "name": "starcoder2-15b | SWE: - | 0K/0K",
+          "id": "bigcode/starcoder2-15b",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "nvidia/vila": {
+          "name": "vila | SWE: - | 0K/0K",
+          "id": "nvidia/vila",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "01-ai/yi-large": {
+          "name": "Yi Large | SWE: - | 0K/0K",
+          "id": "01-ai/yi-large",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "zyphra/zamba2-7b-instruct": {
+          "name": "zamba2-7b-instruct | SWE: - | 0K/0K",
+          "id": "zyphra/zamba2-7b-instruct",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        }
       }
-    }
     },
-    "grouter-mistral": {
+    "mistral": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Mistral via GRouter",
       "options": {
@@ -2155,21 +2384,16 @@
         "codestral-embed",
         "codestral-embed-2505",
         "codestral-latest",
-
         "devstral-2512",
         "devstral-medium-latest",
         "devstral-medium-2507",
         "devstral-small-2507",
         "devstral-latest",
-
         "labs-mistral-small-creative",
-
         "magistral-medium-latest",
-
         "ministral-14b-2512",
         "ministral-3b-latest",
         "ministral-8b-latest",
-
         "mistral-embed",
         "mistral-embed-2312",
         "mistral-embed-dim128-2510",
@@ -2196,11 +2420,9 @@
         "mistral-tiny-latest",
         "mistral-vibe-cli-fast",
         "mistral-vibe-cli-latest",
-
         "open-mistral-nemo",
         "open-mistral-nemo-2407",
         "pixtral-large-latest",
-
         "voxtral-mini-realtime-2602",
         "voxtral-mini-realtime-latest",
         "voxtral-mini-latest",
@@ -2218,6 +2440,10 @@
           "limit": {
             "context": 262144,
             "output": 8192
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
           }
         },
         "codestral-latest": {
@@ -2262,7 +2488,8 @@
           "limit": {
             "context": 262144,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "devstral-medium-latest": {
           "id": "devstral-medium-latest",
@@ -2322,7 +2549,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "magistral-medium-2509": {
           "name": "magistral-medium-2509 | SWE: - | 131K/8K | [IMAGE]",
@@ -2334,7 +2562,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "magistral-medium-latest": {
           "id": "magistral-medium-latest",
@@ -2362,7 +2591,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "magistral-small-latest": {
           "name": "magistral-small-latest | SWE: - | 131K/8K | [IMAGE]",
@@ -2374,7 +2604,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "ministral-14b-2512": {
           "name": "Ministral 14B | SWE: - | 131K/8K | [IMAGE]",
@@ -2386,6 +2617,10 @@
           "limit": {
             "context": 131072,
             "output": 8192
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
           }
         },
         "ministral-14b-latest": {
@@ -2398,7 +2633,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "ministral-3b-2512": {
           "name": "Ministral 3B | SWE: - | 131K/8K | [IMAGE]",
@@ -2410,6 +2646,10 @@
           "limit": {
             "context": 131072,
             "output": 8192
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
           }
         },
         "ministral-3b-latest": {
@@ -2438,6 +2678,10 @@
           "limit": {
             "context": 131072,
             "output": 8192
+          },
+          "options": {
+            "tool_call": false,
+            "reasoning": false
           }
         },
         "ministral-8b-latest": {
@@ -2530,7 +2774,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-medium-2508": {
           "id": "mistral-medium-2508",
@@ -2574,7 +2819,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-medium-2604": {
           "name": "mistral-medium-2604 | SWE: - | 131K/8K",
@@ -2586,7 +2832,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-medium-3": {
           "name": "mistral-medium-3 | SWE-V: 40.0% | 131K/8K",
@@ -2598,7 +2845,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-medium-3-5": {
           "name": "mistral-medium-3-5 | SWE-V: 40.0% | 131K/8K",
@@ -2610,7 +2858,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-medium-3.5": {
           "name": "mistral-medium-3.5 | SWE-V: 40.0% | 131K/8K",
@@ -2622,7 +2871,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-medium-c21211-r0-75": {
           "name": "mistral-medium-c21211-r0-75 | SWE: - | 131K/8K",
@@ -2634,7 +2884,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-small-2506": {
           "id": "mistral-small-2506",
@@ -2694,7 +2945,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-vibe-cli-latest": {
           "name": "mistral-vibe-cli-latest | SWE: - | 131K/8K",
@@ -2706,7 +2958,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-tiny-2407": {
           "name": "mistral-tiny-2407 | SWE: - | 131K/8K",
@@ -2718,7 +2971,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-tiny-latest": {
           "name": "mistral-tiny-latest | SWE: - | 131K/8K",
@@ -2730,7 +2984,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "open-mistral-nemo": {
           "name": "open-mistral-nemo | SWE: - | 131K/8K",
@@ -2742,7 +2997,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "open-mistral-nemo-2407": {
           "name": "open-mistral-nemo-2407 | SWE: - | 131K/8K",
@@ -2754,7 +3010,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "mistral-large-pixtral-2411": {
           "name": "mistral-large-pixtral-2411 | SWE: - | 131K/8K | [IMAGE]",
@@ -2766,7 +3023,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "pixtral-large-2411": {
           "name": "pixtral-large-2411 | SWE: - | 131K/8K | [IMAGE]",
@@ -2778,7 +3036,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "pixtral-large-latest": {
           "id": "pixtral-large-latest",
@@ -2806,7 +3065,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "voxtral-mini-2507": {
           "name": "voxtral-mini-2507 | SWE: - | 131K/8K | [AUDIO]",
@@ -2818,7 +3078,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "voxtral-small-2507": {
           "name": "voxtral-small-2507 | SWE: - | 131K/8K | [AUDIO]",
@@ -2830,7 +3091,8 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "voxtral-small-latest": {
           "name": "voxtral-small-latest | SWE: - | 32K/8K | [AUDIO]",
@@ -2842,19 +3104,35 @@
           "limit": {
             "context": 32768,
             "output": 8192
-          }
+          },
+          "options": {}
         },
         "codestral-embed": {
           "name": "codestral-embed | SWE: - | 0K/0K",
-          "id": "codestral-embed"
+          "id": "codestral-embed",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "codestral-embed-2505": {
           "name": "codestral-embed-2505 | SWE: - | 0K/0K",
-          "id": "codestral-embed-2505"
+          "id": "codestral-embed-2505",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "labs-leanstral-2603": {
           "name": "labs-leanstral-2603 | SWE: - | 0K/0K",
-          "id": "labs-leanstral-2603"
+          "id": "labs-leanstral-2603",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "mistral-embed": {
           "id": "mistral-embed",
@@ -2874,67 +3152,191 @@
         },
         "mistral-embed-2312": {
           "name": "mistral-embed-2312 | SWE: - | 0K/0K",
-          "id": "mistral-embed-2312"
+          "id": "mistral-embed-2312",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "mistral-embed-dim128-2510": {
           "name": "mistral-embed-dim128-2510 | SWE: - | 0K/0K",
-          "id": "mistral-embed-dim128-2510"
+          "id": "mistral-embed-dim128-2510",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "mistral-embed-dim256-2510": {
           "name": "mistral-embed-dim256-2510 | SWE: - | 0K/0K",
-          "id": "mistral-embed-dim256-2510"
+          "id": "mistral-embed-dim256-2510",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "mistral-moderation-2411": {
           "name": "mistral-moderation-2411 | SWE: - | 0K/0K",
-          "id": "mistral-moderation-2411"
+          "id": "mistral-moderation-2411",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "mistral-moderation-latest": {
           "name": "mistral-moderation-latest | SWE: - | 0K/0K",
-          "id": "mistral-moderation-latest"
+          "id": "mistral-moderation-latest",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "mistral-moderation-2603": {
           "name": "mistral-moderation-2603 | SWE: - | 0K/0K",
-          "id": "mistral-moderation-2603"
+          "id": "mistral-moderation-2603",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "mistral-ocr-2505": {
           "name": "mistral-ocr-2505 | SWE: - | 0K/0K",
-          "id": "mistral-ocr-2505"
+          "id": "mistral-ocr-2505",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "mistral-ocr-2512": {
           "name": "mistral-ocr-2512 | SWE: - | 0K/0K",
-          "id": "mistral-ocr-2512"
+          "id": "mistral-ocr-2512",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "mistral-ocr-latest": {
           "name": "mistral-ocr-latest | SWE: - | 0K/0K",
-          "id": "mistral-ocr-latest"
+          "id": "mistral-ocr-latest",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "voxtral-mini-2602": {
-          "name": "voxtral-mini-2602 | SWE: - | 0K/0K",
-          "id": "voxtral-mini-2602"
+          "name": "voxtral-mini-2602 | SWE: - | 0K/0K | [AUDIO]",
+          "id": "voxtral-mini-2602",
+          "modalities": {
+            "input": ["text", "audio"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "voxtral-mini-transcribe-2507": {
-          "name": "voxtral-mini-transcribe-2507 | SWE: - | 0K/0K",
-          "id": "voxtral-mini-transcribe-2507"
+          "name": "voxtral-mini-transcribe-2507 | SWE: - | 0K/0K | [AUDIO]",
+          "id": "voxtral-mini-transcribe-2507",
+          "modalities": {
+            "input": ["text", "audio"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "voxtral-mini-realtime-2602": {
-          "name": "voxtral-mini-realtime-2602 | SWE: - | 0K/0K",
-          "id": "voxtral-mini-realtime-2602"
+          "name": "voxtral-mini-realtime-2602 | SWE: - | 0K/0K | [AUDIO]",
+          "id": "voxtral-mini-realtime-2602",
+          "modalities": {
+            "input": ["text", "audio"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "voxtral-mini-realtime-latest": {
-          "name": "voxtral-mini-realtime-latest | SWE: - | 0K/0K",
-          "id": "voxtral-mini-realtime-latest"
+          "name": "voxtral-mini-realtime-latest | SWE: - | 0K/0K | [AUDIO]",
+          "id": "voxtral-mini-realtime-latest",
+          "modalities": {
+            "input": ["text", "audio"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "voxtral-mini-transcribe-realtime-2602": {
-          "name": "voxtral-mini-transcribe-realtime-2602 | SWE: - | 0K/0K",
-          "id": "voxtral-mini-transcribe-realtime-2602"
+          "name": "voxtral-mini-transcribe-realtime-2602 | SWE: - | 0K/0K | [AUDIO]",
+          "id": "voxtral-mini-transcribe-realtime-2602",
+          "modalities": {
+            "input": ["text", "audio"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "voxtral-mini-tts-2603": {
-          "name": "voxtral-mini-tts-2603 | SWE: - | 0K/0K",
-          "id": "voxtral-mini-tts-2603"
+          "name": "voxtral-mini-tts-2603 | SWE: - | 0K/0K | [AUDIO]",
+          "id": "voxtral-mini-tts-2603",
+          "modalities": {
+            "input": ["text", "audio"],
+            "output": ["text"]
+          },
+          "options": {}
         },
         "voxtral-mini-tts-latest": {
-          "name": "voxtral-mini-tts-latest | SWE: - | 0K/0K",
-          "id": "voxtral-mini-tts-latest"
+          "name": "voxtral-mini-tts-latest | SWE: - | 0K/0K | [AUDIO]",
+          "id": "voxtral-mini-tts-latest",
+          "modalities": {
+            "input": ["text", "audio"],
+            "output": ["text"]
+          },
+          "options": {}
+        }
+      }
+    },
+    "modal": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Modal via GRouter",
+      "options": {
+        "baseURL": "http://localhost:3109/v1",
+        "apiKey": "grouter"
+      },
+      "models": {
+        "zai-org/GLM-5-FP8": {
+          "name": "GLM 5 FP8 | SWE-L: 72.8% | 200K/200K",
+          "id": "zai-org/GLM-5-FP8",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 200000,
+            "output": 200000
+          },
+          "options": {
+            "tool_call": true,
+            "reasoning": false
+          }
+        },
+        "zai-org/GLM-5-FP8-2": {
+          "name": "GLM-5-FP8-2 | SWE-L: 72.8% | 0K/0K",
+          "id": "zai-org/GLM-5-FP8-2",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
+        },
+        "zai-org/GLM-5.1-FP8": {
+          "name": "GLM-5.1-FP8 | SWE-L: 72.8% | 0K/0K",
+          "id": "zai-org/GLM-5.1-FP8",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "options": {}
         }
       }
     }
