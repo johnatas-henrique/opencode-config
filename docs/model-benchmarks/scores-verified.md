@@ -1,123 +1,87 @@
 # SWE-bench Verified Scores
 
 **Models with swe_verified scores**  
-Total: 112 models  
-Generated: 2026-04-21 21:37:35
+Total: 76 models  
+Generated: 2026-04-23 19:09:56
 
 | Model | Provider | swe_verified |
 |-------|----------|-------------|
-| Claude Opus 4.5 | grouter-openrouter | 80.9% |
-| minimax-m2.5 | regolo | 80.2% |
-| MiniMax M2.5 204K | nvidia | 80.2% |
-| MiniMax M2.5 | sambanova | 80.2% |
-| Kimi K2.6 | grouter-ollama | 80.2% |
-| MiniMax M2.5 | grouter-ollama | 80.2% |
-| MiniMax M2.7 | grouter-ollama | 80.2% |
-| Gemini 3.1 Flash Lite Preview | grouter-gemini-cli | 78.0% |
-| Gemini 3 Flash Preview | grouter-ollama | 78.0% |
-| GLM 5 | grouter-ollama | 77.8% |
-| Claude Sonnet 4.5 (Kiro AI - Gratis) | omniroute | 77.2% |
-| Claude Sonnet 4.5 | grouter-kiro | 77.2% |
-| Claude Sonnet 4.5 | grouter-openrouter | 77.2% |
-| Kimi K2.5 256K | nvidia | 76.8% |
-| Kimi K2.5 | grouter-ollama | 76.8% |
-| Qwen3.5 400B VLM 262K | nvidia | 76.4% |
-| Qwen3.5 397B | grouter-ollama | 76.4% |
-| Step 3.5 Flash 256K | nvidia | 74.4% |
-| Claude Haiku 4.5 (Kiro AI - Gratis) | omniroute | 73.3% |
-| Claude Haiku 4.5 | grouter-kiro | 73.3% |
-| Qwen3 235B 262K | nvidia | 73.1% |
-| Qwen3 235B Instruct 2507 | sambanova | 73.1% |
-| Qwen3 VL 235B | grouter-ollama | 73.1% |
-| Qwen3 VL 235B Instruct | grouter-ollama | 73.1% |
-| DeepSeek V3.2 128K | nvidia | 73.0% |
-| DeepSeek V3.1 Terminus 128K | nvidia | 73.0% |
-| DeepSeek V3.1 128K | nvidia | 73.0% |
-| DeepSeek V3.1 | sambanova | 73.0% |
-| DeepSeek V3.2 | sambanova | 73.0% |
-| DeepSeek V3.1 Term | sambanova | 73.0% |
-| DeepSeek V3.1 671B | grouter-ollama | 73.0% |
-| DeepSeek V3.2 | grouter-ollama | 73.0% |
-| Devstral 2 123B 256K | nvidia | 72.2% |
-| Devstral 2 123B | grouter-ollama | 72.2% |
-| devstral-2512 | grouter-mistral | 72.2% |
-| qwen3.5-122b | regolo | 72.0% |
-| DeepSeek R1 (OpenRouter) | omniroute | 71.4% |
-| DeepSeek R1 Distill 32B 128K | nvidia | 71.4% |
-| DeepSeek R1 Distill 14B 128K | nvidia | 71.4% |
-| DeepSeek R1 Distill 8B 128K | nvidia | 71.4% |
-| DeepSeek R1 Distill 7B 128K | nvidia | 71.4% |
-| DeepSeek R1 0528 | sambanova | 71.4% |
-| DeepSeek R1 | grouter-openrouter | 71.4% |
-| Kimi K2 Thinking (OmniRoute) | omniroute | 71.3% |
-| Kimi K2 Thinking 256K | nvidia | 71.3% |
-| Kimi K2 Thinking | grouter-ollama | 71.3% |
-| Llama 4 Maverick 1M | nvidia | 70.7% |
-| Llama 4 Maverick | sambanova | 70.7% |
-| Qwen3 Coder Next (Qwen Code - Gratis) | omniroute | 70.6% |
-| qwen3-coder-next | regolo | 70.6% |
-| Qwen3 Coder Next | grouter-kiro | 70.6% |
-| Qwen3 Coder Next | grouter-ollama | 70.6% |
-| LongCat Flash Lite (50M tokens/dia - Gratis) | omniroute | 70.0% |
-| Qwen3 Coder Flash (Qwen Code - Gratis) | omniroute | 69.6% |
-| Qwen3 Coder 480B 262K | nvidia | 69.6% |
-| Qwen3 80B Thinking 262K | nvidia | 69.6% |
-| Qwen3 80B Instruct 262K | nvidia | 69.6% |
-| Qwen3 Coder 480B | grouter-ollama | 69.6% |
-| Qwen3 80B | grouter-ollama | 69.6% |
-| MiniMax M2.1 196K | nvidia | 69.4% |
-| MiniMax M2 196K | nvidia | 69.4% |
-| MiniMax M2 | grouter-ollama | 69.4% |
-| MiniMax M2.1 | grouter-ollama | 69.4% |
-| Devstral Small 2 24B | grouter-ollama | 68.0% |
-| GLM 4.6 | grouter-ollama | 68.0% |
-| devstral-small-2507 | grouter-mistral | 68.0% |
-| Gemini 2.5 Pro | grouter-openrouter | 63.8% |
-| Gemini 2.5 Pro | grouter-kilocode | 63.8% |
-| gpt-oss-120b | regolo | 62.4% |
-| GPT OSS 120B 131K | nvidia | 62.4% |
-| GPT OSS 120B | sambanova | 62.4% |
-| GPT OSS 120B | grouter-ollama | 62.4% |
-| devstral-medium-latest | grouter-mistral | 61.6% |
-| devstral-medium-2507 | grouter-mistral | 61.6% |
-| Kimi K2 Instruct 0905 256K | nvidia | 59.1% |
-| Kimi K2 Instruct 256K | nvidia | 59.1% |
-| Gemini 2.5 Flash (180K/mes - Gratis) | omniroute | 55.1% |
-| Gemini 2.5 Flash | grouter-kilocode | 55.1% |
-| Gemini 2.5 Flash | grouter-gemini-cli | 55.1% |
-| GPT-4.1 | grouter-kilocode | 54.6% |
-| Claude 3.5 Sonnet (OpenRouter) | omniroute | 51.6% |
-| o3 | grouter-kilocode | 49.8% |
-| Nemotron Nano 30B | grouter-ollama | 49.8% |
-| Llama 3.3 70B (Cloudflare AI - Gratis) | omniroute | 48.0% |
-| Llama 3.3 70B (NVIDIA NIM - Gratis) | omniroute | 48.0% |
-| Llama 3.3 70B (OpenRouter) | omniroute | 48.0% |
-| Llama 3.3 70B 128K | nvidia | 48.0% |
-| Llama 3.3 70B | sambanova | 48.0% |
-| Llama 3.3 70B | grouter-openrouter | 48.0% |
-| Llama 3.1 405B 128K | nvidia | 47.0% |
-| R1 Distill 70B | sambanova | 47.0% |
-| mistral-small-4-119b | regolo | 46.8% |
-| Llama 4 Scout 10M | nvidia | 44.0% |
-| QwQ 32B 131K | nvidia | 42.0% |
-| Mistral Medium 3 32K | nvidia | 40.0% |
-| Qwen3 32B | sambanova | 40.0% |
-| mistral-medium | grouter-mistral | 40.0% |
-| mistral-medium-3 | grouter-mistral | 40.0% |
-| mistral-medium-3-5 | grouter-mistral | 40.0% |
-| mistral-medium-3.5 | grouter-mistral | 40.0% |
-| DeepSeek V3 0324 | sambanova | 38.8% |
-| Mixtral 8x22B 64K | nvidia | 36.0% |
-| Cogito 2.1 671B | grouter-ollama | 35.0% |
-| Mistral Large 675B 256K | nvidia | 33.3% |
-| Mistral Large 3 675B | grouter-ollama | 33.3% |
-| Granite 34B Code 8K | nvidia | 32.0% |
-| Seed OSS 36B 512K | nvidia | 26.0% |
-| Llama 3.1 8B | sambanova | 23.0% |
-| GPT OSS 20B 128K | nvidia | 22.0% |
-| GPT OSS 20B | grouter-ollama | 22.0% |
-| RNJ 1 8B | grouter-ollama | 18.0% |
-| Qwen2.5 Coder 32B 128K | nvidia | 9.0% |
+| Kimi K2.6 (3x limits) | SWE-V: 80.2% | 256K/8K | [IMAGE] | grouter-ollama | 80.2% |
+| MiniMax M2.5 | SWE-L: 75.8% | 204K/131K | grouter-ollama | 80.2% |
+| MiniMax M2.7 | SWE-V: 80.2% | 204K/131K | grouter-ollama | 80.2% |
+| minimax-m2.5 | grouter-nvidia | 80.2% |
+| minimax-m2.7 | grouter-nvidia | 80.2% |
+| Gemini 3.1 Flash Lite Preview | SWE-V: 78.0% | 1M/65K | [IMAGE/AUDIO/VIDEO/PDF] | grouter-gemini-cli | 78.0% |
+| Gemini 3 Flash Preview | SWE-L: 75.8% | 1M/65K | [IMAGE] | grouter-ollama | 78.0% |
+| GLM 5 | SWE-L: 72.8% | 202K/131K | grouter-ollama | 77.8% |
+| glm-5.1 | grouter-nvidia | 77.8% |
+| GLM-5-FP8 | grouter-modal | 77.8% |
+| GLM-5-FP8-2 | grouter-modal | 77.8% |
+| GLM-5.1-FP8 | grouter-modal | 77.8% |
+| Kimi K2.5 | SWE-L: 70.8% | 262K/262K | [IMAGE] | grouter-ollama | 76.8% |
+| kimi-k2.5 | grouter-nvidia | 76.8% |
+| qwen3.5:397b | SWE-V: 76.4% | 262K/81K | [IMAGE] | grouter-ollama | 76.4% |
+| qwen3.5-397b-a17b | grouter-nvidia | 76.4% |
+| step-3.5-flash | grouter-nvidia | 74.4% |
+| qwen3-vl:235b | SWE-V: 73.1% | 262K/32K | [IMAGE] | grouter-ollama | 73.1% |
+| qwen3-vl:235b-instruct | SWE-V: 73.1% | 262K/131K | [IMAGE] | grouter-ollama | 73.1% |
+| deepseek-v3.1:671b | SWE-L: 38.8% | 163K/163K | grouter-ollama | 73.0% |
+| DeepSeek V3.2 | SWE-L: 70.0% | 163K/65K | grouter-ollama | 73.0% |
+| deepseek-v3.1-terminus | grouter-nvidia | 73.0% |
+| deepseek-v3.2 | grouter-nvidia | 73.0% |
+| devstral-2:123b | SWE-L: 37.5% | 262K/262K | grouter-ollama | 72.2% |
+| devstral-2-123b-instruct-2512 | grouter-nvidia | 72.2% |
+| Devstral 2 | SWE-V: 72.2% | 262K/262K | grouter-mistral | 72.2% |
+| qwen3.5-122b-a10b | grouter-nvidia | 72.0% |
+| Kimi K2 Thinking | SWE-V: 71.3% | 262K/262K | grouter-ollama | 71.3% |
+| kimi-k2-thinking | grouter-nvidia | 71.3% |
+| llama-4-maverick-17b-128e-instruct | grouter-nvidia | 70.7% |
+| Qwen3 Coder Next | SWE-L: 40.0% | 262K/65K | grouter-ollama | 70.6% |
+| qwen3-coder:480b | SWE-V: 69.6% | 262K/65K | grouter-ollama | 69.6% |
+| qwen3-next:80b | SWE-V: 69.6% | 262K/32K | grouter-ollama | 69.6% |
+| qwen3-coder-480b-a35b-instruct | grouter-nvidia | 69.6% |
+| qwen3-next-80b-a3b-instruct | grouter-nvidia | 69.6% |
+| qwen3-next-80b-a3b-thinking | grouter-nvidia | 69.6% |
+| MiniMax M2 | SWE-L: 75.8% | 204K/128K | grouter-ollama | 69.4% |
+| MiniMax M2.1 | SWE-V: 69.4% | 204K/131K | grouter-ollama | 69.4% |
+| devstral-small-2:24b | SWE-V: 68.0% | 262K/262K | [IMAGE] | grouter-ollama | 68.0% |
+| Zai GLM-4.6 | SWE-V: 68.0% | 202K/131K | grouter-ollama | 68.0% |
+| Devstral Small | SWE-V: 68.0% | 128K/128K | grouter-mistral | 68.0% |
+| Google: Gemini 2.5 Pro | SWE-V: 63.8% | 1M/65K | [IMAGE/AUDIO/VIDEO/PDF] | grouter-kilocode | 63.8% |
+| gpt-oss:120b | SWE-V: 62.4% | 131K/32K | grouter-ollama | 62.4% |
+| gpt-oss-120b | grouter-nvidia | 62.4% |
+| Devstral 2 (latest) | SWE-V: 61.6% | 262K/262K | grouter-mistral | 61.6% |
+| Devstral Medium | SWE-V: 61.6% | 128K/128K | grouter-mistral | 61.6% |
+| kimi-k2-instruct | grouter-nvidia | 59.1% |
+| kimi-k2-instruct-0905 | grouter-nvidia | 59.1% |
+| Google: Gemini 2.5 Flash | SWE-V: 55.1% | 1M/65K | [IMAGE/AUDIO/VIDEO/PDF] | grouter-kilocode | 55.1% |
+| Gemini 2.5 Flash | SWE-L: 46.7% | 1M/65K | [IMAGE/AUDIO/VIDEO/PDF] | grouter-gemini-cli | 55.1% |
+| OpenAI: GPT-4.1 | SWE-L: 23.9% | 1M/32K | [IMAGE/PDF] | grouter-kilocode | 54.6% |
+| OpenAI: o3 | SWE-V: 49.8% | 200K/100K | [IMAGE/PDF] | grouter-kilocode | 49.8% |
+| nemotron-3-nano:30b | SWE-V: 49.8% | 1M/131K | grouter-ollama | 49.8% |
+| llama-3.3-70b-instruct | grouter-nvidia | 48.0% |
+| llama-3.1-405b-instruct | grouter-nvidia | 47.0% |
+| mistral-small-4-119b-2603 | grouter-nvidia | 46.8% |
+| Mistral Small 4 | SWE-V: 46.8% | 256K/256K | [IMAGE] | grouter-mistral | 46.8% |
+| mistral-medium-3-instruct | grouter-nvidia | 40.0% |
+| Mistral Medium 3 | SWE-V: 40.0% | 131K/131K | [IMAGE] | grouter-mistral | 40.0% |
+| mistral-medium | SWE-V: 40.0% | 131K/8K | grouter-mistral | 40.0% |
+| mistral-medium-3 | SWE-V: 40.0% | 131K/8K | grouter-mistral | 40.0% |
+| mistral-medium-3-5 | SWE-V: 40.0% | 131K/8K | grouter-mistral | 40.0% |
+| mistral-medium-3.5 | SWE-V: 40.0% | 131K/8K | grouter-mistral | 40.0% |
+| mixtral-8x22b-instruct-v0.1 | grouter-nvidia | 36.0% |
+| mixtral-8x22b-v0.1 | grouter-nvidia | 36.0% |
+| cogito-2.1:671b | SWE-V: 35.0% | 163K/32K | grouter-ollama | 35.0% |
+| mistral-large-3:675b | SWE-V: 33.3% | 262K/262K | [IMAGE] | grouter-ollama | 33.3% |
+| mistral-large-3-675b-instruct-2512 | grouter-nvidia | 33.3% |
+| Mistral Large 3 | SWE-V: 33.3% | 262K/262K | [IMAGE] | grouter-mistral | 33.3% |
+| granite-34b-code-instruct | grouter-nvidia | 32.0% |
+| seed-oss-36b-instruct | grouter-nvidia | 26.0% |
+| llama-3.1-8b-instruct | grouter-nvidia | 23.0% |
+| gpt-oss:20b | SWE-V: 22.0% | 131K/32K | grouter-ollama | 22.0% |
+| gpt-oss-20b | grouter-nvidia | 22.0% |
+| rnj-1:8b | SWE-V: 18.0% | 32K/4K | grouter-ollama | 18.0% |
+| qwen2.5-coder-32b-instruct | grouter-nvidia | 9.0% |
 
 ## Legend
 

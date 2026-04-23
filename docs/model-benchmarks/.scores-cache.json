@@ -146,7 +146,7 @@
     },
     "nvidia/z-ai/glm4.7": {
       "swe_lite": null,
-      "swe_verified": null,
+      "swe_verified": 73.8,
       "livecodebench": null,
       "aider": null
     },
@@ -908,7 +908,7 @@
     },
     "grouter-mistral/mistral-large-2512": {
       "swe_lite": null,
-      "swe_verified": null,
+      "swe_verified": 33.3,
       "livecodebench": null,
       "aider": null
     },
@@ -920,7 +920,7 @@
     },
     "grouter-mistral/mistral-medium-2505": {
       "swe_lite": null,
-      "swe_verified": null,
+      "swe_verified": 40.0,
       "livecodebench": null,
       "aider": null
     },
@@ -986,7 +986,7 @@
     },
     "grouter-mistral/mistral-small-2603": {
       "swe_lite": null,
-      "swe_verified": null,
+      "swe_verified": 46.8,
       "livecodebench": null,
       "aider": null
     },
@@ -1193,7 +1193,539 @@
       "swe_verified": null,
       "livecodebench": null,
       "aider": null
+    },
+    "grouter-nvidia/deepseek-ai/deepseek-v3.1-terminus": {
+      "swe_lite": 38.8,
+      "swe_verified": 73.0
+    },
+    "grouter-nvidia/mistralai/devstral-2-123b-instruct-2512": {
+      "swe_lite": 37.5,
+      "swe_verified": 72.2
+    },
+    "grouter-nvidia/abacusai/dracarys-llama-3.1-70b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/gemma-2-2b-it": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/gemma-3-27b-it": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/gemma-3-4b-it": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/gemma-3n-e2b-it": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/gemma-3n-e4b-it": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/z-ai/glm-5.1": {
+      "swe_lite": 72.8,
+      "swe_verified": 77.8
+    },
+    "grouter-nvidia/z-ai/glm4.7": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/openai/gpt-oss-120b": {
+      "swe_lite": null,
+      "swe_verified": 62.4
+    },
+    "grouter-nvidia/openai/gpt-oss-20b": {
+      "swe_lite": null,
+      "swe_verified": 22.0
+    },
+    "grouter-nvidia/moonshotai/kimi-k2-instruct": {
+      "swe_lite": null,
+      "swe_verified": 59.1
+    },
+    "grouter-nvidia/moonshotai/kimi-k2-instruct-0905": {
+      "swe_lite": null,
+      "swe_verified": 59.1
+    },
+    "grouter-nvidia/moonshotai/kimi-k2-thinking": {
+      "swe_lite": null,
+      "swe_verified": 71.3
+    },
+    "grouter-nvidia/meta/llama-3.1-405b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 47.0
+    },
+    "grouter-nvidia/meta/llama-3.2-11b-vision-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/meta/llama-3.2-1b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/meta/llama-3.2-3b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/meta/llama-3.2-90b-vision-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/meta/llama-4-maverick-17b-128e-instruct": {
+      "swe_lite": 21.04,
+      "swe_verified": 70.7
+    },
+    "grouter-nvidia/meta/llama-guard-4-12b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/mistralai/magistral-small-2506": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/minimaxai/minimax-m2.5": {
+      "swe_lite": 75.8,
+      "swe_verified": 80.2
+    },
+    "grouter-nvidia/minimaxai/minimax-m2.7": {
+      "swe_lite": null,
+      "swe_verified": 80.2
+    },
+    "grouter-nvidia/mistralai/ministral-14b-instruct-2512": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/mistralai/mistral-large-3-675b-instruct-2512": {
+      "swe_lite": null,
+      "swe_verified": 33.3
+    },
+    "grouter-nvidia/mistralai/mistral-nemotron": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/mistralai/mistral-small-4-119b-2603": {
+      "swe_lite": null,
+      "swe_verified": 46.8
+    },
+    "grouter-nvidia/mistralai/mixtral-8x22b-instruct-v0.1": {
+      "swe_lite": null,
+      "swe_verified": 36.0
+    },
+    "grouter-nvidia/mistralai/mixtral-8x7b-instruct-v0.1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/microsoft/phi-4-mini-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/microsoft/phi-4-multimodal-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/qwen/qwen2.5-coder-32b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 9.0
+    },
+    "grouter-nvidia/qwen/qwen3-coder-480b-a35b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 69.6
+    },
+    "grouter-nvidia/qwen/qwen3-next-80b-a3b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 69.6
+    },
+    "grouter-nvidia/qwen/qwen3-next-80b-a3b-thinking": {
+      "swe_lite": null,
+      "swe_verified": 69.6
+    },
+    "grouter-nvidia/qwen/qwen3.5-122b-a10b": {
+      "swe_lite": null,
+      "swe_verified": 72.0
+    },
+    "grouter-nvidia/qwen/qwen3.5-397b-a17b": {
+      "swe_lite": null,
+      "swe_verified": 76.4
+    },
+    "grouter-nvidia/sarvamai/sarvam-m": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/bytedance/seed-oss-36b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 26.0
+    },
+    "grouter-nvidia/upstage/solar-10.7b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/stepfun-ai/step-3.5-flash": {
+      "swe_lite": null,
+      "swe_verified": 74.4
+    },
+    "grouter-nvidia/stockmark/stockmark-2-100b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/snowflake/arctic-embed-l": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/baai/bge-m3": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/codegemma-1.1-7b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/codegemma-7b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/meta/codellama-70b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/mistralai/codestral-22b-instruct-v0.1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/cosmos-reason2-8b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/databricks/dbrx-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/deepseek-ai/deepseek-coder-6.7b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/deepseek-ai/deepseek-v3.2": {
+      "swe_lite": 70.0,
+      "swe_verified": 73.0
+    },
+    "grouter-nvidia/google/deplot": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/embed-qa-4": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/adept/fuyu-8b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/gemma-2b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/gemma-3-12b-it": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/gemma-4-31b-it": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/gliner-pii": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/z-ai/glm5": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/ibm/granite-3.0-3b-a800m-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/ibm/granite-3.0-8b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/ibm/granite-34b-code-instruct": {
+      "swe_lite": null,
+      "swe_verified": 32.0
+    },
+    "grouter-nvidia/ibm/granite-8b-code-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/ising-calibration-1-35b-a3b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/ai21labs/jamba-1.5-large-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/moonshotai/kimi-k2.5": {
+      "swe_lite": 70.8,
+      "swe_verified": 76.8
+    },
+    "grouter-nvidia/microsoft/kosmos-2": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/meta/llama-3.1-70b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/meta/llama-3.1-8b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 23.0
+    },
+    "grouter-nvidia/nvidia/llama-3.1-nemoguard-8b-content-safety": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.1-nemoguard-8b-topic-control": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.1-nemotron-51b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.1-nemotron-70b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.1-nemotron-nano-8b-v1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.1-nemotron-nano-vl-8b-v1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.1-nemotron-safety-guard-8b-v3": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.1-nemotron-ultra-253b-v1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.2-nemoretriever-300m-embed-v1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.2-nv-embedqa-1b-v1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.2-nv-embedqa-1b-v2": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/meta/llama-3.3-70b-instruct": {
+      "swe_lite": null,
+      "swe_verified": 48.0
+    },
+    "grouter-nvidia/nvidia/llama-3.3-nemotron-super-49b-v1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-3.3-nemotron-super-49b-v1.5": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-nemotron-embed-1b-v2": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama-nemotron-embed-vl-1b-v2": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/meta/llama2-70b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/llama3-chatqa-1.5-70b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/mistralai/mistral-7b-instruct-v0.3": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/mistralai/mistral-large": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/mistralai/mistral-large-2-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/mistralai/mistral-medium-3-instruct": {
+      "swe_lite": null,
+      "swe_verified": 40.0
+    },
+    "grouter-nvidia/nv-mistralai/mistral-nemo-12b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/mistral-nemo-minitron-8b-8k-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/mistralai/mixtral-8x22b-v0.1": {
+      "swe_lite": null,
+      "swe_verified": 36.0
+    },
+    "grouter-nvidia/nvidia/nemoretriever-parse": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-3-content-safety": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-3-nano-30b-a3b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-3-super-120b-a12b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-4-340b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-4-340b-reward": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-content-safety-reasoning-4b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-mini-4b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-nano-12b-v2-vl": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-nano-3-30b-a3b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nemotron-parse": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/neva-22b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nv-embed-v1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nv-embedcode-7b-v1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nv-embedqa-e5-v5": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nv-embedqa-mistral-7b-v2": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nvclip": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/nvidia-nemotron-nano-9b-v2": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/writer/palmyra-creative-122b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/writer/palmyra-fin-70b-32k": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/writer/palmyra-med-70b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/writer/palmyra-med-70b-32k": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/microsoft/phi-3-vision-128k-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/microsoft/phi-3.5-moe-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/google/recurrentgemma-2b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/riva-translate-4b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/riva-translate-4b-instruct-v1.1": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/aisingapore/sea-lion-7b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/bigcode/starcoder2-15b": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/nvidia/vila": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/01-ai/yi-large": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-nvidia/zyphra/zamba2-7b-instruct": {
+      "swe_lite": null,
+      "swe_verified": null
+    },
+    "grouter-modal/zai-org/GLM-5-FP8": {
+      "swe_lite": 72.8,
+      "swe_verified": 77.8
+    },
+    "grouter-modal/zai-org/GLM-5-FP8-2": {
+      "swe_lite": 72.8,
+      "swe_verified": 77.8
+    },
+    "grouter-modal/zai-org/GLM-5.1-FP8": {
+      "swe_lite": 72.8,
+      "swe_verified": 77.8
     }
   },
-  "last_updated": "2026-04-21T21:37:35.056552"
+  "last_updated": "2026-04-23T19:09:56.774278"
 }
