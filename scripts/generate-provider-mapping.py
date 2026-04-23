@@ -9,18 +9,12 @@ import os
 import sys
 from pathlib import Path
 
-# Config paths
 CONFIG_DIR = Path.home() / ".config" / "opencode"
-API_JSON_PATH = CONFIG_DIR / "models.dev.api.json"
+API_JSON_PATH = CONFIG_DIR / "scripts" / "models.dev.api.json"
 MAPPING_JSON_PATH = CONFIG_DIR / "provider-mapping.json"
 OPENCODE_JSON_PATH = CONFIG_DIR / "opencode.json"
 
-# OpenCode provider → models.dev inference rules
-# Based on confirmed strategy:
-# - routers (grouter-*, omniroute, regolo): derive from model IDs
-# - direct providers: map by name
 PROVIDER_MAPPING_RULES = {
-    # Direct mappings (confirmed)
     "grouter-ollama": {"source_provider": "ollama-cloud", "source_type": "direct"},
     "grouter-openrouter": {"source_provider": "openrouter", "source_type": "direct"},
     "grouter-mistral": {"source_provider": "mistral", "source_type": "direct"},
@@ -35,9 +29,7 @@ PROVIDER_MAPPING_RULES = {
     "manifest": {"ignore": True, "reason": "Manifest provider uses internal models"},
 }
 
-# Prefix to models.dev provider mapping (for dynamic extraction)
 PREFIX_MAPPING = {
-    # Format: "prefix/": "provider_in_models_dev"
     "anthropic/": "anthropic",
     "google/": "google",
     "moonshotai/": "moonshotai",
@@ -64,7 +56,6 @@ PREFIX_MAPPING = {
     "databricks/": "databricks",
     "langchain/": "langchain",
     "hf-inference/": "huggingface",
-    # For models without slash, try direct model_id match in a second pass
 }
 
 def load_models_dev_api(api_path: Path) -> dict:
@@ -77,8 +68,6 @@ def load_models_dev_api(api_path: Path) -> dict:
     with open(api_path, 'r') as f:
         content = f.read().strip()
 
-    # Remove any non-JSON preamble (like "# api.json\nURL: ...")
-    # Find first '{' and last '}'
     start = content.find('{')
     end = content.rfind('}') + 1
     if start == -1 or end == 0:
@@ -110,7 +99,6 @@ def build_provider_mapping(opencode_json: dict, models_dev_data: dict) -> dict:
     providers_section = opencode_json.get("provider", {})
 
     for oc_provider_name in providers_section:
-        # Skip manifest early
         if oc_provider_name == "manifest":
             mapping["providers"][oc_provider_name] = {
                 "ignore": True,
@@ -124,7 +112,6 @@ def build_provider_mapping(opencode_json: dict, models_dev_data: dict) -> dict:
                 mapping["providers"][oc_provider_name] = rule
             elif rule["source_type"] == "direct":
                 provider_key = rule["source_provider"]
-                # Validate provider exists in models.dev
                 if provider_key in models_dev_data:
                     mapping["providers"][oc_provider_name] = {
                         "source_provider": provider_key,
@@ -145,7 +132,6 @@ def build_provider_mapping(opencode_json: dict, models_dev_data: dict) -> dict:
                     "note": "Will extract prefix from each model ID at runtime"
                 }
         else:
-            # No rule; try to infer from provider name
             inferred = oc_provider_name.replace("grouter-", "").replace("openrouter-", "")
             if inferred in models_dev_data:
                 mapping["providers"][oc_provider_name] = {
@@ -154,7 +140,6 @@ def build_provider_mapping(opencode_json: dict, models_dev_data: dict) -> dict:
                     "inferred": True
                 }
             else:
-                # Assume dynamic router without prefix models
                 mapping["providers"][oc_provider_name] = {
                     "source_type": "dynamic",
                     "strategy": "extract_prefix",
@@ -165,7 +150,6 @@ def build_provider_mapping(opencode_json: dict, models_dev_data: dict) -> dict:
     return mapping
 
 def main():
-    # Load inputs
     try:
         with open(OPENCODE_JSON_PATH, 'r') as f:
             opencode_json = json.load(f)
@@ -175,16 +159,13 @@ def main():
 
     models_dev_data = load_models_dev_api(API_JSON_PATH)
 
-    # Build mapping
     mapping = build_provider_mapping(opencode_json, models_dev_data)
 
-    # Save mapping
     with open(MAPPING_JSON_PATH, 'w') as f:
         json.dump(mapping, f, indent=2)
 
     print(f"✅ Provider mapping generated: {MAPPING_JSON_PATH}")
 
-    # Summary
     total = len(mapping["providers"])
     direct = sum(1 for v in mapping["providers"].values() if v.get("source_type") == "direct")
     dynamic = sum(1 for v in mapping["providers"].values() if v.get("source_type") == "dynamic")
