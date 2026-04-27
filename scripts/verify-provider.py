@@ -16,14 +16,19 @@ import time
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Tuple
-
 import requests
+from urllib.parse import urlparse
+
+
+def port_is_valid(s: str) -> bool:
+    """Check if string is a valid port number."""
+    return s.isdigit() and 1 <= int(s) <= 65535
 
 
 def test_models_endpoint(base_url: str, api_key: str = "grouter") -> Tuple[bool, List[str]]:
     """Test /v1/models endpoint and return list of model IDs."""
     url = f"{base_url.rstrip('/')}/models"
-    headers = {"Authorization": f"Bearer {api_key}"}
+    headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
     
     try:
         resp = requests.get(url, headers=headers, timeout=15)
@@ -68,6 +73,8 @@ def test_chat_completion(base_url: str, model_id: str, api_key: str, prompt: str
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
+    } if api_key else {
+        "Content-Type": "application/json"
     }
     payload = {
         "model": model_id,
@@ -95,7 +102,7 @@ def test_chat_completion(base_url: str, model_id: str, api_key: str, prompt: str
 def fetch_models_list(base_url: str, api_key: str) -> Tuple[bool, List[Dict]]:
     """Fetch full models list from /v1/models (with details)."""
     url = f"{base_url.rstrip('/')}/models"
-    headers = {"Authorization": f"Bearer {api_key}"}
+    headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
     
     try:
         resp = requests.get(url, headers=headers, timeout=15)
@@ -139,25 +146,25 @@ def extract_owned_by(model_info: Dict, default: str) -> str:
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python3 verify-provider.py <port> [--api-key KEY] [--prompt TEXT] [--output-dir DIR]")
-        print("Example: python3 verify-provider.py 3109 --api-key grouter")
+        print("Usage: python3 verify-provider.py <port> | --url <url> [--api-key KEY] [--prompt TEXT] [--output-dir DIR]")
+        print("Examples:")
+        print("  python3 verify-provider.py 3109 --api-key grouter")
+        print("  python3 verify-provider.py --url https://gen.pollinations.ai/v1")
         sys.exit(1)
     
-    port = sys.argv[1]
-    if not port.isdigit():
-        print(f"❌ Invalid port: {port}")
-        sys.exit(1)
-    
-    base_url = f"http://localhost:{port}/v1"
+    base_url = None
     api_key = "grouter"
     prompt = "Hello"
     output_dir = Path.cwd()
-    provider_name = None  # Will be detected from models
+    provider_name = None
     
-    args = sys.argv[2:]
+    args = sys.argv[1:]
     i = 0
     while i < len(args):
-        if args[i] == "--api-key" and i + 1 < len(args):
+        if args[i] == "--url" and i + 1 < len(args):
+            base_url = args[i + 1]
+            i += 2
+        elif args[i] == "--api-key" and i + 1 < len(args):
             api_key = args[i + 1]
             i += 2
         elif args[i] == "--prompt" and i + 1 < len(args):
@@ -167,11 +174,20 @@ def main():
             output_dir = Path(args[i + 1])
             output_dir.mkdir(parents=True, exist_ok=True)
             i += 2
-        else:
+        elif base_url is None and port_is_valid(args[i]):
+            port = args[i]
+            base_url = f"http://localhost:{port}/v1"
             i += 1
+        else:
+            print(f"❌ Unknown argument: {args[i]}")
+            sys.exit(1)
+    
+    if base_url is None:
+        print("❌ Must specify either <port> or --url <url>")
+        sys.exit(1)
     
     print(f"🌐 URL: {base_url}")
-    print(f"🔑 Using API key: {api_key}")
+    print(f"🔑 Using API key: {'***' if api_key else '(none)'}")
     print(f"💬 Test prompt: '{prompt}'")
     print()
     
@@ -184,21 +200,11 @@ def main():
         success, models_list = fetch_models_list(base_url, api_key)
         if success and models_list:
             first_model = models_list[0]
-            owned_by = extract_owned_by(first_model, f"localhost{port}")
+            default_name = urlparse(base_url).netloc.split(':')[0].replace(".", "-")
+            owned_by = extract_owned_by(first_model, default_name)
             provider_name = owned_by
         else:
-            provider_name = f"localhost{port}"
-    
-    print(f"🔍 Detected provider: {provider_name}")
-    
-    if provider_name is None:
-        success, models_list = fetch_models_list(base_url, api_key)
-        if success and models_list:
-            first_model = models_list[0]
-            owned_by = extract_owned_by(first_model, f"localhost{port}")
-            provider_name = owned_by
-        else:
-            provider_name = f"localhost{port}"
+            provider_name = urlparse(base_url).netloc.split(':')[0].replace(".", "-")
     
     print(f"🔍 Detected provider: {provider_name}")
     

@@ -175,26 +175,6 @@ Verify `compaction.auto: false` in `opencode.json` (Magic Context manages its ow
 
 ---
 
-## Advanced: Provider Setup
-
-Magic Context uses OpenCode's provider system. Ensure `opencode.json` has an OpenRouter provider configured:
-
-```json
-{
-  "provider": [
-    {
-      "name": "openrouter",
-      "api_key": "$OPENROUTER_API_KEY",
-      "base_url": "https://openrouter.ai/api/v1"
-    }
-  ]
-}
-```
-
-Then set `OPENROUTER_API_KEY` in your environment.
-
----
-
 ## Desktop App (Optional)
 
 A companion desktop app provides Memory Browser, Session History, Cache Diagnostics, and Dreamer Management outside OpenCode. Available for macOS, Windows, Linux from the GitHub releases page.

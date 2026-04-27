@@ -10,16 +10,16 @@
     "fallback_models": [
       "nvidia/meta/llama-4-scout-17b-16e-instruct",
       "nvidia/openai/gpt-oss-120b",
-      "grouter-mistral/mistral-small-latest"
+      "mistral/mistral-small-latest"
     ]
   },
   "dreamer": {
     "enabled": true,
-    "model": "grouter-mistral/mistral-small-latest",
+    "model": "nvidia/openai/gpt-oss-120b",
     "fallback_models": [
-      "grouter-mistral/devstral-latest",
-      "grouter-mistral/codestral-latest",
-      "grouter-mistral/mistral-tiny-latest",
+      "mistral/devstral-latest",
+      "mistral/codestral-latest",
+      "mistral/mistral-tiny-latest",
       "nvidia/openai/gpt-oss-120b"
     ],
     "schedule": "02:00-06:00"

@@ -1,6 +1,7 @@
 {
   "plugin": [
     "@guard22/opencode-status-signals@latest",
-    "@cortexkit/opencode-magic-context@latest"
+    "@cortexkit/opencode-magic-context@latest",
+    "@cortexkit/aft-opencode@latest"
   ]
 }

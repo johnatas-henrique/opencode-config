@@ -1,84 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "instructions": [
-    "~/.config/opencode/AGENTS.md",
-    "~/.config/opencode/docs/agent-instructions/memory-usage.md"
-  ],
   "model": "opencode/big-pickle",
   "small_model": "nvidia/openai/gpt-oss-120b",
-  "mcp": {
-    "context7": {
-      "enabled": true,
-      "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      },
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp"
-    },
-    "exa": {
-      "enabled": true,
-      "type": "remote",
-      "url": "https://mcp.exa.ai/mcp"
-    },
-    "gh_grep": {
-      "enabled": true,
-      "type": "remote",
-      "url": "https://mcp.grep.app"
-    },
-    "markitdown": {
-      "command": ["uvx", "markitdown-mcp@latest"],
-      "enabled": true,
-      "type": "local"
-    },
-    "playwright": {
-      "command": ["npx", "-y", "@playwright/mcp@latest"],
-      "enabled": true,
-      "type": "local"
-    },
-    "thinking": {
-      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking@latest"],
-      "enabled": true,
-      "type": "local"
-    },
-    "codebase-memory-mcp": {
-      "enabled": true,
-      "type": "local",
-      "command": ["/home/johnatas/.local/bin/codebase-memory-mcp"]
-    }
-  },
-  "permission": {
-    "external_directory": {
-      "*": "ask",
-      "/tmp": "allow",
-      "/tmp/*": "allow"
-    },
-    "skill": "allow",
-    "task": {
-      "*": "allow"
-    },
-    "tool": {
-      "*": "allow"
-    },
-    "bash": {
-      "*": "allow",
-      "rm -rf *": "ask",
-      "dd *": "ask",
-      "git checkout *": "ask",
-      "git reset *": "ask",
-      "git restore *": "ask",
-      "git clean *": "ask",
-      "sh -c *": "ask"
-    }
-  },
-  "plugin": [
-    "opencode-handoff",
-    "opencode-session-recall",
-    "@gotgenes/opencode-agent-identity",
-    "@knikolov/opencode-plugin-simple-memory",
-    "@franlol/opencode-md-table-formatter@latest",
-    "@cortexkit/aft-opencode@latest",
-    "@cortexkit/opencode-magic-context@latest"
-  ],
   "provider": {
     "kilo": {
       "npm": "@ai-sdk/openai-compatible",
@@ -98,10 +21,6 @@
           "modalities": {
             "input": ["audio", "image", "pdf", "text", "video"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "google/gemini-2.5-pro": {
@@ -114,10 +33,6 @@
           "modalities": {
             "input": ["audio", "image", "pdf", "text", "video"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "openai/gpt-4.1": {
@@ -130,10 +45,6 @@
           "modalities": {
             "input": ["image", "pdf", "text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "openai/o3": {
@@ -146,10 +57,6 @@
           "modalities": {
             "input": ["image", "pdf", "text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         }
       }
@@ -172,10 +79,6 @@
           "modalities": {
             "input": ["text", "image", "video", "audio", "pdf"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "gemini-2.5-flash": {
@@ -188,10 +91,6 @@
           "modalities": {
             "input": ["text", "image", "audio", "video", "pdf"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         }
       }
@@ -214,10 +113,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "deepseek-v3.1:671b": {
@@ -230,10 +125,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "deepseek-v3.2": {
@@ -246,10 +137,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "devstral-2:123b": {
@@ -262,10 +149,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "devstral-small-2:24b": {
@@ -278,10 +161,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "gemini-3-flash-preview": {
@@ -294,10 +173,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "gemma3:12b": {
@@ -358,10 +233,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "glm-4.6": {
@@ -374,10 +245,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "glm-5": {
@@ -390,10 +257,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "gpt-oss:120b": {
@@ -406,10 +269,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "gpt-oss:20b": {
@@ -422,10 +281,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "kimi-k2-thinking": {
@@ -438,10 +293,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "kimi-k2.5": {
@@ -454,10 +305,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "kimi-k2.6": {
@@ -469,10 +316,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "minimax-m2": {
@@ -485,10 +328,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "minimax-m2.1": {
@@ -501,10 +340,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "minimax-m2.5": {
@@ -517,10 +352,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "minimax-m2.7": {
@@ -533,10 +364,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "ministral-3:14b": {
@@ -549,10 +376,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "ministral-3:3b": {
@@ -565,10 +388,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "ministral-3:8b": {
@@ -581,10 +400,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistral-large-3:675b": {
@@ -597,10 +412,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "nemotron-3-nano:30b": {
@@ -613,10 +424,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "nemotron-3-super": {
@@ -629,10 +436,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "qwen3-coder-next": {
@@ -645,10 +448,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "qwen3-coder:480b": {
@@ -661,10 +460,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "qwen3-next:80b": {
@@ -677,10 +472,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "qwen3-vl:235b": {
@@ -693,10 +484,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "qwen3-vl:235b-instruct": {
@@ -709,10 +496,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "qwen3.5:397b": {
@@ -725,10 +508,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "rnj-1:8b": {
@@ -741,10 +520,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         }
       }
@@ -767,10 +542,6 @@
           "limit": {
             "context": 128000,
             "output": 8192
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "mistralai/devstral-2-123b-instruct-2512": {
@@ -783,10 +554,6 @@
           "limit": {
             "context": 262144,
             "output": 262144
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "abacusai/dracarys-llama-3.1-70b-instruct": {
@@ -808,10 +575,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "google/gemma-3-27b-it": {
@@ -856,10 +619,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "google/gemma-3n-e4b-it": {
@@ -872,10 +631,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "z-ai/glm-5.1": {
@@ -888,10 +643,6 @@
           "limit": {
             "context": 131072,
             "output": 131072
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "z-ai/glm4.7": {
@@ -904,10 +655,6 @@
           "limit": {
             "context": 204800,
             "output": 131072
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "openai/gpt-oss-120b": {
@@ -920,10 +667,6 @@
           "limit": {
             "context": 131072,
             "output": 131072
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "openai/gpt-oss-20b": {
@@ -936,10 +679,6 @@
           "limit": {
             "context": 131072,
             "output": 65536
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "moonshotai/kimi-k2-instruct": {
@@ -952,10 +691,6 @@
           "limit": {
             "context": 131072,
             "output": 16384
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "moonshotai/kimi-k2-instruct-0905": {
@@ -968,10 +703,6 @@
           "limit": {
             "context": 262144,
             "output": 16384
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "moonshotai/kimi-k2-thinking": {
@@ -984,10 +715,6 @@
           "limit": {
             "context": 216144,
             "output": 216144
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "meta/llama-3.1-405b-instruct": {
@@ -1000,10 +727,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "meta/llama-3.2-11b-vision-instruct": {
@@ -1016,10 +739,6 @@
           "limit": {
             "context": 128000,
             "output": 8192
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "meta/llama-3.2-1b-instruct": {
@@ -1032,10 +751,6 @@
           "limit": {
             "context": 16000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "meta/llama-3.2-3b-instruct": {
@@ -1048,10 +763,6 @@
           "limit": {
             "context": 16000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "meta/llama-3.2-90b-vision-instruct": {
@@ -1064,10 +775,6 @@
           "limit": {
             "context": 128000,
             "output": 8192
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "meta/llama-4-maverick-17b-128e-instruct": {
@@ -1080,10 +787,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "meta/llama-guard-4-12b": {
@@ -1114,10 +817,6 @@
           "limit": {
             "context": 204800,
             "output": 131072
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "minimaxai/minimax-m2.7": {
@@ -1130,10 +829,6 @@
           "limit": {
             "context": 204800,
             "output": 131072
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "mistralai/ministral-14b-instruct-2512": {
@@ -1146,10 +841,6 @@
           "limit": {
             "context": 262144,
             "output": 262144
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistralai/mistral-large-3-675b-instruct-2512": {
@@ -1162,10 +853,6 @@
           "limit": {
             "context": 262144,
             "output": 262144
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistralai/mistral-nemotron": {
@@ -1230,10 +917,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "microsoft/phi-4-multimodal-instruct": {
@@ -1246,10 +929,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "qwen/qwen2.5-coder-32b-instruct": {
@@ -1262,10 +941,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "qwen/qwen3-coder-480b-a35b-instruct": {
@@ -1278,10 +953,6 @@
           "limit": {
             "context": 262144,
             "output": 66536
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "qwen/qwen3-next-80b-a3b-instruct": {
@@ -1294,10 +965,6 @@
           "limit": {
             "context": 262144,
             "output": 16384
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "qwen/qwen3-next-80b-a3b-thinking": {
@@ -1310,10 +977,6 @@
           "limit": {
             "context": 262144,
             "output": 16384
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "qwen/qwen3.5-122b-a10b": {
@@ -1326,10 +989,6 @@
           "limit": {
             "context": 262144,
             "output": 262144
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "qwen/qwen3.5-397b-a17b": {
@@ -1342,10 +1001,6 @@
           "limit": {
             "context": 262144,
             "output": 8192
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "sarvamai/sarvam-m": {
@@ -1385,10 +1040,6 @@
           "limit": {
             "context": 256000,
             "output": 16384
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "stockmark/stockmark-2-100b-instruct": {
@@ -1476,10 +1127,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "nvidia/cosmos-reason2-8b": {
@@ -1510,10 +1157,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "deepseek-ai/deepseek-v3.2": {
@@ -1526,10 +1169,6 @@
           "limit": {
             "context": 163840,
             "output": 65536
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "google/deplot": {
@@ -1578,10 +1217,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "google/gemma-4-31b-it": {
@@ -1594,10 +1229,6 @@
           "limit": {
             "context": 262144,
             "output": 131072
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "nvidia/gliner-pii": {
@@ -1619,10 +1250,6 @@
           "limit": {
             "context": 202752,
             "output": 131000
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "ibm/granite-3.0-3b-a800m-instruct": {
@@ -1689,10 +1316,6 @@
           "limit": {
             "context": 262144,
             "output": 262144
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "microsoft/kosmos-2": {
@@ -1714,10 +1337,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "meta/llama-3.1-8b-instruct": {
@@ -1730,10 +1349,6 @@
           "limit": {
             "context": 16000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "nvidia/llama-3.1-nemoguard-8b-content-safety": {
@@ -1764,10 +1379,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "nvidia/llama-3.1-nemotron-70b-instruct": {
@@ -1780,10 +1391,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "nvidia/llama-3.1-nemotron-nano-8b-v1": {
@@ -1823,10 +1430,6 @@
           "limit": {
             "context": 131072,
             "output": 8192
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1": {
@@ -1875,10 +1478,6 @@
           "limit": {
             "context": 128000,
             "output": 32768
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "nvidia/llama-3.3-nemotron-super-49b-v1": {
@@ -1950,10 +1549,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistralai/mistral-7b-instruct-v0.3": {
@@ -1975,10 +1570,6 @@
           "limit": {
             "context": 128000,
             "output": 25600
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistralai/mistral-large-2-instruct": {
@@ -1991,10 +1582,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistralai/mistral-medium-3-instruct": {
@@ -2093,10 +1680,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "nvidia/nemotron-4-340b-reward": {
@@ -2136,10 +1719,6 @@
           "limit": {
             "context": 131072,
             "output": 131072
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "nvidia/nemotron-nano-3-30b-a3b": {
@@ -2224,10 +1803,6 @@
           "limit": {
             "context": 131072,
             "output": 131072
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "writer/palmyra-creative-122b": {
@@ -2276,10 +1851,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "microsoft/phi-3.5-moe-instruct": {
@@ -2292,10 +1863,6 @@
           "limit": {
             "context": 128000,
             "output": 4096
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "google/recurrentgemma-2b": {
@@ -2456,10 +2023,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "devstral-2512": {
@@ -2472,10 +2035,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "devstral-latest": {
@@ -2501,10 +2060,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "devstral-medium-2507": {
@@ -2517,10 +2072,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "devstral-small-2507": {
@@ -2533,10 +2084,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "labs-mistral-small-creative": {
@@ -2575,10 +2122,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "magistral-small-2509": {
@@ -2662,10 +2205,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "ministral-8b-2512": {
@@ -2694,10 +2233,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistral-large-2411": {
@@ -2710,10 +2245,6 @@
           "modalities": {
             "input": ["text"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistral-large-2512": {
@@ -2726,10 +2257,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistral-large-latest": {
@@ -2742,10 +2269,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistral-medium-2505": {
@@ -2758,10 +2281,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistral-medium": {
@@ -2787,10 +2306,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistral-medium-latest": {
@@ -2803,10 +2318,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistral-vibe-cli-with-tools": {
@@ -2897,10 +2408,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "mistral-small-2603": {
@@ -2913,10 +2420,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "mistral-small-latest": {
@@ -2929,10 +2432,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": true
           }
         },
         "mistral-vibe-cli-fast": {
@@ -3049,10 +2548,6 @@
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "voxtral-mini-latest": {
@@ -3314,10 +2809,6 @@
           "limit": {
             "context": 200000,
             "output": 200000
-          },
-          "options": {
-            "tool_call": true,
-            "reasoning": false
           }
         },
         "zai-org/GLM-5-FP8-2": {
@@ -3339,30 +2830,333 @@
           "options": {}
         }
       }
+    },
+    "pollinations": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Pollinations",
+      "options": {
+        "baseURL": "https://gen.pollinations.ai/v1",
+        "apiKey": "{env:POLLINATIONS_API_KEY}"
+      },
+      "models": {
+        "openai": {
+          "id": "openai",
+          "name": "openai | 400K/16K | [IMAGE]",
+          "limit": {
+            "context": 400000,
+            "output": 16384
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "openai-fast": {
+          "id": "openai-fast",
+          "name": "openai-fast | 400K/16K | [IMAGE]",
+          "limit": {
+            "context": 400000,
+            "output": 16384
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "openai-large": {
+          "id": "openai-large",
+          "name": "openai-large | 400K/16K | [IMAGE]",
+          "limit": {
+            "context": 400000,
+            "output": 16384
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "mistral": {
+          "id": "mistral",
+          "name": "mistral | 131K/4K | [IMAGE]",
+          "limit": {
+            "context": 131072,
+            "output": 4096
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "gemini": {
+          "id": "gemini",
+          "name": "gemini | 1M/32K | [IMAGE/AUDIO/VIDEO]",
+          "limit": {
+            "context": 1048576,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image", "audio", "video"],
+            "output": ["text"]
+          }
+        },
+        "gemini-fast": {
+          "id": "gemini-fast",
+          "name": "gemini-fast | 1M/32K | [IMAGE]",
+          "limit": {
+            "context": 1048576,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "deepseek": {
+          "id": "deepseek",
+          "name": "deepseek | 1M/32K",
+          "limit": {
+            "context": 1048576,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "grok": {
+          "id": "grok",
+          "name": "grok | 2M/64K",
+          "limit": {
+            "context": 2000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "gemini-search": {
+          "id": "gemini-search",
+          "name": "gemini-search | 1M/32K | [IMAGE]",
+          "limit": {
+            "context": 1048576,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "claude-fast": {
+          "id": "claude-fast",
+          "name": "claude-fast | 200K/8K | [IMAGE]",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "claude": {
+          "id": "claude",
+          "name": "claude | 200K/8K | [IMAGE]",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "claude-large": {
+          "id": "claude-large",
+          "name": "claude-large | 200K/8K | [IMAGE]",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "perplexity-fast": {
+          "id": "perplexity-fast",
+          "name": "perplexity-fast | 127K/4K",
+          "limit": {
+            "context": 127072,
+            "output": 4096
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "perplexity-reasoning": {
+          "id": "perplexity-reasoning",
+          "name": "perplexity-reasoning | 128K/4K",
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "kimi": {
+          "id": "kimi",
+          "name": "kimi | 262K/16K | [IMAGE]",
+          "limit": {
+            "context": 262000,
+            "output": 16384
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "gemini-large": {
+          "id": "gemini-large",
+          "name": "gemini-large | 1M/32K | [IMAGE/AUDIO/VIDEO]",
+          "limit": {
+            "context": 1048576,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text", "image", "audio", "video"],
+            "output": ["text"]
+          }
+        },
+        "nova-fast": {
+          "id": "nova-fast",
+          "name": "nova-fast | 128K/4K",
+          "limit": {
+            "context": 128000,
+            "output": 4096
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "glm": {
+          "id": "glm",
+          "name": "glm | 198K/8K",
+          "limit": {
+            "context": 198000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "minimax": {
+          "id": "minimax",
+          "name": "minimax | 200K/8K",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        }
+      }
     }
   },
-  "compaction": {
-    "auto": false,
-    "prune": false
+  "instructions": ["~/.config/opencode/AGENTS.md"],
+  "compaction": { "auto": false, "prune": false },
+  "mcp": {
+    "context7": {
+      "enabled": true,
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      },
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "exa": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp"
+    },
+    "gh_grep": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.grep.app"
+    },
+    "markitdown": {
+      "command": ["uvx", "markitdown-mcp@latest"],
+      "enabled": true,
+      "type": "local"
+    },
+    "playwright": {
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true,
+      "type": "local"
+    },
+    "thinking": {
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking@latest"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "codebase-memory-mcp": {
+      "enabled": true,
+      "type": "local",
+      "command": ["/home/johnatas/.local/bin/codebase-memory-mcp"]
+    },
+    "mempalace": {
+      "enabled": true,
+      "type": "local",
+      "command": ["/home/johnatas/.local/share/mempalace-venv/bin/python", "-m", "mempalace.mcp_server"]
+    }
   },
+  "permission": {
+    "external_directory": {
+      "*": "ask",
+      "/tmp": "allow",
+      "/tmp/*": "allow"
+    },
+    "skill": "allow",
+    "task": {
+      "*": "allow"
+    },
+    "tool": {
+      "*": "allow"
+    },
+    "bash": {
+      "*": "allow",
+      "rm -f *": "ask",
+      "rm -rf *": "ask",
+      "dd *": "ask",
+      "git checkout *": "ask",
+      "git reset *": "ask",
+      "git restore *": "ask",
+      "git clean *": "ask",
+      "sh -c *": "ask"
+    }
+  },
+  "plugin": [
+    "opencode-handoff",
+    "@gotgenes/opencode-agent-identity",
+    "@franlol/opencode-md-table-formatter@latest",
+    "@cortexkit/aft-opencode@latest",
+    "@cortexkit/opencode-magic-context@latest"
+  ],
   "server": {
     "cors": ["http://localhost"],
     "hostname": "0.0.0.0",
     "mdns": true,
     "port": 4096
-  },
-  "watcher": {
-    "ignore": [
-      "node_modules/",
-      "dist/",
-      ".cargo/",
-      "target/",
-      ".git/**",
-      "*cache*",
-      ".sisyphus",
-      ".venv",
-      "venv",
-      "target"
-    ]
   }
 }

@@ -1,0 +1,30 @@
+wing: opencode
+rooms:
+- name: documentation
+  description: Files from docs/
+  keywords:
+  - documentation
+  - docs
+- name: plugins
+  description: Files from plugins/
+  keywords:
+  - plugins
+  - plugins
+- name: commands
+  description: Files from commands/
+  keywords:
+  - commands
+  - commands
+- name: skills
+  description: Files from skills/
+  keywords:
+  - skills
+  - skills
+- name: scripts
+  description: Files from scripts/
+  keywords:
+  - scripts
+  - scripts
+- name: general
+  description: Files that don't fit other rooms
+  keywords: []
