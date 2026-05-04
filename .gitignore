@@ -5,3 +5,7 @@ bun.lock
 old/
 context-mode
 .opencode/memory/
+
+# MemPalace per-project files (issue #185)
+mempalace.yaml
+entities.json

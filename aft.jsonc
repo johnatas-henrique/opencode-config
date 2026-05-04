@@ -1,0 +1,45 @@
+{
+  "hoist_builtin_tools": true,
+  "format_on_edit": true,
+  "validate_on_edit": "syntax",
+  "formatter": {
+    "typescript": "prettier",
+    "rust": "rustfmt"
+  },
+  "checker": {
+    "typescript": "tsc"
+  },
+  "tool_surface": "all",
+  "disabled_tools": [],
+  "search_index": true,
+  "semantic_search": true,
+  "restrict_to_project_root": false,
+  "auto_update": true,
+  "max_callgraph_files": 5000,
+  "lsp": {
+    "servers": {
+      "tinymist": {
+        "extensions": [".typ"],
+        "binary": "tinymist",
+        "args": [],
+        "root_markers": [".git", "typst.toml"],
+        "env": {
+          "TYPST_FONT_PATHS": "/usr/share/fonts"
+        },
+        "initialization_options": {
+          "formatterMode": "typstyle"
+        }
+      }
+    },
+    "disabled": ["python"],
+    "diagnostic_cache_size": 5000
+  },
+  "experimental": {
+    "lsp_ty": false,
+    "bash": {
+      "rewrite": false,
+      "compress": false,
+      "background": false
+    }
+  }
+}

@@ -1,8 +1,11 @@
 {
-  "people": [],
+  "people": [
+    "Johnatas Henrique"
+  ],
   "projects": [
+    "opencode",
     "Agent",
-    "OpenCode",
+    "Provider",
     "Devstral",
     "DeepSeek"
   ]
