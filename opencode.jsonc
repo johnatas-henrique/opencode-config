@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "autoupdate": true,
   "provider": {
     "kilo": {
       "npm": "@ai-sdk/openai-compatible",
@@ -17,8 +18,16 @@
             "output": 65535
           },
           "modalities": {
-            "input": ["audio", "image", "pdf", "text", "video"],
-            "output": ["text"]
+            "input": [
+              "audio",
+              "image",
+              "pdf",
+              "text",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "google/gemini-2.5-pro": {
@@ -29,8 +38,16 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["audio", "image", "pdf", "text", "video"],
-            "output": ["text"]
+            "input": [
+              "audio",
+              "image",
+              "pdf",
+              "text",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "openai/gpt-4.1": {
@@ -41,8 +58,14 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["image", "pdf", "text"],
-            "output": ["text"]
+            "input": [
+              "image",
+              "pdf",
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "openai/o3": {
@@ -53,8 +76,14 @@
             "output": 100000
           },
           "modalities": {
-            "input": ["image", "pdf", "text"],
-            "output": ["text"]
+            "input": [
+              "image",
+              "pdf",
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         }
       }
@@ -75,8 +104,16 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["text", "image", "video", "audio", "pdf"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "gemini-2.5-flash": {
@@ -87,8 +124,16 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["text", "image", "audio", "video", "pdf"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
           }
         }
       }
@@ -109,8 +154,12 @@
             "output": 32000
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "deepseek-v3.1:671b": {
@@ -121,8 +170,12 @@
             "output": 163840
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "deepseek-v3.2": {
@@ -133,8 +186,12 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "devstral-2:123b": {
@@ -145,8 +202,12 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "devstral-small-2:24b": {
@@ -157,8 +218,13 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "gemini-3-flash-preview": {
@@ -169,8 +235,13 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "gemma3:12b": {
@@ -181,8 +252,13 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {
             "tool_call": false,
@@ -197,8 +273,13 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {
             "tool_call": false,
@@ -213,8 +294,13 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {
             "tool_call": false,
@@ -229,8 +315,13 @@
             "output": 8192
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "glm-4.6": {
@@ -241,8 +332,12 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "glm-5": {
@@ -253,8 +348,12 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "gpt-oss:120b": {
@@ -265,8 +364,12 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "gpt-oss:20b": {
@@ -277,8 +380,12 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "kimi-k2-thinking": {
@@ -289,8 +396,12 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "kimi-k2.5": {
@@ -301,8 +412,13 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "kimi-k2.6": {
@@ -312,8 +428,13 @@
             "output": 8192
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "minimax-m2": {
@@ -324,8 +445,12 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "minimax-m2.1": {
@@ -336,8 +461,12 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "minimax-m2.5": {
@@ -348,8 +477,12 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "minimax-m2.7": {
@@ -360,8 +493,12 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "ministral-3:14b": {
@@ -372,8 +509,13 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "ministral-3:3b": {
@@ -384,8 +526,13 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "ministral-3:8b": {
@@ -396,8 +543,13 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-large-3:675b": {
@@ -408,8 +560,13 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "nemotron-3-nano:30b": {
@@ -420,8 +577,12 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "nemotron-3-super": {
@@ -432,8 +593,12 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "qwen3-coder-next": {
@@ -444,8 +609,12 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "qwen3-coder:480b": {
@@ -456,8 +625,12 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "qwen3-next:80b": {
@@ -468,8 +641,12 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "qwen3-vl:235b": {
@@ -480,8 +657,13 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "qwen3-vl:235b-instruct": {
@@ -492,8 +674,13 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "qwen3.5:397b": {
@@ -504,8 +691,13 @@
             "output": 81920
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "rnj-1:8b": {
@@ -516,8 +708,12 @@
             "output": 4096
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         }
       }
@@ -534,8 +730,12 @@
           "name": "DeepSeek V3.1 Terminus | SWE-L: 38.8% | 128K/8K",
           "id": "deepseek-ai/deepseek-v3.1-terminus",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -546,8 +746,12 @@
           "name": "DeepSeek V4 Flash | SWE: - | 262K/32K",
           "id": "deepseek-ai/deepseek-v4-flash",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -558,8 +762,12 @@
           "name": "Devstral 2 123B Instruct (2512) | SWE-L: 37.5% | 262K/262K",
           "id": "mistralai/devstral-2-123b-instruct-2512",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -570,8 +778,12 @@
           "name": "dracarys-llama-3.1-70b-instruct | SWE: - | 0K/0K",
           "id": "abacusai/dracarys-llama-3.1-70b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -579,8 +791,12 @@
           "name": "gemma-2-2b-it | SWE: - | 128K/4K",
           "id": "google/gemma-2-2b-it",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -591,8 +807,12 @@
           "name": "Gemma 3 27B IT | SWE: - | 37K/8K",
           "id": "google/gemma-3-27b-it",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 37000,
@@ -607,8 +827,12 @@
           "name": "Gemma 3 4B | SWE: - | 131K/19K",
           "id": "google/gemma-3-4b-it",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -623,8 +847,12 @@
           "name": "Gemma 3n 2B | SWE: - | 128K/4K",
           "id": "google/gemma-3n-e2b-it",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -635,8 +863,12 @@
           "name": "Gemma 3n 4B | SWE: - | 128K/4K",
           "id": "google/gemma-3n-e4b-it",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -647,8 +879,12 @@
           "name": "glm-5.1 | SWE-L: 72.8% | 131K/131K",
           "id": "z-ai/glm-5.1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -659,8 +895,12 @@
           "name": "glm4.7 | SWE: - | 204K/131K",
           "id": "z-ai/glm4.7",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 204800,
@@ -671,8 +911,12 @@
           "name": "GPT-OSS 120B | SWE-V: 62.4% | 131K/131K",
           "id": "openai/gpt-oss-120b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -683,8 +927,12 @@
           "name": "OpenAI GPT-OSS 20b | SWE-V: 22.0% | 131K/65K",
           "id": "openai/gpt-oss-20b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -695,8 +943,12 @@
           "name": "Kimi K2 Instruct | SWE-V: 59.1% | 131K/16K",
           "id": "moonshotai/kimi-k2-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -707,8 +959,12 @@
           "name": "kimi-k2-instruct-0905 | SWE-V: 59.1% | 262K/16K",
           "id": "moonshotai/kimi-k2-instruct-0905",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -719,8 +975,12 @@
           "name": "Kimi K2 Thinking | SWE-V: 71.3% | 216K/216K",
           "id": "moonshotai/kimi-k2-thinking",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 216144,
@@ -731,8 +991,12 @@
           "name": "Llama 3.1 405B Instruct | SWE-V: 47.0% | 128K/4K",
           "id": "meta/llama-3.1-405b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -743,8 +1007,13 @@
           "name": "llama-3.2-11b-vision-instruct | SWE: - | 128K/8K | [IMAGE]",
           "id": "meta/llama-3.2-11b-vision-instruct",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -755,8 +1024,12 @@
           "name": "llama-3.2-1b-instruct | SWE: - | 16K/4K",
           "id": "meta/llama-3.2-1b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 16000,
@@ -767,8 +1040,12 @@
           "name": "Llama 3.2 3B Instruct | SWE: - | 16K/4K",
           "id": "meta/llama-3.2-3b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 16000,
@@ -779,8 +1056,13 @@
           "name": "llama-3.2-90b-vision-instruct | SWE: - | 128K/8K | [IMAGE]",
           "id": "meta/llama-3.2-90b-vision-instruct",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -791,8 +1073,13 @@
           "name": "llama-4-maverick-17b-128e-instruct | SWE-L: 21.0% | 128K/4K | [IMAGE]",
           "id": "meta/llama-4-maverick-17b-128e-instruct",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -803,8 +1090,12 @@
           "name": "llama-guard-4-12b | SWE: - | 0K/0K",
           "id": "meta/llama-guard-4-12b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -812,8 +1103,12 @@
           "name": "Magistral Small 2506 | SWE: - | 0K/0K",
           "id": "mistralai/magistral-small-2506",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -821,8 +1116,12 @@
           "name": "MiniMax M2.5 | SWE-L: 75.8% | 204K/131K",
           "id": "minimaxai/minimax-m2.5",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 204800,
@@ -833,8 +1132,12 @@
           "name": "MiniMax M2.7 | SWE-V: 80.2% | 204K/131K",
           "id": "minimaxai/minimax-m2.7",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 204800,
@@ -845,8 +1148,12 @@
           "name": "ministral-14b-instruct-2512 | SWE: - | 262K/262K",
           "id": "mistralai/ministral-14b-instruct-2512",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -857,8 +1164,12 @@
           "name": "mistral-large-3-675b-instruct-2512 | SWE-V: 33.3% | 262K/262K",
           "id": "mistralai/mistral-large-3-675b-instruct-2512",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -869,8 +1180,12 @@
           "name": "mistral-nemotron | SWE: - | 0K/0K",
           "id": "mistralai/mistral-nemotron",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -878,8 +1193,12 @@
           "name": "mistral-small-4-119b-2603 | SWE-V: 46.8% | 0K/0K",
           "id": "mistralai/mistral-small-4-119b-2603",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -887,8 +1206,12 @@
           "name": "mixtral-8x22b-instruct-v0.1 | SWE-V: 36.0% | 65K/32K",
           "id": "mistralai/mixtral-8x22b-instruct-v0.1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 65536,
@@ -904,8 +1227,12 @@
           "name": "mixtral-8x7b-instruct-v0.1 | SWE: - | 32K/32K",
           "id": "mistralai/mixtral-8x7b-instruct-v0.1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 32768,
@@ -921,8 +1248,12 @@
           "name": "Phi 4 Mini | SWE: - | 128K/4K",
           "id": "microsoft/phi-4-mini-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -933,8 +1264,12 @@
           "name": "Phi 4 Multimodal | SWE: - | 128K/4K",
           "id": "microsoft/phi-4-multimodal-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -945,8 +1280,12 @@
           "name": "qwen2.5-coder-32b-instruct | SWE-V: 9.0% | 128K/4K",
           "id": "qwen/qwen2.5-coder-32b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -957,8 +1296,12 @@
           "name": "Qwen3-Coder 480B-A35B Instruct | SWE-V: 69.6% | 262K/66K",
           "id": "qwen/qwen3-coder-480b-a35b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -969,8 +1312,12 @@
           "name": "Qwen3-Next 80B-A3B Instruct | SWE-V: 69.6% | 262K/16K",
           "id": "qwen/qwen3-next-80b-a3b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -981,8 +1328,12 @@
           "name": "Qwen3-Next 80B-A3B (Thinking) | SWE-V: 69.6% | 262K/16K",
           "id": "qwen/qwen3-next-80b-a3b-thinking",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -993,8 +1344,12 @@
           "name": "qwen3.5-122b-a10b | SWE-V: 72.0% | 262K/262K",
           "id": "qwen/qwen3.5-122b-a10b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -1005,8 +1360,12 @@
           "name": "Qwen3.5 397B-A17B | SWE-V: 76.4% | 262K/8K",
           "id": "qwen/qwen3.5-397b-a17b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -1017,8 +1376,12 @@
           "name": "sarvam-m | SWE: - | 0K/0K",
           "id": "sarvamai/sarvam-m",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1026,8 +1389,12 @@
           "name": "seed-oss-36b-instruct | SWE-V: 26.0% | 0K/0K",
           "id": "bytedance/seed-oss-36b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1035,8 +1402,12 @@
           "name": "solar-10.7b-instruct | SWE: - | 0K/0K",
           "id": "upstage/solar-10.7b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1044,8 +1415,12 @@
           "name": "Step 3.5 Flash | SWE-V: 74.4% | 256K/16K",
           "id": "stepfun-ai/step-3.5-flash",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 256000,
@@ -1056,8 +1431,12 @@
           "name": "stockmark-2-100b-instruct | SWE: - | 0K/0K",
           "id": "stockmark/stockmark-2-100b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1065,8 +1444,12 @@
           "name": "arctic-embed-l | SWE: - | 0K/0K",
           "id": "snowflake/arctic-embed-l",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1074,8 +1457,12 @@
           "name": "bge-m3 | SWE: - | 0K/0K",
           "id": "baai/bge-m3",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1083,8 +1470,12 @@
           "name": "codegemma-1.1-7b | SWE: - | 128K/4K",
           "id": "google/codegemma-1.1-7b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1099,8 +1490,12 @@
           "name": "codegemma-7b | SWE: - | 128K/4K",
           "id": "google/codegemma-7b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1115,8 +1510,12 @@
           "name": "codellama-70b | SWE: - | 128K/4K",
           "id": "meta/codellama-70b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1131,8 +1530,12 @@
           "name": "codestral-22b-instruct-v0.1 | SWE: - | 128K/4K",
           "id": "mistralai/codestral-22b-instruct-v0.1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1143,8 +1546,12 @@
           "name": "cosmos-reason2-8b | SWE: - | 0K/0K",
           "id": "nvidia/cosmos-reason2-8b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1152,8 +1559,12 @@
           "name": "dbrx-instruct | SWE: - | 0K/0K",
           "id": "databricks/dbrx-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1161,8 +1572,12 @@
           "name": "deepseek-coder-6.7b-instruct | SWE: - | 128K/4K",
           "id": "deepseek-ai/deepseek-coder-6.7b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1173,8 +1588,12 @@
           "name": "DeepSeek V3.2 | SWE-L: 70.0% | 163K/65K",
           "id": "deepseek-ai/deepseek-v3.2",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 163840,
@@ -1185,8 +1604,12 @@
           "name": "deplot | SWE: - | 0K/0K",
           "id": "google/deplot",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1194,8 +1617,12 @@
           "name": "embed-qa-4 | SWE: - | 0K/0K",
           "id": "nvidia/embed-qa-4",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1203,8 +1630,12 @@
           "name": "fuyu-8b | SWE: - | 0K/0K",
           "id": "adept/fuyu-8b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1212,8 +1643,12 @@
           "name": "gemma-2b | SWE: - | 0K/0K",
           "id": "google/gemma-2b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1221,8 +1656,12 @@
           "name": "Google Gemma 3 12B | SWE: - | 128K/4K",
           "id": "google/gemma-3-12b-it",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1233,8 +1672,12 @@
           "name": "Gemma 4 31B | SWE: - | 262K/131K",
           "id": "google/gemma-4-31b-it",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -1245,8 +1688,12 @@
           "name": "gliner-pii | SWE: - | 0K/0K",
           "id": "nvidia/gliner-pii",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1254,8 +1701,12 @@
           "name": "glm5 | SWE: - | 202K/131K",
           "id": "z-ai/glm5",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 202752,
@@ -1266,8 +1717,12 @@
           "name": "granite-3.0-3b-a800m-instruct | SWE: - | 0K/0K",
           "id": "ibm/granite-3.0-3b-a800m-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1275,8 +1730,12 @@
           "name": "granite-3.0-8b-instruct | SWE: - | 0K/0K",
           "id": "ibm/granite-3.0-8b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1284,8 +1743,12 @@
           "name": "granite-34b-code-instruct | SWE-V: 32.0% | 0K/0K",
           "id": "ibm/granite-34b-code-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1293,8 +1756,12 @@
           "name": "granite-8b-code-instruct | SWE: - | 0K/0K",
           "id": "ibm/granite-8b-code-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1302,8 +1769,12 @@
           "name": "ising-calibration-1-35b-a3b | SWE: - | 0K/0K",
           "id": "nvidia/ising-calibration-1-35b-a3b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1311,8 +1782,12 @@
           "name": "jamba-1.5-large-instruct | SWE: - | 0K/0K",
           "id": "ai21labs/jamba-1.5-large-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1320,8 +1795,12 @@
           "name": "Kimi K2.5 | SWE-L: 70.8% | 262K/262K",
           "id": "moonshotai/kimi-k2.5",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -1332,8 +1811,12 @@
           "name": "kosmos-2 | SWE: - | 0K/0K",
           "id": "microsoft/kosmos-2",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1341,8 +1824,12 @@
           "name": "Llama 3.1 70B Instruct | SWE: - | 128K/4K",
           "id": "meta/llama-3.1-70b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1353,8 +1840,12 @@
           "name": "Llama 3.1 8B Instruct | SWE-V: 23.0% | 16K/4K",
           "id": "meta/llama-3.1-8b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 16000,
@@ -1365,8 +1856,12 @@
           "name": "llama-3.1-nemoguard-8b-content-safety | SWE: - | 0K/0K",
           "id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1374,8 +1869,12 @@
           "name": "llama-3.1-nemoguard-8b-topic-control | SWE: - | 0K/0K",
           "id": "nvidia/llama-3.1-nemoguard-8b-topic-control",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1383,8 +1882,12 @@
           "name": "llama-3.1-nemotron-51b-instruct | SWE: - | 128K/4K",
           "id": "nvidia/llama-3.1-nemotron-51b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1395,8 +1898,12 @@
           "name": "llama-3.1-nemotron-70b-instruct | SWE: - | 128K/4K",
           "id": "nvidia/llama-3.1-nemotron-70b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1407,8 +1914,12 @@
           "name": "llama-3.1-nemotron-nano-8b-v1 | SWE: - | 0K/0K",
           "id": "nvidia/llama-3.1-nemotron-nano-8b-v1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1416,8 +1927,13 @@
           "name": "llama-3.1-nemotron-nano-vl-8b-v1 | SWE: - | 0K/0K | [IMAGE]",
           "id": "nvidia/llama-3.1-nemotron-nano-vl-8b-v1",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1425,8 +1941,12 @@
           "name": "llama-3.1-nemotron-safety-guard-8b-v3 | SWE: - | 0K/0K",
           "id": "nvidia/llama-3.1-nemotron-safety-guard-8b-v3",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1434,8 +1954,12 @@
           "name": "llama-3.1-nemotron-ultra-253b-v1 | SWE: - | 131K/8K",
           "id": "nvidia/llama-3.1-nemotron-ultra-253b-v1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -1446,8 +1970,13 @@
           "name": "llama-3.2-nemoretriever-1b-vlm-embed-v1 | SWE: - | 0K/0K | [IMAGE]",
           "id": "nvidia/llama-3.2-nemoretriever-1b-vlm-embed-v1",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1455,8 +1984,12 @@
           "name": "llama-3.2-nemoretriever-300m-embed-v1 | SWE: - | 0K/0K",
           "id": "nvidia/llama-3.2-nemoretriever-300m-embed-v1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1464,8 +1997,12 @@
           "name": "llama-3.2-nv-embedqa-1b-v1 | SWE: - | 0K/0K",
           "id": "nvidia/llama-3.2-nv-embedqa-1b-v1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1473,8 +2010,12 @@
           "name": "llama-3.2-nv-embedqa-1b-v2 | SWE: - | 0K/0K",
           "id": "nvidia/llama-3.2-nv-embedqa-1b-v2",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1482,8 +2023,12 @@
           "name": "Meta Llama 3.3 70B Instruct | SWE-V: 48.0% | 128K/32K",
           "id": "meta/llama-3.3-70b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1494,8 +2039,12 @@
           "name": "llama-3.3-nemotron-super-49b-v1 | SWE: - | 128K/4K",
           "id": "nvidia/llama-3.3-nemotron-super-49b-v1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1510,8 +2059,12 @@
           "name": "llama-3.3-nemotron-super-49b-v1.5 | SWE: - | 128K/4K",
           "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1526,8 +2079,12 @@
           "name": "llama-nemotron-embed-1b-v2 | SWE: - | 0K/0K",
           "id": "nvidia/llama-nemotron-embed-1b-v2",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1535,8 +2092,13 @@
           "name": "llama-nemotron-embed-vl-1b-v2 | SWE: - | 0K/0K | [IMAGE]",
           "id": "nvidia/llama-nemotron-embed-vl-1b-v2",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1544,8 +2106,12 @@
           "name": "llama2-70b | SWE: - | 0K/0K",
           "id": "meta/llama2-70b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1553,8 +2119,12 @@
           "name": "llama3-chatqa-1.5-70b | SWE: - | 128K/4K",
           "id": "nvidia/llama3-chatqa-1.5-70b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1565,8 +2135,12 @@
           "name": "mistral-7b-instruct-v0.3 | SWE: - | 0K/0K",
           "id": "mistralai/mistral-7b-instruct-v0.3",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1574,8 +2148,12 @@
           "name": "mistral-large | SWE: - | 128K/25K",
           "id": "mistralai/mistral-large",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1586,8 +2164,12 @@
           "name": "mistral-large-2-instruct | SWE: - | 128K/4K",
           "id": "mistralai/mistral-large-2-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1598,8 +2180,12 @@
           "name": "mistral-medium-3-instruct | SWE-V: 40.0% | 0K/0K",
           "id": "mistralai/mistral-medium-3-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1607,8 +2193,12 @@
           "name": "mistral-nemo-12b-instruct | SWE: - | 0K/0K",
           "id": "nv-mistralai/mistral-nemo-12b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1616,8 +2206,12 @@
           "name": "mistral-nemo-minitron-8b-8k-instruct | SWE: - | 0K/0K",
           "id": "nvidia/mistral-nemo-minitron-8b-8k-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1625,8 +2219,12 @@
           "name": "mixtral-8x22b-v0.1 | SWE-V: 36.0% | 0K/0K",
           "id": "mistralai/mixtral-8x22b-v0.1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1634,8 +2232,12 @@
           "name": "nemoretriever-parse | SWE: - | 0K/0K",
           "id": "nvidia/nemoretriever-parse",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1643,8 +2245,12 @@
           "name": "nemotron-3-content-safety | SWE: - | 0K/0K",
           "id": "nvidia/nemotron-3-content-safety",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1652,8 +2258,12 @@
           "name": "nemotron-3-nano-30b-a3b | SWE: - | 262K/262K",
           "id": "nvidia/nemotron-3-nano-30b-a3b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -1668,8 +2278,12 @@
           "name": "nemotron-3-super-120b-a12b | SWE: - | 256K/32K",
           "id": "nvidia/nemotron-3-super-120b-a12b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 256000,
@@ -1684,8 +2298,12 @@
           "name": "nemotron-4-340b-instruct | SWE: - | 128K/4K",
           "id": "nvidia/nemotron-4-340b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1696,8 +2314,12 @@
           "name": "nemotron-4-340b-reward | SWE: - | 0K/0K",
           "id": "nvidia/nemotron-4-340b-reward",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1705,8 +2327,12 @@
           "name": "nemotron-content-safety-reasoning-4b | SWE: - | 0K/0K",
           "id": "nvidia/nemotron-content-safety-reasoning-4b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1714,8 +2340,12 @@
           "name": "nemotron-mini-4b-instruct | SWE: - | 0K/0K",
           "id": "nvidia/nemotron-mini-4b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1723,8 +2353,13 @@
           "name": "nemotron-nano-12b-v2-vl | SWE: - | 131K/131K | [IMAGE]",
           "id": "nvidia/nemotron-nano-12b-v2-vl",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -1735,8 +2370,12 @@
           "name": "nemotron-nano-3-30b-a3b | SWE: - | 0K/0K",
           "id": "nvidia/nemotron-nano-3-30b-a3b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1744,8 +2383,12 @@
           "name": "nemotron-parse | SWE: - | 0K/0K",
           "id": "nvidia/nemotron-parse",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1753,8 +2396,12 @@
           "name": "neva-22b | SWE: - | 0K/0K",
           "id": "nvidia/neva-22b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1762,8 +2409,12 @@
           "name": "nv-embed-v1 | SWE: - | 0K/0K",
           "id": "nvidia/nv-embed-v1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1771,8 +2422,12 @@
           "name": "nv-embedcode-7b-v1 | SWE: - | 0K/0K",
           "id": "nvidia/nv-embedcode-7b-v1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1780,8 +2435,12 @@
           "name": "nv-embedqa-e5-v5 | SWE: - | 0K/0K",
           "id": "nvidia/nv-embedqa-e5-v5",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1789,8 +2448,12 @@
           "name": "nv-embedqa-mistral-7b-v2 | SWE: - | 0K/0K",
           "id": "nvidia/nv-embedqa-mistral-7b-v2",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1798,8 +2461,12 @@
           "name": "nvclip | SWE: - | 0K/0K",
           "id": "nvidia/nvclip",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1807,8 +2474,12 @@
           "name": "nvidia-nemotron-nano-9b-v2 | SWE: - | 131K/131K",
           "id": "nvidia/nvidia-nemotron-nano-9b-v2",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -1819,8 +2490,12 @@
           "name": "palmyra-creative-122b | SWE: - | 0K/0K",
           "id": "writer/palmyra-creative-122b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1828,8 +2503,12 @@
           "name": "palmyra-fin-70b-32k | SWE: - | 0K/0K",
           "id": "writer/palmyra-fin-70b-32k",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1837,8 +2516,12 @@
           "name": "palmyra-med-70b | SWE: - | 0K/0K",
           "id": "writer/palmyra-med-70b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1846,8 +2529,12 @@
           "name": "palmyra-med-70b-32k | SWE: - | 0K/0K",
           "id": "writer/palmyra-med-70b-32k",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1855,8 +2542,13 @@
           "name": "phi-3-vision-128k-instruct | SWE: - | 128K/4K | [IMAGE]",
           "id": "microsoft/phi-3-vision-128k-instruct",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1867,8 +2559,12 @@
           "name": "phi-3.5-moe-instruct | SWE: - | 128K/4K",
           "id": "microsoft/phi-3.5-moe-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 128000,
@@ -1879,8 +2575,12 @@
           "name": "recurrentgemma-2b | SWE: - | 0K/0K",
           "id": "google/recurrentgemma-2b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1888,8 +2588,12 @@
           "name": "riva-translate-4b-instruct | SWE: - | 0K/0K",
           "id": "nvidia/riva-translate-4b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1897,8 +2601,12 @@
           "name": "riva-translate-4b-instruct-v1.1 | SWE: - | 0K/0K",
           "id": "nvidia/riva-translate-4b-instruct-v1.1",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1906,8 +2614,12 @@
           "name": "sea-lion-7b-instruct | SWE: - | 0K/0K",
           "id": "aisingapore/sea-lion-7b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1915,8 +2627,12 @@
           "name": "starcoder2-15b | SWE: - | 0K/0K",
           "id": "bigcode/starcoder2-15b",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1924,8 +2640,12 @@
           "name": "vila | SWE: - | 0K/0K",
           "id": "nvidia/vila",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1933,8 +2653,12 @@
           "name": "Yi Large | SWE: - | 0K/0K",
           "id": "01-ai/yi-large",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -1942,8 +2666,12 @@
           "name": "zamba2-7b-instruct | SWE: - | 0K/0K",
           "id": "zyphra/zamba2-7b-instruct",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         }
@@ -2011,8 +2739,12 @@
           "name": "Codestral | SWE: - | 262K/8K",
           "id": "codestral-2508",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -2031,8 +2763,12 @@
             "output": 4096
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "devstral-2512": {
@@ -2043,16 +2779,24 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "devstral-latest": {
           "name": "devstral-latest | SWE: - | 262K/8K",
           "id": "devstral-latest",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -2068,8 +2812,12 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "devstral-medium-2507": {
@@ -2080,8 +2828,12 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "devstral-small-2507": {
@@ -2092,16 +2844,24 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "labs-mistral-small-creative": {
           "name": "labs-mistral-small-creative | SWE: - | 131K/8K",
           "id": "labs-mistral-small-creative",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2113,8 +2873,13 @@
           "name": "magistral-medium-2509 | SWE: - | 131K/8K | [IMAGE]",
           "id": "magistral-medium-2509",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2130,16 +2895,25 @@
             "output": 16384
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "magistral-small-2509": {
           "name": "magistral-small-2509 | SWE: - | 131K/8K | [IMAGE]",
           "id": "magistral-small-2509",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2151,8 +2925,13 @@
           "name": "magistral-small-latest | SWE: - | 131K/8K | [IMAGE]",
           "id": "magistral-small-latest",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2164,8 +2943,13 @@
           "name": "Ministral 14B | SWE: - | 131K/8K | [IMAGE]",
           "id": "ministral-14b-2512",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2180,8 +2964,13 @@
           "name": "ministral-14b-latest | SWE: - | 131K/8K | [IMAGE]",
           "id": "ministral-14b-latest",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2193,8 +2982,13 @@
           "name": "Ministral 3B | SWE: - | 131K/8K | [IMAGE]",
           "id": "ministral-3b-2512",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2213,16 +3007,25 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "ministral-8b-2512": {
           "name": "Ministral 8B | SWE: - | 131K/8K | [IMAGE]",
           "id": "ministral-8b-2512",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2241,8 +3044,12 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-large-2411": {
@@ -2253,8 +3060,12 @@
             "output": 16384
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-large-2512": {
@@ -2265,8 +3076,13 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-large-latest": {
@@ -2277,8 +3093,13 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-medium-2505": {
@@ -2289,16 +3110,25 @@
             "output": 131072
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-medium": {
           "name": "mistral-medium | SWE-V: 40.0% | 131K/8K",
           "id": "mistral-medium",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2314,8 +3144,13 @@
             "output": 262144
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-medium-latest": {
@@ -2326,16 +3161,25 @@
             "output": 16384
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-vibe-cli-with-tools": {
           "name": "mistral-vibe-cli-with-tools | SWE: - | 131K/8K",
           "id": "mistral-vibe-cli-with-tools",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2347,8 +3191,12 @@
           "name": "mistral-medium-2604 | SWE: - | 131K/8K",
           "id": "mistral-medium-2604",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2360,8 +3208,12 @@
           "name": "mistral-medium-3 | SWE-V: 40.0% | 131K/8K",
           "id": "mistral-medium-3",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2373,8 +3225,12 @@
           "name": "mistral-medium-3-5 | SWE-V: 40.0% | 131K/8K",
           "id": "mistral-medium-3-5",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2386,8 +3242,12 @@
           "name": "mistral-medium-3.5 | SWE-V: 40.0% | 131K/8K",
           "id": "mistral-medium-3.5",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2399,8 +3259,12 @@
           "name": "mistral-medium-c21211-r0-75 | SWE: - | 131K/8K",
           "id": "mistral-medium-c21211-r0-75",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2416,8 +3280,13 @@
             "output": 16384
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-small-2603": {
@@ -2428,8 +3297,13 @@
             "output": 256000
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-small-latest": {
@@ -2440,16 +3314,25 @@
             "output": 256000
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral-vibe-cli-fast": {
           "name": "mistral-vibe-cli-fast | SWE: - | 131K/8K",
           "id": "mistral-vibe-cli-fast",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2461,8 +3344,12 @@
           "name": "mistral-vibe-cli-latest | SWE: - | 131K/8K",
           "id": "mistral-vibe-cli-latest",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2474,8 +3361,12 @@
           "name": "mistral-tiny-2407 | SWE: - | 131K/8K",
           "id": "mistral-tiny-2407",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2487,8 +3378,12 @@
           "name": "mistral-tiny-latest | SWE: - | 131K/8K",
           "id": "mistral-tiny-latest",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2500,8 +3395,12 @@
           "name": "open-mistral-nemo | SWE: - | 131K/8K",
           "id": "open-mistral-nemo",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2513,8 +3412,12 @@
           "name": "open-mistral-nemo-2407 | SWE: - | 131K/8K",
           "id": "open-mistral-nemo-2407",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2526,8 +3429,13 @@
           "name": "mistral-large-pixtral-2411 | SWE: - | 131K/8K | [IMAGE]",
           "id": "mistral-large-pixtral-2411",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2539,8 +3447,13 @@
           "name": "pixtral-large-2411 | SWE: - | 131K/8K | [IMAGE]",
           "id": "pixtral-large-2411",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2556,16 +3469,26 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "voxtral-mini-latest": {
           "name": "voxtral-mini-latest | SWE: - | 131K/8K | [AUDIO]",
           "id": "voxtral-mini-latest",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2577,8 +3500,13 @@
           "name": "voxtral-mini-2507 | SWE: - | 131K/8K | [AUDIO]",
           "id": "voxtral-mini-2507",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2590,8 +3518,13 @@
           "name": "voxtral-small-2507 | SWE: - | 131K/8K | [AUDIO]",
           "id": "voxtral-small-2507",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 131072,
@@ -2603,8 +3536,13 @@
           "name": "voxtral-small-latest | SWE: - | 32K/8K | [AUDIO]",
           "id": "voxtral-small-latest",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 32768,
@@ -2616,8 +3554,12 @@
           "name": "codestral-embed | SWE: - | 0K/0K",
           "id": "codestral-embed",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2625,8 +3567,12 @@
           "name": "codestral-embed-2505 | SWE: - | 0K/0K",
           "id": "codestral-embed-2505",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2634,8 +3580,12 @@
           "name": "labs-leanstral-2603 | SWE: - | 0K/0K",
           "id": "labs-leanstral-2603",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2647,8 +3597,12 @@
             "output": 3072
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {
             "tool_call": false,
@@ -2659,8 +3613,12 @@
           "name": "mistral-embed-2312 | SWE: - | 0K/0K",
           "id": "mistral-embed-2312",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2668,8 +3626,12 @@
           "name": "mistral-embed-dim128-2510 | SWE: - | 0K/0K",
           "id": "mistral-embed-dim128-2510",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2677,8 +3639,12 @@
           "name": "mistral-embed-dim256-2510 | SWE: - | 0K/0K",
           "id": "mistral-embed-dim256-2510",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2686,8 +3652,12 @@
           "name": "mistral-moderation-2411 | SWE: - | 0K/0K",
           "id": "mistral-moderation-2411",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2695,8 +3665,12 @@
           "name": "mistral-moderation-latest | SWE: - | 0K/0K",
           "id": "mistral-moderation-latest",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2704,8 +3678,12 @@
           "name": "mistral-moderation-2603 | SWE: - | 0K/0K",
           "id": "mistral-moderation-2603",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2713,8 +3691,12 @@
           "name": "mistral-ocr-2505 | SWE: - | 0K/0K",
           "id": "mistral-ocr-2505",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2722,8 +3704,12 @@
           "name": "mistral-ocr-2512 | SWE: - | 0K/0K",
           "id": "mistral-ocr-2512",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2731,8 +3717,12 @@
           "name": "mistral-ocr-latest | SWE: - | 0K/0K",
           "id": "mistral-ocr-latest",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2740,8 +3730,13 @@
           "name": "voxtral-mini-2602 | SWE: - | 0K/0K | [AUDIO]",
           "id": "voxtral-mini-2602",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2749,8 +3744,13 @@
           "name": "voxtral-mini-transcribe-2507 | SWE: - | 0K/0K | [AUDIO]",
           "id": "voxtral-mini-transcribe-2507",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2758,8 +3758,13 @@
           "name": "voxtral-mini-realtime-2602 | SWE: - | 0K/0K | [AUDIO]",
           "id": "voxtral-mini-realtime-2602",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2767,8 +3772,13 @@
           "name": "voxtral-mini-realtime-latest | SWE: - | 0K/0K | [AUDIO]",
           "id": "voxtral-mini-realtime-latest",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2776,8 +3786,13 @@
           "name": "voxtral-mini-transcribe-realtime-2602 | SWE: - | 0K/0K | [AUDIO]",
           "id": "voxtral-mini-transcribe-realtime-2602",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2785,8 +3800,13 @@
           "name": "voxtral-mini-tts-2603 | SWE: - | 0K/0K | [AUDIO]",
           "id": "voxtral-mini-tts-2603",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2794,8 +3814,13 @@
           "name": "voxtral-mini-tts-latest | SWE: - | 0K/0K | [AUDIO]",
           "id": "voxtral-mini-tts-latest",
           "modalities": {
-            "input": ["text", "audio"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         }
@@ -2813,8 +3838,12 @@
           "name": "GLM 5 FP8 | SWE-L: 72.8% | 200K/200K",
           "id": "zai-org/GLM-5-FP8",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 200000,
@@ -2825,8 +3854,12 @@
           "name": "GLM-5-FP8-2 | SWE-L: 72.8% | 0K/0K",
           "id": "zai-org/GLM-5-FP8-2",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         },
@@ -2834,8 +3867,12 @@
           "name": "GLM-5.1-FP8 | SWE-L: 72.8% | 0K/0K",
           "id": "zai-org/GLM-5.1-FP8",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "options": {}
         }
@@ -2857,8 +3894,13 @@
             "output": 16384
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "openai-fast": {
@@ -2869,8 +3911,13 @@
             "output": 16384
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "openai-large": {
@@ -2881,8 +3928,13 @@
             "output": 16384
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "mistral": {
@@ -2893,8 +3945,13 @@
             "output": 4096
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "gemini": {
@@ -2905,8 +3962,15 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["text", "image", "audio", "video"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "gemini-fast": {
@@ -2917,8 +3981,13 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "deepseek": {
@@ -2929,8 +3998,12 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "grok": {
@@ -2941,8 +4014,12 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "gemini-search": {
@@ -2953,8 +4030,13 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "claude-fast": {
@@ -2965,8 +4047,13 @@
             "output": 8192
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "claude": {
@@ -2977,8 +4064,13 @@
             "output": 8192
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "claude-large": {
@@ -2989,8 +4081,13 @@
             "output": 8192
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "perplexity-fast": {
@@ -3001,8 +4098,12 @@
             "output": 4096
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "perplexity-reasoning": {
@@ -3013,8 +4114,12 @@
             "output": 4096
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "kimi": {
@@ -3025,8 +4130,13 @@
             "output": 16384
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "gemini-large": {
@@ -3037,8 +4147,15 @@
             "output": 32768
           },
           "modalities": {
-            "input": ["text", "image", "audio", "video"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "nova-fast": {
@@ -3049,8 +4166,12 @@
             "output": 4096
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "glm": {
@@ -3061,8 +4182,12 @@
             "output": 8192
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "minimax": {
@@ -3073,14 +4198,29 @@
             "output": 8192
           },
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           }
         }
       }
     }
   },
-  "instructions": ["~/.config/opencode/AGENTS.md"],
+  "instructions": [
+    "~/.config/opencode/AGENTS.md",
+    "~/.config/opencode/docs/agent-instructions/process.md",
+    "~/.config/opencode/docs/agent-instructions/workflow.md",
+    "~/.config/opencode/docs/agent-instructions/mcp-tools.md",
+    "~/.config/opencode/docs/agent-instructions/testing.md",
+    "~/.config/opencode/docs/agent-instructions/constraints.md",
+    "~/.config/opencode/docs/agent-instructions/safety-git.md",
+    "~/.config/opencode/docs/agent-instructions/output.md",
+    "~/.config/opencode/docs/agent-instructions/gitnexus.md",
+    "~/.config/opencode/docs/agent-instructions/writing-style.md"
+  ],
   "compaction": {
     "auto": false,
     "prune": false
@@ -3105,19 +4245,45 @@
       "url": "https://mcp.grep.app"
     },
     "markitdown": {
-      "command": ["uvx", "markitdown-mcp@latest"],
+      "command": [
+        "uvx",
+        "markitdown-mcp@latest"
+      ],
       "enabled": true,
       "type": "local"
     },
     "playwright": {
-      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp@latest"
+      ],
       "enabled": true,
       "type": "local"
     },
     "thinking": {
-      "command": ["npx", "-y", "@modelcontextprotocol/server-sequential-thinking@latest"],
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking@latest"
+      ],
       "enabled": true,
       "type": "local"
+    },
+    "fff": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "fff-mcp"
+      ]
+    },
+    "gitnexus": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "gitnexus",
+        "mcp"
+      ]
     },
     "mempalace": {
       "enabled": true,
@@ -3164,7 +4330,9 @@
     "@cortexkit/opencode-magic-context@latest"
   ],
   "server": {
-    "cors": ["http://localhost"],
+    "cors": [
+      "http://localhost"
+    ],
     "hostname": "0.0.0.0",
     "mdns": true,
     "port": 4096

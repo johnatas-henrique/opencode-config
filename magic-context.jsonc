@@ -1,12 +1,27 @@
 {
-  "$schema": "https://raw.githubusercontent.com/cortexkit/opencode-magic-context/master/assets/magic-context.schema.json",
+  "$schema": "https://raw.githubusercontent.com/cortexkit/magic-context/master/assets/magic-context.schema.json",
   "enabled": true,
-  "memory": { "enabled": false },
-  "embedding": { "provider": "off" },
+
+  "memory": {
+    "enabled": true,
+    "injection_budget_tokens": 4000,
+    "auto_promote": true
+  },
+
+  "embedding": {
+    "provider": "local"
+  },
+
   "ctx_reduce_enabled": true,
   "execute_threshold_percentage": 60,
   "auto_drop_tool_age": 50,
-  "nudge_interval_tokens": 5000,
+  "nudge_interval_tokens": 10000,
+
+  "commit_cluster_trigger": {
+    "enabled": true,
+    "min_clusters": 1
+  },
+
   "historian": {
     "model": "nvidia/openai/gpt-oss-120b",
     "fallback_models": [
@@ -15,21 +30,29 @@
       "mistral/mistral-small-latest"
     ]
   },
+
   "dreamer": {
-    "enabled": false,
+    "enabled": true,
     "model": "nvidia/openai/gpt-oss-120b",
     "fallback_models": [
       "mistral/devstral-latest",
       "mistral/codestral-latest",
-      "mistral/mistral-tiny-latest",
-      "nvidia/openai/gpt-oss-120b"
+      "mistral/mistral-tiny-latest"
     ],
     "schedule": "02:00-06:00",
-    "user_memories": { "enabled": false }
+    "tasks": ["consolidate", "verify", "archive-stale", "improve"]
   },
-  "sidekick": { "enabled": false, "model": "nvidia/stepfun-ai/step-3.5-flash" },
+
+  "sidekick": {
+    "enabled": false
+  },
+
   "experimental": {
-    "auto_search": { "enabled": false },
-    "git_commit_indexing": { "enabled": false }
+    "git_commit_indexing": {
+      "enabled": true
+    },
+    "auto_search": {
+      "enabled": false
+    }
   }
 }
