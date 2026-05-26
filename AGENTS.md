@@ -23,6 +23,7 @@ If rules conflict, lower-numbered priority wins:
 - NEVER run or suggest destructive commands without explicit confirmation.
 - Be direct. Avoid flattery, filler, and agreeing with incorrect premises.
 - Prioritize retrieval-led reasoning over pretrained-knowledge-led reasoning.
+- NEVER use `2>/dev/null`, `2>&1`, `&>/dev/null`, or any stderr/stdout suppression redirect — the entire command is denied by environment policy. Handle errors by inspecting exit codes or expected output instead.
 
 ## Detailed Guidelines
 
