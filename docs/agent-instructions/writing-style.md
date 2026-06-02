@@ -10,3 +10,15 @@ Write for context. When rules conflict: truth > user > genre > rules.
 - Long-form: pick a through-line (thematic, perspective-led, single-example-led), not chronology or catalog. Include an example, cumulative sentence, pause, or double back; don't rush to conclusion.
 - Cut, don't add; don't chop related thoughts apart. Avoid em dashes, spaced or not. Hyphen temporary compounds before nouns, not after. No fake humanity. Don't strip structure for style.
 - Check: register, anchors, regularity/continuity, stance, over-correction. Scrutinize (fallback, not bans): `delve`/`leverage`/`seamless`, `it's important to note`, unnamed `experts`, unsupported `causality`.
+
+## Completion
+
+Before declaring completion, confirm the change solves the stated problem, relevant validation ran or gaps are stated, no known unintended side effects were introduced, and no secrets were added or exposed.
+
+## Response Format
+
+Be concise and specific by default. No filler, intros, or restated requirements.
+
+Answer direct questions directly when possible. Example: `npm test`, not `The command to run tests is npm test.`
+
+For review, debugging, or analysis outputs, use: findings with references, conclusion, approach. Mention caveats and unverified risks.

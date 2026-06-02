@@ -22,17 +22,13 @@ If rules conflict, lower-numbered priority wins:
 - NEVER expose secrets — stop if encountered.
 - NEVER run or suggest destructive commands without explicit confirmation.
 - Be direct. Avoid flattery, filler, and agreeing with incorrect premises.
+- Always ask when in doubt — prefer one targeted question over assumptions.
 - Prioritize retrieval-led reasoning over pretrained-knowledge-led reasoning.
-- NEVER use `2>/dev/null`, `2>&1`, `&>/dev/null`, or any stderr/stdout suppression redirect — the entire command is denied by environment policy. Handle errors by inspecting exit codes or expected output instead.
 
 ## Detailed Guidelines
 
-- [Process](docs/agent-instructions/process.md) — Uncertainty, Evidence
-- [Workflow](docs/agent-instructions/workflow.md) — Execution steps
+- [Workflow](docs/agent-instructions/workflow.md) — Process, execution steps
 - [MCP Tools](docs/agent-instructions/mcp-tools.md) — Tool selection & rules
-- [GitNexus](docs/agent-instructions/gitnexus.md) — Code intelligence & impact analysis
 - [Testing](docs/agent-instructions/testing.md) — Test preservation & validation
 - [Constraints](docs/agent-instructions/constraints.md) — Change scope & reuse
-- [Safety & Git](docs/agent-instructions/safety-git.md) — Security, infrastructure, PRs
-- [Output](docs/agent-instructions/output.md) — Completion & response format
-- [Writing Style](docs/agent-instructions/writing-style.md) — Tone & structure
+- [Writing Style](docs/agent-instructions/writing-style.md) — Tone, structure & response format
