@@ -1,4 +1,6 @@
 import type { Plugin } from "@opencode-ai/plugin";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 const API = process.env.AGENTMEMORY_URL || "http://localhost:3111";
 const FILE_TOOLS = new Set(["Read", "Write", "Edit", "Glob", "Grep"]);
@@ -7,6 +9,57 @@ const MAX_STASHED_FILES = 20;
 
 const DEBUG = process.env.OPENCODE_AGENTMEMORY_DEBUG === "1";
 const SECRET = process.env.AGENTMEMORY_SECRET || "";
+const DEBUG_FILE = path.join(process.cwd(), ".agentmemory-debug.log");
+
+function debug(...args: unknown[]) {
+  if (!DEBUG) return;
+  const msg = `[${new Date().toISOString()}] ${args.map(String).join(" ")}\n`;
+  try {
+    fs.appendFileSync(DEBUG_FILE, msg);
+  } catch {}
+}
+
+function readAgentMemoryEnv(): Record<string, string> {
+  const envPath = path.join(process.env.HOME || "~", ".agentmemory", ".env");
+  const result: Record<string, string> = {};
+  try {
+    const content = fs.readFileSync(envPath, "utf-8");
+    for (const line of content.split("\n")) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const eqIdx = trimmed.indexOf("=");
+      if (eqIdx === -1) continue;
+      const key = trimmed.slice(0, eqIdx).trim();
+      const val = trimmed.slice(eqIdx + 1).trim();
+      result[key] = val;
+    }
+  } catch {}
+  return result;
+}
+
+function logProviderInfo() {
+  if (!DEBUG) return;
+  const agentEnv = readAgentMemoryEnv();
+
+  const openaiKey = agentEnv.OPENAI_API_KEY;
+  const geminiKey = agentEnv.GEMINI_API_KEY;
+  const anthropicKey = agentEnv.ANTHROPIC_API_KEY;
+  const openrouterKey = agentEnv.OPENROUTER_API_KEY;
+  const openaiModel = agentEnv.OPENAI_MODEL;
+  const openaiBaseUrl = agentEnv.OPENAI_BASE_URL;
+
+  const provider = openaiKey
+    ? `openai (${openaiModel || "default"})`
+    : geminiKey
+      ? "gemini"
+      : anthropicKey
+        ? "anthropic"
+        : openrouterKey
+          ? "openrouter"
+          : "noop";
+
+  debug("provider:", provider, "| baseUrl:", openaiBaseUrl || "(default)");
+}
 
 function authHeaders(): Record<string, string> {
   const headers: Record<string, string> = { "Content-Type": "application/json" };
@@ -23,7 +76,7 @@ async function post(path: string, body: Record<string, unknown>, timeoutMs = 500
       signal: AbortSignal.timeout(timeoutMs),
     });
   } catch (e) {
-    if (DEBUG) console.error(`[agentmemory] POST ${path} failed:`, (e as Error).message);
+    debug("POST", path, "failed:", (e as Error).message);
   }
 }
 
@@ -37,7 +90,7 @@ async function postJson(path: string, body: Record<string, unknown>): Promise<un
     });
     return res.ok ? await res.json() : null;
   } catch (e) {
-    if (DEBUG) console.error(`[agentmemory] POST ${path} failed:`, (e as Error).message);
+    debug("POST", path, "failed:", (e as Error).message);
     return null;
   }
 }
@@ -45,7 +98,7 @@ async function postJson(path: string, body: Record<string, unknown>): Promise<un
 async function observe(
   sessionId: string,
   hookType: string,
-  data: Record<string, unknown>,
+  data: Record<string, unknown>
 ): Promise<void> {
   await post("/observe", {
     hookType,
@@ -64,22 +117,37 @@ const stashedFiles = new Map<string, Set<string>>();
 const seenSubtaskIds = new Map<string, Set<string>>();
 const seenToolCallIds = new Map<string, Set<string>>();
 const contextInjectedSessions = new Set<string>();
+// cache the context returned by POST /session/start so the chat
+// system-transform hook can inject it without a second /context fetch.
+// Auto-injection now happens at session.created (immediately) AND at
+// the first prompt_submit (fallback for older OpenCode builds that
+// don't implement experimental.chat.system.transform).
+const startContextCache = new Map<string, string>();
 
 function stashFor(sid: string): Set<string> {
   let s = stashedFiles.get(sid);
-  if (!s) { s = new Set<string>(); stashedFiles.set(sid, s); }
+  if (!s) {
+    s = new Set<string>();
+    stashedFiles.set(sid, s);
+  }
   return s;
 }
 
 function subtaskSetFor(sid: string): Set<string> {
   let s = seenSubtaskIds.get(sid);
-  if (!s) { s = new Set<string>(); seenSubtaskIds.set(sid, s); }
+  if (!s) {
+    s = new Set<string>();
+    seenSubtaskIds.set(sid, s);
+  }
   return s;
 }
 
 function toolCallSetFor(sid: string): Set<string> {
   let s = seenToolCallIds.get(sid);
-  if (!s) { s = new Set<string>(); seenToolCallIds.set(sid, s); }
+  if (!s) {
+    s = new Set<string>();
+    seenToolCallIds.set(sid, s);
+  }
   return s;
 }
 
@@ -92,7 +160,11 @@ function pruneSessionMaps(sid: string): void {
 function safeSlice(v: unknown, max: number): string {
   if (typeof v === "string") return v.slice(0, max);
   if (v == null) return "";
-  try { return JSON.stringify(v).slice(0, max); } catch { return ""; }
+  try {
+    return JSON.stringify(v).slice(0, max);
+  } catch {
+    return "";
+  }
 }
 
 const AGENTMEMORY_INSTRUCTIONS = `<agentmemory-instructions>
@@ -156,13 +228,20 @@ function extractErrorMessage(err: unknown): string {
       if (typeof d.message === "string") return d.message;
     }
     if (typeof e.name === "string") return e.name;
-    try { return JSON.stringify(err); } catch { return ""; }
+    try {
+      return JSON.stringify(err);
+    } catch {
+      return "";
+    }
   }
   return String(err ?? "");
 }
 
 export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
-  projectPath = ctx.worktree || ctx.project?.id || process.cwd();
+  projectPath =
+    ctx.worktree && ctx.worktree !== "/" ? ctx.worktree : ctx.directory || process.cwd();
+  debug("projectPath=", projectPath, "directory=", ctx.directory, "worktree=", ctx.worktree);
+  logProviderInfo();
 
   return {
     event: async ({ event }) => {
@@ -178,16 +257,30 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
         seenSubtaskIds.delete(activeSessionId);
         seenToolCallIds.delete(activeSessionId);
         contextInjectedSessions.delete(activeSessionId);
-        await post("/session/start", {
-          sessionId: activeSessionId,
+        // Snapshot the session id locally — `activeSessionId` is mutable
+        // and another `session.created` event during the await could
+        // rebind it, causing context to be cached against the wrong key.
+        const sessionId = activeSessionId;
+        const startResult = await postJson("/session/start", {
+          sessionId,
           title: info?.title ?? null,
           parentID: info?.parentID ?? null,
           version: info?.version ?? null,
           project: projectPath,
           cwd: projectPath,
         });
-        if (pendingConfig && activeSessionId) {
-          await observe(activeSessionId, "config_loaded", pendingConfig);
+        // cache the context returned at session/start so the
+        // chat.system.transform hook injects it without a second fetch.
+        const startCtx = (startResult as any)?.context;
+        debug("session.created: startResult context_len=", startCtx?.length ?? 0);
+        if (typeof startCtx === "string" && startCtx.length > 0) {
+          startContextCache.set(sessionId, startCtx);
+          debug("session.created: cached context for sid=", sessionId);
+        } else {
+          debug("session.created: no context to cache");
+        }
+        if (pendingConfig) {
+          await observe(sessionId, "config_loaded", pendingConfig);
           pendingConfig = null;
         }
       }
@@ -238,7 +331,7 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
         if (!sid || !Array.isArray(props.diff)) return;
         const diffs = props.diff as Array<Record<string, unknown>>;
         await observe(sid, "session_diff", {
-          files: diffs.map(d => d.file),
+          files: diffs.map((d) => d.file),
           additions: diffs.reduce((s, d) => s + ((d.additions as number) || 0), 0),
           deletions: diffs.reduce((s, d) => s + ((d.deletions as number) || 0), 0),
           diffs: diffs.slice(0, 50),
@@ -249,7 +342,7 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
       if (type === "session.deleted") {
         const sid = props.info?.id || props.sessionID || activeSessionId;
         if (!sid) {
-          if (DEBUG) console.error("[agentmemory] session.deleted with no session ID");
+          debug("session.deleted with no session ID");
           return;
         }
         await post("/session/end", { sessionId: sid });
@@ -257,6 +350,7 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
         post("/consolidate-pipeline", { tier: "all", force: true }, 30000);
         if (sid === activeSessionId) activeSessionId = null;
         stashedFiles.delete(sid);
+        startContextCache.delete(sid);
         seenSubtaskIds.delete(sid);
         seenToolCallIds.delete(sid);
         contextInjectedSessions.delete(sid);
@@ -300,9 +394,10 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
             },
             finish: info.finish ?? null,
             error,
-            duration_ms: (info.time && typeof (info.time as any).completed === "number")
-              ? (info.time as any).completed - ((info.time as any).created || 0)
-              : null,
+            duration_ms:
+              info.time && typeof (info.time as any).completed === "number"
+                ? (info.time as any).completed - ((info.time as any).created || 0)
+                : null,
           });
         }
       }
@@ -361,9 +456,9 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
               tool_output: safeSlice(st.output, 8000),
               title: st.title ?? null,
               metadata: st.metadata || {},
-              duration_ms: (startTime != null && endTime != null) ? endTime - startTime : null,
+              duration_ms: startTime != null && endTime != null ? endTime - startTime : null,
               attachments: Array.isArray(st.attachments)
-                ? (st.attachments as Array<Record<string, unknown>>).map(a => a.filename || a.url)
+                ? (st.attachments as Array<Record<string, unknown>>).map((a) => a.filename || a.url)
                 : [],
             });
           } else if (state.status === "error") {
@@ -379,7 +474,7 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
               call_id: callId,
               tool_input: safeSlice(st.input, 4000),
               tool_output: safeSlice(st.error, 8000),
-              duration_ms: (startTime != null && endTime != null) ? endTime - startTime : null,
+              duration_ms: startTime != null && endTime != null ? endTime - startTime : null,
             });
           }
           return;
@@ -467,9 +562,7 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
         await observe(sid, "notification", {
           notification_type: "permission_prompt",
           permission: props.type || "unknown",
-          pattern: Array.isArray(props.pattern)
-            ? props.pattern.join(", ")
-            : (props.pattern || ""),
+          pattern: Array.isArray(props.pattern) ? props.pattern.join(", ") : props.pattern || "",
           tool_call_id: props.callID || null,
           title: props.title || props.type || "",
           metadata: props.metadata || {},
@@ -583,20 +676,46 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
     // ── experimental.chat.system.transform ──
     "experimental.chat.system.transform": async (input, output) => {
       const sid = input.sessionID || activeSessionId;
+      debug("system.transform called", "sid=", sid, "activeSessionId=", activeSessionId);
       if (!sid) return;
 
-      if (!contextInjectedSessions.has(sid)) {
-        if (!Array.isArray(output.system)) return;
+      if (!Array.isArray(output.system)) {
+        debug("system.transform: output.system is not array, aborting");
+        return;
+      }
+
+      const alreadyInjected = output.system.some(
+        s => typeof s === "string" && s.includes("AGENTMEMORY_INSTRUCTIONS")
+      );
+
+      if (!alreadyInjected) {
         output.system.push(AGENTMEMORY_INSTRUCTIONS);
-        const result = await postJson("/context", {
-          sessionId: sid,
-          project: projectPath,
-        });
-        const ctx = (result as any)?.context;
-        if (typeof ctx === "string" && ctx.length > 0) {
-          output.system.push(ctx);
+        debug("system.transform: pushed AGENTMEMORY_INSTRUCTIONS");
+        let ctx = startContextCache.get(sid);
+        if (typeof ctx !== "string" || ctx.length === 0) {
+          debug("system.transform: calling /context for sid=", sid, "project=", projectPath);
+          const result = await postJson("/context", {
+            sessionId: sid,
+            project: projectPath,
+          });
+          ctx = (result as any)?.context;
+          debug("system.transform: /context returned", "ctx_len=", ctx?.length ?? 0);
+        } else {
+          debug("system.transform: using cached context for sid=", sid);
+          startContextCache.delete(sid);
         }
-        contextInjectedSessions.add(sid);
+        if (typeof ctx === "string" && ctx.length > 0) {
+          const header = `<agentmemory-rules mandatory="true">
+MANDATORY: The pinned slots below are your operating rules. Follow them from the first message.
+
+`;
+          output.system.push(header + ctx + "\n</agentmemory-rules>");
+          debug("system.transform: pushed wrapped context to output.system");
+        } else {
+          debug("system.transform: no context to push");
+        }
+      } else {
+        debug("system.transform: instructions already present, skipping");
       }
 
       const stash = stashFor(sid);
@@ -641,15 +760,26 @@ export const AgentmemoryCapturePlugin: Plugin = async (ctx) => {
         theme: input.theme ?? null,
         model: input.model ?? null,
         autoupdate: input.autoupdate ?? null,
-        agents: typeof input.agent === "object" && input.agent !== null && !Array.isArray(input.agent)
-          ? Object.keys(input.agent as Record<string, unknown>)
-          : Array.isArray(input.agent) ? input.agent : [],
-        mcp_servers: typeof input.mcp === "object" && input.mcp !== null && !Array.isArray(input.mcp)
-          ? Object.keys(input.mcp as Record<string, unknown>)
-          : Array.isArray(input.mcp) ? input.mcp : [],
-        providers: typeof input.provider === "object" && input.provider !== null && !Array.isArray(input.provider)
-          ? Object.keys(input.provider as Record<string, unknown>)
-          : Array.isArray(input.provider) ? input.provider : [],
+        agents:
+          typeof input.agent === "object" && input.agent !== null && !Array.isArray(input.agent)
+            ? Object.keys(input.agent as Record<string, unknown>)
+            : Array.isArray(input.agent)
+              ? input.agent
+              : [],
+        mcp_servers:
+          typeof input.mcp === "object" && input.mcp !== null && !Array.isArray(input.mcp)
+            ? Object.keys(input.mcp as Record<string, unknown>)
+            : Array.isArray(input.mcp)
+              ? input.mcp
+              : [],
+        providers:
+          typeof input.provider === "object" &&
+          input.provider !== null &&
+          !Array.isArray(input.provider)
+            ? Object.keys(input.provider as Record<string, unknown>)
+            : Array.isArray(input.provider)
+              ? input.provider
+              : [],
         permission: input.permission ?? null,
       };
       if (activeSessionId) {

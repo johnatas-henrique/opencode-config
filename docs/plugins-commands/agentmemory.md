@@ -1,9 +1,62 @@
 # Agentmemory Commands & Tools
 
-**Status:** ⏳ Pending Installation
+**Status:** ✅ Installed — MCP, plugin, e server estão configurados e rodando
+
 **Purpose:** Persistent cross-session memory via 22 OpenCode hooks + 53 MCP tools. Auto-captures decisions, patterns, bugs, and facts.
 **Repository:** https://github.com/rohitg00/agentmemory
 **Documentation:** https://github.com/rohitg00/agentmemory/blob/main/plugin/opencode/README.md
+
+---
+
+## Dashboard Tabs (12 abas confirmadas via Playwriter)
+
+| # | Tab | O que mostra |
+|---|-----|-------------|
+| 1 | **DASHBOARD** | Métricas gerais: compress, summarize, tokens saved, system resources, recent sessions |
+| 2 | **GRAPH** | Knowledge graph visual de conceitos e relações |
+| 3 | **MEMORIES** | Facts salvos via `memory_save` — title, type, strength, version |
+| 4 | **TIMELINE** | Observações de uma sessão específica, filtradas por importância |
+| 5 | **SESSIONS** | Lista de sessões com project, status, obs count |
+| 6 | **LESSONS** | Heuristics portáteis (always/never/prefer/avoid) com confidence scores |
+| 7 | **ACTIONS** | Tarefas pendentes: pending → active → done/blocked |
+| 8 | **CRYSTALS** | Snapshots comprimidos de trabalho completado |
+| 9 | **AUDIT** | Operações de governance (delete, evolve, consolidate) |
+| 10 | **ACTIVITY** | Atividade recente do sistema |
+| 11 | **PROFILE** | Perfil auto-gerado: top concepts, files, conventions, project stats |
+| 12 | **REPLAY** | Import JSONL de sessões passadas |
+
+---
+
+## Curadoria: Onde salvar cada tipo de memória
+
+### O que entra automaticamente no system prompt
+
+| Tipo | Tool | Como injeta |
+|------|------|-------------|
+| **Pinned Slots** | `memory_slot_create(scope="global")` | Sempre presente em todas as sessões |
+| **Project Profile** | Auto-gerado | Análise automática de observations |
+| **Lessons** | `memory_lesson_save` (sem project) | Injetadas em todos os projetos |
+| **Session Summaries** | Auto-gerado | Últimas 10 sessões do projeto |
+
+### O que só é recuperável via busca
+
+| Tipo | Tool | Recuperável via |
+|------|------|-----------------|
+| **Memories** | `memory_save` | `memory_smart_search` / `memory_recall` |
+| **Actions** | `memory_action_create` | Busca manual |
+| **Crystals** | `memory_crystallize` | Busca manual |
+| **Observations** | Capturadas por hooks | Busca manual |
+
+### Mapa de curadoria
+
+| Quer controlar                  | Onde curar no dashboard        | Tool                               |
+| -------------------------------- | ------------------------------ | ---------------------------------- |
+| O que **SEMPRE** aparece no prompt  | Criar **SLOT**                     | `memory_slot_create(scope="global")` |
+| Lições que aparecem no prompt   | Criar **LESSON**                   | `memory_lesson_save` (sem project)   |
+| Memórias recuperáveis via busca | Criar **MEMORY**                   | `memory_save`                        |
+| Perfil do projeto               | Auto-gerado (aba PROFILE)     | —                                |
+| Ações pendentes                 | Criar **ACTION**                   | `memory_action_create`               |
+| Snapshots de sessão             | Criar **CRYSTAL**                  | `memory_crystallize`                 |
 
 ---
 
@@ -22,6 +75,12 @@
 | `memory_patterns(...)` | MCP | Detect recurring patterns across sessions |
 | `memory_consolidate(...)` | MCP | Run the 4-tier memory consolidation pipeline |
 | `memory_governance_delete(...)` | MCP | Delete specific memories (requires confirmation) |
+| `memory_slot_create(...)` | MCP | Create editable memory slot (scope: project/global) |
+| `memory_slot_replace(...)` | MCP | Replace slot content |
+| `memory_slot_list(...)` | MCP | List all slots (pinned + project + global) |
+| `memory_action_create(...)` | MCP | Create a tracked action item |
+| `memory_action_update(...)` | MCP | Update action status/priority |
+| `memory_crystallize(...)` | MCP | Compress completed actions into crystal digest |
 
 ---
 
@@ -38,18 +97,46 @@
 
 These tools are exposed via the agentmemory MCP server and used by the LLM agent automatically or on demand. All tools use the `agentmemory_memory_` prefix.
 
+### Core Memory Tools
+
 | Tool | Purpose |
 |------|---------|
-| `memory_save(content, concepts, type, files)` | Save an insight, decision, or fact. Use when user says "remember this", after discovering a bug, after an architectural decision. |
+| `memory_save(content, concepts, type, files)` | Save an insight, decision, or fact. **NOT injected automatically** — only retrievable via search. |
 | `memory_recall(query)` | Search past observations by keyword. Use when user says "recall", "what did we do", "do you remember". |
 | `memory_smart_search(query, limit)` | Hybrid semantic + keyword search with progressive disclosure. Use for fuzzy/conceptual searches. |
 | `memory_sessions(limit)` | List recent sessions with status and observation counts. Use when user asks about past sessions. |
 | `memory_file_history(filePath)` | Get past observations about specific files across all sessions. Use before editing a file. |
-| `memory_lesson_save(content, concepts)` | Save a lesson learned (what worked, what to avoid). |
+
+### Lessons
+
+| Tool | Purpose |
+|------|---------|
+| `memory_lesson_save(content, context, confidence, project, tags)` | Save a lesson learned. **Always include `context`** (where/when it applies) — the dashboard shows it inline and reinforces when to use it. **Omit `project` for global lessons**. |
 | `memory_lesson_recall(query)` | Search lessons sorted by confidence. Use before making a decision. |
-| `memory_patterns(concept)` | Detect recurring patterns across sessions. Use for project-level trends. |
+
+### Slots (Memory Injection)
+
+| Tool | Purpose |
+|------|---------|
+| `memory_slot_create(label, content, scope, pinned)` | Create editable memory slot. **Use `scope: "global"` for always-present memories.** |
+| `memory_slot_replace(label, content)` | Replace slot content in place. |
+| `memory_slot_list()` | List all slots (pinned + project + global). |
+
+### Actions & Crystals
+
+| Tool | Purpose |
+|------|---------|
+| `memory_action_create(title, description, priority, project)` | Create a tracked action item. |
+| `memory_action_update(actionId, status, result)` | Update action status (pending/active/done/blocked/cancelled). |
+| `memory_crystallize(actionIds, project, sessionId)` | Compress completed actions into crystal digest. |
+
+### Consolidation & Governance
+
+| Tool | Purpose |
+|------|---------|
 | `memory_consolidate(tier, force)` | Run the 4-tier memory consolidation pipeline to compress and organize observations. |
 | `memory_governance_delete(memoryId)` | Delete specific memories. Requires explicit user confirmation. |
+| `memory_patterns(concept)` | Detect recurring patterns across sessions. Use for project-level trends. |
 
 ---
 
@@ -57,18 +144,31 @@ These tools are exposed via the agentmemory MCP server and used by the LLM agent
 
 The plugin uses `experimental.chat.system.transform` to inject context automatically:
 
-**First call each session:**
-1. Agentmemory tool usage instructions (`agentmemory_memory_*`)
-2. Memory context: project profile, recent session summaries, important observations
+**First call each session (via `/session/start` → `mem::context`):**
+1. **Pinned Slots** — slots with `pinned="true"` (global + project)
+2. **Project Profile** — top concepts, key files, conventions (auto-generated from observations)
+3. **Lessons** — global lessons (no project) + project-specific lessons
+4. **Session Summaries** — resumos das últimas 10 sessões
+
+**Injected via `system.transform` hook:**
+5. Agentmemory tool usage instructions (`agentmemory_memory_*`)
 
 **Every file-touching call:**
-3. File-enriched context: past observations about the files being edited
+6. File-enriched context: past observations about the files being edited
 
 ```
-System prompt = [OpenCode instructions] + [agentmemory instructions] + [memory context] + [file enrichment] + [user message]
-                      ^                           ^                        ^                    ^
-                  always                     1x per session          1x per session     every file-touching turn
+System prompt = [OpenCode instructions] + [agentmemory instructions] + [pinned slots] + [profile] + [lessons] + [session summaries] + [file enrichment] + [user message]
+                       ^                           ^                      ^                ^           ^                ^                    ^                ^
+                   always                     1x per session          1x per session   1x per session  1x per session    1x per session     every file-touching turn
 ```
+
+### ⚠️ Importante: `memory_save` NÃO é injetado automaticamente
+
+Memórias salvas via `memory_save` ficam armazenadas mas **não aparecem no system prompt**. Só são recuperadas quando o agent busca explicitamente via `memory_smart_search` ou `memory_recall`.
+
+Para ter memórias **sempre presentes**, use:
+- `memory_slot_create(scope="global")` — para memórias editáveis
+- `memory_lesson_save` (sem project) — para lições globais
 
 ---
 
@@ -116,6 +216,7 @@ OpenCode ──22 hooks──▶ agentmemory-capture.ts ──POST──▶ agen
 - **MCP:** `npx @agentmemory/mcp` — 53 tools for the agent to query
 - **Plugin:** `agentmemory-capture.ts` — 22 native OpenCode hooks
 - **Embeddings:** Local (no external API key)
+- **Viewer:** http://localhost:3113 — dashboard with 12 tabs
 
 ---
 
@@ -126,6 +227,8 @@ OpenCode ──22 hooks──▶ agentmemory-capture.ts ──POST──▶ agen
 | `AGENTMEMORY_URL` | `http://localhost:3111` | agentmemory server URL |
 | `AGENTMEMORY_SECRET` | `""` | Authentication token |
 | `OPENCODE_AGENTMEMORY_DEBUG` | (disabled) | `=1` for debug console logs |
+| `CONSOLIDATION_ENABLED` | `true` | Auto-crystallization at session end |
+| `AGENTMEMORY_REFLECT` | `true` | Auto-reflection (clusters of lessons) |
 
 ---
 
@@ -160,24 +263,6 @@ curl -o ~/.config/opencode/commands/recall.md \
 curl -o ~/.config/opencode/commands/remember.md \
   https://raw.githubusercontent.com/rohitg00/agentmemory/main/plugin/opencode/commands/remember.md
 ```
-
----
-
-## Comparison with magic-context
-
-| Feature | agentmemory | magic-context |
-|---|---|---|
-| Auto-capture | 22 hooks | historian background |
-| System prompt injection | ✅ (zero conversation tokens) | ✅ (via context) |
-| Cross-session memory | ✅ 95.2% R@5 LongMemEval | ✅ SQLite + embeddings |
-| Historian background | ❌ | ✅ |
-| Dreamer overnight | ❌ | ✅ |
-| Sidekick | ❌ | ✅ |
-| ctx-reduce manual | ❌ | ✅ |
-| Portable (other agents) | ✅ (MCP universal) | ❌ (OpenCode only) |
-| External API key required | ❌ (local embeddings) | ❌ |
-| Files in repository | ❌ (all in server) | ⚠️ `.opencode/magic-context/` |
-| MCP tools available | 53 | ~10 |
 
 ---
 
