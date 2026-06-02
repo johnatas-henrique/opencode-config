@@ -1,6 +1,6 @@
 # Simple Memory Plugin
 
-**Status:** ✅ Active
+**Status:** ❌ Not Installed
 **Purpose:** Persistent memory across sessions using structured memories (decision, learning, preference, blocker, context, pattern).
 **Plugin:** `@knikolov/opencode-plugin-simple-memory`
 

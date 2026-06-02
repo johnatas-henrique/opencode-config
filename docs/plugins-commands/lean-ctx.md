@@ -1,6 +1,6 @@
 # Lean-ctx Commands & Tools
 
-**Status:** ✅ Active (MCP server + shell hooks)
+**Status:** ❌ Not Installed (MCP server + shell hooks)
 **Purpose:** Compression for shell output and file reads before they reach the LLM.
 **Documentation:** https://leanctx.com
 

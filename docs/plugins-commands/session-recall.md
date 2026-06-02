@@ -1,6 +1,6 @@
 # Session Recall Plugin
 
-**Status:** ✅ Active
+**Status:** ❌ Not Installed
 **Purpose:** Search and retrieve past OpenCode chat sessions that would otherwise be lost to compaction.
 **Plugin:** `opencode-session-recall` (global plugin)
 

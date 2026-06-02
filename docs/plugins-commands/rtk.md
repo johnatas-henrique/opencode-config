@@ -1,6 +1,6 @@
 # RTK Commands & Tools
 
-**Status:** ✅ Active
+**Status:** 🗑️ Deprecated (replaced by AFT bash rewrite)
 **Purpose:** Token savings via output compression for bash commands (built-in filters for git, npm, cargo, docker, etc.)
 **Documentation:** https://github.com/rtk-ai/rtk
 

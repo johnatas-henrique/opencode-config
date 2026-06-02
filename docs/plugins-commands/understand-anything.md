@@ -1,6 +1,6 @@
 # Understand-Anything Commands & Tools
 
-**Status:** ✅ Active
+**Status:** ❌ Not Installed
 **Purpose:** Interactive knowledge graph for codebase understanding — guided tours, semantic search, business domain mapping, and persona-adaptive dashboard.
 **Repository:** https://github.com/Lum1104/Understand-Anything
 **Documentation:** https://understand-anything.com
