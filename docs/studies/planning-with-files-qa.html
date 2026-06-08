@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>planning-with-files — Q&A de Estudo</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+  h1 { color: #58a6ff; border-bottom: 1px solid #21262d; padding-bottom: 8px; }
+  h2 { color: #f0f6fc; margin-top: 32px; }
+  h3 { color: #79c0ff; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .qa { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .q { font-weight: 600; color: #f0f6fc; font-size: 1.05em; margin-bottom: 8px; }
+  .a { color: #c9d1d9; }
+  .a ul { padding-left: 20px; }
+  .a li { margin: 6px 0; }
+  .tag { display: inline-block; background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 4px; padding: 2px 8px; font-size: 0.85em; margin-right: 4px; }
+  .cmd { background: #21262d; color: #f0f6fc; padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 0.95em; }
+  .warn { background: #3d1f00; border-left: 3px solid #d29922; padding: 8px 12px; border-radius: 4px; margin: 8px 0; font-size: 0.9em; }
+  .info { background: #0c2d6b; border-left: 3px solid #58a6ff; padding: 8px 12px; border-radius: 4px; margin: 8px 0; font-size: 0.9em; }
+  .nav { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+  .nav a { margin-right: 16px; }
+  hr { border: none; border-top: 1px solid #21262d; margin: 24px 0; }
+  .flow-step { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+  .flow-step .step-num { color: #58a6ff; font-weight: 600; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th, td { border: 1px solid #30363d; padding: 8px 12px; text-align: left; }
+  th { background: #161b22; color: #f0f6fc; }
+  pre { background: #161b22; padding: 12px; border-radius: 6px; overflow-x: auto; border: 1px solid #21262d; }
+</style>
+</head>
+<body>
+
+<h1>planning-with-files — Q&A de Estudo</h1>
+<p style="color: #8b949e;">Repositório: <a href="https://github.com/OthmanAdi/planning-with-files">OthmanAdi/planning-with-files</a> · 22.8k stars · MIT · Skill</p>
+
+<div class="nav">
+  <a href="#sobre">O que é</a>
+  <a href="#instalacao">Instalação</a>
+  <a href="#instrucao">Como funciona</a>
+  <a href="#fluxo">Fluxo de uso</a>
+  <a href="#comandos">Comandos</a>
+  <a href="#perguntas">Perguntas</a>
+</div>
+
+<h2 id="sobre">O que é</h2>
+<p>Uma <strong>skill</strong> (não plugin) que ensina o agente a planejar em 3 arquivos durante tasks complexas. Não modifica seu <span class="cmd">opencode.jsonc</span> — é só um arquivo de instrução em <span class="cmd">~/.config/opencode/skills/planning-with-files/SKILL.md</span>.</p>
+
+<p>Baseada nos <strong>Manus Principles</strong> (a empresa de context engineering que o Meta adquiriu por $2B).</p>
+
+<p>Fonte: <a href="https://github.com/OthmanAdi/planning-with-files">README</a></p>
+
+<h2 id="instalacao">Instalação</h2>
+
+<div class="qa">
+  <div class="q">Como instalar?</div>
+  <div class="a">
+    <p><strong>Global (recomendado):</strong></p>
+    <pre>bunx skills add OthmanAdi/planning-with-files --skill planning-with-files -g</pre>
+    <p>Isso coloca a skill em <span class="cmd">~/.config/opencode/skills/planning-with-files/SKILL.md</span></p>
+    <p><strong>Projeto:</strong></p>
+    <pre>bunx skills add OthmanAdi/planning-with-files --skill planning-with-files</pre>
+    <p>Coloca em <span class="cmd">.opencode/skills/planning-with-files/SKILL.md</span></p>
+    <p>Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/opencode.md">docs/opencode.md</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">Como verificar se está instalado?</div>
+  <div class="a">
+    <pre>ls -la ~/.config/opencode/skills/planning-with-files/SKILL.md</pre>
+    <p>Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/opencode.md#verification">docs/opencode.md — Verification</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">Preciso ler a skill manualmente toda vez?</div>
+  <div class="a">
+    <p><strong>No OpenCode, sim</strong> — skills não são carregadas automaticamente como no Claude Code. Você precisa:</p>
+    <pre>cat ~/.config/opencode/skills/planning-with-files/SKILL.md</pre>
+    <p>E depois descrever a task. O agente lê as instruções e segue o padrão.</p>
+    <p><strong>Alternativas:</strong></p>
+    <ul>
+      <li><strong>Com Superpowers plugin</strong>: usa <span class="cmd">use_skill tool</span> com <span class="cmd">skill_name: "planning-with-files"</span> — automático</li>
+      <li><strong>Com oh-my-openagent (61k stars)</strong>: configura no <span class="cmd">oh-my-opencode.json</span> e o plugin carrega automaticamente</li>
+      <li><strong>Com omo-slim</strong>: agentes com <span class="cmd">"skills": ["*"]</span> podem ler a skill, mas não há UI dedicada — você precisa pedir explicitamente</li>
+    </ul>
+    <p>Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/opencode.md">docs/opencode.md</a></p>
+  </div>
+</div>
+
+<h2 id="instrucao">Como funciona — os 3 arquivos</h2>
+
+<p>A skill instrui o agente a criar e manter 3 arquivos durante qualquer task complexa:</p>
+
+<pre>.opencode/plans/&lt;nome-da-task&gt;/
+├── task_plan.md    ← Fases + checkboxes de progresso
+├── findings.md     ← Pesquisas e descobertas
+└── progress.md     ← Log da sessão e resultados de teste</pre>
+
+<h3>task_plan.md</h3>
+<p>Contém: goal, fases (3-7) com checkboxes, decisões importantes, erros encontrados.</p>
+<p><strong>Atualiza quando:</strong> inicia task, completa fase, toma decisão, encontra erro.</p>
+<p>O hook <strong>PreToolUse</strong> (no Claude Code) lê este arquivo antes de toda operação Write/Edit/Bash — força o agente a não desviar do plano.</p>
+
+<h3>findings.md</h3>
+<p>Contém: pesquisas, descobertas, decisões técnicas com rationale, recursos úteis.</p>
+<p><strong>Atualiza quando:</strong> descobre algo novo, após 2 operações de view/browser (2-Action Rule), toma decisão técnica.</p>
+
+<h3>progress.md</h3>
+<p>Contém: log de ações, resultados de teste, erros com timestamp.</p>
+<p><strong>Atualiza quando:</strong> inicia fase, completa fase, roda testes, encontra erro, retoma após pausa.</p>
+
+<table>
+  <tr><th>Arquivo</th><th>Contém</th><th>Criado quando</th></tr>
+  <tr><td>task_plan.md</td><td>Goal, fases, checkboxes, decisões, erros</td><td>Início da task</td></tr>
+  <tr><td>findings.md</td><td>Pesquisa, descobertas, decisões técnicas</td><td>Início da task</td></tr>
+  <tr><td>progress.md</td><td>Log de ações, testes, erros com timestamp</td><td>Início da task</td></tr>
+</table>
+<p>Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/quickstart.md">docs/quickstart.md</a> e <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/workflow.md">docs/workflow.md</a></p>
+
+<h2 id="fluxo">Fluxo de uso real</h2>
+
+<h3>Os 5 passos</h3>
+
+<div class="flow-step">
+  <span class="step-num">Passo 1 — Carregar a skill e descrever a task</span><br>
+  Você lê a skill ou pede pro agente usar o padrão: <em>"Use planning-with-files pra planejar. Quero adicionar autenticação Google."</em>
+</div>
+
+<div class="flow-step">
+  <span class="step-num">Passo 2 — Agente cria os 3 arquivos</span><br>
+  O agente (seguindo a skill) cria <span class="cmd">task_plan.md</span>, <span class="cmd">findings.md</span>, <span class="cmd">progress.md</span> em <span class="cmd">.opencode/plans/auth-google/</span> com fases iniciais baseadas no que você descreveu.
+</div>
+
+<div class="flow-step">
+  <span class="step-num">Passo 3 — Trabalhar e documentar</span><br>
+  Enquanto executa, o agente atualiza os arquivos: pesquisa → findings.md, decisão → findings.md, fase completa → task_plan.md, erro → ambos.
+</div>
+
+<div class="flow-step">
+  <span class="step-num">Passo 4 — Re-ler antes de decisões</span><br>
+  A skill instrui: antes de Write/Edit/Bash, releia task_plan.md. <strong>No OpenCode isso é textual</strong> (agente pode ignorar). No Claude Code, hooks forçam.
+</div>
+
+<div class="flow-step">
+  <span class="step-num">Passo 5 — Completar</span><br>
+  Verifica se todas as fases estão complete. Entrega resultado. Arquivos ficam salvos.
+</div>
+
+<p>Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/quickstart.md">docs/quickstart.md</a></p>
+
+<div class="warn">
+  <strong>Limitação importante:</strong> O plano é gerado ANTES de explorar o código. A qualidade do plano inicial é baseada em suposição. O agente descobre a realidade só depois, durante a execução das fases.
+</div>
+
+<h2 id="comandos">Comandos</h2>
+
+<table>
+  <tr><th>Comando</th><th>O que faz</th><th>Fonte</th></tr>
+  <tr><td><span class="cmd">/plan:status</span></td><td>Mostra progresso do plano atual</td><td>README, changelog v2.15</td></tr>
+  <tr><td><span class="cmd">/plan-goal</span></td><td>Deriva condição de término a partir do goal</td><td>README, changelog v2.38</td></tr>
+  <tr><td><span class="cmd">/plan-loop</span></td><td>Loop de 10 minutos re-lendo planning files</td><td>README, changelog v2.38</td></tr>
+  <tr><td><span class="cmd">/plan-attest</span></td><td>Trava task_plan.md com SHA-256. Hooks rejeitam edição se hash não bater</td><td>README, changelog v2.37</td></tr>
+</table>
+
+<div class="info">
+  <strong>Nota:</strong> Esses comandos são do Claude Code. No OpenCode, os comandos têm suporte parcial via Skills + Custom session storage. Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/opencode.md">docs/opencode.md</a>
+</div>
+
+<h2 id="perguntas">Perguntas respondidas</h2>
+
+<div class="qa">
+  <div class="q">O plano é gerado antes de ler o código existente. Isso não é um problema?</div>
+  <div class="a">
+    <p><strong>Sim, é um problema real.</strong> A skill manda criar o plano no início, antes de explorar. O plano inicial é baseado em suposição.</p>
+    <p>Na prática, o agente cria o plano, depois descobre a realidade ao executar as fases, e atualiza o plano. Mas o plano inicial é fraco.</p>
+    <p>O fluxo ideal seria: explorar → planejar → implementar. A skill faz: planejar → implementar (descobrindo durante).</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">O que é Session Recovery?</div>
+  <div class="a">
+    <p>Quando o contexto enche e você dá <span class="cmd">/clear</span>, o agente perde tudo. Session Recovery é um script da skill que tenta recuperar automaticamente:</p>
+    <ol>
+      <li>Lê o session store do IDE</li>
+      <li>Encontra quando os planning files foram atualizados</li>
+      <li>Extrai a conversa perdida depois da última atualização</li>
+      <li>Mostra catchup report pro agente: "Você estava na fase X, já fez Y, falta Z"</li>
+    </ol>
+    <p><strong>No OpenCode, isso funciona parcialmente.</strong> O session store do OpenCode usa SQLite em <span class="cmd">~/.local/share/opencode/opencode.db</span>. Se o SQLite query falhar, o workaround é ler os 3 arquivos manualmente.</p>
+    <p>Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/opencode.md#known-limitations">docs/opencode.md — Known Limitations</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">O que é a 2-Action Rule?</div>
+  <div class="a">
+    <p>A skill impõe: após cada 2 operações de view/browser/search, o agente <strong>deve</strong> atualizar <span class="cmd">findings.md</span>.</p>
+    <p>Exemplo:</p>
+    <ol>
+      <li>WebSearch → nota resultado (1ª)</li>
+      <li>WebFetch → <strong>precisa atualizar findings.md AGORA</strong> (2ª)</li>
+      <li>Read file → nota resultado</li>
+      <li>Grep search → <strong>precisa atualizar findings.md AGORA</strong></li>
+    </ol>
+    <p>Objetivo: evitar que pesquisa seja perdida quando o contexto enche.</p>
+    <p>Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/workflow.md">docs/workflow.md</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">Esse enforcement funciona no OpenCode?</div>
+  <div class="a">
+    <p><strong>Só textualmente.</strong> A skill diz "faça X", mas o agente pode ignorar. Os hooks (PreToolUse, PostToolUse, Stop) que realmente forçam o comportamento são nativos do <strong>Claude Code</strong>, não do OpenCode.</p>
+    <p>O OpenCode não tem sistema de hooks igual ao Claude Code. A skill funciona, mas <strong>depende do agente seguir instrução</strong> — que, como você bem observou, é frágil.</p>
+    <p>Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/workflow.md">docs/workflow.md</a> (hooks listados apenas para Claude Code)</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">O que é o Hash Attestation (v2.37)?</div>
+  <div class="a">
+    <p>O comando <span class="cmd">/plan-attest</span> gera um SHA-256 do <span class="cmd">task_plan.md</span>. Depois disso, os hooks rejeitam qualquer edição no arquivo se o hash não bater. Impede que o agente ou você modifique o plano sem autorização explícita.</p>
+    <p>Fonte: README, changelog v2.37</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">O que acontece com task_plan.md depois que a task termina?</div>
+  <div class="a">
+    <p><strong>Fica salvo permanentemente</strong> em <span class="cmd">.opencode/plans/&lt;task-name&gt;/</span>. Não é deletado automaticamente.</p>
+    <p>Você pode revisar depois o que foi feito, recuperar contexto pra tasks similares, ou simplesmente ignorar.</p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">Quantos arquivos posso ter?</div>
+  <div class="a">
+    <p>Quantos quiser. A skill suporta <strong>plan isolation</strong> (v2.36) — diretórios separados por task:</p>
+    <pre>.opencode/plans/
+├── auth-google/
+│   ├── task_plan.md
+│   ├── findings.md
+│   └── progress.md
+├── refactor-api/
+│   ├── task_plan.md
+│   ├── findings.md
+│   └── progress.md
+└── fix-login-bug/
+    ├── task_plan.md
+    ├── findings.md
+    └── progress.md</pre>
+    <p>Para trocar o plano ativo: <span class="cmd">./scripts/set-active-plan.sh &lt;nome&gt;</span> (se tiver o repositório clonado). Fonte: <a href="https://github.com/OthmanAdi/planning-with-files/blob/master/docs/quickstart.md">docs/quickstart.md</a></p>
+  </div>
+</div>
+
+<hr>
+
+<p><a href="orchestration-study.html">← Voltar ao estudo de orquestração</a></p>
+
+</body>
+</html>

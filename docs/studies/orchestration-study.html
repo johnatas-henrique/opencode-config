@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Estudo de Orquestração de Agentes — OpenCode</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2333;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --orange: #d47616;
+    --red: #f85149;
+    --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+  h1 { font-size: 2rem; margin-bottom: 4px; }
+  h1 span { color: var(--accent); }
+  .subtitle { color: var(--text2); font-size: 1rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+  h2 { font-size: 1.4rem; margin: 40px 0 16px; color: var(--accent); border-left: 3px solid var(--accent); padding-left: 12px; }
+  h3 { font-size: 1.1rem; margin: 24px 0 10px; color: var(--yellow); }
+  h4 { font-size: 1rem; margin: 18px 0 8px; color: var(--text); }
+  p { margin-bottom: 12px; color: var(--text2); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .summary-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .summary-box p { margin-bottom: 6px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: .82rem; }
+  th, td { padding: 10px 12px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+  th { background: var(--surface); font-weight: 600; white-space: nowrap; color: var(--text); }
+  td { background: var(--surface); }
+  tr:hover td { background: var(--surface2); }
+  .stars { color: var(--yellow); font-size: .78rem; white-space: nowrap; }
+  .tag { display: inline-block; font-size: .7rem; padding: 2px 8px; border-radius: 10px; margin-right: 4px; font-weight: 500; }
+  .tag-temp { background: #1a3a4a; color: #58a6ff; }
+  .tag-orch { background: #3a1a4a; color: #bc8cff; }
+  .tag-spec { background: #3a4a1a; color: #3fb950; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: .72rem; font-weight: 600; }
+  .badge-yes { background: #1a3a2a; color: #3fb950; }
+  .badge-no { background: #3a1a1a; color: #f85149; }
+  .badge-partial { background: #3a3a1a; color: #d29922; }
+  .badge-plugin { background: #1a2a3a; color: #58a6ff; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 16px; margin: 20px 0; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .card h4 { margin-top: 0; font-size: 1rem; }
+  .card h4 a { color: var(--accent); }
+  .card .meta { font-size: .78rem; color: var(--text2); margin-bottom: 8px; }
+  .card p { font-size: .85rem; color: var(--text2); margin-bottom: 8px; }
+  .card ul { font-size: .82rem; color: var(--text2); padding-left: 16px; margin-bottom: 8px; }
+  .card li { margin-bottom: 3px; }
+
+  .matrix-table { font-size: .75rem; }
+  .matrix-table th { white-space: nowrap; font-size: .7rem; }
+  .matrix-table td { text-align: center; }
+  .cell-yes { color: var(--green); }
+  .cell-no { color: var(--red); }
+  .cell-partial { color: var(--yellow); }
+  .cell-star { color: var(--yellow); }
+  .cell-rec { font-weight: 600; }
+
+  .highlight { background: #1a2a1a; border-left: 3px solid var(--green); padding: 12px 16px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+  .warning { background: #2a1a1a; border-left: 3px solid var(--red); padding: 12px 16px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+  .info { background: #1a1a2a; border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+
+  .progress-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin: 4px 0; }
+  .progress-fill { height: 100%; }
+  .fill-full { background: var(--green); }
+  .fill-high { background: var(--yellow); }
+  .fill-mid { background: var(--orange); }
+  .fill-low { background: var(--red); }
+
+  .side-by-side { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) { .side-by-side { grid-template-columns: 1fr; } }
+  .section-nav { position: sticky; top: 0; background: var(--bg); padding: 12px 0; z-index: 10; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+  .section-nav a { margin-right: 16px; font-size: .85rem; }
+  pre { background: #0d1117; border: 1px solid var(--border); border-radius: 6px; padding: 12px; overflow-x: auto; font-size: .8rem; color: var(--text); margin: 12px 0; }
+  code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .8rem; background: var(--surface2); padding: 2px 6px; border-radius: 3px; }
+  .verdict { font-size: 1.1rem; font-weight: 700; padding: 16px 20px; border-radius: 8px; margin: 20px 0; text-align: center; }
+  .verdict-build { background: #1a2a1a; border: 1px solid var(--green); color: var(--green); }
+  .verdict-adopt { background: #1a2a3a; border: 1px solid var(--accent); color: var(--accent); }
+  .verdict-pending { background: #2a2a1a; border: 1px solid var(--yellow); color: var(--yellow); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🧠 <span>Estudo de Orquestração</span> de Agentes</h1>
+<p class="subtitle">23 candidatos analisados — template configs, multi-agent orchestrators, spec-first ferramentas. Decidir: construir próprio sistema ou adotar existente?</p>
+
+<div class="section-nav">
+  <a href="#resumo">Resumo</a>
+  <a href="#setup">Seu Setup</a>
+  <a href="#criterios">Critérios</a>
+  <a href="#tabela">Tabela</a>
+  <a href="#profundo">Análise</a>
+  <a href="#matrix">Matrix</a>
+  <a href="#gaps">Gaps</a>
+  <a href="#decisao">Decisão</a>
+</div>
+
+<!-- ============ RESUMO ============ -->
+<h2 id="resumo">📋 Resumo Executivo</h2>
+
+<div class="summary-box">
+<p><strong>Situação:</strong> Você tem um setup funcional (AFT + DCP + mnemory + hooks) com 6 plugins, usando DeepSeek V4 Flash e Mimo V2.5 (modelos baratos). Trabalha linearmente — 1 agente faz tudo.</p>
+<p><strong>Objetivo:</strong> Adicionar orquestração multi-agente para melhorar qualidade sem explodir custo. Precisa de <strong>enforcement real</strong> (permissão/hooks, não prompt) e <strong>controle de custo</strong>.</p>
+<p><strong>23 candidatos</strong> em 3 categorias: Template Configs (5), Multi-Agent Orchestrators (12), Spec-First/Planejamento (4) + 2 plugins de paralelismo.</p>
+</div>
+
+<!-- ============ SETUP ATUAL ============ -->
+<h2 id="setup">🔧 Seu Setup Atual</h2>
+
+<table>
+<tr><th>Componente</th><th>O que faz</th><th>Limitação pra orquestração</th></tr>
+<tr><td><strong>AFT</strong> (@cortexkit/aft)</td><td>Sensorimotor: edit, search, outline, callgraph, bash compression</td><td>Só tools, não faz orchestration nem routing</td></tr>
+<tr><td><strong>DCP</strong> (@tarquinen/opencode-dcp)</td><td>Compressão de contexto, dedup, purge errors</td><td>Não faz orchestration — só gerencia contexto</td></tr>
+<tr><td><strong>mnemory</strong> (@fpytloun/opencode-mnemory)</td><td>Memória persistente cross-session</td><td>Não faz orchestration — só memória</td></tr>
+<tr><td><strong>opencode-hooks</strong> (seu plugin)</td><td>28 eventos bridge Claude hooks → OpenCode</td><td>Pode ser base para enforcement hooks, mas não tem routing de agentes</td></tr>
+<tr><td><strong>opencode-md-table-formatter</strong></td><td>Formata tabelas markdown</td><td>Irrelevante pra orquestração</td></tr>
+<tr><td><strong>opencode-handoff</strong></td><td>Handoff entre sessões</td><td>Complementar, não faz orquestração</td></tr>
+</table>
+
+<div class="highlight">
+<strong>✅ O que você já tem que NENHUM candidato precisa cobrir:</strong> compressão de contexto (DCP), memória persistente (mnemory), tools de código (AFT), hooks de script (seu plugin). Qualquer candidato que faça essas coisas está sobrepondo.
+</div>
+
+<div class="warning">
+<strong>❌ O que você NÃO tem:</strong> routing de tarefas entre agentes, enforcement por permissão, pipeline multi-passo, paralelismo, approval gates, persistência de plano/estado de sessão.
+</div>
+
+<!-- ============ CRITERIOS ============ -->
+<h2 id="criterios">🎯 Critérios de Comparação</h2>
+
+<div class="summary-box">
+<p><strong>Refinados com base nas suas preferências:</strong></p>
+<ul style="color: var(--text2); padding-left: 20px; margin-top: 8px;">
+  <li><strong>Enforcement:</strong> Permissão ou hooks — prompt NÃO é enforcement (aprendizado com mnemory/DCP)</li>
+  <li><strong>Routing de modelos:</strong> Capacidade de usar modelo caro (Pro/Opus) pra planejamento/revisão e barato (Flash/Mimo) pra execução</li>
+  <li><strong>Pipeline:</strong> Linear, fan-out, async, loops — com estimativa de custo×velocidade</li>
+  <li><strong>Persistência:</strong> Estado cross-session (mnemory já cobre, mas plano/tracks podem ser adicionais)</li>
+  <li><strong>Integração com seu setup:</strong> Conflita com AFT/DCP/memory/hooks?</li>
+  <li><strong>Maturidade:</strong> Stars, releases, contribuidores, licença</li>
+  <li><strong>Custo controlável:</strong> Dá pra limitar paralelismo?</li>
+  <li><strong>Resiliência:</strong> Retry, fallback, recovery?</li>
+  <li><strong>Flexibilidade:</strong> Dá pra trocar partes sem quebrar o todo?</li>
+</ul>
+</div>
+
+<h3>Pipeline: Custo × Velocidade (estimativas)</h3>
+<table>
+<tr><th>Pipeline</th><th>Velocidade (vs linear)</th><th>Custo tokens (vs linear)</th><th>Melhor para</th></tr>
+<tr><td><strong>Linear</strong> (seu hoje)</td><td>1x (baseline)</td><td>1x (baseline)</td><td>Tudo que você faz hoje</td></tr>
+<tr><td><strong>Linear + approval gates</strong></td><td>-10% (pausa pra aprovação)</td><td>+5-10%</td><td>Tarefa crítica que precisa revisão humana</td></tr>
+<tr><td><strong>Fan-out review</strong> (3 reviewers paralelos)</td><td>+30-50% no review</td><td>+50-100% (3x o custo de review)</td><td>PR, mudança cross-file, segurança</td></tr>
+<tr><td><strong>Async delegation</strong> (background)</td><td>+20-40% (não bloqueia)</td><td>+10-30%</td><td>Pesquisa, docs, explorar codebase em paralelo</td></tr>
+<tr><td><strong>Team Mode</strong> (8 agents paralelos)</td><td>+200% (muito mais entrega)</td><td>+300-500%</td><td>Refactor grande, feature complexa, homologação</td></tr>
+<tr><td><strong>Loops (ralph/ultrawork)</strong></td><td>+100-300% (não para até passar)</td><td>+200-500%</td><td>Qualidade máxima, bugs difíceis</td></tr>
+</table>
+
+<div class="info">
+<strong>Sugestão:</strong> Fan-out review é o melhor custo-benefício — paraleliza só a revisão (que pode usar Flash), acelera o ciclo sem explodir custo. Async delegation pra pesquisa/literatura é o segundo melhor.
+</div>
+
+<!-- ============ TABELA COMPLETA ============ -->
+<h2 id="tabela">📊 Tabela de Candidatos (23)</h2>
+
+<p style="margin-bottom: 8px;">
+  <span class="tag tag-temp">Template Config</span>
+  <span class="tag tag-orch">Multi-Agent Orchestrator</span>
+  <span class="tag tag-spec">Spec-First / Planejamento</span>
+</p>
+
+<table>
+<thead>
+<tr>
+  <th>#</th>
+  <th>Repo</th>
+  <th>Stars</th>
+  <th>Tipo</th>
+  <th>Agentes</th>
+  <th>Enforcement</th>
+  <th>Pipeline</th>
+  <th>Custo</th>
+</tr>
+</thead>
+<tbody id="table-body"></tbody>
+</table>
+
+<script>
+const data = [
+  // === TEMPLATE CONFIGS ===
+  {n:"grojeda",u:"https://github.com/grojeda/opencode-config",s:22,t:"Template Config",a:9,e:"Approval gates + prompt",p:"Linear (research→plan→review→impl→verify)",c:"Médio (5 modelos diferentes)"},
+  {n:"fmflurry",u:"https://github.com/fmflurry/settings-opencode",s:115,t:"Template Config",a:12,e:"Permissão (conductor sem write/edit) + hooks",p:"Linear com fan-out (planner→reviewers)",c:"Alto (8+ modelos, Opus+Sonnet+Haiku)"},
+  {n:"small-orchestrator",u:"https://github.com/tempont/small-opencode-orchestrator",s:28,t:"Template Config",a:10,e:"Prompt + permission granular",p:"Linear (plan→approval→impl→review)",c:"Baixo-Médio (2 tiers: Pro+Flash)"},
+  {n:"hossainemruz dotfiles",u:"https://github.com/hossainemruz/dotfiles",s:50,t:"Template Config",a:8,e:"Permission granular (explore edit:deny)",p:"Fan-out (parallel-review 3 agents)",c:"Médio (Pro+Flash+GPT-5.5)"},
+  {n:"supersimple",u:"https://github.com/gc-victor/supersimple",s:31,t:"Template Config",a:10,e:"Prompt + permission",p:"Conductor tracks (setup→plan→exec→update)",c:"Médio (5 modelos diversos)"},
+  // === MULTI-AGENT ORCHESTRATORS ===
+  {n:"ECC",u:"https://github.com/affaan-m/ECC",s:"210k",t:"Orchestrator",a:"12 (OpenCode)",e:"Hooks (11 eventos) + commands",p:"Multi (skills, commands, quality gates)",c:"Altíssimo (210k stars, ecossistema completo)"},
+  {n:"oh-my-openagent",u:"https://github.com/code-yeongyu/oh-my-openagent",s:"61.4k",t:"Orchestrator",a:"11 + Team Mode 8",e:"Hooks (54+) + hash-anchored edits",p:"Ultrawork (loops), Team Mode (paralelo), Ralph",c:"Alto (AGPL-3.0, +300% tokens em Team Mode)"},
+  {n:"oh-my-opencode-slim",u:"https://github.com/alvinunreal/oh-my-opencode-slim",s:"4.8k",t:"Orchestrator",a:"7+1",e:"Delegation rules + background agents",p:"Background Orchestration (V2 Beta)",c:"Médio-Alto (MIT, slim do oh-my-openagent)"},
+  {n:"opencode-orchestrator",u:"https://github.com/agnusdei1207/opencode-orchestrator",s:164,t:"Orchestrator",a:4,e:"MVCC state sync + topological hooks",p:"Hub-and-spoke + work-stealing queues",c:"Médio (MIT, 278 releases)"},
+  {n:"opencode-dux",u:"https://github.com/bakhtiar-personal-work/opencode-dux",s:0,t:"Orchestrator",a:8,e:"Approval gate (fixer requer autorização) + routing",p:"Orchestrator→specialists (fire-forget ou blocking)",c:"Médio (skill discovery, handoff artifacts)"},
+  {n:"opencode-senate",u:"https://github.com/yadav-prakhar/opencode-senate",s:0,t:"Orchestrator",a:19,e:"Plugin + 39 skills + execution modes",p:"5 modos: ralph, autopilot, ultrawork, team, ultraqa",c:"Médio-Alto (plugin, 19 agents)"},
+  {n:"opencode-ensemble",u:"https://github.com/hueyexe/opencode-ensemble",s:35,t:"Orchestrator",a:"N (dinâmico)",e:"Worktree isolation + stall detection",p:"Team lifecycle (create→spawn→shutdown→merge)",c:"Médio (MIT, worktree isolado)"},
+  {n:"opencode-subagents",u:"https://github.com/Rozariozaro/opencode-subagents",s:0,t:"Orchestrator",a:7,e:"Permission matrix por agente (forte)",p:"2-stage (architect→conductor) + 5-phase",c:"Médio (permission isolation rigorosa)"},
+  {n:"opencode-codex-orch",u:"https://github.com/allOwO/opencode-codex-orch",s:0,t:"Orchestrator",a:7,e:"Hook lifecycle (13 hooks)",p:"Multi-model routing (GPT/Kimi/Gemini/GLM)",c:"Médio (fork oh-my-openagent sem Claude)"},
+  {n:"oowl",u:"https://github.com/jimzandueta/oowl",s:0,t:"Orchestrator",a:23,e:"Approval gates + file locks",p:"Design→approval→plan→review→builder waves",c:"Baixo (MIT, 0 stars, novo)"},
+  {n:"open-orchestra",u:"https://github.com/0xSero/open-orchestra",s:0,t:"Orchestrator",a:"6 profiles",e:"Session isolation + Neo4j memory",p:"Workflows (multi-step) + hub-and-spoke",c:"Médio (hub-and-spoke com workers)"},
+  {n:"Emperor/Commander",u:"https://github.com/jjzhang166/Emperor",s:0,t:"Orchestrator",a:"4 (Commander)",e:"Adaptive complexity classification",p:"Lead→Coder→Tester→Reviewer (fix loop)",c:"Baixo-Médio (Commander é leve)"},
+  // === SPEC-FIRST / PLANEJAMENTO ===
+  {n:"gentle-ai",u:"https://github.com/Gentleman-Programming/gentle-ai",s:0,t:"Spec-First",a:"N (9 fases)",e:"SDD pipeline (pago)",p:"9 fases lineares com modelo diferente por fase",c:"Alto ($10-15/mês extra)"},
+  {n:"planning-with-files",u:"https://github.com/OthmanAdi/planning-with-files",s:"22.8k",t:"Spec-First",a:1,e:"Hooks (beforeTool, stop, afterTool)",p:"3-file pattern + session recovery",c:"Baixo (skill, 22.8k stars, MIT)"},
+  {n:"OpenSpec",u:"https://github.com/Fission-AI/OpenSpec",s:"53.3k",t:"Spec-First",a:1,e:"7 opsx commands (CLI)",p:"CLI agnóstico, community schemas",c:"Baixo (CLI, 53.3k stars, MIT)"},
+  {n:"spec-kit",u:"https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration",s:25,t:"Spec-First",a:"N (multi)",e:"Gate system + validation scripts",p:"Deep Loop (research→review→context→council)",c:"Alto (25 stars, overlap massivo)"},
+  {n:"orca2",u:"https://github.com/whpthomas/opencode-plugin-orca2",s:0,t:"Spec-First",a:1,e:"TOML workflows + retry logic",p:"RPI, GAN loops, multi-file iteration",c:"Baixo (TOML-defined, file-based state)"},
+];
+const tbody = document.getElementById('table-body');
+data.forEach((r, i) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${i+1}</td>
+    <td><a href="${r.u}" target="_blank">${r.n}</a></td>
+    <td class="stars">${r.s}</td>
+    <td>${r.t}</td>
+    <td>${r.a}</td>
+    <td style="font-size:.78rem">${r.e}</td>
+    <td style="font-size:.78rem">${r.p}</td>
+    <td style="font-size:.78rem">${r.c}</td>`;
+  tbody.appendChild(tr);
+});
+</script>
+
+<!-- ============ ANALISE PROFUNDA ============ -->
+<h2 id="profundo">🔍 Análise Profunda por Candidato</h2>
+
+<h3>Template Configs</h3>
+
+<div class="card-grid">
+
+<div class="card">
+<h4><a href="https://github.com/grojeda/opencode-config">grojeda/opencode-config</a> <span class="stars">⭐22</span></h4>
+<div class="meta">1 contribuidor · 9 agents · TypeScript source-of-truth</div>
+<p><strong>Pipeline:</strong> Linear com 4 lanes (quick/medium/full/debug). Cada lane tem gates diferentes.</p>
+<p><strong>Enforcement:</strong> Approval gates [y/N/edit] antes de começar a implementar. Orchestrator só tem read+question — delega todo trabalho.</p>
+<p><strong>Modelos:</strong> 5 modelos diferentes (qwen3.6, deepseek-flash, gpt-5.5, glm-5.1, kimi-k2.6). Routing manual por agente.</p>
+<p><strong>Diferencial:</strong> Prompt source-of-truth em TypeScript → gera markdown. Lane system adaptável à complexidade.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Lane system</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/fmflurry/settings-opencode">fmflurry/settings-opencode</a> <span class="stars">⭐115</span></h4>
+<div class="meta">2 contribuidores · 12 agents · Continuous learning v2</div>
+<p><strong>Pipeline:</strong> Build agent principal → comandos delegam pra subagentes especializados.</p>
+<p><strong>Enforcement:</strong> O mais forte dos templates. Conductor (build) tem write/edit <strong>negados na permissão</strong> + hook que bloqueia bash redirects. Toda edição passa por subagente.</p>
+<p><strong>Modelos:</strong> 8+ modelos (env-driven). Opus pra plan, Sonnet pra build, Haiku pra mini.</p>
+<p><strong>Diferencial:</strong> Homunculus/continuous learning v2 — observações de sessões viram instincts injetados no system prompt. Mirror Claude Code.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Permissão + hooks</span> <span class="badge badge-yes">Continuous learning</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/tempont/small-opencode-orchestrator">small-orchestrator</a> <span class="stars">⭐28</span></h4>
+<div class="meta">1 contribuidor · 10 agents · 2 tiers de modelo</div>
+<p><strong>Pipeline:</strong> Orchestrator (Pro) planeja → plan-runner drafta → aprova → executor (Flash) implementa → 5 reviewers.</p>
+<p><strong>Enforcement:</strong> Orchestrator sem write (por instrução, não por permissão). Reviewers multi-perspectiva (código, docs, segurança, testes, spec).</p>
+<p><strong>Modelos:</strong> DeepSeek V4 Pro (orquestração/planejamento) + Flash (execução/revisão) — <strong>mesmos seus modelos</strong>.</p>
+<p><strong>Diferencial:</strong> Template que mais se aproxima do seu setup atual (Pro+Flash). Plugin plan-post-approval.ts.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Seus modelos</span> <span class="badge badge-yes">2 tiers</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/hossainemruz/dotfiles">dotfiles (hossainemruz)</a> <span class="stars">⭐50</span></h4>
+<div class="meta">1 contribuidor · 8 agents · Neovim embedding</div>
+<p><strong>Pipeline:</strong> Plan → task artifacts (.agent-task + ~/agent-vault/) → parallel-review fan-out (3 agents simultâneos).</p>
+<p><strong>Enforcement:</strong> Permission granular (explorer edit:deny, executor task:deny). Security deny list triplicada (read+edit+bash).</p>
+<p><strong>Modelos:</strong> DeepSeek V4 Pro+Flash (seus) + GPT-5.5 pra plan+expert-review.</p>
+<p><strong>Diferencial:</strong> Task artifact workflow externalizado (não usa sessão nativa). Parallel-review fan-out. Claude mirror.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Parallel review</span> <span class="badge badge-yes">Task artifacts</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/gc-victor/supersimple">supersimple</a> <span class="stars">⭐31</span></h4>
+<div class="meta">1 contribuidor · 10 agents · Conductor tracks</div>
+<p><strong>Pipeline:</strong> Conductor workflow (setup→track-planner→orchestrator→track-updater). Tracks persistentes em .conductor/.</p>
+<p><strong>Enforcement:</strong> Desabilita general+explore built-in pra forçar roteamento limpo. Cada agente aponta pra model em arquivos separados (models/ dir).</p>
+<p><strong>Modelos:</strong> 5 modelos diferentes (V4 Pro+Flash, kimi-k2.6, minimax-m2.7, qwen3.6-plus).</p>
+<p><strong>Diferencial:</strong> Models/ dir pattern. Conductor com track-based planning. Deslop skill (remove filler AI noise).</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Tracks</span> <span class="badge badge-yes">Models/ dir</span></p>
+</div>
+
+</div>
+
+<h3>Multi-Agent Orchestrators</h3>
+
+<div class="card-grid">
+
+<div class="card">
+<h4><a href="https://github.com/affaan-m/ECC">ECC</a> <span class="stars">⭐210k</span></h4>
+<div class="meta">135+ contribuidores · 12 agents (OpenCode) · MIT</div>
+<p><strong>Pipeline:</strong> Multi — 35 commands, 37 skills, 11 event hooks, quality gate, agent shield, continuous learning v2.</p>
+<p><strong>Enforcement:</strong> Hook mapping Claude→OpenCode (PreToolUse→tool.execute.before, etc). Quality gate bloqueia merge.</p>
+<p><strong>Setup:</strong> Ecossistema completo — mais que um plugin. O OpenCode é 1 de 7 harnesses suportados.</p>
+<p><strong>Overlap com seu setup:</strong> Alto — sobrepõe hooks (seu plugin), skills (addyosmani), commands.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">210k stars</span> <span class="badge badge-yes">Ecossistema</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/code-yeongyu/oh-my-openagent">oh-my-openagent</a> <span class="stars">⭐61.4k</span></h4>
+<div class="meta">270 contribuidores · 194 releases · AGPL-3.0</div>
+<p><strong>Pipeline:</strong> Ultrawork loop (não para até done). Team Mode v4.0 (1 lead + 8 paralelos). Ralph loop. Background agents.</p>
+<p><strong>Enforcement:</strong> 54+ hooks, hash-anchored edits (LINE#ID), todo enforcer, discipline agents (Sisyphus).</p>
+<p><strong>Setup:</strong> Plugin npm. 11 agents (Sisyphus, Hephaestus, Prometheus, etc). Built-in MCPs (Exa, Context7, Grep).</p>
+<p><strong>Overlap:</strong> Hash edits vs AFT edit, hooks vs seu plugin, Exa/Context7 vc já tem via MCP.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Team Mode</span> <span class="badge badge-yes">Hash edits</span></p>
+<div class="warning">⚠️ AGPL-3.0 — restritiva pra uso comercial. Anthropic bloqueou OpenCode por causa deste plugin.</div>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/alvinunreal/oh-my-opencode-slim">oh-my-opencode-slim</a> <span class="stars">⭐4.8k</span></h4>
+<div class="meta">60 contribuidores · 40 releases · MIT</div>
+<p><strong>Pipeline:</strong> Pantheon de 7+1 agents (Orchestrator, Explorer, Oracle, Council, Librarian, Designer, Fixer + Observer). Background Orchestration V2 Beta.</p>
+<p><strong>Enforcement:</strong> Delegation rules no orchestrator prompt. Routing automático por especialidade.</p>
+<p><strong>Setup:</strong> Plugin npm. Presets (openai, opencode-go). Config via oh-my-opencode-slim.json.</p>
+<p><strong>Diferencial:</strong> Slim vs full oh-my-openagent — menos agents, mais focado. Background Orchestration é inovador.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">MIT</span> <span class="badge badge-yes">Background orchestration</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/agnusdei1207/opencode-orchestrator">opencode-orchestrator</a> <span class="stars">⭐164</span></h4>
+<div class="meta">2 contribuidores · 278 releases · MIT</div>
+<p><strong>Pipeline:</strong> Hub-and-spoke com work-stealing queues. Commander→Planner→Worker→Reviewer.</p>
+<p><strong>Enforcement:</strong> MVCC state sync (concurrent TODO sem race). Topological sort hooks (early/normal/late phases).</p>
+<p><strong>Setup:</strong> Plugin npm. Hierarchical memory (4 tiers). Adaptive intelligence loop (stagnation detection).</p>
+<p><strong>Overlap:</strong> Hierarchical memory vs mnemory. 4 agents vs 11 de outros.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">MVCC sync</span> <span class="badge badge-yes">Work-stealing</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/bakhtiar-personal-work/opencode-dux">opencode-dux</a></h4>
+<div class="meta">Plugin · 8 agents · Routing automático</div>
+<p><strong>Pipeline:</strong> Orchestrator descobre skills+MCPs antes de delegar → routing automático por tipo de tarefa. Fire-forget ou blocking.</p>
+<p><strong>Enforcement:</strong> Approval gate explícito pra fixer — implementer não age sem autorização. Delegate runtime rejeita auth faltando.</p>
+<p><strong>Setup:</strong> Plugin npm. Handoff artifacts, session management, context pressure monitoring.</p>
+<p><strong>Diferencial:</strong> Skill/MCP discovery automático. Handoff artifacts compactos (só seções críticas).</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Skill discovery</span> <span class="badge badge-yes">Handoff artifacts</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/yadav-prakhar/opencode-senate">opencode-senate</a></h4>
+<div class="meta">Plugin · 19 agents · 5 execution modes</div>
+<p><strong>Pipeline:</strong> 5 modos: ralph (persistente), autopilot (autônomo), ultrawork (máximo paralelo), team (N agents coordenados), ultraqa (QA looping).</p>
+<p><strong>Enforcement:</strong> Plugin de hooks + 39 skills. State persistence (.senate/ directory). Model routing automático.</p>
+<p><strong>Setup:</strong> Plugin npm. Commands (deep-interview, ralplan, plan). Magic keywords ativam modos.</p>
+<p><strong>Diferencial:</strong> 19 agents (mais que qualquer outro). 5 execution modes com keywords naturais.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">19 agents</span> <span class="badge badge-yes">5 modes</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/hueyexe/opencode-ensemble">opencode-ensemble</a> <span class="stars">⭐35</span></h4>
+<div class="meta">1 contribuidor · 23 releases · MIT</div>
+<p><strong>Pipeline:</strong> Team lifecycle — create team, spawn teammates em worktrees isolados, shutdown, merge, cleanup.</p>
+<p><strong>Enforcement:</strong> Git worktree isolation (cada agente em branch própria). Stall detection (baixo output tokens). Rate limiting.</p>
+<p><strong>Setup:</strong> Plugin npm. 14 tools (team_create, team_spawn, team_message, team_tasks_add, etc). Model pool configurável.</p>
+<p><strong>Diferencial:</strong> Times dinâmicos com worktree isolation. Plan approval mode. Dashboard opcional (port 4747).</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Worktree isolation</span> <span class="badge badge-yes">Team lifecycle</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/Rozariozaro/opencode-subagents">opencode-subagents</a></h4>
+<div class="meta">Template · 7 agents · Permission matrix forte</div>
+<p><strong>Pipeline:</strong> 2-stage: Architect (plan) → Conductor (exec). 5-phase impl: plan intake → implementation → escalation → audit → report.</p>
+<p><strong>Enforcement:</strong> <strong>O mais rigoroso.</strong> Permission matrix por agente com 6 dimensões (read, edit, bash, delegate, web, skills). Architect e Conductor sem edit, sem bash destrutivo.</p>
+<p><strong>Setup:</strong> Template config, não plugin. Architect (Opus, 0.1 temp), Conductor (Sonnet), Builder (Sonnet, 0.2), Auditor (Opus).</p>
+<p><strong>Diferencial:</strong> Permission matrix — cada agente tem o MÍNIMO necessário. Auditor obrigatório ao final.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Permission matrix</span> <span class="badge badge-yes">2-stage</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/jjzhang166/Emperor">Commander (Emperor)</a></h4>
+<div class="meta">Plugin · 4 agents · Adaptive complexity</div>
+<p><strong>Pipeline:</strong> Lead classifica complexidade (trivial/simple/standard/complex) → roteia Coder→Tester→Reviewer. Fix loop (max 3 tentativas).</p>
+<p><strong>Enforcement:</strong> Adaptive complexity — classificação automática da tarefa define pipeline. Fix loop com contexto acumulado.</p>
+<p><strong>Setup:</strong> Plugin npm (Commander). 4 agents, modelo configurável por agente.</p>
+<p><strong>Diferencial:</strong> Adaptive complexity + Coder↔Tester fix loop. É o mais leve dos orchestrators.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Adaptive complexity</span> <span class="badge badge-yes">Fix loop</span></p>
+</div>
+
+</div>
+
+<h3>Spec-First & Planejamento</h3>
+
+<div class="card-grid">
+
+<div class="card">
+<h4><a href="https://github.com/OthmanAdi/planning-with-files">planning-with-files</a> <span class="stars">⭐22.8k</span></h4>
+<div class="meta">66 releases · MIT · 40+ agentes suportados</div>
+<p><strong>Pipeline:</strong> 3-file pattern (task_plan.md + findings.md + progress.md) + session recovery automática.</p>
+<p><strong>Enforcement:</strong> Hooks: beforeTool (re-lê plano), stop (verifica conclusão), afterTool (salva findings a cada 2 operações).</p>
+<p><strong>Benchmark:</strong> 96.7% pass rate com skill vs 6.7% sem. Blind A/B 3/3 wins.</p>
+<p><strong>Diferencial:</strong> Único com benchmark real. Session recovery pós-/clear. Manus Principles (Meta pagou $2B).</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">Benchmark 96.7%</span> <span class="badge badge-yes">Session recovery</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/Fission-AI/OpenSpec">OpenSpec</a> <span class="stars">⭐53.3k</span></h4>
+<div class="meta">38 releases · MIT · CLI agnóstico</div>
+<p><strong>Pipeline:</strong> 7 opsx commands (propose, new, continue, ff, verify, bulk-archive, onboard). Community schemas.</p>
+<p><strong>Enforcement:</strong> /opsx:verify valida implementação vs spec. Community ecosystem de schemas.</p>
+<p><strong>Diferencial:</strong> CLI standalone — não é plugin. 20+ AI assistants. Spec layer leve.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">53.3k stars</span> <span class="badge badge-yes">CLI agnóstico</span></p>
+</div>
+
+<div class="card">
+<h4><a href="https://github.com/whpthomas/opencode-plugin-orca2">orca2</a></h4>
+<div class="meta">Plugin · TOML-defined workflows · File-based state</div>
+<p><strong>Pipeline:</strong> RPI (Research→Plan→Implement), QRSPI, GAN loops (Generate→Validate→Retry). TOML define workflows.</p>
+<p><strong>Enforcement:</strong> Retry logic (max 3 por step), HITL (halt if retry exceeded), file-based state (persiste restart).</p>
+<p><strong>Diferencial:</strong> Único que usa TOML pra definir workflow. File-based state management. GAN loops.</p>
+<p><strong>X fator:</strong> <span class="badge badge-yes">TOML workflows</span> <span class="badge badge-yes">GAN loops</span></p>
+</div>
+
+</div>
+
+<!-- ============ MATRIX ============ -->
+<h2 id="matrix">📈 Matriz de Comparação</h2>
+
+<p>Legenda: ✅ = tem, ⚡ = parcial/com plugins, ❌ = não tem</p>
+
+<table class="matrix-table">
+<thead>
+<tr>
+  <th>Candidato</th>
+  <th>Enforcement<br/>por permissão</th>
+  <th>Enforcement<br/>por hooks</th>
+  <th>Routing de<br/>modelos</th>
+  <th>Fan-out<br/>review</th>
+  <th>Async<br/>delegation</th>
+  <th>Persistência<br/>de plano</th>
+  <th>Recovery<br/>de sessão</th>
+  <th>Controle<br/>de custo</th>
+  <th>Integração<br/>com seu setup</th>
+  <th>Maturidade</th>
+</tr>
+</thead>
+<tbody>
+<script>
+const matrix = [
+  // Nome, perm, hooks, routing, fanout, async, persist, recovery, custo, integracao, maturidade
+  ["grojeda",       "⚡", "❌", "✅", "❌", "❌", "❌", "❌", "✅", "✅", "⭐22"],
+  ["fmflurry",      "✅", "✅", "✅", "⚡", "❌", "❌", "❌", "✅", "⚡", "⭐115"],
+  ["small-orch",    "⚡", "❌", "✅", "✅", "❌", "❌", "❌", "✅", "✅", "⭐28"],
+  ["hossainemruz",  "✅", "❌", "✅", "✅", "❌", "✅", "❌", "✅", "✅", "⭐50"],
+  ["supersimple",   "⚡", "❌", "✅", "❌", "❌", "✅", "❌", "✅", "✅", "⭐31"],
+  ["ECC",           "❌", "✅", "✅", "✅", "✅", "✅", "❌", "⚡", "⚡", "⭐210k"],
+  ["oh-my-openagent","❌", "✅", "✅", "✅", "✅", "✅", "✅", "⚡", "⚡", "⭐61k"],
+  ["slim",          "❌", "✅", "✅", "✅", "✅", "✅", "❌", "⚡", "⚡", "⭐4.8k"],
+  ["orchestrator",  "❌", "✅", "⚡", "❌", "✅", "✅", "❌", "⚡", "⚡", "⭐164"],
+  ["dux",           "✅", "⚡", "✅", "✅", "✅", "✅", "❌", "✅", "⚡", "—"],
+  ["senate",        "❌", "✅", "✅", "✅", "✅", "✅", "❌", "⚡", "⚡", "—"],
+  ["ensemble",      "✅", "✅", "✅", "✅", "✅", "❌", "❌", "✅", "⚠️", "⭐35"],
+  ["subagents",     "✅", "❌", "⚡", "✅", "❌", "✅", "❌", "✅", "✅", "—"],
+  ["codex-orch",    "❌", "✅", "✅", "✅", "✅", "✅", "❌", "⚡", "⚡", "—"],
+  ["oowl",          "⚡", "❌", "✅", "❌", "✅", "✅", "❌", "✅", "✅", "⭐0"],
+  ["open-orch",     "❌", "⚡", "✅", "❌", "✅", "✅", "❌", "⚡", "⚡", "—"],
+  ["Commander",     "⚡", "❌", "⚡", "❌", "❌", "❌", "❌", "✅", "✅", "—"],
+  ["planning-files", "❌", "✅", "❌", "❌", "❌", "✅", "✅", "✅", "✅", "⭐22.8k"],
+  ["OpenSpec",      "❌", "❌", "❌", "❌", "❌", "✅", "❌", "✅", "✅", "⭐53.3k"],
+  ["orca2",         "❌", "❌", "❌", "❌", "❌", "✅", "✅", "✅", "✅", "—"],
+];
+const tbody2 = document.createElement('tbody');
+matrix.forEach(r => {
+  const tr = document.createElement('tr');
+  const cells = [r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10]];
+  cells.forEach((c, i) => {
+    const td = document.createElement('td');
+    if (i === 0) { td.style.textAlign = 'left'; td.textContent = c; }
+    else if (c === '✅') { td.className = 'cell-yes'; td.textContent = c; }
+    else if (c === '❌') { td.className = 'cell-no'; td.textContent = c; }
+    else if (c === '⚡') { td.className = 'cell-partial'; td.textContent = c; }
+    else if (c.startsWith('⚠️')) { td.className = 'cell-no'; td.textContent = c; }
+    else { td.textContent = c; }
+    tr.appendChild(td);
+  });
+  tbody2.appendChild(tr);
+});
+document.querySelector('.matrix-table').appendChild(tbody2);
+</script>
+</tbody>
+</table>
+
+<!-- ============ GAPS ============ -->
+<h2 id="gaps">🧩 Análise de Gaps vs Seu Setup</h2>
+
+<div class="side-by-side">
+
+<div>
+<h3>O que você já tem</h3>
+<table>
+<tr><th>Capacidade</th><th>Plugin atual</th></tr>
+<tr><td>Code tools (edit, search, callgraph)</td><td>AFT</td></tr>
+<tr><td>Compressão de contexto</td><td>DCP</td></tr>
+<tr><td>Memória persistente</td><td>mnemory</td></tr>
+<tr><td>Hooks de script</td><td>opencode-hooks</td></tr>
+<tr><td>Web search (Exa)</td><td>MCP exa</td></tr>
+<tr><td>Doc search (Context7)</td><td>MCP context7</td></tr>
+<tr><td>Code search (GitHub)</td><td>MCP gh_grep</td></tr>
+<tr><td>Handoff entre sessões</td><td>opencode-handoff</td></tr>
+</table>
+</div>
+
+<div>
+<h3>Gaps (o que falta)</h3>
+<table>
+<tr><th>Capacidade</th><th>Prioridade</th><th>Como preencher</th></tr>
+<tr><td>Routing de tarefas entre agentes</td><td><span class="badge badge-yes">Alta</span></td><td>Template config ou orquestrador</td></tr>
+<tr><td>Enforcement por permissão</td><td><span class="badge badge-yes">Alta</span></td><td>Modificar seu opencode.jsonc + hooks</td></tr>
+<tr><td>Pipeline multi-passo</td><td><span class="badge badge-yes">Alta</span></td><td>Template config ou skill (planning-with-files)</td></tr>
+<tr><td>Fan-out review paralelo</td><td><span class="badge badge-partial">Média</span></td><td>Template config (hossainemruz) ou custom</td></tr>
+<tr><td>Approval gates</td><td><span class="badge badge-partial">Média</span></td><td>Template config + permissão</td></tr>
+<tr><td>Persistência de plano/tracks</td><td><span class="badge badge-partial">Média</span></td><td>Planning-with-files ou custom</td></tr>
+<tr><td>Background async delegation</td><td><span class="badge badge-no">Baixa</span></td><td>Orquestrador com suporte a background</td></tr>
+<tr><td>Team Mode paralelo</td><td><span class="badge badge-no">Baixa</span></td><td>Oh-my-openagent ou ensemble</td></tr>
+</table>
+</div>
+</div>
+
+<div class="highlight">
+<strong>Conclusão dos gaps:</strong> Seus 3 maiores gaps (routing, enforcement, pipeline) podem ser resolvidos com <strong>template config</strong> ou <strong>skill</strong> — não precisam de orquestrador completo. Fan-out review e approval gates são o próximo nível. Async delegation e Team Mode são supérfluos hoje.
+</div>
+
+<!-- ============ DECISAO ============ -->
+<h2 id="decisao">⚖️ Decisão: Construir ou Adotar?</h2>
+
+<h3>Três caminhos possíveis</h3>
+
+<div class="card-grid">
+
+<div class="card" style="border-color: var(--green);">
+<h4 style="color: var(--green);">🛠️ Caminho A: Construir seu próprio</h4>
+<p><strong>O que seria:</strong> Criar seu template config OpenCode com base nos patterns estudados, usando seu plugin de hooks para enforcement.</p>
+<p><strong>Vantagens:</strong> Controle total, só o que precisa, sem overhead de ecossistema externo. Integração perfeita com AFT/DCP/memory.</p>
+<p><strong>Riscos:</strong> Tempo de desenvolvimento, erros de design, sem benchmark de validação.</p>
+<p><strong>Inspiração:</strong> Pegar o melhor de cada template: enforcement do fmflurry, 2 tiers do small-orchestrator, lane system do grojeda, tracks do supersimple.</p>
+<div class="verdict verdict-build">✅ RECOMENDADO — É o que faz mais sentido pro seu perfil</div>
+</div>
+
+<div class="card" style="border-color: var(--accent);">
+<h4 style="color: var(--accent);">📦 Caminho B: Adotar um existente</h4>
+<p><strong>Melhor candidato:</strong> <strong>small-opencode-orchestrator</strong> (#28) — mesmos modelos que você, 10 agents, 2 tiers, plugin plan-post-approval. Ou <strong>planning-with-files</strong> pra começar mais simples.</p>
+<p><strong>Vantagens:</strong> Pronto, testado, comunidade.</p>
+<p><strong>Riscos:</strong> Overhead de features que não usa, conflito com setup existente, dependência de terceiros.</p>
+<p><strong>Segundo candidato:</strong> <strong>fmflurry</strong> — se quiser o enforcement mais forte e contínuo learning. Mas usa modelos diferentes dos seus.</p>
+<div class="verdict verdict-adopt">📖 Segunda opção — small-orchestrator ou planning-with-files</div>
+</div>
+
+<div class="card" style="border-color: var(--orange);">
+<h4 style="color: var(--orange);">🧩 Caminho C: Híbrido</h4>
+<p><strong>O que seria:</strong> Adotar uma skill de planejamento (planning-with-files) + construir enforcement no seu plugin de hooks + usar small-orchestrator como referência de design.</p>
+<p><strong>Vantagens:</strong> Menos risco que construir do zero, mais controle que adotar completo.</p>
+<p><strong>Riscos:</strong> Complexidade de integração, dois sistemas evoluindo separadamente.</p>
+<div class="verdict verdict-pending">🤔 Terceira opção — avaliar depois</div>
+</div>
+
+</div>
+
+<div class="warning">
+<strong>⚠️ Regra desta sessão: NÃO implementar nada.</strong> Este documento serve como plano de implementação para a PRÓXIMA sessão. Leia, analise, e quando estiver pronto, inicie nova sessão com as decisões abaixo.
+</div>
+
+<h3>Próximos passos sugeridos</h3>
+
+<table>
+<tr><th>#</th><th>Passo</th><th>Faz parte de</th><th>Tempo estimado</th></tr>
+<tr><td>1</td><td><strong>Escolher caminho</strong> (A, B ou C) baseado neste estudo</td><td>Decisão</td><td>30 min lendo este HTML</td></tr>
+<tr><td>2</td><td><strong>Caminho A (construir):</strong> Criar template config com enforcement, 2 tiers, e lane system</td><td>Implementação</td><td>2-3 sessões</td></tr>
+<tr><td>2b</td><td><strong>Caminho B (adotar):</strong> Instalar small-orchestrator ou planning-with-files + configurar</td><td>Implementação</td><td>1 sessão</td></tr>
+<tr><td>3</td><td><strong>Testar em worktree</strong> separado — não mexer no setup atual</td><td>Validação</td><td>1-2 sessões</td></tr>
+<tr><td>4</td><td><strong>Decidir se mantém ou volta</strong> baseado em resultado real</td><td>Decisão</td><td>Após teste</td></tr>
+</table>
+
+<h3>Se escolher construir (Caminho A), o template sugerido teria:</h3>
+
+<table>
+<tr><th>Componente</th><th>Inspiração</th><th>Como implementar</th></tr>
+<tr><td>Orchestrator (2 tiers)</td><td>small-orchestrator</td><td>Criar agente orchestrator (Flash) + planner (Pro) + executor (Flash)</td></tr>
+<tr><td>Enforcement por permissão</td><td>fmflurry + subagents</td><td>Negar write/edit no orchestrator. Usar seu plugin de hooks pra validar</td></tr>
+<tr><td>Pipeline linear com gates</td><td>grojeda</td><td>3 lanes: /quick (sem gate), /medium (approval), /full (review + approval)</td></tr>
+<tr><td>Fan-out review</td><td>hossainemruz</td><td>3 revisores paralelos (código, segurança, testes)</td></tr>
+<tr><td>Persistência de plano</td><td>planning-with-files/supersimple</td><td>Arquivos .opencode/plans/ + session recovery via hook</td></tr>
+<tr><td>Tools de teste/coverage/security</td><td>fmflurry</td><td>Custom tools em tools/run-tests.ts, check-coverage.ts, security-audit.ts</td></tr>
+</table>
+
+<div class="verdict verdict-build">
+🛠️ RECOMENDAÇÃO FINAL: Construir (Caminho A).<br/>
+<span style="font-size:.85rem; font-weight:400;">
+Seu setup já tem a base (AFT + DCP + mnemory + hooks). Template config é mais leve que orquestrador completo. Você controla custo, enforcement, e integração. Comece pequeno: 3 agents (orchestrator + planner + executor), pipeline linear com approval gate, e expanda conforme sentir necessidade.
+</span>
+</div>
+
+</div>
+</body>
+</html>

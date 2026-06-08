@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>omo-slim — Q&A de Estudo</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+  h1 { color: #58a6ff; border-bottom: 1px solid #21262d; padding-bottom: 8px; }
+  h2 { color: #f0f6fc; margin-top: 32px; }
+  h3 { color: #79c0ff; margin-top: 24px; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .qa { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .q { font-weight: 600; color: #f0f6fc; font-size: 1.05em; margin-bottom: 8px; }
+  .a { color: #c9d1d9; }
+  .a ul { padding-left: 20px; }
+  .a li { margin: 6px 0; }
+  .tag { display: inline-block; background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 4px; padding: 2px 8px; font-size: 0.85em; margin-right: 4px; }
+  .cmd { background: #21262d; color: #f0f6fc; padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 0.95em; }
+  .warn { background: #3d1f00; border-left: 3px solid #d29922; padding: 8px 12px; border-radius: 4px; margin: 8px 0; font-size: 0.9em; }
+  .info { background: #0c2d6b; border-left: 3px solid #58a6ff; padding: 8px 12px; border-radius: 4px; margin: 8px 0; font-size: 0.9em; }
+  .nav { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+  .nav a { margin-right: 16px; }
+  hr { border: none; border-top: 1px solid #21262d; margin: 24px 0; }
+  .flow-step { background: #0d1117; border: 1px solid #21262d; border-radius: 6px; padding: 12px 16px; margin: 8px 0; }
+  .flow-step .step-num { color: #58a6ff; font-weight: 600; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th, td { border: 1px solid #30363d; padding: 8px 12px; text-align: left; }
+  th { background: #161b22; color: #f0f6fc; }
+  pre { background: #161b22; padding: 12px; border-radius: 6px; overflow-x: auto; border: 1px solid #21262d; }
+  .feature-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .feature-card h3 { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<h1>omo-slim — Q&A de Estudo</h1>
+<p style="color: #8b949e;">Repositorio: <a href="https://github.com/alvinunreal/oh-my-opencode-slim">alvinunreal/oh-my-opencode-slim</a> · 5.2k stars · MIT · Plugin</p>
+
+<div class="nav">
+  <a href="#sobre">O que e</a>
+  <a href="#instalacao">Instalacao</a>
+  <a href="#agentes">Agentes</a>
+  <a href="#comandos">Comandos</a>
+  <a href="#fluxo">Fluxo</a>
+  <a href="#features">Features</a>
+  <a href="#perguntas">Perguntas</a>
+</div>
+
+<h2 id="sobre">O que e</h2>
+
+<p>Plugin de orquestracao de agentes para OpenCode. Adiciona 7 especialistas + 1 opcional que trabalham sob um Orchestrator. Cada um usa um modelo diferente, equilibrando custo e qualidade.</p>
+
+<p>Ideia central: <em>"instead of forcing one model to do everything, the plugin routes each part of the job to the agent best suited for it"</em></p>
+<p>Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim">README</a></p>
+
+<h2 id="instalacao">Instalacao</h2>
+
+<div class="qa">
+  <div class="q">Como instalar?</div>
+  <div class="a">
+    <pre>bunx oh-my-opencode-slim@latest install --preset=opencode-go</pre>
+    <p>Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/installation.md">docs/installation.md</a></p>
+    <p>O instalador:</p>
+    <ul>
+      <li>Adiciona o plugin no <span class="cmd">opencode.json</span></li>
+      <li>Gera <span class="cmd">~/.config/opencode/oh-my-opencode-slim.json</span> com presets</li>
+      <li>Desabilita agents default do OpenCode</li>
+      <li>Com <span class="cmd">--preset=opencode-go</span>, ativa Observer com kimi-k2.6</li>
+    </ul>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">E depois da instalacao?</div>
+  <div class="a">
+    <pre>opencode auth login
+opencode models --refresh
+opencode</pre>
+    <p>Dentro do OpenCode: <span class="cmd">ping all agents</span></p>
+    <p>Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim">README, Getting Started e Verify Your Setup</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">Onde fica o arquivo de configuracao?</div>
+  <div class="a">
+    <p><span class="cmd">~/.config/opencode/oh-my-opencode-slim.json</span> — ou <span class="cmd">.jsonc</span> (JSON com comentarios, recomendado).</p>
+    <p>Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/configuration.md">docs/configuration.md</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">Posso trocar os modelos que cada agente usa?</div>
+  <div class="a">
+    <p><strong>Sim.</strong> Edite o preset no JSON. Exemplo:</p>
+    <pre>"opencode-go": {
+  "explorer": { "model": "opencode-go/mimo-v2.5", "skills": [], "mcps": [] },
+  "librarian": { "model": "opencode-go/mimo-v2.5", "skills": [], "mcps": ["websearch"] }
+}</pre>
+    <p>Cada agente aceita: <span class="cmd">model</span>, <span class="cmd">temperature</span> (0-2), <span class="cmd">variant</span> (low/medium/high), <span class="cmd">skills</span> (["*"] = todas), <span class="cmd">mcps</span> (["*", "!context7"] = todas exceto context7).</p>
+    <p>Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/configuration.md#full-option-reference">docs/configuration.md — Full Option Reference</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">Como desinstalar?</div>
+  <div class="a">
+    <ol>
+      <li>Remove <span class="cmd">"oh-my-opencode-slim"</span> do plugin array no <span class="cmd">opencode.json</span></li>
+      <li>Remove <span class="cmd">~/.config/opencode/oh-my-opencode-slim.json</span></li>
+      <li>Remove <span class="cmd">~/.config/opencode/skills/simplify codemap clonedeps</span> (skills bundled)</li>
+    </ol>
+    <p>Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/installation.md#uninstallation">docs/installation.md</a></p>
+  </div>
+</div>
+
+<h2 id="agentes">Os 7+1 Agentes (Pantheon)</h2>
+
+<table>
+  <tr><th>Agente</th><th>Modelo (opencode-go)</th><th>Papel</th><th>Pode editar?</th></tr>
+  <tr><td><strong>Orchestrator</strong></td><td>glm-5.1</td><td>Agente principal. Recebe sua task, coordena, delega. Tambem implementa coisas simples.</td><td>Sim</td></tr>
+  <tr><td><strong>Explorer</strong></td><td>minimax-m2.7</td><td>Vasculha codebase, acha arquivos, mapeia padroes. Leitura apenas.</td><td>Nao</td></tr>
+  <tr><td><strong>Oracle</strong></td><td>deepseek-v4-pro (max)</td><td>Arquitetura, debugging dificil, trade-offs. Leitura apenas.</td><td>Nao</td></tr>
+  <tr><td><strong>Council</strong></td><td>deepseek-v4-pro (high)</td><td>Roda varios modelos em paralelo, compara, sintetiza. Manual (via @council).</td><td>Nao</td></tr>
+  <tr><td><strong>Librarian</strong></td><td>minimax-m2.7</td><td>Pesquisa docs externas, web search. Leitura apenas.</td><td>Nao</td></tr>
+  <tr><td><strong>Designer</strong></td><td>kimi-k2.6</td><td>UI/UX, frontend, visual.</td><td>Sim</td></tr>
+  <tr><td><strong>Fixer</strong></td><td>deepseek-v4-flash (high)</td><td>Implementa mudancas bem definidas, testes, correcoes.</td><td>Sim</td></tr>
+  <tr><td><strong>Observer</strong></td><td>kimi-k2.6 (desligado)</td><td>Leitura multimodal (imagens, PDFs, screenshots). Desligado por padrao.</td><td>Nao</td></tr>
+</table>
+<p>Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim">README, secoes 01-07 + Optional</a></p>
+
+<h2 id="comandos">Comandos</h2>
+
+<table>
+  <tr><th>Comando</th><th>O que faz</th><th>Fonte</th></tr>
+  <tr><td><span class="cmd">/goal</span></td><td>Pinta objetivo da sessao. Nao executa nada — so lembra o agente do "porque".</td><td><a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/session-goal.md">docs/session-goal.md</a></td></tr>
+  <tr><td><span class="cmd">/subtask</span></td><td>Cria worker isolado pra subtarefa especifica. Retorna sumario estruturado ao final.</td><td><a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/subtask.md">docs/subtask.md</a></td></tr>
+  <tr><td><span class="cmd">/preset</span></td><td>Troca modelos de todos os agentes em runtime (ex: barato → caro pra revisao).</td><td><a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/preset-switching.md">docs/preset-switching.md</a></td></tr>
+  <tr><td><span class="cmd">@agentName</span></td><td>Chama agente especifico manualmente. Ex: @oracle analise isso, @council compare.</td><td>README, "You can alway delegate manually by calling a subagent via: @agentName"</td></tr>
+  <tr><td><span class="cmd">/interview</span></td><td>Abre navegador local com Q&A, gera spec markdown.</td><td><a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/interview.md">docs/interview.md</a></td></tr>
+  <tr><td><span class="cmd">ping all agents</span></td><td>Verifica se todos os agentes estao online.</td><td>README, Verify Your Setup</td></tr>
+</table>
+
+<div class="warn">
+  <strong>Comando /start-work nao existe.</strong> Nao faz parte do omo-slim.
+</div>
+
+<h2 id="fluxo">Fluxo de uso real</h2>
+
+<p>Voce abre o OpenCode e simplesmente descreve a task. Exatamente como faz hoje.</p>
+
+<div class="flow-step">
+  <span class="step-num">1.</span> Voce digita: <em>"Adiciona autenticacao Google no backend com Fastify"</em>
+</div>
+
+<div class="flow-step">
+  <span class="step-num">2.</span> O Orchestrator analisa e decide o que fazer. Se precisar explorar o codigo existente, chama o Explorer (automatico, voce nao ve o comando).
+</div>
+
+<div class="flow-step">
+  <span class="step-num">3.</span> Explorer vasculha, retorna contexto. Orchestrator avalia. Se precisar de decisao arquitetural, chama Oracle.
+</div>
+
+<div class="flow-step">
+  <span class="step-num">4.</span> Com plano definido, Orchestrator chama Fixer pra implementar.
+</div>
+
+<div class="flow-step">
+  <span class="step-num">5.</span> Fixer implementa, testes rodam, Orchestrator mostra resultado pra voce.
+</div>
+
+<p><strong>Voce so ve o resultado final</strong> — a delegacao entre agentes acontece em child sessions, transparente pro seu terminal.</p>
+
+<h2 id="features">Features detalhadas — alem da orquestracao</h2>
+
+<p>Abaixo, cada feature do omo-slim comparada com o que um template config (AGENTS.md + jsonc) consegue replicar.</p>
+
+<div class="feature-card">
+<h3>1. Interview (/interview)</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Abre navegador local com Q&A, gera spec markdown, suporta dashboard multi-sessao. Config: interview.port, interview.maxQuestions.</td><td>Impossivel. Requer servidor web + UI no navegador + escrita de arquivos.</td></tr>
+</table>
+<p>Digita /interview build a kanban app, abre localhost com perguntas, responde no navegador, gera spec markdown no repositorio.</p>
+<p>Link: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/interview.md">docs/interview.md</a> — "Start a new interview: /interview build a kanban app"</p>
+</div>
+
+<div class="feature-card">
+<h3>2. Codemap</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Skill com codigo (codemap.mjs). Gera .slim/codemap.json com hash tracking + codemap.md por pasta + change detection.</td><td>Parcial. Pode instruir o agente a documentar arquitetura, mas sem hash tracking nem deteccao automatica de mudancas.</td></tr>
+</table>
+<p>Nao e hook — e codigo executavel. O script seleciona arquivos usando LLM judgment, cria hashes pra detectar mudancas, gera templates de documentacao.</p>
+<p>Link: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/codemap.md">docs/codemap.md</a> — "creates .slim/codemap.json for change tracking"</p>
+</div>
+
+<div class="feature-card">
+<h3>3. MCPs built-in (websearch, context7, grep_app)</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Ja vem com 3 MCPs configurados. Permissao granular por agente (Explorer sem MCPs, Librarian com websearch+context7).</td><td>Replicavel no jsonc. Adiciona no opencode.jsonc e controla permissao via agent.&lt;name&gt;.permission.</td></tr>
+</table>
+<p>Se ja tem context7 no jsonc: (a) desliga no omo-slim com disabled_mcps: ["context7"], ou (b) deixa omo-slim gerenciar e remove do jsonc.</p>
+<p>Link: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/mcps.md">docs/mcps.md</a> — tabela "Default Permissions Per Agent"</p>
+</div>
+
+<div class="feature-card">
+<h3>4. Skills (simplify, codemap, clonedeps)</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Skills injetadas no system prompt do agente. Atribuicao ativa via presets...skills. Se nao esta no array, o agente nao carrega.</td><td>Replicavel parcialmente. Escreve instrucoes no AGENTS.md. OpenCode nativo carrega skills on-demand via skill tool — sem "atribuicao forcada".</td></tr>
+</table>
+<p>Nova skill instalada em ~/.config/opencode/skills/: precisa adicionar no array skills do agente no preset. Sem isso, omo-slim nao usa.</p>
+<p>Link: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/skills.md">docs/skills.md</a> + <a href="https://opencode.ai/docs/skills">opencode.ai/docs/skills</a></p>
+</div>
+
+<div class="feature-card">
+<h3>5. Todo Continuation</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Auto-continua o Orchestrator quando para com todos incompletos. Cooldown 3s, safety gates, Escx2 aborta. Opt-in (desabilitado por padrao).</td><td>Exclusivo de plugin.</td></tr>
+</table>
+<p>Link: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/todo-continuation.md">docs/todo-continuation.md</a></p>
+</div>
+
+<div class="feature-card">
+<h3>6. Session Management</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Lembra child sessions recentes (exp-1, fix-2). Na proxima delegacao relacionada, reusa em vez de criar nova. Em memoria, some no restart.</td><td>Exclusivo de plugin.</td></tr>
+</table>
+<p>Util porque: 1a chamada → Explorer vasculha 20 arquivos. 2a chamada → reusa child session, Explorer ja tem os 20 arquivos no contexto. Economiza tokens.</p>
+<p>Link: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/session-management.md">docs/session-management.md</a></p>
+</div>
+
+<div class="feature-card">
+<h3>7. Fallback (model failover)</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Se modelo da timeout/erro, tenta proximo da lista. Configuravel por agente via fallback.chains.</td><td>Exclusivo de plugin.</td></tr>
+</table>
+<p>Se tem poucos modelos (deepseek-v4-flash, mimo-v2.5), fallback nao agrega. Pode pular.</p>
+</div>
+
+<div class="feature-card">
+<h3>8. Prompt Overriding</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Arquivos ~/.config/opencode/oh-my-opencode-slim/{agent}.md sobrescrevem prompt built-in. Suporte a preset (pastas por preset).</td><td>Replicavel no jsonc. agent.&lt;name&gt;.prompt permite custom prompt.</td></tr>
+</table>
+<p>Link: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/configuration.md#prompt-overriding">docs/configuration.md#prompt-overriding</a></p>
+</div>
+
+<div class="feature-card">
+<h3>9. Custom Agents</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Define agentes com model, prompt, orchestratorPrompt (ensina o Orchestrator QUANDO delegar), skills, mcps.</td><td>O coracao dos template configs. Supersimple (#30), hossainemruz (#29) fazem isso. Sem "delegation rules" (orchestratorPrompt).</td></tr>
+</table>
+<p>Link: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/configuration.md#custom-agents">docs/configuration.md#custom-agents</a></p>
+</div>
+
+<div class="feature-card">
+<h3>10. Multiplexer (Tmux/Zellij)</h3>
+<table>
+  <tr><th>omo-slim</th><th>Template config</th></tr>
+  <tr><td>Paineis automaticos no terminal mostrando cada child session em tempo real.</td><td>Exclusivo de plugin.</td></tr>
+</table>
+<p>Fluxo: instala tmux, ativa no json: multiplexer: { type: "auto" }, inicia opencode --port 4096 dentro do tmux. Quando orquestrador delega, novo painel abre com o agente trabalhando. Navega com Ctrl+B+setas, zoom Ctrl+B+z.</p>
+<p>Link: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/multiplexer-integration.md">docs/multiplexer-integration.md</a></p>
+</div>
+
+<h3>Resumo: o que template config consegue vs nao</h3>
+
+<table>
+  <tr><th>Funcionalidade</th><th>Precisa de plugin?</th><th>Template config faz?</th></tr>
+  <tr><td>MCPs bundled</td><td>Nao</td><td>Sim</td></tr>
+  <tr><td>Skills (instrucoes)</td><td>Nao</td><td>Sim</td></tr>
+  <tr><td>Custom Agents</td><td>Nao</td><td>Sim</td></tr>
+  <tr><td>Prompt Overriding</td><td>Nao</td><td>Sim</td></tr>
+  <tr><td>Interview (web UI)</td><td>Plugin</td><td>Nao</td></tr>
+  <tr><td>Codemap automation</td><td>Plugin</td><td>Nao</td></tr>
+  <tr><td>Todo Continuation</td><td>Plugin</td><td>Nao</td></tr>
+  <tr><td>Session Management</td><td>Plugin</td><td>Nao</td></tr>
+  <tr><td>Fallback modelos</td><td>Plugin</td><td>Nao</td></tr>
+  <tr><td>Multiplexer</td><td>Plugin</td><td>Nao</td></tr>
+</table>
+
+<h2 id="perguntas">Perguntas respondidas</h2>
+
+<div class="qa">
+  <div class="q">/goal e necessario pra delegar tasks pros outros agentes?</div>
+  <div class="a">
+    <p><strong>Nao.</strong> O Orchestrator delega automaticamente baseado na task, independente de /goal.</p>
+    <p>O /goal e opcional — so pinta um lembrete do "porque" no contexto. Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/session-goal.md">docs/session-goal.md</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">Posso trabalhar em 2 tasks ao mesmo tempo?</div>
+  <div class="a">
+    <p><strong>Nao na V1.</strong> Delegacao e sequencial — Orchestrator chama Explorer, espera, depois Fixer.</p>
+    <p><strong>V2 Beta</strong> muda: Orchestrator vira scheduler, dispara em background. Beta: bunx oh-my-opencode-slim@beta install + variavel experimental.</p>
+    <p>Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim">README, V2 Background-Orchestration Beta</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">O que acontece quando o Orchestrator chama um agente?</div>
+  <div class="a">
+    <p>Cria uma child session — sessao separada com modelo e permissoes daquele agente. Executa, retorna, encerra. Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/multiplexer-integration.md">docs/multiplexer-integration.md</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">Como desativar pra testar sem conflito com meus plugins?</div>
+  <div class="a">
+    <p>Comenta no opencode.jsonc: // "oh-my-opencode-slim". Reinicia OpenCode. Fonte: <a href="https://github.com/alvinunreal/oh-my-opencode-slim/blob/master/docs/installation.md#uninstallation">docs/installation.md</a></p>
+  </div>
+</div>
+
+<div class="qa">
+  <div class="q">O omo-slim e diferente de um template config?</div>
+  <div class="a">
+    <p><strong>Sim.</strong> Template config = texto. omo-slim = plugin runtime com permissoes reais, MCPs gerenciados, session tracking, fallback, continuation, multiplexer. Coisas que texto nao faz.</p>
+  </div>
+</div>
+
+<hr>
+
+<p><a href="orchestration-study.html">← Voltar ao estudo de orquestracao</a></p>
+
+</body>
+</html>
