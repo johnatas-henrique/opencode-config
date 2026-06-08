@@ -2,13 +2,13 @@
 
 ## Tool Selection Rules
 
-| Never use X for Y                 | Use instead     |
-| --------------------------------- | --------------- |
-| playwright para URL fetch simples | webfetch        |
-| context7 para web search          | exa             |
-| gh_grep para READMEs              | exa ou webfetch |
-| context7 para code examples       | gh_grep         |
-| websearch para GitHub code        | gh_grep         |
+| Never use X for Y                | Use instead     |
+| -------------------------------- | --------------- |
+| playwright for URL fetch simples | aft or webfetch |
+| context7 for web search          | exa             |
+| gh_grep for READMEs              | exa or webfetch |
+| context7 for code examples       | gh_grep         |
+| websearch for GitHub code        | gh_grep         |
 
 ## AFT (Code Tools)
 

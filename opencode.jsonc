@@ -1,68 +1,81 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "experimental": {
-    "disable_paste_summary": true
+    "disable_paste_summary": true,
   },
+  "small_model": "opencode-go/deepseek-v4-flash",
   "autoupdate": true,
   "instructions": [
     "~/.config/opencode/AGENTS.md",
     "~/.config/opencode/docs/agent-instructions/workflow.md",
     "~/.config/opencode/docs/agent-instructions/mcp-tools.md",
     "~/.config/opencode/docs/agent-instructions/testing.md",
-    "~/.config/opencode/docs/agent-instructions/constraints.md",
-    "~/.config/opencode/docs/agent-instructions/writing-style.md"
+    "~/.config/opencode/docs/agent-instructions/writing-style.md",
   ],
   "compaction": {
     "auto": false,
-    "prune": false
+    "prune": false,
   },
   "mcp": {
     "context7": {
       "enabled": true,
       "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}",
       },
       "type": "remote",
-      "url": "https://mcp.context7.com/mcp"
+      "url": "https://mcp.context7.com/mcp",
     },
     "exa": {
       "enabled": true,
       "type": "remote",
-      "url": "https://mcp.exa.ai/mcp"
+      "url": "https://mcp.exa.ai/mcp",
     },
     "gh_grep": {
       "enabled": true,
       "type": "remote",
-      "url": "https://mcp.grep.app"
+      "url": "https://mcp.grep.app",
     },
-    "playwriter": {
-      "enabled": true,
-      "type": "local",
-      "command": ["playwriter"]
-    },
+    // "playwriter": {
+    //   "enabled": false,
+    //   "type": "local",
+    //   "command": ["playwriter"],
+    // },
     "markitdown": {
       "command": ["uvx", "markitdown-mcp@latest"],
       "enabled": true,
-      "type": "local"
-    },
-    "agentmemory": {
       "type": "local",
-      "command": ["npx", "-y", "@agentmemory/mcp"],
-      "enabled": true
-    }
+    },
+    // "agentmemory": {
+    //   "type": "local",
+    //   "command": ["npx", "-y", "@agentmemory/mcp"],
+    //   "enabled": true,
+    //   "environment": {
+    //     "AGENTMEMORY_URL": "http://localhost:3111"
+    //   }
+    // },
   },
+  "plugin": [
+    // "@johnatas-henrique/opencode-hooks@latest",
+    "@cortexkit/aft-opencode@latest",
+    "@tarquinen/opencode-dcp@latest",
+    "@franlol/opencode-md-table-formatter@latest",
+    "opencode-handoff",
+    "@fpytloun/opencode-mnemory",
+  ],
   "permission": {
     "external_directory": {
       "*": "ask",
       "/tmp": "allow",
-      "/tmp/*": "allow"
+      "/tmp/*": "allow",
+      "~/.local/share/cortexkit/*": "allow",
+      "~/.agents/skills/*": "allow",
     },
     "skill": "allow",
     "task": {
-      "*": "allow"
+      "*": "allow",
     },
     "tool": {
-      "*": "allow"
+      "*": "allow",
     },
     "webfetch": "deny",
     "bash": {
@@ -76,22 +89,13 @@
       "git clean *": "ask",
       "git push *": "ask",
       "sh -c *": "ask",
-      "git add .": "deny"
-    }
+      "git add .": "deny",
+    },
   },
-  "plugin": [
-    "@cortexkit/aft-opencode@latest",
-    "@tarquinen/opencode-dcp@latest",
-    "@franlol/opencode-md-table-formatter@latest",
-    // "@gotgenes/opencode-agent-identity",
-    "@johnatas-henrique/opencode-hooks@latest",
-    "opencode-handoff",
-    "./plugins/agentmemory-capture.ts"
-  ],
   "server": {
     "cors": ["http://localhost"],
     "hostname": "0.0.0.0",
     "mdns": true,
-    "port": 4096
-  }
+    "port": 4096,
+  },
 }

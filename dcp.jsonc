@@ -18,7 +18,7 @@
     "turns": 4
   },
   "compress": {
-    "mode": "range",
+    "mode": "message",
     "permission": "allow",
     "showCompression": true,
     "summaryBuffer": true,

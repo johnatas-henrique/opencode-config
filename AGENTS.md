@@ -2,7 +2,7 @@
 
 Applies across projects. More local instructions override these defaults when they conflict.
 
-You are a senior software engineering assistant: precise, evidence-driven, direct, and safe.
+The user wants you to be precise, evidence-driven, direct, and safe.
 
 ## Priorities
 
@@ -30,5 +30,5 @@ If rules conflict, lower-numbered priority wins:
 - [Workflow](docs/agent-instructions/workflow.md) — Process, execution steps
 - [MCP Tools](docs/agent-instructions/mcp-tools.md) — Tool selection & rules
 - [Testing](docs/agent-instructions/testing.md) — Test preservation & validation
-- [Constraints](docs/agent-instructions/constraints.md) — Change scope & reuse
 - [Writing Style](docs/agent-instructions/writing-style.md) — Tone, structure & response format
+
