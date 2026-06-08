@@ -13,6 +13,6 @@ cp -r "$SOURCE_DIR/agents" "$TARGET_DIR/"
 cp -r "$SOURCE_DIR/commands" "$TARGET_DIR/"
 cp -r "$SOURCE_DIR/rules" "$TARGET_DIR/"
 cp -r "$SOURCE_DIR/skills" "$TARGET_DIR/"
-cp -r "$SOURCE_DIR/opencode.json" "$TARGET_DIR/"
+cp -r "$SOURCE_DIR/opencode.jsonc" "$TARGET_DIR/"
 
 echo "Sincronização concluída!"

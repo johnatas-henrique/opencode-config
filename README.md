@@ -9,7 +9,8 @@ Minhas configurações pessoais para o opencode CLI.
 - `commands/` — Comandos personalizados
 - `rules/` — Regras de lint/format
 - `skills/` — Skills personalizadas
-- `opencode.json` — Configurações do opencode
+- `docs/` — Documentação e referências
+- `opencode.jsonc` — Configurações do opencode
 
 ## Instalação
 
@@ -26,7 +27,7 @@ cd /tmp/opencode-config
 
 ## Sincronização
 
-Após fazer alterações nas suas configurações:
+Após fazer alterações:
 
 ```bash
 cd ~/.config/opencode

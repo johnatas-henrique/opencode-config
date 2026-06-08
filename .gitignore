@@ -3,3 +3,7 @@ bun.lock
 opencode-hooks/logs/
 .vscode/
 .vscode/settings.json
+
+scripts/mnemory.env
+package-lock.json
+package.json
