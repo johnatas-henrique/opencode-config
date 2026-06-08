@@ -1,0 +1,13 @@
+{
+  "plugin": [
+    "@guard22/opencode-status-signals@latest",
+    "@cortexkit/aft-opencode@latest",
+    // "opencode-sidechat"
+    ["opencode-mini-session", {
+      "model": "opencode-go/deepseek-v4-flash",
+      "variant": "max",
+      "enableThinking": true,
+      "agent": "plan"
+    }]
+  ]
+}

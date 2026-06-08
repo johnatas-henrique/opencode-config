@@ -1,7 +1,0 @@
-{
-  "plugin": [
-    "@guard22/opencode-status-signals@latest",
-    "@cortexkit/aft-opencode@latest",
-    "opencode-sidechat"
-  ]
-}
