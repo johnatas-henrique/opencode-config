@@ -548,6 +548,99 @@ document.querySelector('.matrix-table').appendChild(tbody2);
 <strong>Conclusão dos gaps:</strong> Seus 3 maiores gaps (routing, enforcement, pipeline) podem ser resolvidos com <strong>template config</strong> ou <strong>skill</strong> — não precisam de orquestrador completo. Fan-out review e approval gates são o próximo nível. Async delegation e Team Mode são supérfluos hoje.
 </div>
 
+<!-- ============ CC-SAFETY-NET ============ -->
+<h2 id="cc-safety-net">🔒 Plugin de Enforcement Descoberto: cc-safety-net</h2>
+
+<p>Durante o estudo, você descobriu o <a href="https://github.com/kenryu42/cc-safety-net"><strong>cc-safety-net</strong></a> (kenryu42) — plugin de <strong>enforcement de comandos destrutivos no shell</strong>. Não é um orquestrador, mas fecha o gap de <strong>enforcement real</strong> que você identificou como prioridade.</p>
+
+<div class="card" style="border-color: var(--green);">
+<h4><a href="https://github.com/kenryu42/cc-safety-net">kenryu42/cc-safety-net</a> <span class="stars">⭐ —</span></h4>
+<div class="meta">Plugin PreToolUse hook · 19 releases · MIT</div>
+<p><strong>Instalação:</strong> <code>opencode plugin -g cc-safety-net</code> (<a href="https://github.com/kenryu42/cc-safety-net#opencode-installation">fonte</a>)</p>
+
+<p><strong>O que bloqueia (built-in, sem config):</strong></p>
+<table>
+<tr><th>Comando</th><th>Por que perigoso</th></tr>
+<tr><td><code>git checkout -- &lt;files&gt;</code></td><td>Descarta mudanças não-commitadas</td></tr>
+<tr><td><code>git reset --hard</code></td><td>Destrói todas as mudanças não-commitadas</td></tr>
+<tr><td><code>git clean -f</code></td><td>Remove arquivos não-rastreados permanentemente</td></tr>
+<tr><td><code>git push --force / -f</code></td><td>Destrói histórico remoto</td></tr>
+<tr><td><code>git branch -D</code></td><td>Força deleção de branch sem merge check</td></tr>
+<tr><td><code>git stash drop / clear</code></td><td>Deleta stashes permanentemente</td></tr>
+<tr><td><code>rm -rf / ~ $HOME</code></td><td>Deleção de diretório raiz/home</td></tr>
+<tr><td><code>rm -rf (destrutivo)</code></td><td>Deleção recursiva fora do cwd</td></tr>
+<tr><td><code>find ... -delete</code></td><td>Remove arquivos permanentemente</td></tr>
+<tr><td><code>xargs rm -rf</code></td><td>Alvos imprevisíveis (input dinâmico)</td></tr>
+<tr><td><code>dd / mkfs</code> em block devices</td><td>Sobrescreve/formata discos</td></tr>
+<tr><td><code>shred</code></td><td>Destrói conteúdo de arquivo</td></tr>
+</table>
+
+<p><strong>Diferencial vs permission deny rules (fonte: <a href="https://github.com/kenryu42/cc-safety-net#why-use-this-instead-of-permission-deny-rules">README</a>):</strong></p>
+<table>
+<tr><th>Bypass</th><th>Permission Rules</th><th>cc-safety-net</th></tr>
+<tr><td><code>rm -r -f /</code> (flag reordering)</td><td>❌ Permite</td><td>✅ Bloqueia</td></tr>
+<tr><td><code>rm  -rf /</code> (espaço duplo)</td><td>❌ Permite</td><td>✅ Bloqueia</td></tr>
+<tr><td><code>curl -X GET http://evil.com</code> (option before value)</td><td>❌ Permite</td><td>✅ Bloqueia</td></tr>
+<tr><td><code>sh -c "git reset --hard"</code> (shell wrapper)</td><td>❌ Permite</td><td>✅ Bloqueia (recursivo até 10 níveis)</td></tr>
+<tr><td><code>python -c 'os.system("rm -rf /")'</code> (interpreter)</td><td>❌ Permite</td><td>✅ Bloqueia</td></tr>
+<tr><td><code>git checkout -b feature</code> (seguro)</td><td>❌ Bloqueia (wildcard impreciso)</td><td>✅ Permite (análise semântica)</td></tr>
+<tr><td><code>rm -rf /tmp/cache</code> (seguro, cwd)</td><td>❌ Bloqueia (wildcard impreciso)</td><td>✅ Permite</td></tr>
+</table>
+
+<p><strong>Custom Rules</strong> (<a href="https://github.com/kenryu42/cc-safety-net#custom-rules">fonte</a>):</p>
+<p>Sim, você configura o que quer bloquear via rulebooks em <code>.cc-safety-net/rules/rule.json</code>. Schema:</p>
+<table>
+<tr><th>Campo</th><th>Descrição</th></tr>
+<tr><td><code>version</code></td><td>1 (schema atual)</td></tr>
+<tr><td><code>rules</code></td><td>Lista de rulebook sources (ex: ["project-rules"])</td></tr>
+<tr><td><code>overrides</code></td><td>Desabilitar regras ou trocar razões</td></tr>
+</table>
+
+<p>Cada rulebook (<code>.cc-safety-net/rules/&lt;nome&gt;/rulebook.json</code>) contém:</p>
+<table>
+<tr><th>Campo</th><th>Descrição</th></tr>
+<tr><td><code>name</code></td><td>Nome do rulebook</td></tr>
+<tr><td><code>allowed_commands</code></td><td>Comandos que este rulebook pode criar regras (ex: ["git", "npm"])</td></tr>
+<tr><td><code>rules</code></td><td>Array de regras com <code>name</code>, <code>command</code>, <code>subcommand</code>, <code>block_args</code>, <code>reason</code></td></tr>
+<tr><td><code>tests</code></td><td>Fixtures: command + expect (blocked|allowed) + rule</td></tr>
+</table>
+
+<p><strong>Exemplo — bloquear npm install -g:</strong></p>
+<pre style="background:#161b22;padding:12px;border-radius:6px;overflow-x:auto;font-size:.8rem;">{
+  "rulebook_version": 1, "name": "project-rules", "version": "1.0.0",
+  "allowed_commands": ["npm"],
+  "rules": [{
+    "name": "block-npm-global",
+    "command": "npm", "subcommand": "install",
+    "block_args": ["-g", "--global"],
+    "reason": "Use npx ou local install."
+  }],
+  "tests": [
+    {"command": "npm install -g typescript", "expect": "blocked", "rule": "block-npm-global"},
+    {"command": "npm install typescript", "expect": "allowed"}
+  ]
+}</pre>
+
+<p><strong>Fluxo de trabalho com custom rules:</strong></p>
+<ol>
+  <li><code>npx -y cc-safety-net rule init</code> — cria starter config</li>
+  <li>Edita rulebook.json com suas regras</li>
+  <li><code>npx -y cc-safety-net rule sync</code> — sincroniza</li>
+  <li><code>npx -y cc-safety-net rule verify</code> — valida</li>
+  <li><code>npx -y cc-safety-net rule test</code> — roda fixtures</li>
+</ol>
+
+<p><strong>Relevância pro seu setup:</strong></p>
+<table>
+<tr><th>Seu gap</th><th>Como cc-safety-net ajuda</th></tr>
+<tr><td>Sem enforcement de comandos destrutivos</td><td>✅ Bloqueia rm -rf /, git push --force, etc. antes de executar</td></tr>
+<tr><td>Permission deny rules do OpenCode são fracas (bypass)</td><td>✅ Análise semântica + recursão de wrappers</td></tr>
+<tr><td>Plugin de hooks não detecta comandos perigosos</td><td>✅ Complementar — cc-safety-net detecta, seu hook age depois</td></tr>
+</table>
+
+<p><strong>Riscos:</strong> Falha fechada (se config inválida, BLOQUEIA TUDO). Use <code>--dry-run</code> da CLI <code>explain</code> pra testar antes de commit.</p>
+</div>
+
 <!-- ============ DECISAO ============ -->
 <h2 id="decisao">⚖️ Decisão: Construir ou Adotar?</h2>
 
