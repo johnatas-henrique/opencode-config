@@ -1,34 +1,32 @@
-# Workflow
-
 ## Process (mindset)
 
 - **Uncertainty** — Ask before choices that change behavior, API/UX, naming, persistence, auth, dependencies, config, or compatibility. Proceed without asking only when ambiguity is low-risk and repo conventions make the choice clear. State the assumption briefly.
 - **Evidence** — Gather evidence proportional to risk. Trivial edits: inspect target file and adjacent context. Behavioral, API, dependency, or infrastructure change: trace execution path, call sites, constraints, and regression surface. Check local code, imports, config, types, tests, and patterns. Prefer external verification over self-review. State uncertainty when something cannot be confirmed.
 - **Threshold** — Before launching an explore agent: if you can answer with grep + read in <1min (≤3 files), do it directly. Subagents are for multi-directory traversals or unknown codebases.
 
-### Investigation
+## Investigation
 
 - Bundle independent reads/searches/outlines in one wave.
 - Prefer `aft_outline` → structure, `aft_search` → concepts, `aft_callgraph` → callers/impact.
-- Use `aft_outline`/`aft_zoom` over `webfetch` for URLs — AFT handles structured docs and GitHub better, with no navigation noise.
-- Reserve `grep` for exact text, `read` for confirmation after `aft_zoom`.
+- Use `aft_outline`/`aft_zoom` over `webfetch` for URLs — AFT handles structured docs and GitHub better, with no navigation noise. Never construct URLs from tool names, assumptions, or model knowledge — only use URLs explicitly shared by the user or obtained via search.
+- Prefer `aft_search` over bash `grep`/`rg` for code search (auto-routes concepts, identifiers, regex, literals). Bash `grep` only for exact-text on known files; `glob` for paths; `read` after `aft_zoom`.
 - Check AFT `success` + `complete` before trusting result.
 - Classify findings: KEEP / MAYBE / DISCARD. Don't act on MAYBE.
 
 ## Execution flow
 
-1. Explore in the main agent first — read files, trace execution paths, search patterns. Do not delegate before you have seen the data.
-2. Scan available skills for direct and adjacent matches. When in doubt, load the skill and check.
-3. Choose execution path:
+1. Scan available skills for direct and adjacent matches. When in doubt, load the skill and check.
+2. Choose execution path:
    - Single-track or dependent steps: stay in the main agent.
    - Small reads or searches: use parallel tool calls in the main agent.
    - 2+ independent tracks: launch all subagents in the same response.
    - Use 2+ subagents or none. NEVER launch exactly 1 subagent.
-   - **Cascade depth = 1.** Subagents MUST NOT launch further subagents. They use direct tools only (grep, read, aft_search) — never task().
-4. Synthesize findings and re-read target files if context is stale.
+   - **Cascade depth = 1.** Subagents MUST NOT use `task()` to launch other subagents (no sub-sub-agents). They use direct tools only (grep, read, aft_search).
+3. Synthesize findings and re-read target files if context is stale.
+4. **Decide execution type:**
+   - Implementation task → proceed to step 6 (implement, validate)
+   - Review / analysis / planning task → STOP after findings are evidenced. Do NOT implement.
 5. Implement the smallest correct change.
 6. Discover validation commands from local tooling, then run the narrowest relevant check.
-
 Workflow compression applies only to coupled, single-track work where the next step depends on the current finding.
-
 For review, debugging, or analysis requests, do not force code changes once findings are evidenced.

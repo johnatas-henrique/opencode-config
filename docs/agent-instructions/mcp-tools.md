@@ -1,10 +1,7 @@
-# MCP Tools
-
 ## Tool Selection Rules
 
 | Never use X for Y                | Use instead     |
 | -------------------------------- | --------------- |
-| playwright for URL fetch simples | aft or webfetch |
 | context7 for web search          | exa             |
 | gh_grep for READMEs              | exa or webfetch |
 | context7 for code examples       | gh_grep         |
