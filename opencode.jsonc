@@ -1,66 +1,80 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "experimental": {
-    "disable_paste_summary": true,
-  },
-  "small_model": "opencode-go/deepseek-v4-flash",
   "autoupdate": true,
+  "small_model": "opencode-go/deepseek-v4-flash",
+  "compaction": {
+    "auto": false,
+    "prune": false
+  },
+  "agent": {
+    "build": {
+      "prompt": "{file:~/.config/opencode/docs/prompts/default.md}",
+      "model": "opencode-go/deepseek-v4-flash"
+    },
+    "plan": {
+      "prompt": "{file:~/.config/opencode/docs/prompts/default.md}",
+      "model": "opencode-go/deepseek-v4-flash"
+    },
+    "general": {
+      "prompt": "{file:~/.config/opencode/docs/prompts/general.md}",
+      "mode": "subagent",
+      "model": "opencode-go/deepseek-v4-flash"
+    },
+    "explore": {
+      "prompt": "{file:~/.config/opencode/docs/prompts/explore.md}",
+      "mode": "subagent",
+      "model": "opencode-go/deepseek-v4-flash"
+    },
+    "compaction": {
+      "prompt": "{file:~/.config/opencode/docs/prompts/compaction.md}",
+      "model": "opencode-go/deepseek-v4-flash"
+    }
+  },
+  "experimental": {
+    "disable_paste_summary": true
+  },
   "instructions": [
-    "~/.config/opencode/AGENTS.md",
     "~/.config/opencode/docs/agent-instructions/workflow.md",
     "~/.config/opencode/docs/agent-instructions/mcp-tools.md",
     "~/.config/opencode/docs/agent-instructions/testing.md",
-    "~/.config/opencode/docs/agent-instructions/writing-style.md",
+    "~/.config/opencode/docs/agent-instructions/writing-style.md"
   ],
-  "compaction": {
-    "auto": false,
-    "prune": false,
-  },
   "mcp": {
     "context7": {
       "enabled": true,
       "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}",
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
       },
       "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
+      "url": "https://mcp.context7.com/mcp"
     },
     "exa": {
       "enabled": true,
       "type": "remote",
-      "url": "https://mcp.exa.ai/mcp",
+      "url": "https://mcp.exa.ai/mcp"
     },
     "gh_grep": {
       "enabled": true,
       "type": "remote",
-      "url": "https://mcp.grep.app",
+      "url": "https://mcp.grep.app"
     },
-    // "playwriter": {
-    //   "enabled": false,
-    //   "type": "local",
-    //   "command": ["playwriter"],
-    // },
     "markitdown": {
-      "command": ["uvx", "markitdown-mcp@latest"],
+      "command": [
+        "uvx",
+        "markitdown-mcp@latest"
+      ],
       "enabled": true,
-      "type": "local",
-    },
-    // "agentmemory": {
-    //   "type": "local",
-    //   "command": ["npx", "-y", "@agentmemory/mcp"],
-    //   "enabled": true,
-    //   "environment": {
-    //     "AGENTMEMORY_URL": "http://localhost:3111"
-    //   }
-    // },
+      "type": "local"
+    }
   },
   "plugin": [
-    // "@johnatas-henrique/opencode-hooks@latest",
     "@cortexkit/aft-opencode@latest",
-    "@tarquinen/opencode-dcp@latest",
     "@franlol/opencode-md-table-formatter@latest",
+    "~/.config/opencode/plugins/opencode-mnemory",
+    "@gotgenes/opencode-agent-identity@latest",
     "opencode-handoff",
-    "@fpytloun/opencode-mnemory",
+    "@cortexkit/opencode-magic-context@latest",
+    "cc-safety-net@latest"
   ],
   "permission": {
     "external_directory": {
@@ -69,15 +83,17 @@
       "/tmp/*": "allow",
       "~/.local/share/cortexkit/*": "allow",
       "~/.agents/skills/*": "allow",
+      "~/.local/share/opencode/log/*": "allow"
     },
     "skill": "allow",
     "task": {
-      "*": "allow",
+      "*": "allow"
     },
     "tool": {
-      "*": "allow",
+      "*": "allow"
     },
     "webfetch": "deny",
+    "websearch": "allow",
     "bash": {
       "*": "allow",
       "rm -f *": "ask",
@@ -89,13 +105,15 @@
       "git clean *": "ask",
       "git push *": "ask",
       "sh -c *": "ask",
-      "git add .": "deny",
-    },
+      "git add .": "deny"
+    }
   },
   "server": {
-    "cors": ["http://localhost"],
+    "cors": [
+      "http://localhost"
+    ],
     "hostname": "0.0.0.0",
     "mdns": true,
-    "port": 4096,
-  },
+    "port": 4096
+  }
 }
