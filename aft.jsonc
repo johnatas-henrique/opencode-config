@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/cortexkit/aft/master/assets/aft.schema.json",
+  "$schema": "https://raw.githubusercontent.com/cortexkit/aft/main/assets/aft.schema.json",
   "hoist_builtin_tools": true,
   "format_on_edit": true,
   "validate_on_edit": "syntax",
