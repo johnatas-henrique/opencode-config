@@ -1,80 +1,85 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "autoupdate": true,
+  "autoupdate": false,
+  "lsp": false,
   "small_model": "opencode-go/deepseek-v4-flash",
   "compaction": {
     "auto": false,
-    "prune": false
+    "prune": false,
   },
   "agent": {
     "build": {
       "prompt": "{file:~/.config/opencode/docs/prompts/default.md}",
-      "model": "opencode-go/deepseek-v4-flash"
+      "model": "opencode-go/deepseek-v4-flash",
     },
     "plan": {
       "prompt": "{file:~/.config/opencode/docs/prompts/default.md}",
-      "model": "opencode-go/deepseek-v4-flash"
+      "model": "opencode-go/deepseek-v4-flash",
     },
     "general": {
       "prompt": "{file:~/.config/opencode/docs/prompts/general.md}",
       "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash"
+      "model": "opencode/deepseek-v4-flash-free",
     },
     "explore": {
       "prompt": "{file:~/.config/opencode/docs/prompts/explore.md}",
       "mode": "subagent",
-      "model": "opencode-go/deepseek-v4-flash"
+      "model": "opencode/deepseek-v4-flash-free",
     },
     "compaction": {
       "prompt": "{file:~/.config/opencode/docs/prompts/compaction.md}",
-      "model": "opencode-go/deepseek-v4-flash"
-    }
+      "model": "opencode/deepseek-v4-flash-free",
+    },
+    "vision": {
+      "description": "Vision-capable agent for image analysis",
+      "mode": "subagent",
+      "model": "opencode-go/mimo-v2.5",
+      "prompt": "You are a vision specialist, when the user provides an image file path, use the Read tool to read it, then describe the image in detail. Return thorough descriptions, extracted text, and all relevant details to the calling agent or user.",
+      "options": {},
+      "permission": {},
+    },
   },
   "experimental": {
-    "disable_paste_summary": true
+    "disable_paste_summary": true,
   },
   "instructions": [
     "~/.config/opencode/docs/agent-instructions/workflow.md",
     "~/.config/opencode/docs/agent-instructions/mcp-tools.md",
     "~/.config/opencode/docs/agent-instructions/testing.md",
-    "~/.config/opencode/docs/agent-instructions/writing-style.md"
+    "~/.config/opencode/docs/agent-instructions/writing-style.md",
   ],
   "mcp": {
     "context7": {
       "enabled": true,
       "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}",
       },
       "type": "remote",
-      "url": "https://mcp.context7.com/mcp"
+      "url": "https://mcp.context7.com/mcp",
     },
     "exa": {
       "enabled": true,
       "type": "remote",
-      "url": "https://mcp.exa.ai/mcp"
+      "url": "https://mcp.exa.ai/mcp",
     },
     "gh_grep": {
       "enabled": true,
       "type": "remote",
-      "url": "https://mcp.grep.app"
+      "url": "https://mcp.grep.app",
     },
     "markitdown": {
-      "command": [
-        "uvx",
-        "markitdown-mcp@latest"
-      ],
+      "command": ["uvx", "markitdown-mcp@latest"],
       "enabled": true,
-      "type": "local"
-    }
+      "type": "local",
+    },
   },
   "plugin": [
     "@cortexkit/aft-opencode@latest",
+    "@cortexkit/opencode-magic-context@latest",
     "@franlol/opencode-md-table-formatter@latest",
-    "~/.config/opencode/plugins/opencode-mnemory",
     "@gotgenes/opencode-agent-identity@latest",
     "opencode-handoff",
-    "@cortexkit/opencode-magic-context@latest",
-    "cc-safety-net@latest"
+    "cc-safety-net@latest",
   ],
   "permission": {
     "external_directory": {
@@ -83,14 +88,15 @@
       "/tmp/*": "allow",
       "~/.local/share/cortexkit/*": "allow",
       "~/.agents/skills/*": "allow",
-      "~/.local/share/opencode/log/*": "allow"
+      "~/.local/share/opencode/log/*": "allow",
+      "~/.config/opencode/*": "allow",
     },
     "skill": "allow",
     "task": {
-      "*": "allow"
+      "*": "allow",
     },
     "tool": {
-      "*": "allow"
+      "*": "allow",
     },
     "webfetch": "deny",
     "websearch": "allow",
@@ -105,15 +111,13 @@
       "git clean *": "ask",
       "git push *": "ask",
       "sh -c *": "ask",
-      "git add .": "deny"
-    }
+      "git add .": "deny",
+    },
   },
   "server": {
-    "cors": [
-      "http://localhost"
-    ],
+    "cors": ["http://localhost"],
     "hostname": "0.0.0.0",
     "mdns": true,
-    "port": 4096
-  }
+    "port": 4096,
+  },
 }

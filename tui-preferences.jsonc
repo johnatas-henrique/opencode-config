@@ -2,11 +2,9 @@
   "magic-context": {
     "forceToTop": false,
     "order": 120,
-
     "startCollapsed": false,
     "rememberCollapsed": true,
     "collapsed": false,
-
     "sections": {
       "historian": true,
       "memory": true,
@@ -14,5 +12,9 @@
       "dreamer": false,
       "stats": true
     }
+  },
+  "aft": {
+    "order": 110,
+    "collapsed": true
   }
 }

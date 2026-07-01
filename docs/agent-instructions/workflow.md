@@ -30,3 +30,9 @@
 6. Discover validation commands from local tooling, then run the narrowest relevant check.
 Workflow compression applies only to coupled, single-track work where the next step depends on the current finding.
 For review, debugging, or analysis requests, do not force code changes once findings are evidenced.
+
+## When using todowrite tool:
+
+- Prefix tasks with a short ID like [cfg-001], [post-001], [test-001].
+- When a task is waiting, add [BLOCKED] and the reason. Keep status as in_progress.
+- Keep one non-blocked task in_progress at a time. Blocked tasks don't count toward the limit.

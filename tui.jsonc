@@ -2,11 +2,11 @@
   "plugin": [
     "@cortexkit/opencode-magic-context@latest",
     "@cortexkit/aft-opencode@latest",
-    "@guard22/opencode-status-signals@latest", 
+    "@guard22/opencode-status-signals@latest",
     [
       "opencode-mini-session",
       {
-        "model": "opencode-go/deepseek-v4-flash",
+        "model": "opencode/deepseek-v4-flash-free",
         "variant": "max",
         "enableThinking": true,
         "agent": "plan"
