@@ -3,15 +3,19 @@ name: aft-tools
 description: >
   Fast reminder for using the cortexkit/aft OpenCode plugin tools. Use when AFT
   is installed, when choosing between read/grep/bash and aft_* tools, when
-  checking ~/.config/opencode/aft.jsonc, or when updating this skill after a new
+  checking ~/.config/cortexkit/aft.jsonc, or when updating this skill after a new
   cortexkit/aft release.
 ---
 
-*Written for AFT v0.34. If a newer release exists, validate tool names and config keys.*
+*Written for AFT v0.42. If a newer release exists, validate tool names and config keys.*
 
 ## 0. Check local config first
 
-Read `~/.config/opencode/aft.jsonc` to confirm available surface.
+Global config: `~/.config/cortexkit/aft.jsonc`
+Project config: `<project>/.cortexkit/aft.jsonc`
+*(Auto-migrated from legacy `~/.config/opencode/aft.jsonc` / `~/.pi/agent/aft.jsonc` in v0.40)*
+
+Read the config to confirm available surface. If no file exists, defaults apply.
 
 Key config effects:
 - `tool_surface`: `minimal`, `recommended`, or `all` — controls which aft_* tools exist
@@ -22,12 +26,18 @@ Key config effects:
 - `inspect.enabled: true` → enables `aft_inspect`
 - `bash.rewrite/compress/background`: AFT-managed shell calls
 - `semantic.max_files` (default 20000): max files for semantic search indexing in large repos
-- `bash.foreground_wait_window_ms` (default 8000): auto-promote to background after ms
+- `bash.foreground_wait_window_ms` (default 15000): auto-promote to background after ms
+- `backup.enabled / .max_depth / .max_file_size` (v0.42): safety backup settings
+- `bridge.request_timeout_ms` (default 30000): raise on slow filesystems
+- `bridge.hang_threshold` (default 2): raise when many sessions share one bridge
+- `lsp.max_callgraph_files` (default 5000): cap for dead-code analysis on large repos
+- `callgraph_chunk_size` (default 100): batch size for cold-build call graphs
 - `.aftignore`: skip indexed paths that can't go in `.gitignore`
 
-Current config: `all`, `hoist_builtin_tools: true`, `disabled_tools: []`,
+Defaults (no config file): `tool_surface: all`, `hoist_builtin_tools: true`,
 `search_index: true`, `semantic_search: true`, `inspect.enabled: true`,
-`format_on_edit: true`, `validate_on_edit: syntax`, bash rewrite/compress/background enabled.
+`format_on_edit: false` (was `true` pre-v0.40), `validate_on_edit: syntax`,
+bash rewrite/compress/background enabled.
 
 ### 1. Bundle Read-Only Calls
 
@@ -92,7 +102,7 @@ Before any exploratory call:
 | Merge conflicts | `aft_conflicts` | `git status` + grep |
 | Imports | `aft_import add/remove/organize` | manual edit |
 | Replace symbol body | `edit symbol:...` | manual patch |
-| Add member/decorator | `aft_transform` | manual edit |
+| Add member/decorator | `edit symbol:` or `edit oldString/newString` | manual patch |
 | Move/extract/inline | `aft_refactor` | manual refactor |
 | Move/rename file | `aft_move` | `mv` + fix imports |
 | Delete files | `aft_delete` | `rm` only with safety review |
@@ -118,19 +128,48 @@ Before any exploratory call:
 
 **`tool_surface: all` extras** (only if registered):
 - `aft_callgraph`: callers, call_tree, impact, trace_to_symbol, trace_data
-- `aft_transform`: add_member, add_derive, add_decorator, add_struct_tags, wrap_try_catch
 - `aft_refactor`: move, extract, inline
 - `aft_delete`, `aft_move`
 
-### 9. Safe vs Unsafe bundling
+*Note: `aft_transform` was removed in v0.37.0 — use `edit symbol:` or find/replace instead.*
+
+### 9. AFT health bar (status line)
+
+Tool results may end with a health bar like `[AFT E<errors> W<warnings> | D<dead> U<unused> C<clones> | T<todos>]`.
+- `E`/`W` = live LSP diagnostics for files touched this session
+- `~` before `D` means Tier-2 counts predate latest edit — run `aft_inspect` for current numbers
+- When `E>0`, investigate before moving on
+
+### 10. Tool output changes (v0.34→v0.42)
+
+- **`aft_search`**: top result renders full symbol (capped 250 lines); test files hidden by default (`includeTests: true` to show)
+- **`aft_zoom`**: call-graph annotations are opt-in (`callgraph: true`). Default is symbol source only. Large containers (>~150 lines) return a member menu. Ambiguous names return candidate signatures
+- **`aft_inspect`**: compact text summary (not raw JSON). Diagnostics detail always included (message + file:line, capped by topK)
+- **`aft_callgraph`**: standard-library noise collapsed into one summary line per caller. Returns readable text (not raw JSON)
+- **`edit`**: compact one-line output (`Edited (+3/-1).`). `replaceAll` refuses overlapping matches. Surfaces formatter reflows
+- **`apply_patch`**: partial application reports "Partially applied (N of M)"
+- **`bash`** (when background disabled): `bash_status`/`bash_kill`/`bash_watch` not registered; `background`/`pty` params removed; piped commands run verbatim (no rewrite)
+
+### 11. Language support (since v0.34)
+
+New languages added since v0.34:
+- **Outline/zoom/AST**: YAML/Kubernetes symbols, SCSS, Pascal (`.pas`/`.pp`/`.dpr`), R (`.R`/`.r`), Quarto (`.qmd`), R-Markdown (`.Rmd`)
+- **`aft_import`** extended to: Solidity, Java, C#, PHP, Kotlin, Scala, Swift, Ruby, Lua, Perl, C/C++, Vue
+- **Semantic search**: Java, Kotlin, Ruby, Swift, Scala, Lua, Perl, R (v0.41)
+
+### 12. .aftignore
+
+`.aftignore` files are honored (hierarchical, layered on `.gitignore`). Excludes paths from trigram index, semantic index, call graph, `aft_inspect`, and ripgrep fallback. Editing `.aftignore` refreshes indexes. Naming a single file in `grep` searches it even if ignored.
+
+### 13. Safe vs Unsafe bundling
 
 **Safe (bundle freely):** all read/search/exploration — outline, zoom, search, inspect, conflicts, callgraph (read-only), grep, glob, read, ast_grep_search, diagnostics, git status/diff/log, web search.
 
-**Never in parallel (sequence one-by-one):** write, edit, apply_patch, ast_grep_replace (applying), aft_import, aft_transform, aft_refactor, aft_move, aft_delete, aft_safety restore/undo, dep installs, commits, pushes, destructive shell, parallel edits to related files.
+**Never in parallel (sequence one-by-one):** write, edit, apply_patch, ast_grep_replace (applying), aft_import, aft_refactor, aft_move, aft_delete, aft_safety restore/undo, dep installs, commits, pushes, destructive shell, parallel edits to related files.
 
 Investigation = parallel. Patching = sequential.
 
-### 10. Editing workflow
+### 14. Editing workflow
 
 **Before:**
 1. Confirm target with `aft_zoom`/`read`/`grep`/`ast_grep_search`
@@ -139,9 +178,8 @@ Investigation = parallel. Patching = sequential.
 4. Locate tests via `glob`/`grep`
 
 **During (prefer in order):**
-- `edit symbol:` for full symbol replacement
+- `edit symbol:` for full symbol replacement (covers structural additions; `aft_transform` removed in v0.37)
 - `aft_import` for imports
-- `aft_transform` for structural additions
 - `aft_refactor` for move/extract/inline
 - `apply_patch` for multi-file text AFT can't model
 - `ast_grep_replace dryRun` first
@@ -152,7 +190,7 @@ Investigation = parallel. Patching = sequential.
 3. `git diff` — verify intended-only changes
 4. Don't claim full verification if AFT reports skipped/unchecked
 
-### 11. Load-bearing files
+### 15. Load-bearing files
 
 Defines: shared infra, public API, auth/security, routing, persistence, build harness, config loading, widely imported types, many callers.
 
@@ -164,7 +202,7 @@ Defines: shared infra, public API, auth/security, routing, persistence, build ha
 5. Read tests
 6. `aft_safety checkpoint` if broad/risky
 
-### 12. Wave shapes by task
+### 16. Wave shapes by task
 
 **Debug unknown failure:**
 Wave 1: grep error/stack → aft_search behavior → aft_outline area → glob tests → callgraph suspect symbol → read candidate
@@ -184,7 +222,7 @@ Wave 1: outline → inspect → callgraph impact → grep validation/auth/error 
 
 Review axes: **correctness** (invalid states, broken invariants), **security** (missing auth, unsafe trust, secret exposure), **maintainability** (duplicated logic, hidden coupling, poor testability). Tie every finding to source evidence.
 
-### 13. Query construction
+### 17. Query construction
 
 - Fan-out: broad but bounded to source area
 - Drill-in: exact symbols, error strings, config keys, line ranges
@@ -195,7 +233,7 @@ Review axes: **correctness** (invalid states, broken invariants), **security** (
 - Explicit single-file `grep` inspects ignored files (ripgrep behavior — intentional, for targeted checks)
 - Use `ast_grep_search` for syntactic structures grep can't model
 
-### 14. Classification
+### 18. Classification
 
 After every wave: classify each result
 
@@ -207,7 +245,7 @@ DISCARD — empty, noise, generated, vendored, stale, irrelevant
 
 Don't act on MAYBE as confirmed. Don't let DISCARD bias next wave.
 
-### 15. Synthesis template (mental brief after each wave)
+### 19. Synthesis template (mental brief after each wave)
 
 ```
 CONFIRMED: <fact + source evidence>
@@ -219,17 +257,17 @@ RISKS: correctness / security / maintainability
 NEXT WAVE: <specific bundled calls>
 ```
 
-### 16. AFT fallback
+### 20. AFT fallback
 
 Allowed when: `success:false`, `complete:false` + gap material, target unindexed/unsupported, non-code content, exact raw shell needed, tool not exposed.
 
 Write one line: `AFT fallback: <reason>.` Then use narrowest raw tool.
 
-### 17. Runtime hoisting
+### 21. Runtime hoisting
 
 If a tool is named `read`, `write`, `edit`, `apply_patch`, `grep`, `glob`, `bash`, `ast_grep_search`, `ast_grep_replace`, or `lsp_diagnostics` — assume AFT-backed. Apply honesty contract.
 
-### 18. Absolute minimum
+### 22. Absolute minimum
 
 1. Project next 2-4 rounds before any call.
 2. Bundle independent read/search/exploration into one wave.

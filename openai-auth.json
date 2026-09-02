@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "main": {
+    "type": "opencode",
+    "provider": "openai"
+  },
+  "mainAccountId": "ab6b69f0-7d91-4fc0-ade9-d046857c0396",
+  "accounts": [],
+  "refresh": {},
+  "quota": {},
+  "logging": {
+    "level": "error"
+  },
+  "cachekeep": {
+    "enabled": true
+  }
+}

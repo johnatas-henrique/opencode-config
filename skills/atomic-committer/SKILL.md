@@ -302,7 +302,7 @@ Check: no secrets, .env, caches, build artifacts, or unrelated changes.
 
 ## Phase 5: Commit
 
-Format: `<type>(<scope>): <subject>`. Body explains **why**, not what. Subject max 72 chars, imperative, capitalized, no period.
+Format: `<type>(<scope>): <subject>`. Body explains **why**, not what. Subject max 72 chars; description is imperative, starts with a lowercase letter, and has no period.
 
 After each commit:
 

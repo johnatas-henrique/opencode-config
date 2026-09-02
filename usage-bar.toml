@@ -1,0 +1,20 @@
+# opencode-usage-bar configuration
+# Read once at startup — restart opencode after editing.
+
+[ui]
+show_bars = true      # render ▓▓░░ mini-bars (false = text only)
+show_status = true    # show a ! marker next to a provider during incidents
+# bar_width = 6       # override bar width (default: 6 for a single window, 5 otherwise)
+
+[anthropic]
+enabled = false        # Claude Pro/Max via ~/.claude/.credentials.json
+show_5h = true        # rolling 5-hour session window
+show_7d = false       # weekly cap across all models
+show_model = false    # per-model weekly windows (e.g. Fable)
+# credentials_path = "~/.claude/.credentials.json"
+
+[openai]
+enabled = true       # ChatGPT Plus/Pro via the Codex CLI login
+show_5h = true
+show_7d = false
+# codex_auth_path = "~/.codex/auth.json"
